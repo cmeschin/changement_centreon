@@ -1,0 +1,6 @@
+[23/04/15 14:16:06] - Chargement de la page supervision! 
+[23/04/15 16:29:04] - chargement nouvelle demande. 
+[23/04/15 16:29:04] - Initialisation des constantes: 
+[23/04/15 16:29:04] - ID_demande:0 
+[23/04/15 16:29:04] - Date_demande:2015-04-23 16:29:04 
+[23/04/15 16:29:04] - Ref_demande:1504231629- 

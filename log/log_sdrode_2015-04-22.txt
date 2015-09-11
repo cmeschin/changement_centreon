@@ -1,0 +1,60 @@
+[22/04/15 16:33:36] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 16:33:36] - Etat_Param=En cours 
+[22/04/15 16:33:37] - MAJ_ETAT_PARAMETRAGE_DEM:911 Envoi du mail encours. 
+[22/04/15 16:33:37] - Chargement envoi mail en cours 
+[22/04/15 16:33:37] - Sujet=CENTREON: Demande de changement ref: 1503261411-fegmorte - CHEQUEDEJEUNER-SAAS_MUTUALISE_{SEPA} PROJ=1  
+[22/04/15 16:33:37] - message constitué 
+[22/04/15 16:33:37] - mail en cours envoyé 
+[22/04/15 17:19:49] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:21:27] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:23:21] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:30:14] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:36:23] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:37:31] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:39:35] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:40:42] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:42:03] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:43:00] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:44:10] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:46:41] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:50:43] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:50:43] - Etat_Param=Traité 
+[22/04/15 17:50:43] - MAJ_ETAT_PARAMETRAGE_DEM:911 Envoi du mail traite. 
+[22/04/15 17:50:43] - Chargement envoi mail traite 
+[22/04/15 17:50:43] - Sujet=CENTREON: Demande de changement ref: 1503261411-fegmorte - CHEQUEDEJEUNER-SAAS_MUTUALISE_{SEPA} PROJ=1  
+[22/04/15 17:50:43] - message constitué 
+[22/04/15 17:50:43] - mail clos envoyé 
+[22/04/15 17:59:28] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 17:59:28] - Etat_Param=En cours 
+[22/04/15 17:59:28] - MAJ_ETAT_PARAMETRAGE_DEM:912 Envoi du mail encours. 
+[22/04/15 17:59:28] - Chargement envoi mail en cours 
+[22/04/15 17:59:28] - Sujet=CENTREON: Demande de changement ref: 1503261448-fegmorte - FONDATIONARC-SAAS_MUTUALISE_{SEPA} PROJ=1 ISSUE=86024 
+[22/04/15 17:59:28] - message constitué 
+[22/04/15 17:59:29] - mail en cours envoyé 
+[22/04/15 18:00:20] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 18:02:24] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 18:03:56] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 18:06:27] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 18:06:27] - Etat_Param=Traité 
+[22/04/15 18:06:27] - MAJ_ETAT_PARAMETRAGE_DEM:912 Envoi du mail traite. 
+[22/04/15 18:06:27] - Chargement envoi mail traite 
+[22/04/15 18:06:27] - Sujet=CENTREON: Demande de changement ref: 1503261448-fegmorte - FONDATIONARC-SAAS_MUTUALISE_{SEPA} PROJ=1 ISSUE=86024 
+[22/04/15 18:06:27] - message constitué 
+[22/04/15 18:06:27] - mail clos envoyé 
+[22/04/15 18:16:58] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 18:30:21] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 18:30:21] - Etat_Param=Validation 
+[22/04/15 18:30:21] - MAJ_ETAT_PARAMETRAGE_DEM:914 Envoi du mail finalise. 
+[22/04/15 18:30:21] - Chargement envoi mail finalise 
+[22/04/15 18:30:21] - ID_Demande=914 
+[22/04/15 18:30:21] - Sujet=CENTREON: Demande de changement ref: 1503261503-fegmorte - THELEM-SAAS_MUTALISE_{SEPA} PROJ=1  
+[22/04/15 18:30:21] - message constitué 
+[22/04/15 18:30:21] - mail finalisé envoyé 
+[22/04/15 18:47:19] - Chargement de la page supervision! 
+[22/04/15 18:47:32] - Chargement MAJ_Etat_Parametrage.php 
+[22/04/15 18:47:32] - Etat_Param=Traité 
+[22/04/15 18:47:32] - MAJ_ETAT_PARAMETRAGE_DEM:914 Envoi du mail traite. 
+[22/04/15 18:47:32] - Chargement envoi mail traite 
+[22/04/15 18:47:32] - Sujet=CENTREON: Demande de changement ref: 1503261503-fegmorte - THELEM-SAAS_MUTALISE_{SEPA} PROJ=1  
+[22/04/15 18:47:32] - message constitué 
+[22/04/15 18:47:32] - mail clos envoyé 

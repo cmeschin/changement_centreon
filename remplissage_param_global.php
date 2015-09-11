@@ -1,0 +1,22 @@
+<?php
+echo '<h3>Paramétrage des plages horaires</h3>';
+echo '<div>';
+echo '<div id="param_plage_horaire">';
+include_once('remplissage_param_plage.php');
+echo '</div>';
+echo '<span><button id="Ajouter_Plage">Ajouter une plage horaire</button></span>';
+echo '</div>';
+echo '<h3>Paramétrage des hôtes</h3>';
+echo '<div>';
+echo '<div id="param_hote">';
+include_once('remplissage_param_hote.php');
+echo '</div>';
+echo '<span><button id="Ajouter_Hote">Ajouter un hôte</button></span>';
+echo '</div>';
+echo '<h3>Paramétrage des services</h3>';
+echo '<div>';
+echo '<div id="param_service">';
+include_once('remplissage_param_service.php');
+echo '</div>';
+echo '<span><button id="Ajouter_Service">Ajouter un service</button></span>';
+echo '</div>';

@@ -1,0 +1,370 @@
+﻿2015-06-18 v8.4
+
+	##### MAJ BDD #####
+
+	### update service SET Type_Action='Creer' where selection IS NULL AND Type_Action <> 'Creer' AND Etat_Parametrage='A Traiter';
+
+	### ALTER TABLE etat_demande ADD etat_class VARCHAR(10);
+		update etat_demande SET etat_class="brou" where Etat_Dem="Brouillon";
+		update etat_demande SET etat_class="atra" where Etat_Dem="A Traiter";
+		update etat_demande SET etat_class="enco" where Etat_Dem="En cours";
+		update etat_demande SET etat_class="vali" where Etat_Dem="Validation";
+		update etat_demande SET etat_class="trai" where Etat_Dem="Traité";
+		update etat_demande SET etat_class="annu" where Etat_Dem="Annulé";
+		update etat_demande SET etat_class="supp" where Etat_Dem="Supprimer";
+		
+	###	ALTER TABLE hote MODIFY ID_Hote_Centreon Int(11) NOT NULL;
+		
+	### CREATE TABLE gestion_bam_notification (
+		 `gb_id` int(11) NOT NULL AUTO_INCREMENT,
+		 `gb_nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		 `gb_prestation` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		 `gb_heure` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+		 `gb_mail_objet` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		 `gb_mail_titre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		 `gb_mail_liste` text COLLATE utf8_unicode_ci NOT NULL,
+		 `gb_bam_liste` text COLLATE utf8_unicode_ci NOT NULL,
+		 `gb_lundi` enum('0','1') NOT NULL, 
+		 `gb_mardi` enum('0','1') NOT NULL, 
+		 `gb_mercredi` enum('0','1') NOT NULL, 
+		 `gb_jeudi` enum('0','1') NOT NULL, 
+		 `gb_vendredi` enum('0','1') NOT NULL, 
+		 `gb_samedi` enum('0','1') NOT NULL, 
+		 `gb_dimanche` enum('0','1') NOT NULL, 
+		 `gb_date_notif` datetime NOT NULL, 
+		 PRIMARY KEY (`gb_id`), 
+		 UNIQUE KEY `gb_nom` (`gb_nom`))
+		ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+	### CREATE TABLE gestion_bam_associe (
+		 `gba_id` int(11) NOT NULL AUTO_INCREMENT,
+		 `gba_gb_id` int(11),
+		 `gba_ba_id` int(11),
+		 PRIMARY KEY (`gba_id`),
+		 UNIQUE KEY `gba_gb_id` (`gba_gb_id`,`gba_ba_id`)) 
+		ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+	### CREATE TABLE mod_bam_centreon (
+		 `mbc_id` int(11) NOT NULL AUTO_INCREMENT,
+		 `mbc_ba_id` int(11),
+		 `mbc_ba_nom` varchar(50),
+		 `mbc_ba_description` varchar(50),
+		 PRIMARY KEY (`mbc_id`),
+	 	 UNIQUE KEY `mbc_ba_id` (`mbc_ba_id`))
+		ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+	### GRANT SELECT,UPDATE ON CHGT_Centreon.demande TO changement_RW@10.33.1.50 IDENTIFIED BY 'changement_RW' WITH GRANT OPTION;
+	###################
+
+	- Correction séquencement de chargement de la liste des hôtes service et plage après sélection de la prestation (fonction_liste.js) => source possible du bug O.Akpah, cas d'ID_hote ne correspondant pas à la prestation retrouvé dans la log...
+		cause possible: modification "rapide" de la prestation alors que la liste des services n'était pas fini de charger. le script php n'a pas été relancé avec les nouvelles données puisque toujours en cours.
+	- Correction complete_table pour ne sélectionner que les services issues de centreon (ID_Service_Centreon<>0) 
+		=> corrige certainement le bug remonté par O Akpah le 18/03 avec des infos perdues sur les services
+		extrait de log où les arguments sont tous à NC:
+			[18/03/15 11:23:17] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('ENI  - Génération Fic Teleperformance sftp',846,,'ENI-BMdoc TP','Par défaut','actif',108,'!NC!NC!NC!NC!NC!NC','','','Modifier','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'ENI  - Génération Fic Teleperformance sftp', ID_Demande= 846, ID_Hote= , Nom_Periode= 'ENI-BMdoc TP', Frequence= Par défaut, Controle_Actif= 'actif', ID_Modele_Service= 108, Parametres= '!NC!NC!NC!NC!NC!NC', Consigne= '', Detail_Consigne= '', Type_Action= 'Modifier', Commentaire= '', ID_Hote_Centreon= 0; 
+	- Correction bug gestion argument Macro Interface
+	- Correction bug gestion apostrophe dans la chaine parametre du fichier requete_extraction_elements.php
+	- Correction bug sur duplication, le type_action restait à "Modifier" au lieu de "Creer".
+	- Correction bug type_action Modifier au lieu de Creer lors d'une reprise malgré le contenu du champ type_action
+	- Correction gestion Macro avec les nouveaux plugins (le séparateur n'est plus l'espace mais le $ dans la chaine Macro)
+	- Correction ordonnancement chargement liste hote puis plage puis service(fonction_liste.js)
+	- Correction lien Brouillon sur la page Recherche_demande (problème de casse dans les variables)
+	- Correction automate_liste_brouillon sur la sélection des demandeur (ajout du filtre de 15 jours)
+	- Correction bug sur reprise brouillon et uniquement des hôtes et services nouvellement créés => le chargement des services plantait
+		=> forçage $_SESSION['lst_id_hote']=0 si vide dans requete_liste_hote_Reprise.php
+	En cours- Correction bug reprise multiple des brouillon => crée une sonde supplémentaire avec comme nom les arguments du service initial
+		
+	- Ajout gestion des notifications BAM => désactivé car ne sera pas utilisé!!! plusieurs heures de boulot perdues => Les 3 tables crées ci-dessus ne servent donc pas.
+	- Ajout d'un automate de notification des demandes en cours pour gestion des priorités
+	- Ajout d'un automate de notification des brouillons supérieurs à 15 jours non finalisés
+	- Activation des mails de mise à jour automatique des tickets
+	- Ajout forçage en MAJUSCULE du nom d'hôte sur la perte de focus, restriction des caractères alphanumériques ainsi que les tirets haut et bas uniquement.
+	- Ajout contrôle présence caractères spéciaux et accentués dans le nom des service (caractères spéciaux acceptés: /@#
+	- Meilleure gestion de la coloration de l'état des demandes (en CSS plutôt qu'en javascript direct) avec reprise de la couleur sur rechargement de la demande.
+	- tentative de gestion des \ dans les arguments pour les transformer en _BCKSL_ => voir pour gérer des / au lieu des \ directement dans les arguments centreon.
+	- verrouillage possibilité de changer l'hôte d'un service sur une modification => génère des doublons et des incohérences en bases
+	- désactivation du choix "Nouvelle prestation" -> trop de saisie exotique
+	- Ajout gestion substitution * en _ETOIL_ => ATTENTION NECESSITE LA MODIFICATION DE L'ENSEMBLE DES SCRIPTS
+
+2015-02-15 v8.3
+	##### MAJ BDD #####
+	### RENAME TABLE type_hote TO hote_type;
+	### RENAME TABLE type_os TO hote_os;
+	### CREATE TABLE hote_fonction (hf_id int(11) NOT NULL AUTO_INCREMENT,
+					hote_fonction varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+					hote_fonction_desc varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+					 PRIMARY KEY(hf_id),
+					 UNIQUE KEY hote_fonction (hote_fonction))
+		ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+	###################
+		
+	Corrections:
+		bug verrouillage arguments service si ouverture d'une extraction dans un autre onglet.
+		bug sur changement de modèle de service inactif sur reprise_demande.
+		bug sur enregistrement brouillon et onglet paramétrage visible ou non (sur la reprise les liens n'avait pas d'id ni de style)
+		Controle doublon avant suppression d'un service pour éviter les suppressions en double après duplication sans changement.
+		Documentation:
+			- correction orthographique
+			- Ajout des captures manquantes (lien morts)
+	
+	Améliorations:
+		Ajout affichage anciens arguments du service, permet de faire du copier collé éventuel des infos => ATTENTION données non conservées après enregistrement et recharge de la page.
+		Prise en compte des services rattachés à l'infra pour les nouvelles demandes et reprises => validation à faire
+		Ajout d'une fonction de mise à jour des tables hote_os, hote_type, hote_fonction sur la page administration pour synchronisation avec Centreon
+			=> prévoir un cron journalier pour garantir cette synchro.
+		Ajout de la localisation en plus de l'IP dans le popup sur les hôtes dans la liste des services
+		Ajout de la localisation et du type dans les tableaux liste hote (recherche, liste normale et reprise).
+		Documentation:
+			- Ajout d'une note sur l'enregistrement automatique d'un brouillon si retour à l'onglet "Liste hôtes et services"
+		Ajout popup sur hote et coloration inactif après insertion recherche
+		Activation de la recherche d'hote par la touche "Entrée" en plus du bouton "Recherche"
+		Ajout option "cache-control" dans le head afin de recharger automatiquement le cache au delà d'une heure.
+		Suppression du message firefox de la page d'accueil
+		
+			
+2015-01-11 v8.2
+	Modification des traces pour ajout requête insertion service si besoin réinsertion manuelle
+	Gestion création PDF via HTML2PDF
+	Prise en compte des services rattachés à l'infra dans l'extraction
+	
+2014-12-23 v8.1
+	désactivation boucle purge des services dans enregistrement_donnees.php
+	
+2014-12-22 v8.0
+	ajout fonction extraction
+	### Mettre à jour la vue vInventaireServices
+	## Attribuer les droits de DROP et CREATE TEMPORARY TABLES à l'utilisateur Centreon_RW
+	####### ATTENTION Ajout champs dans la vue vInventaireServices ######
+	Meilleure gestion de la liste de diffusion avec blocage si liste vide.
+	
+2014-12-09 v7.6
+	correction gestion remontée en haut de page sur chrome (=> html-> firefox, body-> chrome)
+	correction insertion multiple d'hôte via la recherche; la liste des plages n'était pas continue au niveau de l'index)
+	suppression des pop-up de débugage résiduels
+	correction recherche hote non fonctionnelle sur une reprise (deux id identiques sur la même page)
+	gestion focus sur champ nouvelle prestation si sélection "Nouveau"
+			
+2014-12-04 v7.5
+	correction gestion d'erreur sur les requêtes SQL (transaction et try catch)
+	Correction bug gestion suppression hôte (requete sélection hote dans enregistrement_donnees.php pour filter sur Type_Action<>NC au lieu de Traite)
+	### ALTER TABLE service ADD selection VARCHAR(10);
+	### ALTER TABLE periode_temporelle ADD selection VARCHAR(10);
+	correction gestion enregistrement brouillon sur service (doublon et suppression)
+	correction gestion sélection hote service plage (gestion desactivation dans les tableaux)
+	ajout popup IP sur hote dans la liste des service d'une reprise
+	ajout popup déverrouillage sur plage et service
+	correction initialisation variable service_selec si aucun service coché.
+	
+2014-11-26 v7.4
+	correction bug sur "action à effectuer" lors d'une duplication d'un service ou d'un hôte; période non concerné car uniquement action modifier
+	Non prise en compte des modèles de service préfixés "_CENTREON_" dans la liste des modèles de service disponibles
+	coloration de l'état param sur mise à jour (pas de couleur lors du rechargement d'une demande pour l'instant)
+	correction gestion si argument est macro dans gestion_arguments.php
+	correction gestion action à effectuer erronée sur les hôtes et services
+	
+2014-11-13 v7.3
+	correction bug suppression service en cas de trou dans la liste
+	correction reportée sur les hôtes et plages
+
+2014-11-13 v7.2
+	correction bug sur gestion affichage des services et gestion des doublons
+		### ALTER TABLE service DROP INDEX Nom_Service;
+		### ALTER IGNORE TABLE service ADD UNIQUE INDEX (Nom_Service, ID_Demande, ID_Hote, ID_Hote_Centreon);
+
+2014-11-12 v7.1
+	correction bug gestion arguments suite renommage des modèles
+	correction bug gestion argument sur les pourcentage pas encodés
+
+2014-11-11 v7
+	dépréciation table hote_temp ainsi que toutes les requêtes associées 
+	ajout champ selection dans la table hote pour récupérer la valeur de sélection de l'hôte.
+		### ALTER TABLE hote ADD selection VARCHAR(10);
+		### ALTER IGNORE TABLE hote ADD UNIQUE INDEX (Nom_Hote,ID_Demande, IP_Hote); ####### => suppression de l'ID_Hote_Centreon qui n'existe plus sur la page paramétrage et qui générait des doublons sur l'enregistrement du brouillon
+	correction pb doublon enregistrement hote lors de l'enregistrement du brouillon.
+	Meilleure gestion de la suppression des hôtes supprimés basés sur le type_action
+	traitement des hôtes de service via l'ID_Hote en remplacement du Nom_Hote pour éviter les erreurs si nom d'hôte identique
+	Suppression de la page changement_centreon.php inutilisée
+	correction affichage hôtes DEC et liste DEC
+		
+2014-11-03 v6
+	Trier le détail d'une demande par nom d'hôte et service
+	documentation en ligne
+	suppression du bouton Préenregistrement hote sur un hôte déjà existant.
+	
+2014-10-21 v5.5
+	Modification de l'index sur la table service pour ajouter le champ Nom_Hote
+		### ALTER TABLE service DROP INDEX Nom_Service;
+		### ALTER IGNORE TABLE service ADD UNIQUE INDEX (Nom_Service,Nom_Hote,ID_Demande, ID_Hote, ID_Hote_Centreon);
+	Modification de l'index de la table hote_temp pour ajouter le champ Nom_Hote et IP_Hote
+		### ALTER TABLE hote_temp DROP INDEX ID_Hote_Centreon;
+		### ALTER IGNORE TABLE hote_temp ADD UNIQUE INDEX (Nom_Hote,ID_Demande, IP_Hote, ID_Hote_Centreon);
+	Correction sur le rechargement des listes hotes et plage sur les services suite à pré-enregistrement hote et plage
+	Correction des variables transmises dans l'URL => tout en minuscule pour éviter les problèmes de casse éventuels
+	Correction sur la gestion d'arrêt des doublons détectés à l'enregistrement
+	code Duplication plage oublié, oups!
+	correction fonction dupliquer service (plus de decodeURI car récupération directement depuis l'interface vers l'interface)
+	gestion de la suppression des hôtes dans les listes services et dans la table hote_temp lors de la suppression du fieldset
+	gestion de la suppression des periodes dans les listes services et dans la table periode_temporelle lors de la suppression du fieldset
+	gestion de la suppression des service dans la table service lors de la suppression du fieldset
+
+2014-10-17 v5
+	##renommer le champ Ticket_SUSI en ticket_susi dans la table demande
+		### ALTER TABLE demande DROP Ticket_SUSI;
+		### ALTER TABLE demande ADD ticket_susi INT;
+		### ALTER TABLE demande ADD mail_creation BOOLEAN NOT NULL;
+		### ALTER TABLE demande ADD mail_encours BOOLEAN NOT NULL;
+		### ALTER TABLE demande ADD mail_finalise BOOLEAN NOT NULL;
+		### ALTER TABLE demande ADD mail_traite BOOLEAN NOT NULL;
+		### ALTER TABLE demande ADD mail_annule BOOLEAN NOT NULL;
+		### ALTER IGNORE TABLE hote_temp ADD UNIQUE INDEX (ID_Hote_Centreon,ID_Demande);
+		### ALTER IGNORE TABLE periode_temporelle ADD UNIQUE INDEX (Nom_Periode,ID_Demande);
+		### ALTER IGNORE TABLE service ADD UNIQUE INDEX (Nom_Service, ID_Demande, ID_Hote, ID_Hote_Centreon);
+		
+	création des modèles de mail pour MAJ automatique de SUSI.
+	Gestion des mails dans les changements de statut des demandes 
+	 => A activer dans MAJ_Etat_Parametrage.php et MAJ_Etat_Parametrage_DEM.php lorsque l'automate dans SUSI sera opérationnel.
+	désactivation des requêtes de gestion des doublons devenue inutile avec le positionnement des index et de la syntaxe INSERT IGNORE => a condition que l'index fonctionne sur la base de prod.
+	Modification des popup d'aide en clic sur l'intitulé du champ (avec (?)) => reste à faire idem sur la reprise
+	onglet "Liste des hôtes et services" => affichage de la liste des service par défaut
+	inclusion de la fonction recherche dans un onglet pour éviter une utilisation par défaut
+	coloration en jaune des hôtes et services "inactif" pour une meilleure visualisation dans la liste.
+	affichage de l'IP de l'hôte en popup dans la liste des services.
+	Déplacement de l'activation de l'onglet paramétrage après le message de confirmation que l'enregistrement s'est bien déroulé.
+	Suppression de l'action <onblur="verifChamp(this)"> sur les champ Nom des pages remplissage_param_hote service et plage pour conserver l'icône "cadenas"
+	Suppression des doubles espaces dans la liste des arguments
+	Correction sur la récupération du nom des champs incorrects lors de la validation de la demande.
+	 	 
+2014-09-19 v4
+	Ajout du statut "Supprimer" dans la liste des état des demandes => uniquement sélectionnable sur la demande globale
+	## Ajout champ ID_Localisation dans table hote_temp pour mieux gérer les popup sur les hôtes
+		### ALTER TABLE hote_temp ADD ID_Localisation VARCHAR(30);
+	## Modification de la valeur par défaut à 0 des champs temps_hote et temps_service
+		### ALTER TABLE demande ALTER temps_service SET DEFAULT 0;
+		### ALTER TABLE demande ALTER temps_hote SET DEFAULT 0;
+	Correction gestion affichage argument sur reprise suite à modification requete_Remplissage_service
+	positionnement du focus sur le bouton Forcer après sélection d'un statut. => à reproduire sur les autres listes déroulantes
+	déplacement du calcul du temps au niveau de la validation de la demande.
+
+	## Ajout du champ MS_Macro et MS_EST_MACRO pour gérer la liste des arguments de type macro avec leur correspondance dans Centreon
+		### ALTER TABLE modele_service ADD MS_Macro TEXT;
+		### ALTER TABLE `modele_service` CHANGE `MS_Macro` `MS_Macro` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+		### ALTER TABLE `modele_service` ADD `MS_EST_MACRO` BOOLEAN NOT NULL ;
+		### ALTER IGNORE TABLE hote_temp ADD UNIQUE INDEX (ID_Hote_Centreon,ID_Demande); // ajoute un index interdisant les doublons dans la table hote_temp sur le champ ID_Hote_Centreon
+	Implémentation de la gestion des macro dans l'affichage des arguments => en cours
+		reste à gérer les différents modèles de service spécifique (CPULOAD, MEMOIRE, etc...)
+	Correction affichage liste hote et periode dans les listes hote et periode du service
+	Gestion des doublons lors de l'insertion et reprise d'une demande pour les hôtes (table hote_temp), service (table service) et periode (table periode_temporelle)
+	
+	
+2014-09-05 v3
+	ajout du calcul de l'estimation du temps dans la page complete_table.php
+	ajout de l'estimation du temps de traitement dans la liste des demandes
+	ajout popup d'info sur l'estimation du temps des demandes
+	## Modification du format des champs Date_PEC et Date_Fin_Traitement en DateTime pour affiner le calcul du temps global
+	Ajout popup IP et localisation sur nom d'hôte pour param service (permet de différencier les hôtes ayant le même nom sur différents sites=> avant convention de nommage)
+	Correction du lien dans le mail
+	Correction rempalcement des \ par des / inefficace
+	
+2014-09-04 v2
+	création du lien dans le mail pour afficher directement le détail d'une demande à condition d'être authentifié sur le site.
+	
+2014-08-27 v1.3
+	correction accent sur modele_param_hote.php
+	correction affichage des plages à créer modifier sur une reprise
+	tri des plages horaires par Nom dans les tableaux => meilleure lisibilité
+	correction gestion ajout/suppression plage horaire et réactivation correcte dans la liste et en base (passé de Modifier à OK).
+	Desactivation du bouton Pré-enregistrer une fois que c'est fait.
+	
+2014-08-25 v1.2
+	correction sur clonage des services, bonne récupération des arguments
+	
+2014-07-03 v1.1
+	meilleure gestion des arguments notamment disques
+	Gestion des hôtes (couple Hôte + IP), service (couple Service + Hôte) et plages en doublon dans la demande au moment de l'enregistrement
+	Ajout du clonage des hôtes et service
+	Réactivation des hôtes, services et plages si supprimés de la demande
+	Gestion de l'enregistrement des hotes services et plages si fieldset manquants
+	insertion de la date de PEC sur le statut "En cours" et Date de Fin sur les statuts "Traité" ou "Annulé"
+	
+2014-xx-xx v1
+	version initiale - debugage en cours
+	Nouvelle_demande:
+		OK * ajouter un champ commentaire sur les services
+		OK * modifier l'icône des champs non modifiables
+		OK * possibilité de mettre à jour la liste de diffusion après enregistrement de la sélection et avant validation de la demande. => Mise à jour sur enregistrement ou validation de la demande.
+	Reprise_demande
+		OK * ajouter un champ commentaire sur les services
+		OK * modifier l'icône des champs non modifiables
+		OK * possibilité de mettre à jour la liste de diffusion après enregistrement de la sélection et avant validation de la demande (bouton MAJ_liste) => géré directement lors de l'enregistrement de la demande (brouillon ou vlaidation).
+		OK * afficher correctement le nom de la prestation si nouveau:
+			OK - ajout prefixe NEW_ lors de l'enregistrement
+			OK - gestion de l'affichage lors de la reprise
+		OK * gérer correctement l'affichage d'une nouvelle prestation 
+			(liste diff contient new_prestation et commentaire contient liste de diff)
+	
+	Demandes En Cours (DEC):
+		OK * ajouter les infos générales de la demande
+		OK * ajouter un champ commentaire sur les services
+	    OK * gérer correctement l'affichage d'une nouvelle prestation
+	                (liste diff contient new_prestation et commentaire contient liste de diff)
+		* sur Etat Brouillon:
+		OK		- Modifiable uniquement par le demandeur (lien cliquable)
+		OK		- Recharger les onglets de nouvelle demande
+		* sur Etat "A Traiter" et "En Cours"
+		OK		- Editable uniquement par les admins et directement sur cette page via l'ajout du champ Liste "Etat Paramétrage"
+		OK		- lecture seule sur tous les champs demande en cours (remplacer disabled)
+		OK		- si double clic sur plage => forcer etat à "A modifier"
+		OK	* prévoir la possibilité de modifier l'état général d'une demande via un menu déroulant verrouillé et déverrouillable
+		OK	* la première sonde passée en etat "En cours" force l'état global de la demande à "en cours"
+	
+	Globale:
+		OK Gestion des accès via LDAP (voir avec Hugues)
+		OK Implémenter l'envoi de mail sur validation de la demande => mail envoyé à spoc_susi@tessi.fr qui se charge de notifier les destinataires de la liste de diffusion
+		OK	forcer à "validé" la liste de diffusion par défaut puisqu'on récupère le mail du demandeur
+	
+	Ajout fonctionnalité:
+		OK Ajouter liste des plages dans la nouvelle demande
+		OK insertion correcte des plages dans la table periode temporelle
+		OK Ajouter liste des plages dans la reprise demande
+		OK récupérer et ajouter la liste des plages sur recherche d'hôte
+		OK? * gérer la taille du champ en fonction du nom du service ou de l'hôte
+		OK * afficher les onglets au fur et à mesure de la saisie (éventuellement via un bouton suivant)
+		OK * conserver l'affichage des arguments courant si changement de modèle => à gérer sur le onchange du modèle de service
+		OK * deverrouiller l'hôte pour les services
+		OK * possibilité de supprimer le dernier service ou le dernier hôte d'une demande (plus de blocage)
+		OK * retourner en haut de page après validation sélection
+			=> Vérifier s'il n'y apas d'autres pages dans ce cas.
+		OK * gérer les caractères spéciaux pour les champs mot de passe ("!" "$" "|" et " ") => fonctions JS escape et PHP URLDecode
+	
+	menu à modifier:
+		OK	Formuler une nouvelle demande
+		OK		Infos Générales
+		OK		Liste des Hôtes et Services
+		OK		Paramétrage
+		OK	Lister les demandes
+		OK		Liste des demandes en cours
+		OK		Liste des demandes traitées ou annulées
+		OK	Documentation
+		OK	Administration
+		OK		Gestion des modèles de service
+		OK		Association des modèles
+	
+	 Ajouter les infos bulles sur:
+		OK	- la demande
+		OK	- la reprise
+	
+	Sur reprise: 
+		OK	récupérer les infos "autre"  des listes déroulantes
+		OK	récupérer le modèle de service ainsi que les arguments
+
+#############################################################
+///////////////////////////
+###### Modifs à effectuer en base ######
+	OK * vérifier la présence du champ commentaire sur les services
+	OK * Ajouter le champ ID_Demande à la table hote_temp
+	OK	passage à 30 caractères des champs de la table hote:
+	OK	Ajout Type_OS_Desc dans la table Type_OS
+///////////
+

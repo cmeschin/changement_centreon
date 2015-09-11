@@ -1,0 +1,324 @@
+/* body */
+#principal
+{
+	width: 90%;
+	height: 890px;
+	margin: auto;
+	text-align: center;
+	min-width: 500px;
+	max-width: 1400px;
+/*	font-family: Helvetica Neue, arial, sans-serif;*/
+/*	border: 1px solid #000; */
+}
+
+/* header */
+#en-tete
+{
+	position: relative;
+	width: 100%;
+/*	border: 1px solid #000; */
+}
+ .logo, .titre
+{
+/* 	display: inline-block; */
+	vertical-align: middle;
+/*	border: 1px solid #000; */
+}
+
+.logo
+{
+	position: relative;
+	top: 0px;
+	right: 0px;
+	text-align:right;
+	background-color:#fff;
+	/* width:100%; */
+/*	height:3px; */
+}
+
+.titre
+{
+	color: #6a003e; /* rose foncé */
+	/* font-size: 1.8em; */
+}
+h1 a
+{
+	text-decoration: none;
+	color: #6a003e;	 /* rose foncé */
+}
+h1 a:hover{
+	color: #cb307e;
+}
+/* section */
+.menu
+{
+	display: inline-block;
+	width: 100%;
+	/*background: #C0487D; */
+	background:#cb307e; /* rose clair */
+	/* border-top: 3px solid #990033; */
+	border-top: 3px solid #6a003e;
+	border-radius: 10px;
+	box-shadow: 1px 1px 2px;
+	font-size: 1.2em;
+}
+
+.menu ul
+{
+/*	border: 1px solid #CCC; */
+	margin: 0px;
+	padding: 0px;
+	}
+
+.menu li
+{
+	display: inline-block;
+	padding: 0px 12px;
+/*	border: 1px solid #AAA; */
+}
+nav  a
+{
+	text-decoration: none; 
+	font-size: 0.8em;
+	color: #fff;
+}
+nav a:hover{
+	/*color: #746364;*/
+	color:#6a003e; /* rose foncé */
+}
+
+.Etat_Demande
+{
+	text-decoration: none; 
+	list-style-type: none;
+	margin : 0;
+	padding : 0;
+}
+
+.Etat_Demande a
+{
+/*	font-size: 0.8em; */
+	color: #000; 
+}
+.Etat_Demande a:hover{
+	color: #746364;
+}
+
+.icone
+{
+	margin-top: 10px;
+}
+
+.icone p
+{
+	margin-top: 0px;
+	color: #63002C;
+	font-weight: bold;
+}
+
+table
+{
+    border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
+	margin-left: auto;
+    margin-right: auto;
+}
+td,th
+{
+    border: 1px solid black;
+}
+
+#model_param_hote
+{
+	display: inline-block; 
+	 vertical-align: bottom; 
+	margin: auto;
+	padding-bottom: 0px	;
+	/*border: 1px solid black; */
+}
+
+input[id*="Service_Argument"]
+{
+/*        display: inline;
+         vertical-align: bottom;
+        margin: auto;
+        padding-bottom: 0px     ;
+        /*border: 1px solid black; */
+}
+
+fieldset[id*="Arg_Service_Modele"]
+{
+        display: inline;
+        vertical-align: bottom;
+        margin: auto;
+/*        padding-bottom: 0px     ; */
+        /*border: 1px solid black; */
+}
+
+
+.hote_Nom_IP
+/* #Mod_Service_Centreon, label #Mod_Service_Service */
+{
+	display: inline-block; 
+	width: 110px; /* Cette largeur sert d’exemple, vous pouvez la modifier si vous voulez. */
+	text-align: right;
+	/* float: left; */
+	/*border: 1px solid black; */
+	vertical-align: middle; /* aligné en haut */
+}
+
+label
+/* #Mod_Service_Centreon, label #Mod_Service_Service */
+{
+	/*display: block; */
+	/* width: 250px; /* Cette largeur sert d’exemple, vous pouvez la modifier si vous voulez. */
+	/* float: left; */
+	/* border: 1px solid black; */
+	vertical-align: middle; /* aligné au milieu */
+}
+
+.jour
+/* #Mod_Service_Centreon, label #Mod_Service_Service */
+{
+	display: inline-block; 
+	/*width: 50px;*/ /* Cette largeur sert d’exemple, vous pouvez la modifier si vous voulez. */
+	text-align: right;
+	/* float: left; */
+	/* border: 1px solid black; */
+	vertical-align: middle; /* aligné au milieu */
+}
+
+.attention
+{
+	background-color:#E70739;
+}
+
+.dateJ
+/* mise en couleur rouge pour les demandes arrivées à échéance ou dépassée */
+{
+	background:#ff0000; /* rouge */
+}
+
+.date_m4
+/* mise en couleur orange pour les demandes arrivant à échéance dans les 4 jours */
+{
+	background:#ff6600; /* orange */
+}
+
+.date_m10
+/* mise en couleur jaune pour les demandes arrivant à échéance inférieure à 10 jour */
+{
+	background:#ffff00; /* jaune */
+}
+
+.date_p10
+/* aucune mise en couleur pour les demandes arrivant à échéance supérieure à 10 jour */
+{
+/*	background:#ffff00; /* aucune couleur */
+}
+
+.etat_dem_brou
+/* etat demande "brouillon" => pas de couleur*/
+{
+/*	background-color: red; */
+}
+
+.etat_dem_atra
+/* etat demande "a traiter" => rouge*/
+{
+	background-color: red; 
+}
+
+.etat_dem_enco
+/* etat demande "en cours" => orange*/
+{
+	background-color: #ff8000;
+}
+
+.etat_dem_vali
+/* etat demande "validation" => jaune */
+{
+	background-color: yellow;
+}
+
+.etat_dem_trai
+/* etat demande "traité" => vert */
+{
+	background-color: green;
+}
+
+.etat_dem_annu
+/* etat demande "annulé" => bleu */
+{
+	background-color: #0080ff;
+}
+
+.etat_dem_supp
+/* etat demande "supprimé" => pas de couleur car pas d'enregistrement :)*/
+{
+/*	background-color: red; */
+}
+
+.extraction_hote, .extraction_service, .extraction_periode
+{
+	font-size: 0.8em;
+}
+
+.inactif
+/* mise en couleur jaune pour les controle inactifs */
+{
+	background:#FFF168; /* jaune */
+}
+
+#Liste_Associe, #Liste_Centreon
+{
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.liste_am
+{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#liste_jour
+{
+	display: inline-block; 
+	width:200px;
+	text-align: left;
+}
+
+.gb_jour
+{
+	vertical-align: middle;
+}
+
+
+#Valider
+{
+	margin-left: auto;
+    margin-right: auto;
+}
+
+#img_loading
+{
+	vertical-align:middle;
+	display:inline;
+}
+/*
+button
+{
+	background: #d0d0d0
+}
+*/
+/* footer */
+footer
+{
+	text-align: center;
+	position: relative; 
+	bottom: 0px;
+	right: 15px; 
+	font-size: 0.8em;
+	/* color: #942872; */
+	color: #6a003e; /* rose foncé*/
+}

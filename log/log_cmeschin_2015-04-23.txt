@@ -1,0 +1,866 @@
+[23/04/15 09:54:58] - Chargement de la page supervision! 
+[23/04/15 09:54:58] - Chargement de la page supervision! 
+[23/04/15 09:55:01] - Chargement de la page supervision! 
+[23/04/15 09:55:01] - Chargement de la page supervision! 
+[23/04/15 09:58:15] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 09:58:15] - Etat_Param=En cours 
+[23/04/15 09:58:16] - MAJ_ETAT_PARAMETRAGE_DEM:888 Envoi du mail encours. 
+[23/04/15 09:58:16] - Chargement envoi mail en cours 
+[23/04/15 09:58:16] - Sujet=CENTREON: Demande de changement ref: 1503201155-oakpah - SIEMENS_PAPERLESS PROJ=1 ISSUE=85068 
+[23/04/15 09:58:16] - message constitué 
+[23/04/15 09:58:16] - mail en cours envoyé 
+[23/04/15 10:01:00] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 10:01:00] - Etat_Param=Validation 
+[23/04/15 10:01:00] - MAJ_ETAT_PARAMETRAGE_DEM:888 Envoi du mail finalise. 
+[23/04/15 10:01:00] - Chargement envoi mail finalise 
+[23/04/15 10:01:00] - ID_Demande=888 
+[23/04/15 10:01:00] - Sujet=CENTREON: Demande de changement ref: 1503201155-oakpah - SIEMENS_PAPERLESS PROJ=1 ISSUE=85068 
+[23/04/15 10:01:00] - message constitué 
+[23/04/15 10:01:00] - mail finalisé envoyé 
+[23/04/15 10:03:59] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 10:03:59] - Etat_Param=Traité 
+[23/04/15 10:03:59] - MAJ_ETAT_PARAMETRAGE_DEM:888 Envoi du mail traite. 
+[23/04/15 10:03:59] - Chargement envoi mail traite 
+[23/04/15 10:03:59] - Sujet=CENTREON: Demande de changement ref: 1503201155-oakpah - SIEMENS_PAPERLESS PROJ=1 ISSUE=85068 
+[23/04/15 10:03:59] - message constitué 
+[23/04/15 10:03:59] - mail clos envoyé 
+[23/04/15 10:27:02] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 10:27:02] - Etat_Param=Traité 
+[23/04/15 10:27:03] - MAJ_ETAT_PARAMETRAGE_DEM:888 Envoi du mail traite. 
+[23/04/15 10:27:03] - Chargement envoi mail traite 
+[23/04/15 10:27:03] - Sujet=CENTREON: Demande de changement ref: 1503201155-oakpah - SIEMENS_PAPERLESS PROJ=1 ISSUE=85068 
+[23/04/15 10:27:03] - message constitué 
+[23/04/15 10:27:03] - mail clos envoyé 
+[23/04/15 11:02:00] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:02:00] - MAJ_ETAT_PARAMETRAGE_DEM:982 Envoi du mail encours. 
+[23/04/15 11:02:00] - Chargement envoi mail en cours 
+[23/04/15 11:02:00] - Sujet=CENTREON: Demande de changement ref: 1504221202-oakpah - FDJ-CERTIFICATION_{DOC-BMD} PROJ=1  
+[23/04/15 11:02:00] - message constitué 
+[23/04/15 11:02:00] - mail en cours envoyé 
+[23/04/15 11:31:37] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:31:37] - Etat_Param=Validation 
+[23/04/15 11:31:37] - MAJ_ETAT_PARAMETRAGE_DEM:982 Envoi du mail finalise. 
+[23/04/15 11:31:37] - Chargement envoi mail finalise 
+[23/04/15 11:31:37] - ID_Demande=982 
+[23/04/15 11:31:37] - Sujet=CENTREON: Demande de changement ref: 1504221202-oakpah - FDJ-CERTIFICATION_{DOC-BMD} PROJ=1  
+[23/04/15 11:31:37] - message constitué 
+[23/04/15 11:31:38] - mail finalisé envoyé 
+[23/04/15 11:32:55] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:32:55] - Etat_Param=Traité 
+[23/04/15 11:32:55] - MAJ_ETAT_PARAMETRAGE_DEM:982 Envoi du mail traite. 
+[23/04/15 11:32:55] - Chargement envoi mail traite 
+[23/04/15 11:32:55] - Sujet=CENTREON: Demande de changement ref: 1504221202-oakpah - FDJ-CERTIFICATION_{DOC-BMD} PROJ=1  
+[23/04/15 11:32:55] - message constitué 
+[23/04/15 11:32:55] - mail clos envoyé 
+[23/04/15 11:35:34] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:35:34] - Etat_Param=A Traiter 
+[23/04/15 11:37:14] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:37:14] - MAJ_ETAT_PARAMETRAGE_DEM:982 Envoi du mail encours. 
+[23/04/15 11:37:14] - Chargement envoi mail en cours 
+[23/04/15 11:37:14] - Sujet=CENTREON: Demande de changement ref: 1504221202-oakpah - FDJ-CERTIFICATION_{DOC-BMD} PROJ=1 ISSUE=90560 
+[23/04/15 11:37:14] - message constitué 
+[23/04/15 11:37:14] - mail en cours envoyé 
+[23/04/15 11:39:50] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:39:50] - Etat_Param=Validation 
+[23/04/15 11:39:50] - MAJ_ETAT_PARAMETRAGE_DEM:982 Envoi du mail finalise. 
+[23/04/15 11:39:50] - Chargement envoi mail finalise 
+[23/04/15 11:39:50] - ID_Demande=982 
+[23/04/15 11:39:50] - Sujet=CENTREON: Demande de changement ref: 1504221202-oakpah - FDJ-CERTIFICATION_{DOC-BMD} PROJ=1 ISSUE=90560 
+[23/04/15 11:39:50] - message constitué 
+[23/04/15 11:39:50] - mail finalisé envoyé 
+[23/04/15 11:43:31] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:43:31] - Etat_Param=Traité 
+[23/04/15 11:43:31] - MAJ_ETAT_PARAMETRAGE_DEM:982 Envoi du mail traite. 
+[23/04/15 11:43:31] - Chargement envoi mail traite 
+[23/04/15 11:43:31] - Sujet=CENTREON: Demande de changement ref: 1504221202-oakpah - FDJ-CERTIFICATION_{DOC-BMD} PROJ=1 ISSUE=90560 
+[23/04/15 11:43:31] - message constitué 
+[23/04/15 11:43:31] - mail clos envoyé 
+[23/04/15 11:53:16] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:53:16] - MAJ_ETAT_PARAMETRAGE_DEM:976 Envoi du mail encours. 
+[23/04/15 11:53:16] - Chargement envoi mail en cours 
+[23/04/15 11:53:16] - Sujet=CENTREON: Demande de changement ref: 1504171134-ddufour - YVESROCHER-TRAIT_CHQS_{CHQ} PROJ=1 ISSUE=89797 
+[23/04/15 11:53:16] - message constitué 
+[23/04/15 11:53:16] - mail en cours envoyé 
+[23/04/15 11:59:29] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 11:59:55] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 12:00:41] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 12:00:41] - Etat_Param=Validation 
+[23/04/15 12:00:42] - MAJ_ETAT_PARAMETRAGE_DEM:976 Envoi du mail finalise. 
+[23/04/15 12:00:42] - Chargement envoi mail finalise 
+[23/04/15 12:00:42] - ID_Demande=976 
+[23/04/15 12:00:42] - Sujet=CENTREON: Demande de changement ref: 1504171134-ddufour - YVESROCHER-TRAIT_CHQS_{CHQ} PROJ=1 ISSUE=89797 
+[23/04/15 12:00:42] - message constitué 
+[23/04/15 12:00:42] - mail finalisé envoyé 
+[23/04/15 12:01:54] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 12:01:54] - Etat_Param=Traité 
+[23/04/15 12:01:55] - MAJ_ETAT_PARAMETRAGE_DEM:976 Envoi du mail traite. 
+[23/04/15 12:01:55] - Chargement envoi mail traite 
+[23/04/15 12:01:55] - Sujet=CENTREON: Demande de changement ref: 1504171134-ddufour - YVESROCHER-TRAIT_CHQS_{CHQ} PROJ=1 ISSUE=89797 
+[23/04/15 12:01:55] - message constitué 
+[23/04/15 12:01:55] - mail clos envoyé 
+[23/04/15 15:24:41] - chargement documentation. 
+[23/04/15 15:55:31] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 15:55:31] - Etat_Param=Traité 
+[23/04/15 15:55:31] - MAJ_ETAT_PARAMETRAGE_DEM:897 Envoi du mail traite. 
+[23/04/15 15:55:31] - Chargement envoi mail traite 
+[23/04/15 15:55:31] - Sujet=CENTREON: Demande de changement ref: 1503241058-oakpah - FMA-COURRIER PROJ=1 ISSUE=85540 
+[23/04/15 15:55:31] - message constitué 
+[23/04/15 15:55:31] - mail clos envoyé 
+[23/04/15 16:11:38] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 16:11:38] - MAJ_ETAT_PARAMETRAGE_DEM:956 Envoi du mail encours. 
+[23/04/15 16:11:38] - Chargement envoi mail en cours 
+[23/04/15 16:11:38] - Sujet=CENTREON: Demande de changement ref: 1504131339-jlassalle - POLE_EMPLOI-POEM_{DOC-KGS} PROJ=1 ISSUE=88857 
+[23/04/15 16:11:38] - message constitué 
+[23/04/15 16:11:38] - mail en cours envoyé 
+[23/04/15 16:11:46] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 16:11:46] - Etat_Param=Validation 
+[23/04/15 16:11:46] - MAJ_ETAT_PARAMETRAGE_DEM:956 Envoi du mail finalise. 
+[23/04/15 16:11:46] - Chargement envoi mail finalise 
+[23/04/15 16:11:46] - ID_Demande=956 
+[23/04/15 16:11:46] - Sujet=CENTREON: Demande de changement ref: 1504131339-jlassalle - POLE_EMPLOI-POEM_{DOC-KGS} PROJ=1 ISSUE=88857 
+[23/04/15 16:11:46] - message constitué 
+[23/04/15 16:11:46] - mail finalisé envoyé 
+[23/04/15 16:13:01] - Chargement MAJ_Etat_Parametrage.php 
+[23/04/15 16:13:01] - Etat_Param=Traité 
+[23/04/15 16:13:01] - MAJ_ETAT_PARAMETRAGE_DEM:956 Envoi du mail traite. 
+[23/04/15 16:13:01] - Chargement envoi mail traite 
+[23/04/15 16:13:01] - Sujet=CENTREON: Demande de changement ref: 1504131339-jlassalle - POLE_EMPLOI-POEM_{DOC-KGS} PROJ=1 ISSUE=88857 
+[23/04/15 16:13:01] - message constitué 
+[23/04/15 16:13:01] - mail clos envoyé 
+[23/04/15 17:16:04] - chargement nouvelle demande. 
+[23/04/15 17:16:04] - Initialisation des constantes: 
+[23/04/15 17:16:04] - ID_demande:0 
+[23/04/15 17:16:04] - Date_demande:2015-04-23 17:16:04 
+[23/04/15 17:16:04] - Ref_demande:1504231716-cmeschin 
+[23/04/15 17:16:22] - Liste id_hote 
+[23/04/15 17:16:22] - Liste id_hote=546,545,904,911,539,541,903,540,542,543,544,1006,273 
+[23/04/15 17:21:00] - chargement nouvelle demande. 
+[23/04/15 17:21:00] - Initialisation des constantes: 
+[23/04/15 17:21:00] - ID_demande:0 
+[23/04/15 17:21:00] - Date_demande:2015-04-23 17:21:00 
+[23/04/15 17:21:00] - Ref_demande:1504231721-cmeschin 
+[23/04/15 17:21:19] - Liste id_hote 
+[23/04/15 17:21:19] - Liste id_hote=546,545,904,911,539,541,903,540,542,543,544,1006,273 
+[23/04/15 17:22:28] - Chargement insertion_selection.php 
+[23/04/15 17:22:29] - liste_hotesliste=BDX2-AMT-CFT,Serveur CFT,10.33.13.6,inactif,546,false$BDX2-AMT-MAR,Serveur MARCEL,10.33.13.5,actif,545,false$BDX2-AMT-MAR2,Serveur NICE2BM,10.33.13.8,actif,904,false$BDX2-AMT-MAR4,Serveur MARCEL Nice2BM A,10.33.13.9,actif,911,false$BDX2-AMT-N1A,Serveur BosManager N1A,10.33.13.1,actif,539,false$BDX2-AMT-N1B,Serveur BosManager N1B,10.33.13.10,actif,541,false$BDX2-AMT-N1W,Serveur BosManager N1W,10.33.13.20,actif,903,false$BDX2-AMT-N2A,Serveur BosManager N2A,10.33.13.2,actif,540,false$BDX2-AMT-N2B,Serveur BosManager N2B,10.33.13.11,actif,542,false$BDX2-AMT-TEL1,Serveur Telecollecte 1,10.33.13.3,actif,543,false$BDX2-AMT-TEL2,Serveur Telecollecte 2,10.33.13.4,actif,544,false$BDX2-CANICE-CFT,Serveur CFT - NICE,10.33.44.44,actif,1006,false$TRANSFERT-FTP,Serveur transfert - Copilote CFT,10.33.30.7,actif,273,false 
+[23/04/15 17:22:29] - liste_services= 
+[23/04/15 17:22:29] - liste_plagesliste=;;;;;;;;false$09h-18h - L-V;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;;;false$24/24 - 7/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false$CATOP-AMT - L-V 7h-20h30 - S 10h-19h;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;10:00-19:00;;false$CENFE - L-S 6h-Minuit;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;;false$CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false$Controle BOS - L-S - 0h-Minuit;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false$COPILOTE_ControleVacation - L-S h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false$COPILOTE_ControleVacation - L-V h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;;false$NICE - L-V 7h-21h - S 8h-21h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;08:00-21:00;;false$NICE Teleco - L-S 18h-18h30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;;false$Scan-Agence - L-S 8h-21h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;;false$Scan-Agence_DebFinJou_L-S_0h05-Minuit;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;;false$SG_Agence - L-V 8h-21h - S 10h-19h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;10:00-19:00;;false$SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;;;false 
+[23/04/15 17:22:29] - Les données ont été correctement enregistrées pour la prestation [CADS-GESTION_FLUX_{CHQ}]. ID=945. 
+[23/04/15 17:22:29] - données générales OK 
+[23/04/15 17:22:29] - email:cedric.meschin@tessi.fr 
+[23/04/15 17:22:29] - nbligne_hote_liste=13 
+[23/04/15 17:22:29] - ligne 0:BDX2-AMT-CFT,Serveur CFT,10.33.13.6,inactif,546,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-CFT 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-CFT] [Serveur CFT] [10.33.13.6] [inactif] [546] [false] 
+[23/04/15 17:22:29] - ligne 1:BDX2-AMT-MAR,Serveur MARCEL,10.33.13.5,actif,545,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-MAR 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-MAR] [Serveur MARCEL] [10.33.13.5] [actif] [545] [false] 
+[23/04/15 17:22:29] - ligne 2:BDX2-AMT-MAR2,Serveur NICE2BM,10.33.13.8,actif,904,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-MAR2 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-MAR2] [Serveur NICE2BM] [10.33.13.8] [actif] [904] [false] 
+[23/04/15 17:22:29] - ligne 3:BDX2-AMT-MAR4,Serveur MARCEL Nice2BM A,10.33.13.9,actif,911,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-MAR4 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-MAR4] [Serveur MARCEL Nice2BM A] [10.33.13.9] [actif] [911] [false] 
+[23/04/15 17:22:29] - ligne 4:BDX2-AMT-N1A,Serveur BosManager N1A,10.33.13.1,actif,539,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-N1A 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-N1A] [Serveur BosManager N1A] [10.33.13.1] [actif] [539] [false] 
+[23/04/15 17:22:29] - ligne 5:BDX2-AMT-N1B,Serveur BosManager N1B,10.33.13.10,actif,541,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-N1B 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-N1B] [Serveur BosManager N1B] [10.33.13.10] [actif] [541] [false] 
+[23/04/15 17:22:29] - ligne 6:BDX2-AMT-N1W,Serveur BosManager N1W,10.33.13.20,actif,903,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-N1W 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-N1W] [Serveur BosManager N1W] [10.33.13.20] [actif] [903] [false] 
+[23/04/15 17:22:29] - ligne 7:BDX2-AMT-N2A,Serveur BosManager N2A,10.33.13.2,actif,540,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-N2A 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-N2A] [Serveur BosManager N2A] [10.33.13.2] [actif] [540] [false] 
+[23/04/15 17:22:29] - ligne 8:BDX2-AMT-N2B,Serveur BosManager N2B,10.33.13.11,actif,542,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-N2B 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-N2B] [Serveur BosManager N2B] [10.33.13.11] [actif] [542] [false] 
+[23/04/15 17:22:29] - ligne 9:BDX2-AMT-TEL1,Serveur Telecollecte 1,10.33.13.3,actif,543,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-TEL1 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-TEL1] [Serveur Telecollecte 1] [10.33.13.3] [actif] [543] [false] 
+[23/04/15 17:22:29] - ligne 10:BDX2-AMT-TEL2,Serveur Telecollecte 2,10.33.13.4,actif,544,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-AMT-TEL2 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-AMT-TEL2] [Serveur Telecollecte 2] [10.33.13.4] [actif] [544] [false] 
+[23/04/15 17:22:29] - ligne 11:BDX2-CANICE-CFT,Serveur CFT - NICE,10.33.44.44,actif,1006,false 
+[23/04/15 17:22:29] - INSERTION hôte:BDX2-CANICE-CFT 
+[23/04/15 17:22:29] - insertion hôte: [BDX2-CANICE-CFT] [Serveur CFT - NICE] [10.33.44.44] [actif] [1006] [false] 
+[23/04/15 17:22:29] - ligne 12:TRANSFERT-FTP,Serveur transfert - Copilote CFT,10.33.30.7,actif,273,false 
+[23/04/15 17:22:29] - INSERTION hôte:TRANSFERT-FTP 
+[23/04/15 17:22:29] - insertion hôte: [TRANSFERT-FTP] [Serveur transfert - Copilote CFT] [10.33.30.7] [actif] [273] [false] 
+[23/04/15 17:22:29] - INSERTION_SELECTION: Insertion liste hôtes OK. 
+[23/04/15 17:22:29] - nbligne_service=1 
+[23/04/15 17:22:29] - aucun service à insérer 
+[23/04/15 17:22:29] - nbligne_plage=15 
+[23/04/15 17:22:29] - ligne 0:;;;;;;;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [] en cours... 
+[23/04/15 17:22:29] - ligne 1:09h-18h - L-V;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [09h-18h - L-V] en cours... 
+[23/04/15 17:22:29] - ligne 2:24/24 - 7/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [24/24 - 7/7] en cours... 
+[23/04/15 17:22:29] - ligne 3:CATOP-AMT - L-V 7h-20h30 - S 10h-19h;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;10:00-19:00;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [CATOP-AMT - L-V 7h-20h30 - S 10h-19h] en cours... 
+[23/04/15 17:22:29] - ligne 4:CENFE - L-S 6h-Minuit;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [CENFE - L-S 6h-Minuit] en cours... 
+[23/04/15 17:22:29] - ligne 5:CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [CFT_-_24/7] en cours... 
+[23/04/15 17:22:29] - ligne 6:Controle BOS - L-S - 0h-Minuit;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [Controle BOS - L-S - 0h-Minuit] en cours... 
+[23/04/15 17:22:29] - ligne 7:COPILOTE_ControleVacation - L-S h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [COPILOTE_ControleVacation - L-S h24] en cours... 
+[23/04/15 17:22:29] - ligne 8:COPILOTE_ControleVacation - L-V h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [COPILOTE_ControleVacation - L-V h24] en cours... 
+[23/04/15 17:22:29] - ligne 9:NICE - L-V 7h-21h - S 8h-21h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;08:00-21:00;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [NICE - L-V 7h-21h - S 8h-21h] en cours... 
+[23/04/15 17:22:29] - ligne 10:NICE Teleco - L-S 18h-18h30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [NICE Teleco - L-S 18h-18h30] en cours... 
+[23/04/15 17:22:29] - ligne 11:Scan-Agence - L-S 8h-21h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [Scan-Agence - L-S 8h-21h] en cours... 
+[23/04/15 17:22:29] - ligne 12:Scan-Agence_DebFinJou_L-S_0h05-Minuit;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [Scan-Agence_DebFinJou_L-S_0h05-Minuit] en cours... 
+[23/04/15 17:22:29] - ligne 13:SG_Agence - L-V 8h-21h - S 10h-19h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;10:00-19:00;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [SG_Agence - L-V 8h-21h - S 10h-19h] en cours... 
+[23/04/15 17:22:29] - ligne 14:SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;;;false 
+[23/04/15 17:22:29] - nbchamp_plage=9 
+[23/04/15 17:22:29] - insertion liste plage [SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h] en cours... 
+[23/04/15 17:22:29] - insertion liste plages OK 
+[23/04/15 17:22:29] - appel page complete_table.php 
+[23/04/15 17:22:29] - Chargement complete_table.php 
+[23/04/15 17:22:30] - Traitement de la demande [945]. 
+[23/04/15 17:22:30] - COMPLETE_TABLE: Traitement des hotes... 
+[23/04/15 17:22:30] - Selection categories 
+[23/04/15 17:22:30] - extraction Localisation et Type 
+[23/04/15 17:22:30] - BDX2 
+[23/04/15 17:22:30] - VM 
+[23/04/15 17:22:30] - Serveur_Virtuel 
+[23/04/15 17:22:30] - champs table hote mis à jour! 
+[23/04/15 17:22:30] - Selection categories 
+[23/04/15 17:22:30] - extraction Localisation et Type 
+[23/04/15 17:22:30] - BDX2 
+[23/04/15 17:22:30] - VM 
+[23/04/15 17:22:30] - Serveur_Virtuel 
+[23/04/15 17:22:30] - champs table hote mis à jour! 
+[23/04/15 17:22:30] - Selection categories 
+[23/04/15 17:22:30] - extraction Localisation et Type 
+[23/04/15 17:22:30] - BDX2 
+[23/04/15 17:22:30] - VM 
+[23/04/15 17:22:30] - Serveur_Virtuel 
+[23/04/15 17:22:30] - champs table hote mis à jour! 
+[23/04/15 17:22:30] - Selection categories 
+[23/04/15 17:22:30] - extraction Localisation et Type 
+[23/04/15 17:22:30] - BDX2 
+[23/04/15 17:22:30] - VM 
+[23/04/15 17:22:30] - Serveur_Virtuel 
+[23/04/15 17:22:30] - champs table hote mis à jour! 
+[23/04/15 17:22:30] - Selection categories 
+[23/04/15 17:22:30] - extraction Localisation et Type 
+[23/04/15 17:22:30] - BDX2 
+[23/04/15 17:22:30] - VM 
+[23/04/15 17:22:30] - Serveur_Virtuel 
+[23/04/15 17:22:30] - champs table hote mis à jour! 
+[23/04/15 17:22:30] - Selection categories 
+[23/04/15 17:22:30] - extraction Localisation et Type 
+[23/04/15 17:22:30] - BDX2 
+[23/04/15 17:22:30] - VM 
+[23/04/15 17:22:30] - Serveur_Virtuel 
+[23/04/15 17:22:30] - champs table hote mis à jour! 
+[23/04/15 17:22:30] - Selection categories 
+[23/04/15 17:22:30] - extraction Localisation et Type 
+[23/04/15 17:22:30] - BDX2 
+[23/04/15 17:22:30] - VM 
+[23/04/15 17:22:30] - Serveur_Virtuel 
+[23/04/15 17:22:31] - champs table hote mis à jour! 
+[23/04/15 17:22:31] - Selection categories 
+[23/04/15 17:22:31] - extraction Localisation et Type 
+[23/04/15 17:22:31] - BDX2 
+[23/04/15 17:22:31] - VM 
+[23/04/15 17:22:31] - Serveur_Virtuel 
+[23/04/15 17:22:31] - champs table hote mis à jour! 
+[23/04/15 17:22:31] - Selection categories 
+[23/04/15 17:22:31] - extraction Localisation et Type 
+[23/04/15 17:22:31] - BDX2 
+[23/04/15 17:22:31] - VM 
+[23/04/15 17:22:31] - Serveur_Virtuel 
+[23/04/15 17:22:31] - champs table hote mis à jour! 
+[23/04/15 17:22:31] - Selection categories 
+[23/04/15 17:22:31] - extraction Localisation et Type 
+[23/04/15 17:22:31] - BDX2 
+[23/04/15 17:22:31] - VM 
+[23/04/15 17:22:31] - 32_bits 
+[23/04/15 17:22:31] - Telecollecte 
+[23/04/15 17:22:31] - Francais 
+[23/04/15 17:22:31] - Windows_2003 
+[23/04/15 17:22:31] - Serveur_Virtuel 
+[23/04/15 17:22:31] - champs table hote mis à jour! 
+[23/04/15 17:22:31] - Selection categories 
+[23/04/15 17:22:31] - extraction Localisation et Type 
+[23/04/15 17:22:31] - BDX2 
+[23/04/15 17:22:31] - VM 
+[23/04/15 17:22:31] - 32_bits 
+[23/04/15 17:22:31] - Telecollecte 
+[23/04/15 17:22:31] - Francais 
+[23/04/15 17:22:31] - Windows_2003 
+[23/04/15 17:22:31] - Serveur_Virtuel 
+[23/04/15 17:22:31] - champs table hote mis à jour! 
+[23/04/15 17:22:31] - Selection categories 
+[23/04/15 17:22:31] - extraction Localisation et Type 
+[23/04/15 17:22:31] - BDX2 
+[23/04/15 17:22:31] - VM 
+[23/04/15 17:22:31] - Serveur_Virtuel 
+[23/04/15 17:22:31] - champs table hote mis à jour! 
+[23/04/15 17:22:31] - Selection categories 
+[23/04/15 17:22:31] - extraction Localisation et Type 
+[23/04/15 17:22:31] - BDX2 
+[23/04/15 17:22:31] - VM 
+[23/04/15 17:22:31] - Serveur_Virtuel 
+[23/04/15 17:22:31] - champs table hote mis à jour! 
+[23/04/15 17:22:31] - COMPLETE_TABLE: Traitement des services... 
+[23/04/15 17:26:02] - Chargement enregistrement_Demande.php 
+[23/04/15 17:26:02] - Demandeur=cmeschin 
+[23/04/15 17:26:02] - Date_Demande=2015-04-23 17:21:00 
+[23/04/15 17:26:02] - Etat_Demande=1504231721-cmeschin 
+[23/04/15 17:26:02] - Ref_Demande=Brouillon 
+[23/04/15 17:26:02] - Date_supervision=2015-04-23 
+[23/04/15 17:26:02] - Code_Client=CADS-GESTION_FLUX_{CHQ} 
+[23/04/15 17:26:02] - email=cedric.meschin@tessi.fr 
+[23/04/15 17:26:02] - Commentaire=  
+[23/04/15 17:26:02] - MAJ Table Demande 
+[23/04/15 17:26:02] - NbService=4 
+[23/04/15 17:26:02] - liste_service=CADS Arrivee NCR|24443|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/18106/arrivee/NCR!*.TOP!Non!Minute!15!30!Modif!NC!Oui 
+[23/04/15 17:26:02] - requete insertion Service: 
+[23/04/15 17:26:02] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR',945,24443,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/18106/arrivee/NCR!*.TOP!Non!Minute!15!30!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR', ID_Demande= 945, ID_Hote= 24443, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR!*.TOP!Non!Minute!15!30!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:26:02] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24443, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR!*.TOP!Non!Minute!15!30!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR' AND ID_Hote= 24443 AND ID_Demande= 945; 
+[23/04/15 17:26:02] - liste_service=CADS Arrivee NCR 18h|24443|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/18106/arrivee/NCR!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:26:02] - requete insertion Service: 
+[23/04/15 17:26:02] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR 18h',945,24443,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/18106/arrivee/NCR!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR 18h', ID_Demande= 945, ID_Hote= 24443, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:26:02] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24443, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR 18h' AND ID_Hote= 24443 AND ID_Demande= 945; 
+[23/04/15 17:26:02] - liste_service=CADS Arrivee NCR Envoi BM|24443|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/18106/arrivee/NCR/ENVOI_BM!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:26:02] - requete insertion Service: 
+[23/04/15 17:26:02] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR Envoi BM',945,24443,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/18106/arrivee/NCR/ENVOI_BM!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR Envoi BM', ID_Demande= 945, ID_Hote= 24443, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/ENVOI_BM!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:26:02] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24443, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/ENVOI_BM!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR Envoi BM' AND ID_Hote= 24443 AND ID_Demande= 945; 
+[23/04/15 17:26:02] - liste_service=CADS Arrivee NCR Envoi BM Poubelle|24443|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/18106/arrivee/NCR/ENVOI_BM/poubelle!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:26:02] - requete insertion Service: 
+[23/04/15 17:26:02] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR Envoi BM Poubelle',945,24443,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/18106/arrivee/NCR/ENVOI_BM/poubelle!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR Envoi BM Poubelle', ID_Demande= 945, ID_Hote= 24443, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/ENVOI_BM/poubelle!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:26:02] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24443, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/ENVOI_BM/poubelle!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR Envoi BM Poubelle' AND ID_Hote= 24443 AND ID_Demande= 945; 
+[23/04/15 17:26:02] - 1 
+[23/04/15 17:26:03] - Mise a jour Nom hote 
+[23/04/15 17:26:03] - UPDATE service AS S, hote AS H SET S.Nom_Hote=H.Nom_Hote WHERE S.ID_Hote=H.ID_Hote AND S.ID_Demande= 945; 
+[23/04/15 17:26:03] - Mise a jour Type_Action=Creer pour selection=NULL 
+[23/04/15 17:26:03] - UPDATE service SET Type_Action='Creer' WHERE selection IS NULL AND ID_Demande= 945; 
+[23/04/15 17:26:03] - Enregistrement Demande termine 
+[23/04/15 17:26:03] - Chargement envoi mail 
+[23/04/15 17:26:03] - Sujet=CENTREON: Demande de changement ref: 1504231721-cmeschin - CADS-GESTION_FLUX_{CHQ} PROJ=1  
+[23/04/15 17:26:03] - message constitué 
+[23/04/15 17:26:04] - mail envoyé 
+[23/04/15 17:26:04] - Mail envoyé 
+[23/04/15 17:26:21] - Chargement de la page supervision! 
+[23/04/15 17:26:50] - Chargement de la page supervision! 
+[23/04/15 17:27:00] - Chargement de la page supervision! 
+[23/04/15 17:27:13] - chargement nouvelle demande. 
+[23/04/15 17:27:13] - Initialisation des constantes: 
+[23/04/15 17:27:13] - ID_demande:0 
+[23/04/15 17:27:13] - Date_demande:2015-04-23 17:27:13 
+[23/04/15 17:27:13] - Ref_demande:1504231727-cmeschin 
+[23/04/15 17:27:24] - Liste id_hote 
+[23/04/15 17:27:24] - Liste id_hote=546,545,904,911,539,541,903,540,542,543,544,1006,273 
+[23/04/15 17:27:31] - Chargement insertion_selection.php 
+[23/04/15 17:27:32] - liste_hotesliste=BDX2-AMT-CFT,Serveur CFT,10.33.13.6,inactif,546,false$BDX2-AMT-MAR,Serveur MARCEL,10.33.13.5,actif,545,false$BDX2-AMT-MAR2,Serveur NICE2BM,10.33.13.8,actif,904,false$BDX2-AMT-MAR4,Serveur MARCEL Nice2BM A,10.33.13.9,actif,911,false$BDX2-AMT-N1A,Serveur BosManager N1A,10.33.13.1,actif,539,false$BDX2-AMT-N1B,Serveur BosManager N1B,10.33.13.10,actif,541,false$BDX2-AMT-N1W,Serveur BosManager N1W,10.33.13.20,actif,903,false$BDX2-AMT-N2A,Serveur BosManager N2A,10.33.13.2,actif,540,false$BDX2-AMT-N2B,Serveur BosManager N2B,10.33.13.11,actif,542,false$BDX2-AMT-TEL1,Serveur Telecollecte 1,10.33.13.3,actif,543,false$BDX2-AMT-TEL2,Serveur Telecollecte 2,10.33.13.4,actif,544,false$BDX2-CANICE-CFT,Serveur CFT - NICE,10.33.44.44,actif,1006,false$TRANSFERT-FTP,Serveur transfert - Copilote CFT,10.33.30.7,actif,273,false 
+[23/04/15 17:27:32] - liste_services= 
+[23/04/15 17:27:32] - liste_plagesliste=;;;;;;;;false$09h-18h - L-V;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;;;false$24/24 - 7/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false$CATOP-AMT - L-V 7h-20h30 - S 10h-19h;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;10:00-19:00;;false$CENFE - L-S 6h-Minuit;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;;false$CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false$Controle BOS - L-S - 0h-Minuit;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false$COPILOTE_ControleVacation - L-S h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false$COPILOTE_ControleVacation - L-V h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;;false$NICE - L-V 7h-21h - S 8h-21h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;08:00-21:00;;false$NICE Teleco - L-S 18h-18h30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;;false$Scan-Agence - L-S 8h-21h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;;false$Scan-Agence_DebFinJou_L-S_0h05-Minuit;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;;false$SG_Agence - L-V 8h-21h - S 10h-19h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;10:00-19:00;;false$SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;;;false 
+[23/04/15 17:27:33] - Les données ont été correctement enregistrées pour la prestation [CADS-GESTION_FLUX_{CHQ}]. ID=946. 
+[23/04/15 17:27:33] - données générales OK 
+[23/04/15 17:27:33] - email:cedric.meschin@tessi.fr 
+[23/04/15 17:27:33] - nbligne_hote_liste=13 
+[23/04/15 17:27:33] - ligne 0:BDX2-AMT-CFT,Serveur CFT,10.33.13.6,inactif,546,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-CFT 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-CFT] [Serveur CFT] [10.33.13.6] [inactif] [546] [false] 
+[23/04/15 17:27:33] - ligne 1:BDX2-AMT-MAR,Serveur MARCEL,10.33.13.5,actif,545,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-MAR 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-MAR] [Serveur MARCEL] [10.33.13.5] [actif] [545] [false] 
+[23/04/15 17:27:33] - ligne 2:BDX2-AMT-MAR2,Serveur NICE2BM,10.33.13.8,actif,904,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-MAR2 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-MAR2] [Serveur NICE2BM] [10.33.13.8] [actif] [904] [false] 
+[23/04/15 17:27:33] - ligne 3:BDX2-AMT-MAR4,Serveur MARCEL Nice2BM A,10.33.13.9,actif,911,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-MAR4 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-MAR4] [Serveur MARCEL Nice2BM A] [10.33.13.9] [actif] [911] [false] 
+[23/04/15 17:27:33] - ligne 4:BDX2-AMT-N1A,Serveur BosManager N1A,10.33.13.1,actif,539,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-N1A 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-N1A] [Serveur BosManager N1A] [10.33.13.1] [actif] [539] [false] 
+[23/04/15 17:27:33] - ligne 5:BDX2-AMT-N1B,Serveur BosManager N1B,10.33.13.10,actif,541,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-N1B 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-N1B] [Serveur BosManager N1B] [10.33.13.10] [actif] [541] [false] 
+[23/04/15 17:27:33] - ligne 6:BDX2-AMT-N1W,Serveur BosManager N1W,10.33.13.20,actif,903,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-N1W 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-N1W] [Serveur BosManager N1W] [10.33.13.20] [actif] [903] [false] 
+[23/04/15 17:27:33] - ligne 7:BDX2-AMT-N2A,Serveur BosManager N2A,10.33.13.2,actif,540,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-N2A 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-N2A] [Serveur BosManager N2A] [10.33.13.2] [actif] [540] [false] 
+[23/04/15 17:27:33] - ligne 8:BDX2-AMT-N2B,Serveur BosManager N2B,10.33.13.11,actif,542,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-N2B 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-N2B] [Serveur BosManager N2B] [10.33.13.11] [actif] [542] [false] 
+[23/04/15 17:27:33] - ligne 9:BDX2-AMT-TEL1,Serveur Telecollecte 1,10.33.13.3,actif,543,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-TEL1 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-TEL1] [Serveur Telecollecte 1] [10.33.13.3] [actif] [543] [false] 
+[23/04/15 17:27:33] - ligne 10:BDX2-AMT-TEL2,Serveur Telecollecte 2,10.33.13.4,actif,544,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-AMT-TEL2 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-AMT-TEL2] [Serveur Telecollecte 2] [10.33.13.4] [actif] [544] [false] 
+[23/04/15 17:27:33] - ligne 11:BDX2-CANICE-CFT,Serveur CFT - NICE,10.33.44.44,actif,1006,false 
+[23/04/15 17:27:33] - INSERTION hôte:BDX2-CANICE-CFT 
+[23/04/15 17:27:33] - insertion hôte: [BDX2-CANICE-CFT] [Serveur CFT - NICE] [10.33.44.44] [actif] [1006] [false] 
+[23/04/15 17:27:33] - ligne 12:TRANSFERT-FTP,Serveur transfert - Copilote CFT,10.33.30.7,actif,273,false 
+[23/04/15 17:27:33] - INSERTION hôte:TRANSFERT-FTP 
+[23/04/15 17:27:33] - insertion hôte: [TRANSFERT-FTP] [Serveur transfert - Copilote CFT] [10.33.30.7] [actif] [273] [false] 
+[23/04/15 17:27:33] - INSERTION_SELECTION: Insertion liste hôtes OK. 
+[23/04/15 17:27:33] - nbligne_service=1 
+[23/04/15 17:27:33] - aucun service à insérer 
+[23/04/15 17:27:33] - nbligne_plage=15 
+[23/04/15 17:27:33] - ligne 0:;;;;;;;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [] en cours... 
+[23/04/15 17:27:33] - ligne 1:09h-18h - L-V;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [09h-18h - L-V] en cours... 
+[23/04/15 17:27:33] - ligne 2:24/24 - 7/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [24/24 - 7/7] en cours... 
+[23/04/15 17:27:33] - ligne 3:CATOP-AMT - L-V 7h-20h30 - S 10h-19h;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;10:00-19:00;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [CATOP-AMT - L-V 7h-20h30 - S 10h-19h] en cours... 
+[23/04/15 17:27:33] - ligne 4:CENFE - L-S 6h-Minuit;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [CENFE - L-S 6h-Minuit] en cours... 
+[23/04/15 17:27:33] - ligne 5:CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [CFT_-_24/7] en cours... 
+[23/04/15 17:27:33] - ligne 6:Controle BOS - L-S - 0h-Minuit;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [Controle BOS - L-S - 0h-Minuit] en cours... 
+[23/04/15 17:27:33] - ligne 7:COPILOTE_ControleVacation - L-S h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [COPILOTE_ControleVacation - L-S h24] en cours... 
+[23/04/15 17:27:33] - ligne 8:COPILOTE_ControleVacation - L-V h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [COPILOTE_ControleVacation - L-V h24] en cours... 
+[23/04/15 17:27:33] - ligne 9:NICE - L-V 7h-21h - S 8h-21h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;08:00-21:00;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [NICE - L-V 7h-21h - S 8h-21h] en cours... 
+[23/04/15 17:27:33] - ligne 10:NICE Teleco - L-S 18h-18h30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [NICE Teleco - L-S 18h-18h30] en cours... 
+[23/04/15 17:27:33] - ligne 11:Scan-Agence - L-S 8h-21h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [Scan-Agence - L-S 8h-21h] en cours... 
+[23/04/15 17:27:33] - ligne 12:Scan-Agence_DebFinJou_L-S_0h05-Minuit;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [Scan-Agence_DebFinJou_L-S_0h05-Minuit] en cours... 
+[23/04/15 17:27:33] - ligne 13:SG_Agence - L-V 8h-21h - S 10h-19h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;10:00-19:00;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [SG_Agence - L-V 8h-21h - S 10h-19h] en cours... 
+[23/04/15 17:27:33] - ligne 14:SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;;;false 
+[23/04/15 17:27:33] - nbchamp_plage=9 
+[23/04/15 17:27:33] - insertion liste plage [SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h] en cours... 
+[23/04/15 17:27:33] - insertion liste plages OK 
+[23/04/15 17:27:33] - appel page complete_table.php 
+[23/04/15 17:27:33] - Chargement complete_table.php 
+[23/04/15 17:27:34] - Traitement de la demande [946]. 
+[23/04/15 17:27:34] - COMPLETE_TABLE: Traitement des hotes... 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - 32_bits 
+[23/04/15 17:27:34] - Telecollecte 
+[23/04/15 17:27:34] - Francais 
+[23/04/15 17:27:34] - Windows_2003 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - 32_bits 
+[23/04/15 17:27:34] - Telecollecte 
+[23/04/15 17:27:34] - Francais 
+[23/04/15 17:27:34] - Windows_2003 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - Selection categories 
+[23/04/15 17:27:34] - extraction Localisation et Type 
+[23/04/15 17:27:34] - BDX2 
+[23/04/15 17:27:34] - VM 
+[23/04/15 17:27:34] - Serveur_Virtuel 
+[23/04/15 17:27:34] - champs table hote mis à jour! 
+[23/04/15 17:27:34] - COMPLETE_TABLE: Traitement des services... 
+[23/04/15 17:30:34] - Chargement enregistrement_Demande.php 
+[23/04/15 17:30:34] - Demandeur=cmeschin 
+[23/04/15 17:30:34] - Date_Demande=2015-04-23 17:27:13 
+[23/04/15 17:30:34] - Etat_Demande=1504231727-cmeschin 
+[23/04/15 17:30:34] - Ref_Demande=Brouillon 
+[23/04/15 17:30:34] - Date_supervision=2015-04-23 
+[23/04/15 17:30:34] - Code_Client=CADS-GESTION_FLUX_{CHQ} 
+[23/04/15 17:30:34] - email=cedric.meschin@tessi.fr 
+[23/04/15 17:30:34] - Commentaire=  
+[23/04/15 17:30:34] - MAJ Table Demande 
+[23/04/15 17:30:34] - NbService=4 
+[23/04/15 17:30:34] - liste_service=CADS Arrivee NCR|24456|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/18106/arrivee/NCR!*.top!Non!Minute!15!30!Modif!NC!Oui 
+[23/04/15 17:30:34] - requete insertion Service: 
+[23/04/15 17:30:34] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR',946,24456,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/18106/arrivee/NCR!*.top!Non!Minute!15!30!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR', ID_Demande= 946, ID_Hote= 24456, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR!*.top!Non!Minute!15!30!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:30:34] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24456, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR!*.top!Non!Minute!15!30!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR' AND ID_Hote= 24456 AND ID_Demande= 946; 
+[23/04/15 17:30:34] - liste_service=CADS Arrivee NCR 18h|24456|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/18106/arrivee/NCR/!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:30:34] - requete insertion Service: 
+[23/04/15 17:30:34] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR 18h',946,24456,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/18106/arrivee/NCR/!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR 18h', ID_Demande= 946, ID_Hote= 24456, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:30:34] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24456, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR 18h' AND ID_Hote= 24456 AND ID_Demande= 946; 
+[23/04/15 17:30:34] - liste_service=CADS Arrivee NCR Envoi BM|24456|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/18106/arrivee/NCR/!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:30:34] - requete insertion Service: 
+[23/04/15 17:30:34] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR Envoi BM',946,24456,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/18106/arrivee/NCR/!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR Envoi BM', ID_Demande= 946, ID_Hote= 24456, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:30:34] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24456, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR Envoi BM' AND ID_Hote= 24456 AND ID_Demande= 946; 
+[23/04/15 17:30:34] - liste_service=CADS Arrivee NCR Envoi BM poubelle|24456|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/18106/arrivee/NCR/poubelle!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:30:34] - requete insertion Service: 
+[23/04/15 17:30:34] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR Envoi BM poubelle',946,24456,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/18106/arrivee/NCR/poubelle!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR Envoi BM poubelle', ID_Demande= 946, ID_Hote= 24456, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/poubelle!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:30:34] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24456, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/18106/arrivee/NCR/poubelle!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR Envoi BM poubelle' AND ID_Hote= 24456 AND ID_Demande= 946; 
+[23/04/15 17:30:34] - 1 
+[23/04/15 17:30:34] - Mise a jour Nom hote 
+[23/04/15 17:30:34] - UPDATE service AS S, hote AS H SET S.Nom_Hote=H.Nom_Hote WHERE S.ID_Hote=H.ID_Hote AND S.ID_Demande= 946; 
+[23/04/15 17:30:34] - Mise a jour Type_Action=Creer pour selection=NULL 
+[23/04/15 17:30:34] - UPDATE service SET Type_Action='Creer' WHERE selection IS NULL AND ID_Demande= 946; 
+[23/04/15 17:30:34] - Enregistrement Demande termine 
+[23/04/15 17:30:34] - Chargement envoi mail 
+[23/04/15 17:30:34] - Sujet=CENTREON: Demande de changement ref: 1504231727-cmeschin - CADS-GESTION_FLUX_{CHQ} PROJ=1  
+[23/04/15 17:30:34] - message constitué 
+[23/04/15 17:30:35] - mail envoyé 
+[23/04/15 17:30:35] - Mail envoyé 
+[23/04/15 17:31:00] - Chargement de la page supervision! 
+[23/04/15 17:31:10] - chargement nouvelle demande. 
+[23/04/15 17:31:10] - Initialisation des constantes: 
+[23/04/15 17:31:10] - ID_demande:0 
+[23/04/15 17:31:10] - Date_demande:2015-04-23 17:31:10 
+[23/04/15 17:31:10] - Ref_demande:1504231731-cmeschin 
+[23/04/15 17:31:21] - Liste id_hote 
+[23/04/15 17:31:21] - Liste id_hote=546,545,904,911,539,541,903,540,542,543,544,1006,273 
+[23/04/15 17:31:32] - Chargement insertion_selection.php 
+[23/04/15 17:31:33] - liste_hotesliste=BDX2-AMT-CFT,Serveur CFT,10.33.13.6,inactif,546,false$BDX2-AMT-MAR,Serveur MARCEL,10.33.13.5,actif,545,false$BDX2-AMT-MAR2,Serveur NICE2BM,10.33.13.8,actif,904,false$BDX2-AMT-MAR4,Serveur MARCEL Nice2BM A,10.33.13.9,actif,911,false$BDX2-AMT-N1A,Serveur BosManager N1A,10.33.13.1,actif,539,false$BDX2-AMT-N1B,Serveur BosManager N1B,10.33.13.10,actif,541,false$BDX2-AMT-N1W,Serveur BosManager N1W,10.33.13.20,actif,903,false$BDX2-AMT-N2A,Serveur BosManager N2A,10.33.13.2,actif,540,false$BDX2-AMT-N2B,Serveur BosManager N2B,10.33.13.11,actif,542,false$BDX2-AMT-TEL1,Serveur Telecollecte 1,10.33.13.3,actif,543,false$BDX2-AMT-TEL2,Serveur Telecollecte 2,10.33.13.4,actif,544,false$BDX2-CANICE-CFT,Serveur CFT - NICE,10.33.44.44,actif,1006,false$TRANSFERT-FTP,Serveur transfert - Copilote CFT,10.33.30.7,actif,273,false 
+[23/04/15 17:31:33] - liste_services= 
+[23/04/15 17:31:33] - liste_plagesliste=;;;;;;;;false$09h-18h - L-V;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;;;false$24/24 - 7/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false$CATOP-AMT - L-V 7h-20h30 - S 10h-19h;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;10:00-19:00;;false$CENFE - L-S 6h-Minuit;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;;false$CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false$Controle BOS - L-S - 0h-Minuit;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false$COPILOTE_ControleVacation - L-S h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false$COPILOTE_ControleVacation - L-V h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;;false$NICE - L-V 7h-21h - S 8h-21h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;08:00-21:00;;false$NICE Teleco - L-S 18h-18h30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;;false$Scan-Agence - L-S 8h-21h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;;false$Scan-Agence_DebFinJou_L-S_0h05-Minuit;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;;false$SG_Agence - L-V 8h-21h - S 10h-19h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;10:00-19:00;;false$SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;;;false 
+[23/04/15 17:31:33] - Les données ont été correctement enregistrées pour la prestation [CADS-GESTION_FLUX_{CHQ}]. ID=947. 
+[23/04/15 17:31:33] - données générales OK 
+[23/04/15 17:31:33] - email:cedric.meschin@tessi.fr 
+[23/04/15 17:31:33] - nbligne_hote_liste=13 
+[23/04/15 17:31:33] - ligne 0:BDX2-AMT-CFT,Serveur CFT,10.33.13.6,inactif,546,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-CFT 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-CFT] [Serveur CFT] [10.33.13.6] [inactif] [546] [false] 
+[23/04/15 17:31:33] - ligne 1:BDX2-AMT-MAR,Serveur MARCEL,10.33.13.5,actif,545,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-MAR 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-MAR] [Serveur MARCEL] [10.33.13.5] [actif] [545] [false] 
+[23/04/15 17:31:33] - ligne 2:BDX2-AMT-MAR2,Serveur NICE2BM,10.33.13.8,actif,904,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-MAR2 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-MAR2] [Serveur NICE2BM] [10.33.13.8] [actif] [904] [false] 
+[23/04/15 17:31:33] - ligne 3:BDX2-AMT-MAR4,Serveur MARCEL Nice2BM A,10.33.13.9,actif,911,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-MAR4 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-MAR4] [Serveur MARCEL Nice2BM A] [10.33.13.9] [actif] [911] [false] 
+[23/04/15 17:31:33] - ligne 4:BDX2-AMT-N1A,Serveur BosManager N1A,10.33.13.1,actif,539,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-N1A 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-N1A] [Serveur BosManager N1A] [10.33.13.1] [actif] [539] [false] 
+[23/04/15 17:31:33] - ligne 5:BDX2-AMT-N1B,Serveur BosManager N1B,10.33.13.10,actif,541,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-N1B 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-N1B] [Serveur BosManager N1B] [10.33.13.10] [actif] [541] [false] 
+[23/04/15 17:31:33] - ligne 6:BDX2-AMT-N1W,Serveur BosManager N1W,10.33.13.20,actif,903,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-N1W 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-N1W] [Serveur BosManager N1W] [10.33.13.20] [actif] [903] [false] 
+[23/04/15 17:31:33] - ligne 7:BDX2-AMT-N2A,Serveur BosManager N2A,10.33.13.2,actif,540,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-N2A 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-N2A] [Serveur BosManager N2A] [10.33.13.2] [actif] [540] [false] 
+[23/04/15 17:31:33] - ligne 8:BDX2-AMT-N2B,Serveur BosManager N2B,10.33.13.11,actif,542,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-N2B 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-N2B] [Serveur BosManager N2B] [10.33.13.11] [actif] [542] [false] 
+[23/04/15 17:31:33] - ligne 9:BDX2-AMT-TEL1,Serveur Telecollecte 1,10.33.13.3,actif,543,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-TEL1 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-TEL1] [Serveur Telecollecte 1] [10.33.13.3] [actif] [543] [false] 
+[23/04/15 17:31:33] - ligne 10:BDX2-AMT-TEL2,Serveur Telecollecte 2,10.33.13.4,actif,544,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-AMT-TEL2 
+[23/04/15 17:31:33] - insertion hôte: [BDX2-AMT-TEL2] [Serveur Telecollecte 2] [10.33.13.4] [actif] [544] [false] 
+[23/04/15 17:31:33] - ligne 11:BDX2-CANICE-CFT,Serveur CFT - NICE,10.33.44.44,actif,1006,false 
+[23/04/15 17:31:33] - INSERTION hôte:BDX2-CANICE-CFT 
+[23/04/15 17:31:34] - insertion hôte: [BDX2-CANICE-CFT] [Serveur CFT - NICE] [10.33.44.44] [actif] [1006] [false] 
+[23/04/15 17:31:34] - ligne 12:TRANSFERT-FTP,Serveur transfert - Copilote CFT,10.33.30.7,actif,273,false 
+[23/04/15 17:31:34] - INSERTION hôte:TRANSFERT-FTP 
+[23/04/15 17:31:34] - insertion hôte: [TRANSFERT-FTP] [Serveur transfert - Copilote CFT] [10.33.30.7] [actif] [273] [false] 
+[23/04/15 17:31:34] - INSERTION_SELECTION: Insertion liste hôtes OK. 
+[23/04/15 17:31:34] - nbligne_service=1 
+[23/04/15 17:31:34] - aucun service à insérer 
+[23/04/15 17:31:34] - nbligne_plage=15 
+[23/04/15 17:31:34] - ligne 0:;;;;;;;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [] en cours... 
+[23/04/15 17:31:34] - ligne 1:09h-18h - L-V;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;09:00-17:59;;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [09h-18h - L-V] en cours... 
+[23/04/15 17:31:34] - ligne 2:24/24 - 7/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [24/24 - 7/7] en cours... 
+[23/04/15 17:31:34] - ligne 3:CATOP-AMT - L-V 7h-20h30 - S 10h-19h;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;07:00-20:30;10:00-19:00;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [CATOP-AMT - L-V 7h-20h30 - S 10h-19h] en cours... 
+[23/04/15 17:31:34] - ligne 4:CENFE - L-S 6h-Minuit;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;06:00-24:00;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [CENFE - L-S 6h-Minuit] en cours... 
+[23/04/15 17:31:34] - ligne 5:CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [CFT_-_24/7] en cours... 
+[23/04/15 17:31:34] - ligne 6:Controle BOS - L-S - 0h-Minuit;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [Controle BOS - L-S - 0h-Minuit] en cours... 
+[23/04/15 17:31:34] - ligne 7:COPILOTE_ControleVacation - L-S h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [COPILOTE_ControleVacation - L-S h24] en cours... 
+[23/04/15 17:31:34] - ligne 8:COPILOTE_ControleVacation - L-V h24;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [COPILOTE_ControleVacation - L-V h24] en cours... 
+[23/04/15 17:31:34] - ligne 9:NICE - L-V 7h-21h - S 8h-21h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;08:00-21:00;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [NICE - L-V 7h-21h - S 8h-21h] en cours... 
+[23/04/15 17:31:34] - ligne 10:NICE Teleco - L-S 18h-18h30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;18:00-18:30;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [NICE Teleco - L-S 18h-18h30] en cours... 
+[23/04/15 17:31:34] - ligne 11:Scan-Agence - L-S 8h-21h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [Scan-Agence - L-S 8h-21h] en cours... 
+[23/04/15 17:31:34] - ligne 12:Scan-Agence_DebFinJou_L-S_0h05-Minuit;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;00:05-23:59;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [Scan-Agence_DebFinJou_L-S_0h05-Minuit] en cours... 
+[23/04/15 17:31:34] - ligne 13:SG_Agence - L-V 8h-21h - S 10h-19h;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;08:00-21:00;10:00-19:00;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [SG_Agence - L-V 8h-21h - S 10h-19h] en cours... 
+[23/04/15 17:31:34] - ligne 14:SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;13:00-24:00;;;false 
+[23/04/15 17:31:34] - nbchamp_plage=9 
+[23/04/15 17:31:34] - insertion liste plage [SIMA_Guadeloupe - L-V - 7h-18h - heure locale soit 13h-24h] en cours... 
+[23/04/15 17:31:34] - insertion liste plages OK 
+[23/04/15 17:31:34] - appel page complete_table.php 
+[23/04/15 17:31:34] - Chargement complete_table.php 
+[23/04/15 17:31:35] - Traitement de la demande [947]. 
+[23/04/15 17:31:35] - COMPLETE_TABLE: Traitement des hotes... 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - 32_bits 
+[23/04/15 17:31:35] - Telecollecte 
+[23/04/15 17:31:35] - Francais 
+[23/04/15 17:31:35] - Windows_2003 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - 32_bits 
+[23/04/15 17:31:35] - Telecollecte 
+[23/04/15 17:31:35] - Francais 
+[23/04/15 17:31:35] - Windows_2003 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - Selection categories 
+[23/04/15 17:31:35] - extraction Localisation et Type 
+[23/04/15 17:31:35] - BDX2 
+[23/04/15 17:31:35] - VM 
+[23/04/15 17:31:35] - Serveur_Virtuel 
+[23/04/15 17:31:35] - champs table hote mis à jour! 
+[23/04/15 17:31:35] - COMPLETE_TABLE: Traitement des services... 
+[23/04/15 17:32:31] - Suppression service:  de l'hôte ... 
+[23/04/15 17:32:32] - Suppression service:  de l'hôte  OK. 
+[23/04/15 17:51:32] - Chargement enregistrement_Demande.php 
+[23/04/15 17:51:32] - Demandeur=cmeschin 
+[23/04/15 17:51:32] - Date_Demande=2015-04-23 17:31:10 
+[23/04/15 17:51:32] - Etat_Demande=1504231731-cmeschin 
+[23/04/15 17:51:32] - Ref_Demande=Brouillon 
+[23/04/15 17:51:32] - Date_supervision=2015-04-23 
+[23/04/15 17:51:32] - Code_Client=CADS-GESTION_FLUX_{CHQ} 
+[23/04/15 17:51:32] - email=cedric.meschin@tessi.fr 
+[23/04/15 17:51:32] - Commentaire=  
+[23/04/15 17:51:32] - MAJ Table Demande 
+[23/04/15 17:51:32] - NbService=4 
+[23/04/15 17:51:32] - liste_service=CADS Arrivee NCR|24469|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/tessi/import!*!Non!Minute!15!30!Modif!NC!Oui 
+[23/04/15 17:51:32] - requete insertion Service: 
+[23/04/15 17:51:32] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR',947,24469,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/tessi/import!*!Non!Minute!15!30!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR', ID_Demande= 947, ID_Hote= 24469, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/tessi/import!*!Non!Minute!15!30!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:51:32] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24469, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/tessi/import!*!Non!Minute!15!30!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR' AND ID_Hote= 24469 AND ID_Demande= 947; 
+[23/04/15 17:51:32] - liste_service=CADS Arrivee NCR 18h|24469|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:51:32] - requete insertion Service: 
+[23/04/15 17:51:32] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR 18h',947,24469,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR 18h', ID_Demande= 947, ID_Hote= 24469, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:51:32] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24469, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR 18h' AND ID_Hote= 24469 AND ID_Demande= 947; 
+[23/04/15 17:51:32] - liste_service=CADS Arrivee NCR NCR|24469|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:51:32] - requete insertion Service: 
+[23/04/15 17:51:32] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR NCR',947,24469,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR NCR', ID_Demande= 947, ID_Hote= 24469, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:51:32] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24469, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR NCR' AND ID_Hote= 24469 AND ID_Demande= 947; 
+[23/04/15 17:51:32] - liste_service=CADS Arrivee NCR NCR poubelle|24469|CATOP-AMT - L-V 7h-20h30 - S 10h-19h|actif|0|112|Par défaut|||Creer||D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui 
+[23/04/15 17:51:32] - requete insertion Service: 
+[23/04/15 17:51:32] - INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
+			VALUES ('CADS Arrivee NCR NCR poubelle',947,24469,'CATOP-AMT - L-V 7h-20h30 - S 10h-19h','Par défaut','actif',112,'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui','','','Creer','',0)
+			ON DUPLICATE KEY UPDATE Nom_Service= 'CADS Arrivee NCR NCR poubelle', ID_Demande= 947, ID_Hote= 24469, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0; 
+[23/04/15 17:51:32] - ##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= 24469, Nom_Periode= 'CATOP-AMT - L-V 7h-20h30 - S 10h-19h', Frequence= 'Par défaut', Controle_Actif= 'actif', ID_Modele_Service= 112, Parametres= 'D:/tessi/import!*!Non!Minute!120!150!Modif!NC!Oui', Consigne= '', Detail_Consigne= '', Type_Action= 'Creer', Commentaire= '', ID_Hote_Centreon= 0 WHERE Nom_Service= 'CADS Arrivee NCR NCR poubelle' AND ID_Hote= 24469 AND ID_Demande= 947; 
+[23/04/15 17:51:32] - 1 
+[23/04/15 17:51:32] - Mise a jour Nom hote 
+[23/04/15 17:51:32] - UPDATE service AS S, hote AS H SET S.Nom_Hote=H.Nom_Hote WHERE S.ID_Hote=H.ID_Hote AND S.ID_Demande= 947; 
+[23/04/15 17:51:32] - Mise a jour Type_Action=Creer pour selection=NULL 
+[23/04/15 17:51:32] - UPDATE service SET Type_Action='Creer' WHERE selection IS NULL AND ID_Demande= 947; 
+[23/04/15 17:51:32] - Enregistrement Demande termine 
+[23/04/15 17:51:32] - Chargement envoi mail 
+[23/04/15 17:51:32] - Sujet=CENTREON: Demande de changement ref: 1504231731-cmeschin - CADS-GESTION_FLUX_{CHQ} PROJ=1  
+[23/04/15 17:51:32] - message constitué 
+[23/04/15 17:51:33] - mail envoyé 
+[23/04/15 17:51:33] - Mail envoyé 
+[23/04/15 17:51:52] - Chargement de la page supervision! 
