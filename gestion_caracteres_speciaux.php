@@ -3,7 +3,7 @@ if (session_id()=='')
 {
 session_start();
 };
-// si la chaine à décoder contient [A-Za-Z]:%5C ou [A-Za-Z]:/ (le début d'un chemin windows) alors on remplace à l'affichage tous les %5C (l'antislash) par un slash pour simplifier le copié/collé dans la paramétrage centreon
+// si la chaine à décoder contient [A-Za-z]:%5C ou [A-Za-z]:\ (le début d'un chemin windows) alors on remplace à l'affichage tous les %5C (l'antislash) par un slash pour simplifier le copié/collé dans la paramétrage centreon
 // à l'enregistrement suivant tous les \ auront été remplacés par des /.
 if (preg_match("#^[a-zA-Z][%3A][%5C|/]#",$Valeur_Champ))
 //if (ereg("^[:alpha:]:%5C",substr($Valeur_Champ,0,5)))
@@ -43,7 +43,7 @@ if ($_SESSION['Admin']==False)
 	};
 	if (preg_match("#_ETOIL_#",$Valeur_Champ))
 	{
-		$Valeur_Champ = str_replace("_ETOIL_","#",$Valeur_Champ);
+		$Valeur_Champ = str_replace("_ETOIL_","*",$Valeur_Champ);
 	};
 	
 // /**

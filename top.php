@@ -23,6 +23,7 @@ $_SESSION['user_changement_centreon'] = "cmeschin";
 $_SESSION['email_changement_centreon'] = "cedric.meschin@tessi.fr";
 ////////////////////////////////////////////////////////
 
+
 if((isset($_SESSION['auth_changement_centreon'])) && ($_SESSION['auth_changement_centreon']=="changement_centreon")) {
 //echo "<div id='container' style='width:1200px; margin: 0 auto; font-family:\"trebuchet ms\",sans-serif;font-size:13px; '>";
 echo "<div id='container' style='width:100%;min-width=700px;max-width=1400px; margin: 0 auto; font-family:\"trebuchet ms\",sans-serif;font-size:13px; '>";

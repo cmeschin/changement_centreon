@@ -69,9 +69,8 @@ $_SESSION['R_ID_Demande'] = NULL;
 			die ('Erreur requete_liste_hote_Site' . $e->getMessage());
 		};
 		while ( $res_Loc = $req_Localisation->fetch () ) {
-			echo '<option value="' . htmlspecialchars ( $res_Loc ['ID_Localisation'] ) . '">' . htmlspecialchars ( $res_Loc ['Lieux'] ) . '</option>';
-		}
-		;
+			include('option_localisation.php');
+		};
 		?>
 	</select> <img src="images/img_edit.png" class="verif" alt="incorrect"
 		id="img_Localisation<?php echo $NbFieldset;?>" /> <span
@@ -108,10 +107,8 @@ $_SESSION['R_ID_Demande'] = NULL;
 			die ('Erreur requete_liste_hote_Type' . $e->getMessage());
 		};
 		while ( $res_type = $req_type->fetch () ) {
-			?>
-		<option value="<?php echo htmlspecialchars($res_type['Type_Hote']) ?>"><?php echo htmlspecialchars($res_type['Type_Hote']) . ' / ' . htmlspecialchars($res_type['Type_Description']) ?></option> 
-		<?php
-		}
+			include('option_type.php');
+		};
 		?>
 	</select> <img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Type_Hote<?php echo $NbFieldset;?>" /> 
 		<span id="Type_Hote<?php echo $NbFieldset;?>_new"

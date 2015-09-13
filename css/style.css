@@ -258,6 +258,12 @@ label
 /*	background-color: red; */
 }
 
+.nouvelle_presta
+/* nouvelle prestation à créer => vert clair */
+{
+	background-color: #80ff80;
+}
+
 .extraction_hote, .extraction_service, .extraction_periode
 {
 	font-size: 0.8em;

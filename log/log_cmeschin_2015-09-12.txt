@@ -1,0 +1,446 @@
+[12/09/15 11:50:09] - Chargement de la page supervision! 
+[12/09/15 11:50:13] - Chargement de la page supervision! 
+[12/09/15 11:50:18] - Chargement de la page supervision! 
+[12/09/15 11:50:19] - Chargement de la page supervision! 
+[12/09/15 11:54:00] - chargement nouvelle demande. 
+[12/09/15 11:54:00] - Initialisation des constantes: 
+[12/09/15 11:54:00] - ID_demande:0 
+[12/09/15 11:54:00] - Date_demande:2015-09-12 11:54:00 
+[12/09/15 11:54:00] - Ref_demande:1509121154-cmeschin 
+[12/09/15 11:54:16] - Liste id_hote 
+[12/09/15 11:54:16] - Liste id_hote= 
+[12/09/15 12:06:02] - chargement nouvelle demande. 
+[12/09/15 12:06:02] - Initialisation des constantes: 
+[12/09/15 12:06:02] - ID_demande:0 
+[12/09/15 12:06:02] - Date_demande:2015-09-12 12:06:02 
+[12/09/15 12:06:02] - Ref_demande:1509121206-cmeschin 
+[12/09/15 12:06:17] - chargement nouvelle demande. 
+[12/09/15 12:06:17] - Initialisation des constantes: 
+[12/09/15 12:06:17] - ID_demande:0 
+[12/09/15 12:06:17] - Date_demande:2015-09-12 12:06:17 
+[12/09/15 12:06:17] - Ref_demande:1509121206-cmeschin 
+[12/09/15 12:06:41] - chargement nouvelle demande. 
+[12/09/15 12:06:41] - Initialisation des constantes: 
+[12/09/15 12:06:41] - ID_demande:0 
+[12/09/15 12:06:41] - Date_demande:2015-09-12 12:06:41 
+[12/09/15 12:06:41] - Ref_demande:1509121206-cmeschin 
+[12/09/15 12:06:52] - chargement nouvelle demande. 
+[12/09/15 12:06:52] - Initialisation des constantes: 
+[12/09/15 12:06:52] - ID_demande:0 
+[12/09/15 12:06:52] - Date_demande:2015-09-12 12:06:52 
+[12/09/15 12:06:52] - Ref_demande:1509121206-cmeschin 
+[12/09/15 12:08:27] - Liste id_hote 
+[12/09/15 12:08:27] - Liste id_hote=1939,311,535,627 
+[12/09/15 12:18:50] - chargement page administration. 
+[12/09/15 19:40:34] - Chargement de la page supervision! 
+[12/09/15 19:40:34] - Chargement de la page supervision! 
+[12/09/15 19:44:43] - chargement nouvelle demande. 
+[12/09/15 19:44:43] - Initialisation des constantes: 
+[12/09/15 19:44:43] - ID_demande:0 
+[12/09/15 19:44:43] - Date_demande:2015-09-12 19:44:43 
+[12/09/15 19:44:43] - Ref_demande:1509121944-cmeschin 
+[12/09/15 19:56:22] - chargement nouvelle demande. 
+[12/09/15 19:56:22] - Initialisation des constantes: 
+[12/09/15 19:56:22] - ID_demande:0 
+[12/09/15 19:56:22] - Date_demande:2015-09-12 19:56:22 
+[12/09/15 19:56:22] - Ref_demande:1509121956-cmeschin 
+[12/09/15 19:59:28] - chargement nouvelle demande. 
+[12/09/15 19:59:28] - Initialisation des constantes: 
+[12/09/15 19:59:28] - ID_demande:0 
+[12/09/15 19:59:28] - Date_demande:2015-09-12 19:59:28 
+[12/09/15 19:59:28] - Ref_demande:1509121959-cmeschin 
+[12/09/15 20:02:29] - Liste id_hote 
+[12/09/15 20:02:29] - Liste id_hote=1765,1008,1809 
+[12/09/15 20:12:31] - Liste id_hote 
+[12/09/15 20:12:31] - Liste id_hote=1765,1008,1809 
+[12/09/15 20:12:41] - Liste id_hote 
+[12/09/15 20:12:41] - Liste id_hote=1765,1008,1809 
+[12/09/15 20:12:49] - Liste id_hote 
+[12/09/15 20:12:49] - Liste id_hote=1939,311,535,627 
+[12/09/15 20:13:20] - Liste id_hote 
+[12/09/15 20:13:20] - Liste id_hote=1939,311,535,627 
+[12/09/15 20:21:27] - Liste id_hote 
+[12/09/15 20:21:27] - Liste id_hote=1939,311,535,627 
+[12/09/15 20:21:27] - chargement nouvelle demande. 
+[12/09/15 20:21:27] - Initialisation des constantes: 
+[12/09/15 20:21:27] - ID_demande:0 
+[12/09/15 20:21:27] - Date_demande:2015-09-12 20:21:27 
+[12/09/15 20:21:27] - Ref_demande:1509122021-cmeschin 
+[12/09/15 20:22:40] - chargement nouvelle demande. 
+[12/09/15 20:22:40] - Initialisation des constantes: 
+[12/09/15 20:22:40] - ID_demande:0 
+[12/09/15 20:22:41] - Date_demande:2015-09-12 20:22:40 
+[12/09/15 20:22:41] - Ref_demande:1509122022-cmeschin 
+[12/09/15 20:25:50] - chargement nouvelle demande. 
+[12/09/15 20:25:50] - Initialisation des constantes: 
+[12/09/15 20:25:50] - ID_demande:0 
+[12/09/15 20:25:50] - Date_demande:2015-09-12 20:25:50 
+[12/09/15 20:25:50] - Ref_demande:1509122025-cmeschin 
+[12/09/15 20:30:08] - chargement nouvelle demande. 
+[12/09/15 20:30:08] - Initialisation des constantes: 
+[12/09/15 20:30:08] - ID_demande:0 
+[12/09/15 20:30:08] - Date_demande:2015-09-12 20:30:08 
+[12/09/15 20:30:08] - Ref_demande:1509122030-cmeschin 
+[12/09/15 20:30:25] - chargement nouvelle demande. 
+[12/09/15 20:30:25] - Initialisation des constantes: 
+[12/09/15 20:30:25] - ID_demande:0 
+[12/09/15 20:30:25] - Date_demande:2015-09-12 20:30:25 
+[12/09/15 20:30:25] - Ref_demande:1509122030-cmeschin 
+[12/09/15 20:30:36] - Liste id_hote 
+[12/09/15 20:30:36] - Liste id_hote=1939,311,535,627 
+[12/09/15 20:43:06] - Liste id_hote 
+[12/09/15 20:43:06] - Liste id_hote=1939,311,535,627 
+[12/09/15 20:50:26] - chargement nouvelle demande. 
+[12/09/15 20:50:26] - Initialisation des constantes: 
+[12/09/15 20:50:26] - ID_demande:0 
+[12/09/15 20:50:26] - Date_demande:2015-09-12 20:50:26 
+[12/09/15 20:50:26] - Ref_demande:1509122050-cmeschin 
+[12/09/15 20:51:47] - chargement nouvelle demande. 
+[12/09/15 20:51:47] - Initialisation des constantes: 
+[12/09/15 20:51:47] - ID_demande:0 
+[12/09/15 20:51:47] - Date_demande:2015-09-12 20:51:47 
+[12/09/15 20:51:47] - Ref_demande:1509122051-cmeschin 
+[12/09/15 20:51:56] - chargement nouvelle demande. 
+[12/09/15 20:51:56] - Initialisation des constantes: 
+[12/09/15 20:51:56] - ID_demande:0 
+[12/09/15 20:51:56] - Date_demande:2015-09-12 20:51:56 
+[12/09/15 20:51:56] - Ref_demande:1509122051-cmeschin 
+[12/09/15 20:53:53] - chargement nouvelle demande. 
+[12/09/15 20:53:53] - Initialisation des constantes: 
+[12/09/15 20:53:53] - ID_demande:0 
+[12/09/15 20:53:53] - Date_demande:2015-09-12 20:53:53 
+[12/09/15 20:53:53] - Ref_demande:1509122053-cmeschin 
+[12/09/15 20:54:09] - Liste id_hote 
+[12/09/15 20:54:09] - Liste id_hote=1939,311,535,627 
+[12/09/15 20:54:28] - Liste id_hote 
+[12/09/15 20:54:28] - Liste id_hote=1939,311,535,627 
+[12/09/15 20:55:32] - chargement nouvelle demande. 
+[12/09/15 20:55:32] - Initialisation des constantes: 
+[12/09/15 20:55:32] - ID_demande:0 
+[12/09/15 20:55:32] - Date_demande:2015-09-12 20:55:32 
+[12/09/15 20:55:32] - Ref_demande:1509122055-cmeschin 
+[12/09/15 20:55:44] - Liste id_hote 
+[12/09/15 20:55:44] - Liste id_hote=1939,311,535,627 
+[12/09/15 20:57:49] - chargement nouvelle demande. 
+[12/09/15 20:57:49] - Initialisation des constantes: 
+[12/09/15 20:57:49] - ID_demande:0 
+[12/09/15 20:57:49] - Date_demande:2015-09-12 20:57:49 
+[12/09/15 20:57:49] - Ref_demande:1509122057-cmeschin 
+[12/09/15 20:58:53] - chargement nouvelle demande. 
+[12/09/15 20:58:53] - Initialisation des constantes: 
+[12/09/15 20:58:53] - ID_demande:0 
+[12/09/15 20:58:53] - Date_demande:2015-09-12 20:58:53 
+[12/09/15 20:58:53] - Ref_demande:1509122058-cmeschin 
+[12/09/15 21:00:39] - chargement nouvelle demande. 
+[12/09/15 21:00:39] - Initialisation des constantes: 
+[12/09/15 21:00:39] - ID_demande:0 
+[12/09/15 21:00:39] - Date_demande:2015-09-12 21:00:39 
+[12/09/15 21:00:39] - Ref_demande:1509122100-cmeschin 
+[12/09/15 21:10:17] - chargement nouvelle demande. 
+[12/09/15 21:10:17] - Initialisation des constantes: 
+[12/09/15 21:10:17] - ID_demande:0 
+[12/09/15 21:10:17] - Date_demande:2015-09-12 21:10:17 
+[12/09/15 21:10:17] - Ref_demande:1509122110-cmeschin 
+[12/09/15 21:10:30] - chargement nouvelle demande. 
+[12/09/15 21:10:30] - Initialisation des constantes: 
+[12/09/15 21:10:30] - ID_demande:0 
+[12/09/15 21:10:30] - Date_demande:2015-09-12 21:10:30 
+[12/09/15 21:10:30] - Ref_demande:1509122110-cmeschin 
+[12/09/15 21:10:58] - Liste id_hote 
+[12/09/15 21:10:58] - Liste id_hote=1939,311,535,627 
+[12/09/15 21:11:23] - chargement nouvelle demande. 
+[12/09/15 21:11:23] - Initialisation des constantes: 
+[12/09/15 21:11:23] - ID_demande:0 
+[12/09/15 21:11:23] - Date_demande:2015-09-12 21:11:23 
+[12/09/15 21:11:23] - Ref_demande:1509122111-cmeschin 
+[12/09/15 21:11:42] - Liste id_hote 
+[12/09/15 21:11:42] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:22:22] - Liste id_hote 
+[12/09/15 22:22:22] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:25:41] - Chargement de la page supervision! 
+[12/09/15 22:25:45] - chargement nouvelle demande. 
+[12/09/15 22:25:45] - Initialisation des constantes: 
+[12/09/15 22:25:45] - ID_demande:0 
+[12/09/15 22:25:45] - Date_demande:2015-09-12 22:25:45 
+[12/09/15 22:25:45] - Ref_demande:1509122225-cmeschin 
+[12/09/15 22:26:55] - chargement nouvelle demande. 
+[12/09/15 22:26:55] - Initialisation des constantes: 
+[12/09/15 22:26:55] - ID_demande:0 
+[12/09/15 22:26:55] - Date_demande:2015-09-12 22:26:55 
+[12/09/15 22:26:55] - Ref_demande:1509122226-cmeschin 
+[12/09/15 22:27:04] - Liste id_hote 
+[12/09/15 22:27:04] - Liste id_hote= 
+[12/09/15 22:28:53] - chargement nouvelle demande. 
+[12/09/15 22:28:53] - Initialisation des constantes: 
+[12/09/15 22:28:53] - ID_demande:0 
+[12/09/15 22:28:53] - Date_demande:2015-09-12 22:28:53 
+[12/09/15 22:28:53] - Ref_demande:1509122228-cmeschin 
+[12/09/15 22:29:16] - Liste id_hote 
+[12/09/15 22:29:16] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:29:32] - Liste id_hote 
+[12/09/15 22:29:32] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:32:45] - chargement nouvelle demande. 
+[12/09/15 22:32:45] - Initialisation des constantes: 
+[12/09/15 22:32:45] - ID_demande:0 
+[12/09/15 22:32:45] - Date_demande:2015-09-12 22:32:45 
+[12/09/15 22:32:45] - Ref_demande:1509122232-cmeschin 
+[12/09/15 22:33:08] - Liste id_hote 
+[12/09/15 22:33:08] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:33:49] - Liste id_hote 
+[12/09/15 22:33:49] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:34:16] - Liste id_hote 
+[12/09/15 22:34:16] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:34:38] - chargement nouvelle demande. 
+[12/09/15 22:34:38] - Initialisation des constantes: 
+[12/09/15 22:34:38] - ID_demande:0 
+[12/09/15 22:34:38] - Date_demande:2015-09-12 22:34:38 
+[12/09/15 22:34:38] - Ref_demande:1509122234-cmeschin 
+[12/09/15 22:35:02] - Liste id_hote 
+[12/09/15 22:35:02] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:35:13] - Liste id_hote 
+[12/09/15 22:35:13] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:35:32] - chargement nouvelle demande. 
+[12/09/15 22:35:32] - Initialisation des constantes: 
+[12/09/15 22:35:32] - ID_demande:0 
+[12/09/15 22:35:32] - Date_demande:2015-09-12 22:35:32 
+[12/09/15 22:35:32] - Ref_demande:1509122235-cmeschin 
+[12/09/15 22:35:45] - chargement nouvelle demande. 
+[12/09/15 22:35:45] - Initialisation des constantes: 
+[12/09/15 22:35:45] - ID_demande:0 
+[12/09/15 22:35:45] - Date_demande:2015-09-12 22:35:45 
+[12/09/15 22:35:45] - Ref_demande:1509122235-cmeschin 
+[12/09/15 22:35:57] - chargement nouvelle demande. 
+[12/09/15 22:35:57] - Initialisation des constantes: 
+[12/09/15 22:35:57] - ID_demande:0 
+[12/09/15 22:35:57] - Date_demande:2015-09-12 22:35:57 
+[12/09/15 22:35:57] - Ref_demande:1509122235-cmeschin 
+[12/09/15 22:36:42] - Liste id_hote 
+[12/09/15 22:36:42] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:37:14] - Liste id_hote 
+[12/09/15 22:37:14] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:40:26] - Liste id_hote 
+[12/09/15 22:40:26] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:40:50] - Liste id_hote 
+[12/09/15 22:40:50] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:41:16] - Liste id_hote 
+[12/09/15 22:41:16] - Liste id_hote=1939,311,535,627 
+[12/09/15 22:41:56] - Chargement insertion_selection.php 
+[12/09/15 22:41:57] - liste_hotesliste=B1-DBMUT-BKPOD,Sauvegarde des ODs Docubase,10.33.2.4,actif,1939,false$AG2R-SVR1,Solution DocuBase - AG2R,10.33.94.1,actif,311,false$POSTE1091,Poste Transfert AG2R,172.16.10.91,actif,535,false$LYO1-TT-CFT1,Serveur CFT - CDN,172.16.69.124,actif,627,false 
+[12/09/15 22:41:57] - liste_services= 
+[12/09/15 22:41:57] - liste_plagesliste=0h a minuit Vendredi;;;;;00:00-23:59;;;false$AG2R 24/7;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;false$CDN - L-V 7h-21h - S 10h-19h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;10:00-19:00;;false$CERA-Docubase_-_24h7j;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-06:30,14:30-24:00;false$CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false$D-S 0h-Minuit;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[12/09/15 22:41:57] - Les données ont été correctement enregistrées pour la prestation [2015-09-16]. ID=991. 
+[12/09/15 22:41:57] - données générales OK 
+[12/09/15 22:41:57] - email:cedric.meschin@tessi.fr 
+[12/09/15 22:41:57] - nbligne_hote_liste=4 
+[12/09/15 22:41:57] - ligne 0:B1-DBMUT-BKPOD,Sauvegarde des ODs Docubase,10.33.2.4,actif,1939,false 
+[12/09/15 22:41:57] - INSERTION hôte:B1-DBMUT-BKPOD 
+[12/09/15 22:41:57] - insertion hôte: [B1-DBMUT-BKPOD] [Sauvegarde des ODs Docubase] [10.33.2.4] [actif] [1939] [false] 
+[12/09/15 22:41:57] - ligne 1:AG2R-SVR1,Solution DocuBase - AG2R,10.33.94.1,actif,311,false 
+[12/09/15 22:41:57] - INSERTION hôte:AG2R-SVR1 
+[12/09/15 22:41:57] - insertion hôte: [AG2R-SVR1] [Solution DocuBase - AG2R] [10.33.94.1] [actif] [311] [false] 
+[12/09/15 22:41:57] - ligne 2:POSTE1091,Poste Transfert AG2R,172.16.10.91,actif,535,false 
+[12/09/15 22:41:57] - INSERTION hôte:POSTE1091 
+[12/09/15 22:41:57] - insertion hôte: [POSTE1091] [Poste Transfert AG2R] [172.16.10.91] [actif] [535] [false] 
+[12/09/15 22:41:57] - ligne 3:LYO1-TT-CFT1,Serveur CFT - CDN,172.16.69.124,actif,627,false 
+[12/09/15 22:41:57] - INSERTION hôte:LYO1-TT-CFT1 
+[12/09/15 22:41:57] - insertion hôte: [LYO1-TT-CFT1] [Serveur CFT - CDN] [172.16.69.124] [actif] [627] [false] 
+[12/09/15 22:41:57] - INSERTION_SELECTION: Insertion liste hôtes OK. 
+[12/09/15 22:41:57] - nbligne_service=1 
+[12/09/15 22:41:57] - aucun service à insérer 
+[12/09/15 22:41:57] - nbligne_plage=6 
+[12/09/15 22:41:57] - ligne 0:0h a minuit Vendredi;;;;;00:00-23:59;;;false 
+[12/09/15 22:41:57] - nbchamp_plage=9 
+[12/09/15 22:41:57] - insertion liste plage [0h a minuit Vendredi] en cours... 
+[12/09/15 22:41:57] - ligne 1:AG2R 24/7;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;false 
+[12/09/15 22:41:57] - nbchamp_plage=9 
+[12/09/15 22:41:57] - insertion liste plage [AG2R 24/7] en cours... 
+[12/09/15 22:41:57] - ligne 2:CDN - L-V 7h-21h - S 10h-19h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;10:00-19:00;;false 
+[12/09/15 22:41:57] - nbchamp_plage=9 
+[12/09/15 22:41:57] - insertion liste plage [CDN - L-V 7h-21h - S 10h-19h] en cours... 
+[12/09/15 22:41:57] - ligne 3:CERA-Docubase_-_24h7j;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-06:30,14:30-24:00;false 
+[12/09/15 22:41:57] - nbchamp_plage=9 
+[12/09/15 22:41:57] - insertion liste plage [CERA-Docubase_-_24h7j] en cours... 
+[12/09/15 22:41:57] - ligne 4:CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[12/09/15 22:41:57] - nbchamp_plage=9 
+[12/09/15 22:41:57] - insertion liste plage [CFT_-_24/7] en cours... 
+[12/09/15 22:41:57] - ligne 5:D-S 0h-Minuit;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[12/09/15 22:41:57] - nbchamp_plage=9 
+[12/09/15 22:41:57] - insertion liste plage [D-S 0h-Minuit] en cours... 
+[12/09/15 22:41:57] - insertion liste plages OK 
+[12/09/15 22:41:57] - appel page complete_table.php 
+[12/09/15 22:41:57] - Chargement complete_table.php 
+[12/09/15 22:41:58] - Traitement de la demande [991]. 
+[12/09/15 22:41:58] - COMPLETE_TABLE: Traitement des hotes... 
+[12/09/15 22:41:58] - Selection categories 
+[12/09/15 22:41:59] - extraction Localisation et Type 
+[12/09/15 22:41:59] - BDX1 
+[12/09/15 22:41:59] - VM 
+[12/09/15 22:41:59] - 64_bits 
+[12/09/15 22:41:59] - Anglais 
+[12/09/15 22:41:59] - Windows_2012 
+[12/09/15 22:41:59] - Sauvegarde 
+[12/09/15 22:41:59] - Serveur_Virtuel 
+[12/09/15 22:41:59] - champs table hote mis à jour! 
+[12/09/15 22:41:59] - Selection categories 
+[12/09/15 22:41:59] - extraction Localisation et Type 
+[12/09/15 22:41:59] - BDX2 
+[12/09/15 22:41:59] - VM 
+[12/09/15 22:41:59] - Serveur_Virtuel 
+[12/09/15 22:41:59] - champs table hote mis à jour! 
+[12/09/15 22:41:59] - Selection categories 
+[12/09/15 22:41:59] - extraction Localisation et Type 
+[12/09/15 22:41:59] - GER1 
+[12/09/15 22:41:59] - SRV 
+[12/09/15 22:41:59] - Serveur_Physique 
+[12/09/15 22:41:59] - champs table hote mis à jour! 
+[12/09/15 22:41:59] - Selection categories 
+[12/09/15 22:41:59] - extraction Localisation et Type 
+[12/09/15 22:41:59] - LYO1 
+[12/09/15 22:41:59] - SRV 
+[12/09/15 22:41:59] - 64_bits 
+[12/09/15 22:41:59] - CFT 
+[12/09/15 22:41:59] - Francais 
+[12/09/15 22:41:59] - Windows_2008 
+[12/09/15 22:41:59] - Serveur_Physique 
+[12/09/15 22:41:59] - champs table hote mis à jour! 
+[12/09/15 22:41:59] - COMPLETE_TABLE: Traitement des services... 
+[12/09/15 23:30:11] - chargement page administration. 
+[12/09/15 23:30:28] - ('CentOS_5','CentOS_5'),('CentOS_6','CentOS_6'),('Debian_3.0','Debian_3.0'),('Debian_3.1','Debian_3.1'),('NC','Non Concerne'),('RedHat_5.4','RedHat_5.4'),('RedHat_6.2','RedHat_6.2'),('Ubuntu_10.04','Ubuntu_10.04'),('Ubuntu_12.04','Ubuntu_12.04'),('Ubuntu_14.04','Ubuntu_14.04'),('Ubuntu_5.10','Ubuntu_5.10'),('Ubuntu_8.04','Ubuntu_8.04'),('Windows_2000','Windows_2000'),('Windows_2003','Windows_2003'),('Windows_2008','Windows_2008'),('Windows_2012','Windows_2012'),('Windows_7','Windows_7'),('Windows_XP','Windows_XP') 
+[12/09/15 23:30:28] - ('NAN1','Tessi Nanterre 1'),('LYC1','Tessi Bipio'),('AVO1','Tessi Avon'),('AJA1','Tessi Ajaccio'),('ANN1','Tessi Annecy'),('AUR1','Tessi Aurillac'),('HAI1','Tessi Haillan'),('BOU1','Tessi Boulogne'),('LNG1','Tessi Longjumeau'),('MON1','Tessi Montreuil'),('NAN2','Tessi Nanterre 2'),('PAN1','Tessi Pantin'),('ROU1','Tessi Roubaix'),('REN1','Tessi Rennes'),('LYC2','Tessi Atia'),('LYC3','Tessi TDS'),('BDX2','Hebergement B2'),('BDX1','Hebergement B1'),('CLE1','Tessi Clermont-Ferrand'),('DIJ1','Tessi Dijon'),('GAC1','C2I La Gacilly'),('GER1','Tessi Gerland'),('GRE1','Tessi Grenoble'),('LAR1','Tessi La Roche sur Yon'),('LON1','Tessi Lescar'),('LYO1','Tessi Lyon'),('MEA1','Tessi Meaux'),('NCY1','Tessi Nancy'),('NTS1','Tessi Nantes'),('QUI1','Tessi Quimper'),('SCH1','Tessi Schilitgheim'),('STE1','Tessi Saint-Etienne'),('TIG1','Tessi Tigre'),('TLN1','Tessi Toulon'),('TLS1','Tessi Toulouse'),('VAN1','Tessi Vannes') 
+[12/09/15 23:30:29] - ('HMC','Baie_HMC_AIX'),('SAN','Baie_SAN'),('QOS','Boitier_QOS'),('CLU','Cluster'),('HSM','Cryptographie'),('OND','Onduleur'),('FW1','PareFeu_1100_NGTP'),('FWB','PareFeu_BSD'),('FWC','PareFeu_CheckPoint'),('FWE','PareFeu_Checkpoint_Edge'),('FWO','PareFeu_CheckPoint_OpenServer'),('FWU','PareFeu_Checkpoint_UTM'),('JUN','PareFeu_Juniper'),('FWN','PareFeu_Netfilter'),('FWP','PareFeu_Palo_Alto'),('CAM','PC_Camera'),('PDU','Rack_PDU'),('RT','Routeur'),('ESX','Serveur_ESX'),('SRV','Serveur_Physique'),('VM','Serveur_Virtuel'),('STH','Sonde_Thermique'),('SWE','Switch_Ethernet'),('SWF','Switch_Fibre'),('SWU','Switch_USB') 
+[12/09/15 23:30:29] - ('ActiveDirectory','Active_Directory'),('Batch','Batch'),('BDD','BDD'),('BMDoc','BMDoc'),('BosArchive','BosArchive'),('BosControl','BosControl'),('BosFormatter','BosFormatter'),('BosGrav','BosGrav'),('BosMail','BosMail'),('BosManager','BMCheque'),('BosSit','BosSit'),('BosVideo','BosVideo'),('Centreon','Centreon'),('CFM-Banctec','CFM Agent Banctec'),('CFT','CFT'),('Cryptographie','Cryptographie'),('FAX','FAX'),('FTP','FTP'),('IBML','IBML'),('ICR','ICR'),('KGS','KGS'),('LAD-RAD','LAD-RAD'),('MARCEL','MARCEL'),('PareFeu','PareFeu'),('Photos','Photos'),('Proxy','Proxy'),('Reverse_Proxy','Reverse Proxy'),('RNA','RNA'),('Sauvegarde','Sauvegarde'),('ScanToPay','ScanToPay'),('Sonde_Thermique','Sonde_Thermique'),('Switch','Switch'),('Telecollecte','Telecollecte'),('Transfert','Transfert'),('Trichec','Trichec'),('Videocodage','Videocodage'),('VPN','VPN'),('WEB','WEB'),('WSUS','WSUS') 
+[12/09/15 23:36:08] - ('CentOS_5','CentOS_5'),('CentOS_6','CentOS_6'),('Debian_3.0','Debian_3.0'),('Debian_3.1','Debian_3.1'),('NC','Non Concerne'),('RedHat_5.4','RedHat_5.4'),('RedHat_6.2','RedHat_6.2'),('Ubuntu_10.04','Ubuntu_10.04'),('Ubuntu_12.04','Ubuntu_12.04'),('Ubuntu_14.04','Ubuntu_14.04'),('Ubuntu_5.10','Ubuntu_5.10'),('Ubuntu_8.04','Ubuntu_8.04'),('Windows_2000','Windows_2000'),('Windows_2003','Windows_2003'),('Windows_2008','Windows_2008'),('Windows_2012','Windows_2012'),('Windows_7','Windows_7'),('Windows_XP','Windows_XP') 
+[12/09/15 23:36:08] - ('NAN1','Tessi Nanterre 1'),('LYC1','Tessi Bipio'),('AVO1','Tessi Avon'),('AJA1','Tessi Ajaccio'),('ANN1','Tessi Annecy'),('AUR1','Tessi Aurillac'),('HAI1','Tessi Haillan'),('BOU1','Tessi Boulogne'),('LNG1','Tessi Longjumeau'),('MON1','Tessi Montreuil'),('NAN2','Tessi Nanterre 2'),('PAN1','Tessi Pantin'),('ROU1','Tessi Roubaix'),('REN1','Tessi Rennes'),('LYC2','Tessi Atia'),('LYC3','Tessi TDS'),('BDX2','Hebergement B2'),('BDX1','Hebergement B1'),('CLE1','Tessi Clermont-Ferrand'),('DIJ1','Tessi Dijon'),('GAC1','C2I La Gacilly'),('GER1','Tessi Gerland'),('GRE1','Tessi Grenoble'),('LAR1','Tessi La Roche sur Yon'),('LON1','Tessi Lescar'),('LYO1','Tessi Lyon'),('MEA1','Tessi Meaux'),('NCY1','Tessi Nancy'),('NTS1','Tessi Nantes'),('QUI1','Tessi Quimper'),('SCH1','Tessi Schilitgheim'),('STE1','Tessi Saint-Etienne'),('TIG1','Tessi Tigre'),('TLN1','Tessi Toulon'),('TLS1','Tessi Toulouse'),('VAN1','Tessi Vannes') 
+[12/09/15 23:36:09] - ('HMC','Baie_HMC_AIX'),('SAN','Baie_SAN'),('QOS','Boitier_QOS'),('CLU','Cluster'),('HSM','Cryptographie'),('OND','Onduleur'),('FW1','PareFeu_1100_NGTP'),('FWB','PareFeu_BSD'),('FWC','PareFeu_CheckPoint'),('FWE','PareFeu_Checkpoint_Edge'),('FWO','PareFeu_CheckPoint_OpenServer'),('FWU','PareFeu_Checkpoint_UTM'),('JUN','PareFeu_Juniper'),('FWN','PareFeu_Netfilter'),('FWP','PareFeu_Palo_Alto'),('CAM','PC_Camera'),('PDU','Rack_PDU'),('RT','Routeur'),('ESX','Serveur_ESX'),('SRV','Serveur_Physique'),('VM','Serveur_Virtuel'),('STH','Sonde_Thermique'),('SWE','Switch_Ethernet'),('SWF','Switch_Fibre'),('SWU','Switch_USB') 
+[12/09/15 23:36:09] - ('ActiveDirectory','Active_Directory'),('Batch','Batch'),('BDD','BDD'),('BMDoc','BMDoc'),('BosArchive','BosArchive'),('BosControl','BosControl'),('BosFormatter','BosFormatter'),('BosGrav','BosGrav'),('BosMail','BosMail'),('BosManager','BMCheque'),('BosSit','BosSit'),('BosVideo','BosVideo'),('Centreon','Centreon'),('CFM-Banctec','CFM Agent Banctec'),('CFT','CFT'),('Cryptographie','Cryptographie'),('FAX','FAX'),('FTP','FTP'),('IBML','IBML'),('ICR','ICR'),('KGS','KGS'),('LAD-RAD','LAD-RAD'),('MARCEL','MARCEL'),('PareFeu','PareFeu'),('Photos','Photos'),('Proxy','Proxy'),('Reverse_Proxy','Reverse Proxy'),('RNA','RNA'),('Sauvegarde','Sauvegarde'),('ScanToPay','ScanToPay'),('Sonde_Thermique','Sonde_Thermique'),('Switch','Switch'),('Telecollecte','Telecollecte'),('Transfert','Transfert'),('Trichec','Trichec'),('Videocodage','Videocodage'),('VPN','VPN'),('WEB','WEB'),('WSUS','WSUS') 
+[12/09/15 23:36:10] -  
+[12/09/15 23:40:05] - ('CentOS_5','CentOS_5'),('CentOS_6','CentOS_6'),('Debian_3.0','Debian_3.0'),('Debian_3.1','Debian_3.1'),('NC','Non Concerne'),('RedHat_5.4','RedHat_5.4'),('RedHat_6.2','RedHat_6.2'),('Ubuntu_10.04','Ubuntu_10.04'),('Ubuntu_12.04','Ubuntu_12.04'),('Ubuntu_14.04','Ubuntu_14.04'),('Ubuntu_5.10','Ubuntu_5.10'),('Ubuntu_8.04','Ubuntu_8.04'),('Windows_2000','Windows_2000'),('Windows_2003','Windows_2003'),('Windows_2008','Windows_2008'),('Windows_2012','Windows_2012'),('Windows_7','Windows_7'),('Windows_XP','Windows_XP') 
+[12/09/15 23:40:05] - ('NAN1','Tessi Nanterre 1'),('LYC1','Tessi Bipio'),('AVO1','Tessi Avon'),('AJA1','Tessi Ajaccio'),('ANN1','Tessi Annecy'),('AUR1','Tessi Aurillac'),('HAI1','Tessi Haillan'),('BOU1','Tessi Boulogne'),('LNG1','Tessi Longjumeau'),('MON1','Tessi Montreuil'),('NAN2','Tessi Nanterre 2'),('PAN1','Tessi Pantin'),('ROU1','Tessi Roubaix'),('REN1','Tessi Rennes'),('LYC2','Tessi Atia'),('LYC3','Tessi TDS'),('BDX2','Hebergement B2'),('BDX1','Hebergement B1'),('CLE1','Tessi Clermont-Ferrand'),('DIJ1','Tessi Dijon'),('GAC1','C2I La Gacilly'),('GER1','Tessi Gerland'),('GRE1','Tessi Grenoble'),('LAR1','Tessi La Roche sur Yon'),('LON1','Tessi Lescar'),('LYO1','Tessi Lyon'),('MEA1','Tessi Meaux'),('NCY1','Tessi Nancy'),('NTS1','Tessi Nantes'),('QUI1','Tessi Quimper'),('SCH1','Tessi Schilitgheim'),('STE1','Tessi Saint-Etienne'),('TIG1','Tessi Tigre'),('TLN1','Tessi Toulon'),('TLS1','Tessi Toulouse'),('VAN1','Tessi Vannes') 
+[12/09/15 23:40:06] - ('HMC','Baie_HMC_AIX'),('SAN','Baie_SAN'),('QOS','Boitier_QOS'),('CLU','Cluster'),('HSM','Cryptographie'),('OND','Onduleur'),('FW1','PareFeu_1100_NGTP'),('FWB','PareFeu_BSD'),('FWC','PareFeu_CheckPoint'),('FWE','PareFeu_Checkpoint_Edge'),('FWO','PareFeu_CheckPoint_OpenServer'),('FWU','PareFeu_Checkpoint_UTM'),('JUN','PareFeu_Juniper'),('FWN','PareFeu_Netfilter'),('FWP','PareFeu_Palo_Alto'),('CAM','PC_Camera'),('PDU','Rack_PDU'),('RT','Routeur'),('ESX','Serveur_ESX'),('SRV','Serveur_Physique'),('VM','Serveur_Virtuel'),('STH','Sonde_Thermique'),('SWE','Switch_Ethernet'),('SWF','Switch_Fibre'),('SWU','Switch_USB') 
+[12/09/15 23:40:06] - ('ActiveDirectory','Active_Directory'),('Batch','Batch'),('BDD','BDD'),('BMDoc','BMDoc'),('BosArchive','BosArchive'),('BosControl','BosControl'),('BosFormatter','BosFormatter'),('BosGrav','BosGrav'),('BosMail','BosMail'),('BosManager','BMCheque'),('BosSit','BosSit'),('BosVideo','BosVideo'),('Centreon','Centreon'),('CFM-Banctec','CFM Agent Banctec'),('CFT','CFT'),('Cryptographie','Cryptographie'),('FAX','FAX'),('FTP','FTP'),('IBML','IBML'),('ICR','ICR'),('KGS','KGS'),('LAD-RAD','LAD-RAD'),('MARCEL','MARCEL'),('PareFeu','PareFeu'),('Photos','Photos'),('Proxy','Proxy'),('Reverse_Proxy','Reverse Proxy'),('RNA','RNA'),('Sauvegarde','Sauvegarde'),('ScanToPay','ScanToPay'),('Sonde_Thermique','Sonde_Thermique'),('Switch','Switch'),('Telecollecte','Telecollecte'),('Transfert','Transfert'),('Trichec','Trichec'),('Videocodage','Videocodage'),('VPN','VPN'),('WEB','WEB'),('WSUS','WSUS') 
+[12/09/15 23:40:07] - ('1','AM_Dispo_CATECH','disponibilitÃ© serveur CATECH'),('4','AM_Dispo_ARKEA','Taux de disponibilite ARKEA'),('6','AM_AMT-N1A','Vue MÃ©tier AMT-N1A'),('7','AM_AMT-N1B','Vue MÃ©tier AMT-N1B'),('8','AM_CDN-GDF_Prod_Dispo','Activite Metier CDN GDF Production disponibilite'),('9','AM_CDN_GDF_Prod_Web','Activite Metier CDN GDF Production Acces Web'),('10','AM_BEE-POST_Web','ActivitÃ© MÃ©tier BEE-POST DisponibilitÃ© Web'),('11','AM_AMT-N1','Vue Metier AMT N1'),('12','AM_SEPA_SAAS1','AM_SEPA_SAAS1'),('13','AM_SEPA_SAAS2','AM_SEPA_SAAS2'),('14','AM_ALM-AG2R_BIA','AM_ALM-AG2R_BIA'),('15','AM_AQOBA_MICHELIN-HEBERGEMENT_GED','AM_AQOBA_MICHELIN-HEBERGEMENT_GED'),('16','AM_AVIVA_Nanterre','Activite Metier Aviva Nanterre'),('17','AM_CFF-Credit_BMD_Web','AM CFF-Credit site Web BMD'),('18','AM_CFF-Credit_BMD_Technique','AM CFF-Credit BMDoc Technique'),('19','AM_CFF-Credit_IBML','AM_CFF-Credit_IBML'),('20','AM_CFF-Credit_BosFormatter','AM_CFF-Credit_BosFormatter'),('21','AM_CFF-Credit_BosCollect','AM_CFF-Credit_BosCollect'),('22','AM_CFF-Credit_LAD-RAD','AM_CFF-Credit_LAD-RAD'),('23','AM_Hebergement_VM_B1','AM_Hebergement_VM_B1'),('24','AM_Hebergement_VM_B2','AM_Hebergement_VM_B2'),('25','AM_CDN-GDF_Qualif_Dispo','Activite Metier CDN GDF Qualification disponibilite'),('27','CFF-CREDIT','CFF credit'),('28','CFF-Credit_Dispo','DisponibilitÃ© application BMD CFF'),('29','CFF-Credit_Donnees','DisponibilitÃ© des donnees BMD CFF') 
+[12/09/15 23:42:46] - chargement reprise demande. 
+[12/09/15 23:42:47] - Initialisation des constantes: 
+[12/09/15 23:42:47] - Date_demande:2015-09-12 22:35:57 
+[12/09/15 23:42:47] - Ref_demande:1509122235-cmeschin 
+[12/09/15 23:42:47] - Prestation:2015-09-16 
+[12/09/15 23:42:47] - Liste id_hote 
+[12/09/15 23:42:47] - Liste id_hote1939,311,535,627 
+[12/09/15 23:42:49] - SELECT
+			 Distinct(Nom_Hote),
+			 IP_Hote,
+			 Controle,
+			 Sonde,
+			 Frequence,
+			 Plage_Horaire,
+			 host_id,
+			 service_id
+		FROM vInventaireServices
+		WHERE (Code_Client= &quot;2015-09-16&quot; OR Code_Client LIKE &quot;%INFRA%&quot;) AND host_id IN (1939,311,535,627)
+		ORDER BY Nom_Hote,Sonde 
+[12/09/15 23:46:44] - chargement reprise demande. 
+[12/09/15 23:46:45] - Initialisation des constantes: 
+[12/09/15 23:46:45] - Date_demande:2015-09-12 22:35:57 
+[12/09/15 23:46:45] - Ref_demande:1509122235-cmeschin 
+[12/09/15 23:46:45] - Prestation:2015-09-16 
+[12/09/15 23:46:45] - Liste id_hote 
+[12/09/15 23:46:45] - Liste id_hote1939,311,535,627 
+[12/09/15 23:46:46] - SELECT
+			 Distinct(Nom_Hote),
+			 IP_Hote,
+			 Controle,
+			 Sonde,
+			 Frequence,
+			 Plage_Horaire,
+			 host_id,
+			 service_id
+		FROM vInventaireServices
+		WHERE (Code_Client= &quot;2015-09-16&quot; OR Code_Client LIKE &quot;%INFRA%&quot;) AND host_id IN (1939,311,535,627)
+		ORDER BY Nom_Hote,Sonde 
+[12/09/15 23:46:51] - chargement nouvelle demande. 
+[12/09/15 23:46:51] - Initialisation des constantes: 
+[12/09/15 23:46:51] - ID_demande:0 
+[12/09/15 23:46:51] - Date_demande:2015-09-12 23:46:51 
+[12/09/15 23:46:51] - Ref_demande:1509122346-cmeschin 
+[12/09/15 23:46:58] - Liste id_hote 
+[12/09/15 23:46:58] - Liste id_hote=1939,311,535,627 
+[12/09/15 23:47:10] - Chargement insertion_selection.php 
+[12/09/15 23:47:11] - liste_hotesliste=B1-DBMUT-BKPOD,Sauvegarde des ODs Docubase,10.33.2.4,actif,1939,false$AG2R-SVR1,Solution DocuBase - AG2R,10.33.94.1,actif,311,false$POSTE1091,Poste Transfert AG2R,172.16.10.91,actif,535,false$LYO1-TT-CFT1,Serveur CFT - CDN,172.16.69.124,actif,627,false 
+[12/09/15 23:47:11] - liste_services= 
+[12/09/15 23:47:11] - liste_plagesliste=0h a minuit Vendredi;;;;;00:00-23:59;;;false$AG2R 24/7;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;false$CDN - L-V 7h-21h - S 10h-19h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;10:00-19:00;;false$CERA-Docubase_-_24h7j;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-06:30,14:30-24:00;false$CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false$D-S 0h-Minuit;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[12/09/15 23:47:11] - Les données ont été correctement enregistrées pour la prestation [2015-09-17]. ID=992. 
+[12/09/15 23:47:11] - données générales OK 
+[12/09/15 23:47:11] - email:cedric.meschin@tessi.fr 
+[12/09/15 23:47:11] - nbligne_hote_liste=4 
+[12/09/15 23:47:11] - ligne 0:B1-DBMUT-BKPOD,Sauvegarde des ODs Docubase,10.33.2.4,actif,1939,false 
+[12/09/15 23:47:11] - INSERTION hôte:B1-DBMUT-BKPOD 
+[12/09/15 23:47:11] - insertion hôte: [B1-DBMUT-BKPOD] [Sauvegarde des ODs Docubase] [10.33.2.4] [actif] [1939] [false] 
+[12/09/15 23:47:11] - ligne 1:AG2R-SVR1,Solution DocuBase - AG2R,10.33.94.1,actif,311,false 
+[12/09/15 23:47:11] - INSERTION hôte:AG2R-SVR1 
+[12/09/15 23:47:11] - insertion hôte: [AG2R-SVR1] [Solution DocuBase - AG2R] [10.33.94.1] [actif] [311] [false] 
+[12/09/15 23:47:11] - ligne 2:POSTE1091,Poste Transfert AG2R,172.16.10.91,actif,535,false 
+[12/09/15 23:47:11] - INSERTION hôte:POSTE1091 
+[12/09/15 23:47:11] - insertion hôte: [POSTE1091] [Poste Transfert AG2R] [172.16.10.91] [actif] [535] [false] 
+[12/09/15 23:47:11] - ligne 3:LYO1-TT-CFT1,Serveur CFT - CDN,172.16.69.124,actif,627,false 
+[12/09/15 23:47:11] - INSERTION hôte:LYO1-TT-CFT1 
+[12/09/15 23:47:11] - insertion hôte: [LYO1-TT-CFT1] [Serveur CFT - CDN] [172.16.69.124] [actif] [627] [false] 
+[12/09/15 23:47:11] - INSERTION_SELECTION: Insertion liste hôtes OK. 
+[12/09/15 23:47:11] - nbligne_service=1 
+[12/09/15 23:47:11] - aucun service à insérer 
+[12/09/15 23:47:11] - nbligne_plage=6 
+[12/09/15 23:47:11] - ligne 0:0h a minuit Vendredi;;;;;00:00-23:59;;;false 
+[12/09/15 23:47:11] - nbchamp_plage=9 
+[12/09/15 23:47:11] - insertion liste plage [0h a minuit Vendredi] en cours... 
+[12/09/15 23:47:11] - ligne 1:AG2R 24/7;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;00:00-23:59;false 
+[12/09/15 23:47:11] - nbchamp_plage=9 
+[12/09/15 23:47:11] - insertion liste plage [AG2R 24/7] en cours... 
+[12/09/15 23:47:11] - ligne 2:CDN - L-V 7h-21h - S 10h-19h;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;07:00-21:00;10:00-19:00;;false 
+[12/09/15 23:47:11] - nbchamp_plage=9 
+[12/09/15 23:47:11] - insertion liste plage [CDN - L-V 7h-21h - S 10h-19h] en cours... 
+[12/09/15 23:47:11] - ligne 3:CERA-Docubase_-_24h7j;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-24:00;00:00-04:15,04:45-06:30,14:30-24:00;false 
+[12/09/15 23:47:11] - nbchamp_plage=9 
+[12/09/15 23:47:11] - insertion liste plage [CERA-Docubase_-_24h7j] en cours... 
+[12/09/15 23:47:11] - ligne 4:CFT_-_24/7;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[12/09/15 23:47:11] - nbchamp_plage=9 
+[12/09/15 23:47:11] - insertion liste plage [CFT_-_24/7] en cours... 
+[12/09/15 23:47:11] - ligne 5:D-S 0h-Minuit;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;00:00-24:00;false 
+[12/09/15 23:47:11] - nbchamp_plage=9 
+[12/09/15 23:47:11] - insertion liste plage [D-S 0h-Minuit] en cours... 
+[12/09/15 23:47:11] - insertion liste plages OK 
+[12/09/15 23:47:11] - appel page complete_table.php 
+[12/09/15 23:47:11] - Chargement complete_table.php 
+[12/09/15 23:47:12] - Traitement de la demande [992]. 
+[12/09/15 23:47:12] - COMPLETE_TABLE: Traitement des hotes... 
+[12/09/15 23:47:12] - Selection categories 
+[12/09/15 23:47:12] - extraction Localisation et Type 
+[12/09/15 23:47:12] - BDX1 
+[12/09/15 23:47:12] - VM 
+[12/09/15 23:47:12] - 64_bits 
+[12/09/15 23:47:12] - Anglais 
+[12/09/15 23:47:12] - Windows_2012 
+[12/09/15 23:47:12] - Sauvegarde 
+[12/09/15 23:47:12] - Serveur_Virtuel 
+[12/09/15 23:47:13] - champs table hote mis à jour! 
+[12/09/15 23:47:13] - Selection categories 
+[12/09/15 23:47:13] - extraction Localisation et Type 
+[12/09/15 23:47:13] - BDX2 
+[12/09/15 23:47:13] - VM 
+[12/09/15 23:47:13] - Serveur_Virtuel 
+[12/09/15 23:47:13] - champs table hote mis à jour! 
+[12/09/15 23:47:13] - Selection categories 
+[12/09/15 23:47:13] - extraction Localisation et Type 
+[12/09/15 23:47:13] - GER1 
+[12/09/15 23:47:13] - SRV 
+[12/09/15 23:47:13] - Serveur_Physique 
+[12/09/15 23:47:13] - champs table hote mis à jour! 
+[12/09/15 23:47:13] - Selection categories 
+[12/09/15 23:47:13] - extraction Localisation et Type 
+[12/09/15 23:47:13] - LYO1 
+[12/09/15 23:47:13] - SRV 
+[12/09/15 23:47:13] - 64_bits 
+[12/09/15 23:47:13] - CFT 
+[12/09/15 23:47:13] - Francais 
+[12/09/15 23:47:13] - Windows_2008 
+[12/09/15 23:47:13] - Serveur_Physique 
+[12/09/15 23:47:13] - champs table hote mis à jour! 
+[12/09/15 23:47:13] - COMPLETE_TABLE: Traitement des services... 

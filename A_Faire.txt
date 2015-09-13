@@ -1,5 +1,6 @@
 Evolutions et bug à corriger dans la prochaine version
 ------------------------------------------------------
+	Gestion_BAM: Ajout champ Actif/Inactif + bouton suppression
 	mieux gérer les nouvelles URL avec $HOSTNAME$ et $SERVICEDESC$
 	Gérer les caractères spéciaux dans les arguments centreon \ notamment
 	bug sur retour page liste hote et service et clic sur Valider sélection => supprime les infos des services (paramètres, id_hote...) => normalement OK en cours de test
@@ -9,7 +10,7 @@ Evolutions et bug à corriger dans la prochaine version
 	Supprimer les doubles espaces dans le nom des services
 	Vérifier le contenu du champ "Action à effectuer"
 	Corriger pb ID_demande suite à visualisation directe sur lien puis affichage depuis la liste (l'ancien ID est conservé car la variable de session n'est pas réinitialisée.)
-	gérer les états en fonction de l'actuel
+	gérer les états d'avancement de la demande en fonction de l'état actuel
 		Brouillon 	A traiter
 					Annulé
 					Supprimé

@@ -73,7 +73,8 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			echo '<option value="Autre">Autre</option> <!-- Valeur à sélectionner pour en créer un -->';
 			while ($res_Loc = $req_Localisation->fetch())
 			{
-				echo '<option value="' . htmlspecialchars($res_Loc['ID_Localisation']) . '">' . htmlspecialchars($res_Loc['Lieux']) . '</option>';
+				echo '<option value="' . htmlspecialchars($res_Loc['ID_Localisation']) . '">' . htmlspecialchars($res_Loc['Lieux']) . ' [' . htmlspecialchars($res_Loc['ID_Localisation']) . ']</option>';
+				//include('option_localisation.php');
 			};
 			echo '</select>';
 			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Localisation' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
@@ -81,11 +82,11 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		{
 			echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_Localisation" id="Localisation' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '">  <!-- Liste Localisation -->';
 			echo '<option value="" >...</option> <!-- Valeur par défaut -->';
-			$res_Loc = $req_Localisation->fetchAll();
+			$champ = $req_Localisation->fetchAll();
 			$Trouve_Loc = false;
-			foreach($res_Loc as $champ)
+			foreach($champ as $res_Loc)
 			{
-				if ($res_liste_hote['ID_Localisation'] == $champ['ID_Localisation'])
+				if ($res_liste_hote['ID_Localisation'] == $res_Loc['ID_Localisation'])
 				{
 					$Trouve_Loc = true;
 				};
@@ -93,22 +94,25 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			if ($Trouve_Loc == true)
 			{
 				echo '<option value="Autre">Autre</option> <!-- Valeur à sélectionner pour en créer un -->';
-				foreach($res_Loc as $champ)
+				foreach($champ as $res_Loc)
 				{
-					if ($res_liste_hote['ID_Localisation'] == $champ['ID_Localisation']) 
+					if ($res_liste_hote['ID_Localisation'] == $res_Loc['ID_Localisation']) 
 					{
-						echo '<option Selected="Selected" value="' . htmlspecialchars($champ['ID_Localisation']) . '">' . htmlspecialchars($champ['Lieux']) . '</option>';
+						//echo '<option Selected="Selected" value="' . htmlspecialchars($res_Loc['ID_Localisation']) . '">' . htmlspecialchars($res_Loc['Lieux']) . ' [' . htmlspecialchars($res_Loc['ID_Localisation']) . ']</option>';
+						include('option_localisation_selected.php');
 					} else
 					{
-						echo '<option value="' . htmlspecialchars($champ['ID_Localisation']) . '">' . htmlspecialchars($champ['Lieux']) . '</option>';
+						//echo '<option value="' . htmlspecialchars($res_Loc['ID_Localisation']) . '">' . htmlspecialchars($res_Loc['Lieux']) . ' [' . htmlspecialchars($res_Loc['ID_Localisation']) . ']</option>';
+						include('option_localisation.php');
 					};
 				};
 			} else
 			{
 				echo '<option Selected="Selected" value="Autre">Autre</option> <!-- Valeur à sélectionner pour en créer un -->';
-				foreach($res_Loc as $champ)
+				foreach($champ as $res_Loc)
 				{
-					echo '<option value="' . htmlspecialchars($champ['ID_Localisation']) . '">' . htmlspecialchars($champ['Lieux']) . '</option>';
+					//echo '<option value="' . htmlspecialchars($res_Loc['ID_Localisation']) . '">' . htmlspecialchars($res_Loc['Lieux']) . ' [' . htmlspecialchars($res_Loc['ID_Localisation']) . ']</option>';
+					include('option_localisation.php');
 				};
 			};
 			echo '</select>';
@@ -169,7 +173,7 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			echo '<option value="Autre">Autre</option> <!-- Valeur à sélectionner pour en créer un -->';
 			while ($res_type = $req_type->fetch())
 			{ 
-				echo '<option value="' . htmlspecialchars($res_type['Type_Hote']) . '">' . htmlspecialchars($res_type['Type_Hote']) . ' / ' . htmlspecialchars($res_type['Type_Description']) . '</option>';
+				include('option_type.php');
 			};
 			echo '</select>';
 			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Type_Hote' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
@@ -179,11 +183,11 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_Type" id="Type_Hote' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '">  <!-- Liste Type_Hote -->';
 			echo '<option value="" >...</option> <!-- Valeur par défaut -->';
 
-			$res_type = $req_type->fetchAll();
+			$champ = $req_type->fetchAll();
 			$Trouve_Type = false;
-			foreach($res_type as $champ)
+			foreach($champ as $res_type)
 			{
-				if ($res_liste_hote['Type_Hote'] == $champ['Type_Hote'])
+				if ($res_liste_hote['Type_Hote'] == $res_type['Type_Hote'])
 				{
 					$Trouve_Type = true;
 				};
@@ -191,22 +195,22 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			if ($Trouve_Type == true)
 			{
 				echo '<option value="Autre">Autre</option> <!-- Valeur à sélectionner pour en créer un -->';
-				foreach($res_type as $champ)
+				foreach($champ as $res_type)
 				{
-					if ($res_liste_hote['Type_Hote'] == $champ['Type_Hote'])
+					if ($res_liste_hote['Type_Hote'] == $res_type['Type_Hote'])
 					{
-						echo '<option Selected="Selected" value="' . htmlspecialchars($champ['Type_Hote']) . '">' . htmlspecialchars($champ['Type_Hote']) . ' / ' . htmlspecialchars($champ['Type_Description']) . '</option>';
+						include('option_type_selected.php');
 					} else
 					{
-						echo '<option value="' . htmlspecialchars($champ['Type_Hote']) . '">' . htmlspecialchars($champ['Type_Hote']) . ' / ' . htmlspecialchars($champ['Type_Description']) . '</option>';
+						include('option_type.php');
 					};
 				};
 			} else
 			{
 				echo '<option Selected="Selected" value="Autre">Autre</option> <!-- Valeur à sélectionner pour en créer un -->';
-				foreach($res_type as $champ)
+				foreach($champ as $res_type)
 				{
-					echo '<option value="' . htmlspecialchars($champ['Type_Hote']) . '">' . htmlspecialchars($champ['Type_Hote']) . ' / ' . htmlspecialchars($champ['Type_Description']) . '</option>';
+					include('option_type.php');
 				};
 			};
 			echo '</select>';

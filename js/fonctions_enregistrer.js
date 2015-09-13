@@ -19,14 +19,14 @@ function onglet_suivant()
 		$("#lien_tabs2").attr("style","visibility: hidden");
 		$("#lien_tabs3").attr("style","visibility: hidden");
 		// retour en haut de la page...
-		$('html,body').animate({scrollTop:0}, 'slow'); // retourne en haut de la page après l'enregistrement
+		$('html,body').animate({scrollTop:0}, 'slow'); // retourne en haut de la page
 		return false;
 	} else
 	{
 		$("#lien_tabs2").removeAttr("style");
 		$("#lien_tabs2").effect("pulsate");
 		// retour en haut de la page...
-		$('html,body').animate({scrollTop:0}, 'slow'); // retourne en haut de la page après l'enregistrement
+		$('html,body').animate({scrollTop:0}, 'slow'); // retourne en haut de la page
 
 	};
 };
@@ -517,6 +517,7 @@ function Valider_Demande()
 
 	Hote_Vide=false;
 	Plage_Vide=false;
+	Modele_Vide=false;
 
 	$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 	$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
@@ -751,6 +752,7 @@ function Enregistrer_Brouillon(Bouton)
 
 	Hote_Vide=false;
 	Plage_Vide=false;
+	Modele_Vide=false;
 	
 //	var Valide = controle_doublon();
 //	if (Valide == false)
@@ -1075,12 +1077,15 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 		{
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
 			{
-				var MessageRecharger = "Voulez-vous recharger la page?";
-				if (confirm(MessageRecharger)) 
-				{
-					//alert("Mise à jour Etat demande OK! Rechargement de la page pour mise à jour de la liste.");
+/**
+ * Désactivation demande rechargement => rechargement obligatoire avec l'activation des mails auto.
+ */
+//				var MessageRecharger = "Voulez-vous recharger la page?";
+//				if (confirm(MessageRecharger)) 
+//				{
+//					//alert("Mise à jour Etat demande OK! Rechargement de la page pour mise à jour de la liste.");
 					window.location.replace('lister_demande.php'); // si OK => recharge la page nouvelle demande
-				};
+//				};
 			} else if(xhr.readyState == 4 && xhr.status != 200) 
 			{ // En cas d'erreur !
 				gestion_erreur(xhr);
@@ -1276,6 +1281,11 @@ function Gestion_caractere_speciaux(str)
 	{
 		str = str.replace(/$/g,"_DOLLAR_");
 	};
+	var reg1=new RegExp("[!]","g");
+	if (str.match(reg1))
+	{
+		str = str.replace(/!/g,"_PEX_");
+	};
 	var reg1=new RegExp("[(]","g");
 	if (str.match(reg1))
 	{
@@ -1290,11 +1300,6 @@ function Gestion_caractere_speciaux(str)
 	if (str.match(reg1))
 	{
 		str = str.replace(/\#/g,"_DIESE_");
-	};
-	var reg1=new RegExp("[!]","g");
-	if (str.match(reg1))
-	{
-		str = str.replace(/!/g,"_PEX_");
 	};
 	var reg1=new RegExp("[*]","g");
 	if (str.match(reg1))

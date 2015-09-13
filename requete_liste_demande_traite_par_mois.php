@@ -12,7 +12,9 @@ $req_dem = $bdd_supervision->prepare(
 		D.Etat_Demande,
 		D.temps_hote + D.temps_service AS Temps
 	FROM demande AS D
-	WHERE D.Etat_Demande IN ("Traité", "Annulé")
+	WHERE D.Etat_Demande IN ("Traité", "Annulé") AND CONCAT(SUBSTRING(Date_Demande,1,4),SUBSTRING(Date_Demande,6,2))= :date_demande_groupee 
 	GROUP BY D.ID_Demande
 	ORDER BY D.Date_Supervision_Demandee, D.Date_Demande');
-$req_dem->execute(array()) or die(print_r($req_dem->errorInfo()));
+$req_dem->execute(array(
+		'date_demande_groupee' => htmlspecialchars($sID_Date)
+)) or die(print_r($req_dem->errorInfo()));

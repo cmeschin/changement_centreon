@@ -6,6 +6,7 @@ session_start();
 };
 $R_ID_Demande = (isset($_GET["id_dem"])) ? $_GET["id_dem"] : NULL;
 $_SESSION['R_ID_Demande'] = htmlspecialchars($R_ID_Demande);
+$_SESSION['Reprise'] = false;
 
 ?>
 <html>
@@ -55,7 +56,7 @@ $_SESSION['R_ID_Demande'] = htmlspecialchars($R_ID_Demande);
 					?>
 				</div>
 				<div id="tabs_DEC-2">
-					<h2>Les demandes traitées ou annulées</h2>
+					<h2>Les demandes traitées ou annulées regroupées par mois</h2>
 					<?php
 						include_once('liste_demande_traitees.php');
 					?>

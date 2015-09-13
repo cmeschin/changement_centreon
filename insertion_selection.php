@@ -52,8 +52,8 @@ try {
 		1=> Date_demande
 		2=> ref_demande
 		3=> Etat
-		4=> Date_supervision
-		5=> Prestation
+		4=> Prestation // => inversion le 12/09/15
+		5=> Date_supervision // => inversion le 12/09/15
 		6=> email
 		7=> commentaire
 	*/
@@ -62,8 +62,8 @@ try {
 				'Demandeur' => htmlspecialchars($info_gen[0]),
 				'Date_Demande' => htmlspecialchars($info_gen[1]),
 				'Ref_Demande' => htmlspecialchars($info_gen[2]),
-				'Date_Supervision_Demandee' => htmlspecialchars($info_gen[4]),
-				'Code_Client' => htmlspecialchars($info_gen[5]),
+				'Code_Client' => htmlspecialchars($info_gen[4]),
+				'Date_Supervision_Demandee' => htmlspecialchars($info_gen[5]),
 				'Commentaire' => htmlspecialchars($info_gen[7]),
 				'Etat_Demande' => htmlspecialchars("Brouillon"),
 				'email' => htmlspecialchars(strtolower($info_gen[6])) // on force la chaine en minuscule pour garantir la compatibilité des adresses mails.

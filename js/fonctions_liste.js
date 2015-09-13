@@ -31,43 +31,44 @@ function afficher_autre(champ)
 function chargerlistes()
 {
 	var ma_selection= document.getElementById('clientsup').options[document.getElementById('clientsup').selectedIndex];
- 	if(ma_selection.value =="Nouveau")
- 	{
-		$("#clientsup").removeAttr("class");
-		$("#img_client_new").attr("src","images/img_edit.png");
-		$("#img_client_new").attr("alt","incorrect");
-		document.getElementById('sclient_new').style.visibility = 'visible'; // affiche le span nouveau client
-		document.getElementById('client_new').focus(); // positionne le focus sur l'input
-		
-		$("#liste_hote").empty(); // purge la liste à chaque nouvelle sélection d'hôte
-//		alert("test");
-
-		$("#liste_hote").append('<table id="T_Liste_Hote"><tr><th>Sélection</th><th>Hôte</th><th>Description</th><th>Adresse IP</th><th>Controle</th><th hidden>host_id</th></tr></table>');// Hôte
-		$("#liste_service").empty(); // purge la liste à chaque nouvelle sélection d'hôte
-		$("#liste_service").append('<table id="T_Liste_Service"><tr><th>Selection</th><th>Hôte</th><th>Service</th><th>Fréquence</th><th>Plage Horaire</th><th>Controle</th></tr></table>');
-		$("#liste_plage").empty(); // purge la liste à chaque nouvelle sélection d'hôte
-		$("#liste_plage").append('<table id="T_Liste_Plage"><tr><th>Sélection</th><th>Plage Horaire</th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th><th>Dimanche</th></tr></table>');
-	} else if(ma_selection.value =="")
+// 	if(ma_selection.value =="Nouveau")
+// 	{
+//		$("#clientsup").removeAttr("class");
+//		$("#img_client_new").attr("src","images/img_edit.png");
+//		$("#img_client_new").attr("alt","incorrect");
+//		document.getElementById('sclient_new').style.visibility = 'visible'; // affiche le span nouveau client
+//		document.getElementById('client_new').focus(); // positionne le focus sur l'input
+//		
+//		$("#liste_hote").empty(); // purge la liste à chaque nouvelle sélection de prestation
+////		alert("test");
+//
+//		$("#liste_hote").append('<table id="T_Liste_Hote"><tr><th>Sélection</th><th>Hôte</th><th>Description</th><th>Adresse IP</th><th>Controle</th><th hidden>host_id</th></tr></table>');// Hôte
+//		$("#liste_service").empty(); // purge la liste à chaque nouvelle sélection de prestation
+//		$("#liste_service").append('<table id="T_Liste_Service"><tr><th>Selection</th><th>Hôte</th><th>Service</th><th>Fréquence</th><th>Plage Horaire</th><th>Controle</th></tr></table>');
+//		$("#liste_plage").empty(); // purge la liste à chaque nouvelle sélection de prestation
+//		$("#liste_plage").append('<table id="T_Liste_Plage"><tr><th>Sélection</th><th>Plage Horaire</th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th><th>Dimanche</th></tr></table>');
+//	} else
+	if(ma_selection.value =="")
 	{
-		document.getElementById('sclient_new').style.visibility = 'hidden'; // masque le span nouveau client
-		$("#client_new input[type=text]").val(""); // en cas de changement on vide le champ "nouveau client"
+		//document.getElementById('sclient_new').style.visibility = 'hidden'; // masque le span nouveau client
+		//$("#client_new input[type=text]").val(""); // en cas de changement on vide le champ "nouveau client"
 		$("#clientsup").attr("class","info_generale");
-		$("#img_client_new").attr("src","images/img_ok.png");
-		$("#img_client_new").attr("alt","correct");
+		//$("#img_client_new").attr("src","images/img_ok.png");
+		//$("#img_client_new").attr("alt","correct");
 //		alert("test");
-		$("#liste_hote").empty(); // purge la liste à chaque nouvelle sélection d'hôte
+		$("#liste_hote").empty(); // purge la liste à chaque nouvelle sélection de prestation
         $("#liste_hote").append('<table id="T_Liste_Hote"><tr><th>Sélection</th><th>Hôte</th><th>Description</th><th>Adresse IP</th><th>Controle</th><th hidden>host_id</th></tr></table>');// Hôte
-		$("#liste_service").empty(); // purge la liste à chaque nouvelle sélection d'hôte
+		$("#liste_service").empty(); // purge la liste à chaque nouvelle sélection de prestation
         $("#liste_service").append('<table id="T_Liste_Service"><tr><th>Selection</th><th>Hôte</th><th>Service</th><th>Fréquence</th><th>Plage Horaire</th><th>Controle</th></tr></table>');
-        $("#liste_plage").empty(); // purge la liste à chaque nouvelle sélection d'hôte
+        $("#liste_plage").empty(); // purge la liste à chaque nouvelle sélection de prestation
         $("#liste_plage").append('<table id="T_Liste_Plage"><tr><th>Sélection</th><th>Plage Horaire</th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th><th>Dimanche</th></tr></table>');
 	} else
 	{
-		document.getElementById('sclient_new').style.visibility = 'hidden'; // masque le span nouveau client
+		//document.getElementById('sclient_new').style.visibility = 'hidden'; // masque le span nouveau client
 		$("#clientsup").attr("class","info_generale");
-		$("#img_client_new").attr("src","images/img_ok.png");
-		$("#img_client_new").attr("alt","correct");
-		$("#client_new input[type=text]").val(""); // en cas de changement on vide le champ "nouveau client"
+		//$("#img_client_new").attr("src","images/img_ok.png");
+		//$("#img_client_new").attr("alt","correct");
+		//$("#client_new input[type=text]").val(""); // en cas de changement on vide le champ "nouveau client"
 		var sClient = encodeURIComponent(ma_selection.value);
 //		requete_hote(readData_hote);
 //		requete_service(readData_service);

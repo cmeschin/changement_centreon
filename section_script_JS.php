@@ -30,6 +30,22 @@ $(function() {
 //		$( "#accordionPlage" ).accordion({ heightStyle: "content" });
 
 	$("#accordion_bam_notifications").accordion({ heightStyle: "content", collapsible: true, active: false});	
+
+	/** Days to be disabled as an array */
+	//var disabledSpecificDays = ["1-1-2016", "9-15-2015", "9-17-2015"];
+	var disabledSpecificDays = [""];
+	function disableSpecificDaysAndWeekends(date) {
+		var m = date.getMonth();
+		var d = date.getDate();
+		var y = date.getFullYear();
+		for (var i = 0; i < disabledSpecificDays.length; i++) {
+			if ($.inArray((m + 1) + '-' + d + '-' + y, disabledSpecificDays) != -1 || new Date() > date) {
+				return [false];
+			}
+		}
+		var noWeekend = $.datepicker.noWeekends(date);
+		return !noWeekend[0] ? noWeekend : [true];
+	}
 	
 	$("#date_livraison_demandee").datepicker({
 		showOn: "button",
@@ -38,6 +54,7 @@ $(function() {
 		buttonImageOnly: true,
 		buttonText: "Choix de la date",
 		minDate: 0, //blocage de saisie d'une date antérieur à J
+		beforeShowDay: disableSpecificDaysAndWeekends, // blocage des WE
 		onSelect: function(dateStr) {var date_test= $(this).datepicker('getDate');verifChampDate_date_livraison_demandee(this,date_test);}
 		});
 		

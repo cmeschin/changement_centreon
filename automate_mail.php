@@ -1,7 +1,8 @@
 <?php
 session_start();
 /**
- * Lancement
+ * Script de gestion des envois de mail automatique pour BAM
+ * Execution par un cron sur le serveur Web
  */
 
 /**

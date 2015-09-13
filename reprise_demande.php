@@ -78,48 +78,48 @@ addlog("chargement reprise demande.");
 									<label for="date_demande">Date de la demande :</label>
 									<input readonly="readonly" type="text" id="date_demande" class="info_generale" name="date_demande" value="<?php echo $date_demande ;?>" size="15"/>
 									
-<!-- 								</span> <br /> -->
-<!--								<span> -->
 									<label for="ref_demande">Référence de la demande :</label>
 									<input readonly="readonly" type="text" id="ref_demande" class="info_generale" name="ref_demande" value="<?php echo $ref_demande ;?>" size="20"/>
 									<label for="etat_demande">Etat :</label>
 									<input readonly="readonly" type="text" id="etat_demande" class="info_generale" name="etat_demande" value="<?php echo htmlspecialchars($res_Demande['Etat_Demande']);?>" size="10"/>
 								</span> <br>									
-									<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement la date de démarrage en production.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-									<input disabled="disabled" readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo htmlspecialchars($res_Demande['Date_Supervision_Demandee']);?>" size="10"/>
-									<img src="images/img_ok.png" class="verif" alt="correct" id="img_date_livraison_demandee" /> <br />
 
-								<label for="client" onclick="alert('Sélectionnez la prestation dans la liste ou choisissez [nouveau] si elle n\'existe pas encore...')" title="Cliquez pour plus d'informations.">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
+								<label for="client" onclick="alert('Une fois que la demande est initialisée, il n\'est plus possible de changer la prestation.')" title="Cliquez pour plus d'informations.">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 								<?php
-									if (substr(htmlspecialchars($res_Demande['Code_Client']),0,4) == "NEW_")
-									{
-										echo '<select Disabled="Disabled" name="client" id="clientsup">  <!-- Liste Client -->';
-										echo '<option Selected="Selected" value="Nouveau">Nouveau</option>';
-									} else
-									{
-//										echo '<select Disabled="Disabled" name="client" id="clientsup" class="info_generale" title="Sélectionnez la prestation dans la liste ou choisissez nouveau si elle n\'existe pas encore...">  <!-- Liste Client -->';
-										echo '<select Disabled="Disabled" name="client" id="clientsup" class="info_generale">  <!-- Liste Client -->';
-										echo '<option Selected="Selected" value="' . htmlspecialchars($res_Demande['Code_Client']) . '">' . htmlspecialchars($res_Demande['Code_Client']) . '</option>';
-									};
+// désactivé le 12/09/15
+// 									if (substr(htmlspecialchars($res_Demande['Code_Client']),0,4) == "NEW_")
+// 									{
+// 										echo '<select Disabled="Disabled" name="client" id="clientsup">  <!-- Liste Client -->';
+// 										echo '<option Selected="Selected" value="Nouveau">Nouveau</option>';
+// 									} else
+// 									{
+									echo '<select Disabled="Disabled" name="client" id="clientsup" class="info_generale">  <!-- Liste Client -->';
+									echo '<option Selected="Selected" value="' . htmlspecialchars($res_Demande['Code_Client']) . '">' . htmlspecialchars($res_Demande['Code_Client']) . '</option>';
+//									};
 									echo '<select/>';
 									//}; 
 								?>
 								<img src="images/img_ver.png" class="verif" alt="correct" id="img_client" />
 								<?php
-								if (substr(htmlspecialchars($res_Demande['Code_Client']),0,4) == "NEW_")
-								{
-									echo '<span id="sclient_new" style="visibility: visible;">';
-										echo '<input readonly="readonly" onblur="verifChamp(this)" type="text" name="client_new" id="client_new" class="info_generale" value="' . substr(htmlspecialchars($res_Demande['Code_Client']),4) . '" placeholder="saisir le nom de la prestation..." size="50" maxlength="40" title="Saisissez le nom qui a été définit pour cette prestation lors du projet. Si vous ne le connaissez pas rapprochez vous du service qualité qui saura vous renseigner."/>';
-										echo '<img src="images/img_ver.png" class="verif" alt="correct" id="img_client_new" />';
-									echo '</span> <br />';
-								} else // cela ne doit pas arriver!
-								{
-									echo '<span id="sclient_new" style="visibility: hidden;">';
-										echo '<input onblur="verifChamp(this)" type="text" name="client_new" id="client_new" value="" placeholder="saisir le nom de la prestation..." size="50" maxlength="40" title="Saisissez le nom qui a été définit pour cette prestation lors du projet. Si vous ne le connaissez pas rapprochez vous du service qualité qui saura vous renseigner."/>';
-										echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_client_new" />';
-									echo '</span> <br />';
-								};
-								?>
+// 								if (substr(htmlspecialchars($res_Demande['Code_Client']),0,4) == "NEW_")
+// 								{
+// 									echo '<span id="sclient_new" style="visibility: visible;">';
+// 										echo '<input readonly="readonly" onblur="verifChamp(this)" type="text" name="client_new" id="client_new" class="info_generale" value="' . substr(htmlspecialchars($res_Demande['Code_Client']),4) . '" placeholder="saisir le nom de la prestation..." size="50" maxlength="40" title="Saisissez le nom qui a été définit pour cette prestation lors du projet. Si vous ne le connaissez pas rapprochez vous du service qualité qui saura vous renseigner."/>';
+// 										echo '<img src="images/img_ver.png" class="verif" alt="correct" id="img_client_new" />';
+// 									echo '</span> <br />';
+// 								} else // cela ne doit pas arriver!
+// 								{
+// 									echo '<span id="sclient_new" style="visibility: hidden;">';
+// 										echo '<input onblur="verifChamp(this)" type="text" name="client_new" id="client_new" value="" placeholder="saisir le nom de la prestation..." size="50" maxlength="40" title="Saisissez le nom qui a été définit pour cette prestation lors du projet. Si vous ne le connaissez pas rapprochez vous du service qualité qui saura vous renseigner."/>';
+// 										echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_client_new" />';
+// 									echo '</span> <br />';
+// 								};
+//								?>
+
+								<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement la date de démarrage en production.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
+								<input disabled="disabled" readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo htmlspecialchars($res_Demande['Date_Supervision_Demandee']);?>" size="10"/>
+								<img src="images/img_ok.png" class="verif" alt="correct" id="img_date_livraison_demandee" /> <br />
+								
 								<label for="email" onclick="alert('Saisissez ici les emails des personnes qui devront être notifiées de la demande, centreon_tt est automatiquement notifié de la demande.\nSéparez les adresses par un point-virgule.')" title="Cliquez pour plus d'informations.">Liste des personnes à notifier <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 								<input type="text" id="email" class="info_generale" name="email" value="<?php echo htmlspecialchars($res_Demande['email']) ;?>" onblur="verifChampMail(this)" placeholder="séparer les adresses par un point-virgule" size="100"/>
 								<img src="images/img_ok.png" class="verif" alt="correct" id="img_email" /> <br/>

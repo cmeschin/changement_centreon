@@ -26,7 +26,7 @@ session_start();
 			<ul>
 				<li><a href="#tabs-1">Gestion des modèles de service</a></li>
 				<li><a href="#tabs-2">Association des modèles</a></li>
-<!-- 				<li><a href="#tabs-3">Gestion des notifications BAM</a></li> -->
+ 				<li><a href="#tabs-3">Gestion des notifications BAM</a></li>
 			</ul>
 			<div id="tabs-1">
 <!--				<h2>Modèles de service</h2> -->
@@ -154,29 +154,29 @@ session_start();
 					?>
 				</fieldset>
 			</div>
-<!-- 			<div id="tabs-3"> -->
-<!-- <!-- 				<h2>Gestion des notifications BAM</h2> -->
+			<div id="tabs-3">
+ 				<h2>Gestion des notifications BAM</h2>
 
-<!-- 				<div id="accordion_bam_notifications"> -->
-<!-- 					<h3>Liste des notifications BAM</h3> -->
-<!-- 					<div id="liste_notifications_bam"> -->
+				<div id="accordion_bam_notifications">
+					<h3>Liste des notifications BAM</h3>
+					<div id="liste_notifications_bam">
 						<?php 
-// 							include_once('BAM_liste_notifications.php');														
+							include_once('BAM_liste_notifications.php');														
 						?> 
-<!-- 					</div> -->
-<!-- 					<h3>Configuration des notifications BAM</h3> -->
-<!-- 					<div id="config_notifications_bam"> -->
+					</div>
+					<h3>Configuration des notifications BAM</h3>
+					<div id="config_notifications_bam">
 						<!-- Bouton Ajout notification -->
-<!-- <!-- 					<button id="config_notification" onclick="config_notification();">Configurer nouvelle notification</button> -->
+ 					<button id="config_notification" onclick="config_notification();">Configurer nouvelle notification</button>
 
-<!-- 						<fieldset id="field_config_notification" class="config_notification_bam"> -->
+						<fieldset id="field_config_notification" class="config_notification_bam">
 						<?php 
-//  							include_once('BAM_config_notifications.php');
-//  						?>
-<!-- 						</fieldset> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+  							include_once('BAM_config_notifications.php');
+  						?>
+						</fieldset>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	<footer>

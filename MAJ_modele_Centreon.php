@@ -45,7 +45,30 @@ try {
 	$insert_hote_os = $bdd_supervision->prepare (
 			'INSERT INTO hote_os (Type_OS, Type_OS_Desc) VALUES ' . $value_hote . '');
 	$insert_hote_os->execute(array()) or die(print_r($insert_hote_os->errorInfo()));
-	//$value_hote = "";
+
+	
+	/**
+	 * Mise à jour de la table localisation
+	 */
+	$value_site = "";
+	$Del_site = $bdd_supervision->query('TRUNCATE table localisation') or die(print_r($Del_site->errorInfo()));
+	
+	$req_site = $bdd_centreon->query('SELECT substring(hg_alias,1,4) as site_abrege, substring(hg_alias,8) as site FROM hostgroup WHERE hg_name LIKE "Site%"')
+		or die(print_r($req_site->errorInfo()));
+	
+	$res_site = $req_site->fetchAll ();
+	foreach ( $res_site as $res_elements )
+	{
+		$value_site .= ",('" . $res_elements['site_abrege'] . "','" . $res_elements['site'] . "')";
+		//$i++;
+		//addlog($value_hote);
+	};
+	
+	$value_site = substr($value_site,1); // suppression de la première virgule
+	addlog($value_site);
+	$insert_site = $bdd_supervision->prepare (
+			'INSERT INTO localisation (ID_Localisation, Lieux) VALUES ' . $value_site . '');
+	$insert_site->execute(array()) or die(print_r($insert_site->errorInfo()));
 
 	
 	/**
@@ -70,7 +93,6 @@ try {
 	$insert_hote_type = $bdd_supervision->prepare (
 			'INSERT INTO hote_type (Type_Hote, Type_Description) VALUES ' . $value_hote . '');
 	$insert_hote_type->execute(array()) or die(print_r($insert_hote_type->errorInfo()));
-	//$value_hote = "";
 
 
 	/**
@@ -95,30 +117,28 @@ try {
 	$insert_hote_fonction = $bdd_supervision->prepare (
 			'INSERT INTO hote_fonction (hote_fonction, hote_fonction_desc) VALUES ' . $value_hote . '');
 	$insert_hote_fonction->execute(array()) or die(print_r($insert_hote_fonction->errorInfo()));
-	//$value_hote = "";
 
-// 	/**
-// 	 * Mise à jour de la table mob_bam_centreon à partir de la table mod_bam de centreon
-// 	 */
-// 	$value_bam = "";
-// 	$Del_mod_bam_centreon = $bdd_supervision->query('TRUNCATE table mod_bam_centreon') or die(print_r($Del_mod_bam_centreon->errorInfo()));
+	/**
+	 * Mise à jour de la table mob_bam_centreon à partir de la table mod_bam de centreon
+	 */
+	$value_bam = "";
+	$Del_mod_bam_centreon = $bdd_supervision->query('TRUNCATE table mod_bam_centreon') or die(print_r($Del_mod_bam_centreon->errorInfo()));
 	
-// 	include_once('requete_BAM_liste_AM.php');
+	include_once('requete_BAM_liste_AM.php');
 	
-// 	$res_lst_bam = $req_lst_bam->fetchAll ();
-// 	foreach ( $res_lst_bam as $res_elements )
-// 	{
-// 		$value_bam .= ",('" . $res_elements['ba_id'] . "','" . $res_elements['ba_nom'] . "','" . $res_elements['ba_description'] . "')";
-// 		//$i++;
-// 		//addlog($value_bam);
-// 	};
+	$res_lst_bam = $req_lst_bam->fetchAll ();
+	foreach ( $res_lst_bam as $res_elements )
+	{
+		$value_bam .= ",('" . $res_elements['ba_id'] . "','" . $res_elements['ba_nom'] . "','" . $res_elements['ba_description'] . "')";
+		//$i++;
+		//addlog($value_bam);
+	};
 	
-// 	$value_bam = substr($value_bam,1); // suppression de la première virgule
-// 	addlog($value_bam);
-// 	$insert_mod_bam_centreon = $bdd_supervision->prepare (
-// 			'INSERT INTO mod_bam_centreon (mbc_ba_id, mbc_ba_nom, mbc_ba_description) VALUES ' . $value_bam . '');
-// 	$insert_mod_bam_centreon->execute(array()) or die(print_r($insert_mod_bam_centreon->errorInfo()));
-// 	//$value_hote = "";
+	$value_bam = substr($value_bam,1); // suppression de la première virgule
+	addlog($value_bam);
+	$insert_mod_bam_centreon = $bdd_supervision->prepare (
+			'INSERT INTO mod_bam_centreon (mbc_ba_id, mbc_ba_nom, mbc_ba_description) VALUES ' . $value_bam . '');
+	$insert_mod_bam_centreon->execute(array()) or die(print_r($insert_mod_bam_centreon->errorInfo()));
 	
 	$bdd_supervision->commit();
 } catch (Exception $e) {

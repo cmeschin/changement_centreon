@@ -76,7 +76,7 @@ try {
 			echo '<td class="' . $couleur_demande . '">' . htmlspecialchars($res_dem['Date_Supervision_Demandee']) . '</td>';
 			if (substr(htmlspecialchars($res_dem['Code_Client']),0,4) == "NEW_")
 			{
-				echo '<td>' . substr(htmlspecialchars($res_dem['Code_Client']),4) . '</td>';
+				echo '<td class="nouvelle_presta">' . substr(htmlspecialchars($res_dem['Code_Client']),4) . '</td>';
 			} else
 			{
 				echo '<td>' . htmlspecialchars($res_dem['Code_Client']) . '</td>';
