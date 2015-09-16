@@ -1,4 +1,7 @@
-﻿2015-09-13 v8.4
+﻿2015-09-16 v8.5
+	        Correctifs:
+                - Correction bug gestion affichage arguments sur nouvelle demande et fonction Verif_Champs => ne fonctionnait plus qu'en reprise suite à un correctif précédent
+2015-09-13 v8.4
 
 	##### MAJ BDD #####
 
@@ -76,6 +79,8 @@
 		- Correction bug sur reprise brouillon et uniquement des hôtes et services nouvellement créés => le chargement des services plantait
 			=> forçage $_SESSION['lst_id_hote']=0 si vide dans requete_liste_hote_Reprise.php
 		- Correction bug reprise multiple des brouillons => crée une sonde supplémentaire avec comme nom les arguments du service initial
+		- Correction bug sur retour page liste hote et service et clic sur Valider sélection => supprimait les infos des services (paramètres, id_hote...) => les arguments des services déjà dans centreon sont réinitialisés, il faut les ressaisir
+		- Correction de la récupération des plages horaires (problème de profondeur de récupération des templates dans la vue vInventaireServices)
 
 	Améliorations:
 		- Ajout gestion des notifications BAM

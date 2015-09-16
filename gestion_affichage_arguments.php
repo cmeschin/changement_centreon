@@ -50,8 +50,8 @@ for ( $i=0;$i<$nbLibelle;$i++)
 	{
 		if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == "Non"))
 		{
-			if ($_SESSION['Reprise'] == true)
-			{
+			if (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true))
+ 			{
 				echo '<input type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="" Placeholder="' . htmlspecialchars(trim($Valeur_Champ)) . '" size="'. $LongueurArg . '" onblur="verifChamp(this)" class="Service_Argument' . $NbFieldset_Service . '"/>';
 			} else 
 			{
@@ -70,7 +70,7 @@ for ( $i=0;$i<$nbLibelle;$i++)
 	{
 		if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == "Non"))
 		{
-			if ($_SESSION['Reprise'] == true)
+			if (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true)) 
 			{
 				echo '<input type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" onblur="verifChamp(this)" class="Service_Argument' . $NbFieldset_Service . '"/>';
 			} else 

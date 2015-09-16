@@ -3,7 +3,6 @@ Evolutions et bug à corriger dans la prochaine version
 	Gestion_BAM: Ajout champ Actif/Inactif + bouton suppression
 	mieux gérer les nouvelles URL avec $HOSTNAME$ et $SERVICEDESC$
 	Gérer les caractères spéciaux dans les arguments centreon \ notamment
-	bug sur retour page liste hote et service et clic sur Valider sélection => supprime les infos des services (paramètres, id_hote...) => normalement OK en cours de test
 	
 	Bloquer l'enregistrement si aucun hôte n'est renseigné dans les services
 	Bloquer la validation d'une demande sans service ni hôte
