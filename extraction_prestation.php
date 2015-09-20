@@ -17,7 +17,9 @@
 	include ('menu.php');
 	$_SESSION['ref_tmp_extract'] = $_SESSION['user_changement_centreon'] . "_" . date( "ymdHis" );
 	$_SESSION['R_ID_Demande'] = "extraction"; // astuce pour gérer le verroullage des champs arguments de service sur une extraction
-	$_SESSION['PDF'] = "Non";
+	$_SESSION['Reprise'] = false;
+	$_SESSION['Nouveau'] = false;
+	$_SESSION['PDF'] = false;
 	
 	?>
 	</header>

@@ -3,19 +3,14 @@ if (session_id () == '') {
 	session_start ();
 };
 $prestation = (isset ( $_POST ["prestation"] )) ? $_POST ["prestation"] : NULL;
-// $PDF = (isset ( $_POST ["PDF"] )) ? $_POST ["PDF"] : NULL;
-// if ($PDF == NULL)
-// {
-// 	$_SESSION['PDF'] = "Non";
-// } else
-// {
-	$_SESSION['PDF'] = "Oui";
-// };
-///////////////////////////
-// gestion PDF avec HTML2PDF
-///////////////////////////
+	$_SESSION['PDF'] = true;
+
+/**
+ * gestion PDF avec HTML2PDF
+ */
+
 ob_start();
-//$_SESSION['PDF'] = "Oui";
+
 include( "requete_extraction_elements.php" ); // préparation des données
 include("construction_page_pdf.php");// construction de la page spécifique HTML2PDF
 $content = ob_get_clean();

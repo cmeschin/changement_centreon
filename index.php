@@ -15,7 +15,9 @@
 	/**
 	 * Initialisation des constantes
 	 */
-	$_SESSION['PDF'] = "Non";
+	$_SESSION['Reprise'] = false;
+	$_SESSION['Nouveau'] = false;
+	$_SESSION['PDF'] = false;
 	if ((isset($_SESSION['groupe_changement_centreon'])) && ($_SESSION['groupe_changement_centreon']=="GG_DEMANDECENTREON_ADMIN")) 
 	{
 	        $_SESSION['Admin']=True;

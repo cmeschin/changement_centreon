@@ -1,6 +1,0 @@
-[11/09/15 23:51:06] - Chargement de la page supervision! 
-[11/09/15 23:51:15] - chargement nouvelle demande. 
-[11/09/15 23:51:15] - Initialisation des constantes: 
-[11/09/15 23:51:15] - ID_demande:0 
-[11/09/15 23:51:15] - Date_demande:2015-09-11 23:51:15 
-[11/09/15 23:51:15] - Ref_demande:1509112351-cmeschin 

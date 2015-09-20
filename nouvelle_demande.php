@@ -30,9 +30,9 @@ session_start();
 	addlog("Ref_demande:".$ref_demande."");
 	$_SESSION['Reprise'] = false; // Reprise demande
 	$_SESSION['Nouveau'] = true; // Nouvelle demande
+	$_SESSION['PDF'] = false;
 	$R_ID_Demande=NULL;
 	$_SESSION['R_ID_Demande'] =$R_ID_Demande; // Variable de session utilisée pour afficher directement une demande via le lien du ticket
-	$_SESSION['PDF'] = "Non";
 ?>	
 <div id="principal">
 	<header id="en-tete">
