@@ -1,7 +1,7 @@
 Evolutions et bug à corriger dans la prochaine version
 ------------------------------------------------------
 	Gestion_BAM: Ajout champ Actif/Inactif + bouton suppression
-	mieux gérer les nouvelles URL avec $HOSTNAME$ et $SERVICEDESC$
+=>	mieux gérer les nouvelles URL avec $HOSTNAME$ et $SERVICEDESC$
 	Gérer les caractères spéciaux dans les arguments centreon \ notamment
 	
 	Bloquer l'enregistrement si aucun hôte n'est renseigné dans les services
@@ -42,15 +42,15 @@ Reprise_demande
 Demandes En Cours (DEC):
 	* Ajouter un champ Commentaire_Traitement dans la table demande pour les cas d'annulation
 	* prévoir un pourcentage d'avancement selon l'état d'avancement des sondes
-	En cours * Lors du passage de la demande en statut "En cours" ou "Traité" => envoyer un mail à SUSI pour forçage du statut du ticket à condition que SUSI renvoi automatiquement le numéro de ticket créé.
-		=> reste à alimenter automatiquement la base changement via susi
 	
 Globale:
 	* mise en page à terminer (alignement correct des champs, etc...)
 	* ajouter le nombre de service qui utilise la plage (champ supplémentaire en base)
 	* ajouter les infos bulles sur les services
 	* Proposer à la création d'un hôte une liste de sonde à mettre en place en regard de la fonction indiquée => récupérée à partir du modèle d'hôte
-	
+	* mettre en place des arguments par défaut
+		- modification modèle de service sur la page administration
+		- étudier la mise ne place de liste de choix pour certains services (service windows Mode et état par ex.)
 
 Ajout fonctionnalité:
 	* récupérer dynamiquement la liste des catégories pour gérer les champs déroulants de l'hôte

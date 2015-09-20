@@ -31,6 +31,9 @@ function afficher_autre(champ)
 function chargerlistes()
 {
 	var ma_selection= document.getElementById('clientsup').options[document.getElementById('clientsup').selectedIndex];
+/**
+ * Désactivation option "Nouveau" version 8.4
+ */
 // 	if(ma_selection.value =="Nouveau")
 // 	{
 //		$("#clientsup").removeAttr("class");
