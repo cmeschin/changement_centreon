@@ -9,7 +9,7 @@ if ($_SESSION ['ID_dem'] == 0) {
 }
 ;
 $NbFieldset = (isset ( $_POST ["NbFieldset"] )) ? $_POST ["NbFieldset"] + 1 : 1;
-$_SESSION['PDF'] = "Non";
+$_SESSION['PDF'] = false;
 $_SESSION['R_ID_Demande'] = NULL;
 
 ?>

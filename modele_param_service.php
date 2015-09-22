@@ -10,7 +10,7 @@ if ($_SESSION['ID_dem'] == 0)
 };
 $ID_Demande = $_SESSION['ID_dem'];
 $NbFieldset_Service = (isset($_POST["NbFieldset_Service"])) ? $_POST["NbFieldset_Service"]+1 : 1;
-$_SESSION['PDF'] = "Non";
+$_SESSION['PDF'] = false;
 $_SESSION['R_ID_Demande'] = NULL; // sur un ajout on force systématiquement à NULL
 
 ?>

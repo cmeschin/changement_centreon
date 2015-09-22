@@ -9,7 +9,7 @@ if ($_SESSION['ID_dem'] == 0)
 	return False;
 };
 $NbFieldset_plage = (isset($_POST["NbFieldset_plage"])) ? $_POST["NbFieldset_plage"]+1 : 1;
-$_SESSION['PDF'] = "Non";
+$_SESSION['PDF'] = false;
 $_SESSION['R_ID_Demande'] = NULL;
 ?>
 <fieldset id="Plage<?php echo $NbFieldset_plage;?>" class="plage">

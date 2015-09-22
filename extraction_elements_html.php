@@ -5,33 +5,17 @@ if (session_id () == '') {
 
 // header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 $prestation = (isset ( $_POST ["prestation"] )) ? $_POST ["prestation"] : NULL;
-// $PDF = (isset ( $_POST ["PDF"] )) ? $_POST ["PDF"] : NULL;
 
-// if ($PDF == NULL)
-// {
- 	$_SESSION['PDF'] = "Non";
-// } else
-// {
-// 	$_SESSION['PDF'] = $PDF;
-// };
+$_SESSION['PDF'] = false;
 
-//echo '<p>prestation=' . $prestation . '</p>';
-//echo '<p>PDF=' . $_SESSION['PDF'] . '</p>';
 
 include('requete_extraction_elements.php'); // préparation des données
-// ///////////////////
-// affichage des elements
-// ///////////////////
-// addlog("creation tableau hote...");
+/**
+ * affichage des elements
+ */
 echo '<h2> Prestation ' . $prestation . '</h2>';
 echo '<fieldset id=f_extraction_hote">';
-// if ($_SESSION['PDF'] == "Non")
-// {
-	echo '<legend>Liste des hôtes</legend>';
-// } else
-// {
-// 	echo '<h3 style="text-align:center">Liste des hôtes</h3>';
-// };
+echo '<legend>Liste des hôtes</legend>';
 
 if ($Nb_Hote == 0) {
 	echo '<p>Aucun résultat trouvé.</p>';
@@ -77,20 +61,12 @@ if ($Nb_Hote == 0) {
 echo '</fieldset>';
 // addlog("creation tableau hote... OK.");
 
-// ///////////////////
-// affichage service
-// ///////////////////
+/**
+ * affichage service
+ */
 // addlog("creation tableau service...");
 echo '<fieldset id="f_extraction_service">';
-// if ($_SESSION['PDF'] == "Non")
-// {
-	echo '<legend>Liste des services</legend>';
-// } else
-// {
-// 	echo '<h3 style="text-align:center">Liste des services</h3>';
-// };
-
-// include_once('remplissage_extraction_service.php');
+echo '<legend>Liste des services</legend>';
 
 while ( $res_liste_service = $SEL_tmp_service->fetch () ) {
 	if ($res_liste_service ['Controle_Actif'] == "actif")
@@ -100,135 +76,64 @@ while ( $res_liste_service = $SEL_tmp_service->fetch () ) {
 	{
 		echo '<fieldset id="Service' . $NbFieldset_Service . '" class="extraction_service inactif">';
 	};
-// 	if ($_SESSION['PDF'] == "Non")
-// 	{
-		echo '<legend>Service n°' . $NbFieldset_Service . '</legend>';
-// 	} else
-// 	{
-// 		echo '<h4 id="Num_Service" style="text-decoration: underline;font-weight: bold;text-align:center">Service n°' . $NbFieldset_Service . '</h4>';
-// 		//echo '<br />';
-// 	};
+	echo '<legend>Service n°' . $NbFieldset_Service . '</legend>';
 
 	echo '<!-- Nom service -->';
-	// $LongueurArg= strlen(htmlspecialchars($res_liste_service['Nom_Service'])) + 20*strlen(htmlspecialchars($res_liste_service['Nom_Service']))/100;
 
-// 	if ($_SESSION['PDF'] == "Non")
-// 	{
-		$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Nom_Service'] ) ) . 'em';
-		echo '<label for="Nom_Service' . $NbFieldset_Service . '">Nom du service:</label>';
-		echo '<input Readonly type="text" id="Nom_Service' . $NbFieldset_Service . '" name="Nom_Service' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Nom_Service'] ) . '" size="' . $LongueurArg . '"/>';
-		echo ' ';
-		echo '<!-- Hote du service -->';
-		$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Nom_Hote'] ) )+5 . 'em';
-		echo '<label for="Hote_Service' . $NbFieldset_Service . '">Hôte du service:</label>';
-		echo '<input Readonly name="Hote_Service' . $NbFieldset_Service . '" id="Hote_Service' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Nom_Hote'] ) . '" size="' . $LongueurArg . '" title="' . htmlspecialchars ( $res_liste_service ['IP_Hote'] ) . ' - ' . htmlspecialchars ( $res_liste_service ['ID_Localisation'] ) . '"/>  <!-- Liste Hote disponibles -->';
-		echo ' ';
+	$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Nom_Service'] ) ) . 'em';
+	echo '<label for="Nom_Service' . $NbFieldset_Service . '">Nom du service:</label>';
+	echo '<input Readonly type="text" id="Nom_Service' . $NbFieldset_Service . '" name="Nom_Service' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Nom_Service'] ) . '" size="' . $LongueurArg . '"/>';
+	echo ' ';
+	echo '<!-- Hote du service -->';
+	$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Nom_Hote'] ) )+5 . 'em';
+	echo '<label for="Hote_Service' . $NbFieldset_Service . '">Hôte du service:</label>';
+	echo '<input Readonly name="Hote_Service' . $NbFieldset_Service . '" id="Hote_Service' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Nom_Hote'] ) . '" size="' . $LongueurArg . '" title="' . htmlspecialchars ( $res_liste_service ['IP_Hote'] ) . ' - ' . htmlspecialchars ( $res_liste_service ['ID_Localisation'] ) . '"/>  <!-- Liste Hote disponibles -->';
+	echo ' ';
+	echo '<br />';
+	echo '<!-- Plage Horaire -->';
+	$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Nom_Periode'] ) ) . 'em';
+	echo '<label for="Service_Plage' . $NbFieldset_Service . '">Plage horaire de contrôle:</label>';
+	echo '<input Readonly name="Service_Plage' . $NbFieldset_Service . '" id="Service_Plage' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Nom_Periode'] ) . '" size="' . $LongueurArg . '"/>  <!-- Liste Service_Plage -->';
+	echo ' ';
+	echo '<!-- Modele service -->';
+	$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['MS_Modele_Service'] ) ) . 'em';
+	echo '<label for="Service_Modele' . $NbFieldset_Service . '">Modèle:</label>';
+	echo '<input Readonly name="Service_Modele' . $NbFieldset_Service . '" id="Service_Modele' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['MS_Modele_Service'] ) . '" size="' . $LongueurArg . '"/>  <!-- Liste Type_Service -->';
+	echo ' ';
+	echo '<!-- Frequence -->';
+	echo '<label for="Frequence_Service' . $NbFieldset_Service . '">Fréquence du controle:</label>';
+	echo '<input Readonly type="text" id="Frequence_Service' . $NbFieldset_Service . '" name="Frequence_Service' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Frequence'] ) . '" size="20" maxlength="20"/> <br />';
+	echo ' ';
+	echo '<!-- Arguments -->';
+	echo '<fieldset id="Arg_Service_Modele' . $NbFieldset_Service . '">';
+	/**
+	 *  gestion des arguments
+	 */
+	include ('gestion_arguments.php');
+	echo '</fieldset> <br /> ';
+	if (htmlspecialchars ( $res_liste_service ['Consigne'] ) != "") // s'il n'y a pas de consigne on n'affiche pas le champ
+	{
 		echo '<br />';
-		echo '<!-- Plage Horaire -->';
-		$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Nom_Periode'] ) ) . 'em';
-		echo '<label for="Service_Plage' . $NbFieldset_Service . '">Plage horaire de contrôle:</label>';
-		echo '<input Readonly name="Service_Plage' . $NbFieldset_Service . '" id="Service_Plage' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Nom_Periode'] ) . '" size="' . $LongueurArg . '"/>  <!-- Liste Service_Plage -->';
-		echo ' ';
-		echo '<!-- Modele service -->';
-		$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['MS_Modele_Service'] ) ) . 'em';
-		echo '<label for="Service_Modele' . $NbFieldset_Service . '">Modèle:</label>';
-		echo '<input Readonly name="Service_Modele' . $NbFieldset_Service . '" id="Service_Modele' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['MS_Modele_Service'] ) . '" size="' . $LongueurArg . '"/>  <!-- Liste Type_Service -->';
-		echo ' ';
-		echo '<!-- Frequence -->';
-		echo '<label for="Frequence_Service' . $NbFieldset_Service . '">Fréquence du controle:</label>';
-		echo '<input Readonly type="text" id="Frequence_Service' . $NbFieldset_Service . '" name="Frequence_Service' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Frequence'] ) . '" size="20" maxlength="20"/> <br />';
-		echo ' ';
-		echo '<!-- Arguments -->';
-		echo '<fieldset id="Arg_Service_Modele' . $NbFieldset_Service . '">';
-		// echo '<legend>Arguments du service</legend>';
-		// gestion des arguments
-		include ('gestion_arguments.php');
-		echo '</fieldset> <br /> ';
-		/*
-		 * echo '<fieldset id="Inactif_Arg_Service_Modele' . $NbFieldset_Service . '">';
-		 * echo '<legend>Arguments du service initial</legend>';
-		 * //gestion des arguments
-		 * include('gestion_arguments.php');
-		 * echo '</fieldset>';
-		 */
-		if (htmlspecialchars ( $res_liste_service ['Consigne'] ) != "") // s'il n'y a pas de consigne on n'affiche pas le champ
-		{
-			echo '<br />';
-			echo '<!-- Service Consigne -->';
-			// $LongueurArg= strlen(htmlspecialchars($res_liste_service['Consigne'])) + 20*strlen(htmlspecialchars($res_liste_service['Consigne']))/100;
-			$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Consigne'] ) ). 'em';
-			echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
-			echo '<input Readonly type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_Consigne' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Consigne'] ) . '" size="' . $LongueurArg . '" maxlength="255"/> <br />';
-		};
-		echo '</fieldset>';
-// 	} else
-// 	{ // formatage de la page pour le PDF
-// 		echo '<span id="Lbl_Nom_Service' . $NbFieldset_Service . '" style="text-decoration: underline">Nom du service:</span>';
-// 		echo '<span id="Nom_service' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars ( $res_liste_service ['Nom_Service'] ) . '</span>';
-// 		echo '<span id="span_espace"> - </span>';
-// 		echo '<span id="Lbl_Hote_Service' . $NbFieldset_Service . '" style="text-decoration: underline">Hôte du service:</span>';
-// 		echo '<span id="Hote_service' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars ( $res_liste_service ['Nom_Hote'] ) . '</span>';
-// 		echo '<br />';
-// 		echo '<br />';
-// 		echo '<span id="Lbl_Service_Plage' . $NbFieldset_Service . '" style="text-decoration: underline">Plage horaire de contrôle:</span>';
-// 		echo '<span id="Service_Plage' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars ( $res_liste_service ['Nom_Periode'] ) . '</span>';
-// 		echo '<span id="span_espace"> - </span>';
-// 		echo '<span id="Lbl_Service_Modele' . $NbFieldset_Service . '" style="text-decoration: underline">Modèle:</span>';
-// 		echo '<span id="Service_Modele' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars ( $res_liste_service ['MS_Modele_Service'] ) . '</span>';
-// 		echo '<span id="span_espace"> - </span>';
-// 		echo '<span id="Lbl_Service_Frequence' . $NbFieldset_Service . '" style="text-decoration: underline">Fréquence de contrôle:</span>';
-// 		echo '<span id="Service_Frequence' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars ( $res_liste_service ['Frequence'] ) . '</span>';
-// 		echo '<br />';
-// 		echo '<br />';
+		echo '<!-- Service Consigne -->';
+		$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Consigne'] ) ). 'em';
+		echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
+		echo '<input Readonly type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_Consigne' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Consigne'] ) . '" size="' . $LongueurArg . '" maxlength="255"/> <br />';
+	};
+	echo '</fieldset>';
 
-
-// 		//		echo '<p id="Nom_Service' . $NbFieldset_Service . '">Nom du service: ' . htmlspecialchars ( $res_liste_service ['Nom_Service'] ) . ' - Hôte du service: ' . htmlspecialchars ( $res_liste_service ['Nom_Hote'] ) . '</p>';
-// 		//		echo '<!-- Hote du service -->';
-// 		//		echo '<p id="Hote_Service' . $NbFieldset_Service . '">Hôte du service: ' . htmlspecialchars ( $res_liste_service ['Nom_Hote'] ) . '</p>';
-// 		//echo '</span>';
-// 		//echo '<span id="span2_service' . $NbFieldset_Service . '">';
-// 		//		echo '<!-- Plage Horaire -->';
-// 		//		echo '<p id="Service_Plage' . $NbFieldset_Service . '">Plage horaire de contrôle: ' . htmlspecialchars ( $res_liste_service ['Nom_Periode'] ) . ' - Modèle: ' . htmlspecialchars ( $res_liste_service ['MS_Modele_Service'] ) . ' - Fréquence du contrôle: ' . htmlspecialchars ( $res_liste_service ['Frequence'] ) . '</p>';
-// 		//		echo '<!-- Modele service -->';
-// 		//		echo '<p id="Service_Modele' . $NbFieldset_Service . '">Modèle: ' . htmlspecialchars ( $res_liste_service ['MS_Modele_Service'] ) . '</p>';
-// 		//		echo '<!-- Frequence -->';
-// 		//		echo '<p id="Frequence_Service' . $NbFieldset_Service . '">Fréquence du contrôle: ' . htmlspecialchars ( $res_liste_service ['Frequence'] ) . '</p>';
-// 		//echo '</span>';
-// 		echo '<!-- Arguments -->';
-// 		echo '<fieldset id="Arg_Service_Modele' . $NbFieldset_Service . '" style="width:100%;">';
-// 		// gestion des arguments
-// 		include ('gestion_arguments.php');
-// 		echo '</fieldset>';
-// 		//echo '<br />';
-// 		if (htmlspecialchars ( $res_liste_service ['Consigne'] ) != "") // s'il n'y a pas de consigne on n'affiche pas le champ
-// 		{
-// 			echo '<!-- Service Consigne -->';
-// 			// $LongueurArg= strlen(htmlspecialchars($res_liste_service['Consigne'])) + 20*strlen(htmlspecialchars($res_liste_service['Consigne']))/100;
-// 			echo '<span id="Lbl_Service_Consigne' . $NbFieldset_Service . '" style="text-decoration: underline">Lien vers la consigne:</span>';
-// 			echo '<span id="Service_Consigne' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars ( $res_liste_service ['Consigne'] ) . '</span>';
-// 			echo '<br />';
-// 		};
-// 		echo '</fieldset>';
-// 	};
 	$NbFieldset_Service ++;
 };
 $Statut_Service = true;
 echo '</fieldset>';
 // addlog("creation tableau service... OK.");
 
-// ///////////////////
-// affichage periode
-// ///////////////////
+/**
+ * affichage periode
+ */
 
 // addlog("creation tableau periode...");
 echo '<fieldset id="f_extraction_periode">';
-// if ($_SESSION['PDF'] == "Non")
-// {
-	echo '<legend>Liste des périodes temporelles</legend>';
-// } else
-// {
-// 	echo '<h3 style="text-align:center">Liste des périodes temporelles</h3>';
-// };
+echo '<legend>Liste des périodes temporelles</legend>';
 
 if ($nb_plage == 0) {
 	echo '<p>Aucun résultat trouvé.</p>';

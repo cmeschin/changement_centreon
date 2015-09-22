@@ -8,7 +8,7 @@ $ID_Demande = (isset($_GET["id_demande"])) ? $_GET["id_demande"] : NULL;
 $Demandeur = (isset($_GET["demandeur"])) ? $_GET["demandeur"] : NULL;
 $_SESSION['Reprise'] = true;
 $_SESSION['Nouveau'] = false;
-$_SESSION['PDF'] = "Non";
+$_SESSION['PDF'] = false;
 
 include('log.php'); // chargement de la fonction de log
 addlog("chargement reprise demande.");

@@ -10,7 +10,7 @@ if (!$_SESSION['R_ID_Demande']) // si la variable n'est pas initialisée on l'in
 {
 	$_SESSION['R_ID_Demande']=NULL;
 }
-if (($_SESSION['PDF'] == "Non") OR (!$_SESSION['PDF']))
+if (($_SESSION['PDF'] == false) OR (!$_SESSION['PDF']))
 {
 	echo '<legend>Arguments du service</legend>';	
 	echo '<label for="Service_Argument_Description' . $NbFieldset_Service . '">Description :</label>';
@@ -42,13 +42,13 @@ for ( $i=0;$i<$nbLibelle;$i++)
 	
 	$LongueurArg=  strlen(htmlspecialchars($Valeur_Champ)) + 5;
 //	echo '<div id="Service_Argument_Actif' . $NbFieldset_Service . '>';
-	if ($_SESSION['PDF'] == "Non")
+	if ($_SESSION['PDF'] == false)
 	{
 		echo '<label for="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '">' . htmlspecialchars($T_Libelle[$i]) . ':</label>';
 	};
 	if ($T_Argument[$i] == "")
 	{
-		if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == "Non"))
+		if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == false))
 		{
 			if (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true))
  			{
@@ -57,7 +57,7 @@ for ( $i=0;$i<$nbLibelle;$i++)
 			{
 				echo '<input type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="" Placeholder="' . htmlspecialchars(trim($Valeur_Champ)) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
 			};
-		} else if ($_SESSION['PDF'] == "Non")
+		} else if ($_SESSION['PDF'] == false)
 		{
 				echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="" Placeholder="' . htmlspecialchars(trim($Valeur_Champ)) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
 		} else
@@ -68,7 +68,7 @@ for ( $i=0;$i<$nbLibelle;$i++)
 		};
 	} else
 	{
-		if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == "Non"))
+		if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == false))
 		{
 			if (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true)) 
 			{
@@ -77,7 +77,7 @@ for ( $i=0;$i<$nbLibelle;$i++)
 			{
 				echo '<input type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
 			};
-		} else if ($_SESSION['PDF'] == "Non")
+		} else if ($_SESSION['PDF'] == false)
 		{
 			echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
 		} else
@@ -87,34 +87,14 @@ for ( $i=0;$i<$nbLibelle;$i++)
 			echo '<br />';
 		};
 	};
-	if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == "Non"))
+	if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == false))
 	{
 		echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '"/>';
 	};
-	if ($_SESSION['PDF'] == "Non")
+	if ($_SESSION['PDF'] == false)
 	{
 		echo '<br />';
 	};
 	//	echo '</div>';
 	$Num_Argument ++; // incrément Num Argument
 };
-//echo '</fieldset> ';
-/*
-echo '<fieldset style="visibility:hidden" id="Inactif_Arg_Service_Modele' . $NbFieldset_Service . '">';
-echo '<legend>Arguments du service initial</legend>';
-echo '<label for="Inactif_Arg_Service_Argument_Description' . $NbFieldset_Service . '">Description :</label>';
-echo '<textarea Disabled="Disabled" id="Inactif_Arg_Service_Argument_Description' . $NbFieldset_Service . '" name="Inactif_Arg_Service_Argument_Description' . $NbFieldset_Service . '" rows="3" cols="50">' . htmlspecialchars($Description) . '</textarea> <br />';
-for ( $i=0;$i<$nbLibelle;$i++)
-{
-	$Valeur_Champ =  $T_Argument[$i];
-	include('gestion_caracteres_speciaux.php');
-
-	$LongueurArg=  strlen(htmlspecialchars($T_Argument[$i])) + 10;
-	echo '<label for="Inactif_Arg_Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '">' . htmlspecialchars($T_Libelle[$i]) . ':</label>';
-	echo '<input type="text" id="Inactif_Arg_Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" size="'. $LongueurArg . '"/>';
-//	echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '"/> <br />';
-	echo ' <br />';
-	$Num_Argument ++; // incrément Num Argument
-};
-echo '</fieldset> ';
-*/

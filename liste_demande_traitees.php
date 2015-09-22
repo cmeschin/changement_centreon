@@ -24,7 +24,7 @@ try {
 echo '<table id="T_Liste_Demande">';
 	echo '<tr>';
 		echo '<th>Action</th>';
-		echo '<th onclick="alert(\'Le regroupement est effectué par date de rédaction des demandes.\nLa date de supervision souhaitée et la date de traitement effective n\\\'est pas prise en compte pour ce regroupement.\')" title="Cliquez pour plus d\'informations.">Date des demandes <img alt="point_interrogation" src="images/point-interrogation-16.png"></th>';
+		echo '<th onclick="alert(\'Le regroupement est effectué par date de rédaction des demandes. Le tri est décroissant.\nLa date de supervision souhaitée et la date de traitement effective n\\\'est pas prise en compte pour ce regroupement.\')" title="Cliquez pour plus d\'informations.">Date des demandes <img alt="point_interrogation" src="images/point-interrogation-16.png"></th>';
 		echo '<th>Nombre de demande</th>';
 	echo '</tr>';
 	
