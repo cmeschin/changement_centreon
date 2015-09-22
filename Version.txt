@@ -1,9 +1,13 @@
-﻿2015-09-16 v8.5
+﻿2015-09-22 v8.6
 	Correctifs:
-		- Correction bug gestion affichage arguments sur nouvelle demande et fonction Verif_Champs => ne fonctionnait plus qu'en reprise suite à un correctif précédent
 		- Gestion variable SESSION_PDF true/false plutot que "Oui"/"Non"
+		- Correction blocage WeekEnd, bloquait également le jour J
 	Ameliorations:
 		- Liste demandes traitées: Tri par date décroissante
+		
+2015-09-16 v8.5
+	Correctifs:
+		- Correction bug gestion affichage arguments sur nouvelle demande et fonction Verif_Champs => ne fonctionnait plus qu'en reprise suite à un correctif précédent
 		
 2015-09-13 v8.4
 
