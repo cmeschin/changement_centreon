@@ -65,8 +65,12 @@ try {
 	
 	addlog("Enregistrement Demande termine");
 	// envoie du mail à SUSI
-		include('envoi_mail.php');
+	include('envoi_mail.php');
 	addlog("Mail envoyé");
+	/**
+	 * Mise à jour de la variable Timer
+	 */
+	$_SESSION['Timer']=date_timestamp_get($date);
 	$bdd_supervision->commit();
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();

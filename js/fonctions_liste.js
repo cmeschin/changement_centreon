@@ -364,6 +364,7 @@ function chargerlistes_Complement_Plages()
 
 function ajoute_fieldset_hote(liste_hote)
 {
+	timer_enregistrement();
 	var xhr = getXMLHttpRequest(); //création de l'instance XHR
 //				alert("preparation insertion automatique");
 	xhr.onreadystatechange = function()
@@ -380,6 +381,7 @@ function ajoute_fieldset_hote(liste_hote)
 				//alert("avant numtrou="+numhote);
 				//alert("xhr="+xhr.responseText);
 				//return xhr.responseText;
+				
 			} else if (numtrou>0)
 			{
 				$("#"+premierhote).after(xhr.responseText);
@@ -435,6 +437,7 @@ function ajoute_fieldset_hote(liste_hote)
 };
 
 function ajoute_fieldset_service() {
+	timer_enregistrement();
 	var xhr = getXMLHttpRequest(); //création de l'instance XHR
 				//alert("preparation insertion automatique");
 	xhr.onreadystatechange = function() 
@@ -491,6 +494,7 @@ function ajoute_fieldset_service() {
 
 function ajoute_fieldset_plage() 
 {
+	timer_enregistrement();
 	// suppression de l'éventuelle message pas de plage
 	$("#Aucune_Plage").remove();
 	var xhr = getXMLHttpRequest(); //création de l'instance XHR
@@ -551,6 +555,7 @@ function ajoute_fieldset_plage()
 
 function supprime_fieldset_hote(champ) 
 {
+	timer_enregistrement();
 	var parent=$(champ).parent().parent().attr("id");
 
 	var MessageConfirmation = "Vous allez supprimer l'" + parent + " . Etes-vous sûr?";
@@ -563,7 +568,9 @@ function supprime_fieldset_hote(champ)
 
 		if (nbdisabled_hote > 0) // ne rentre dans la boucle que si des hôtes sont désactivés
 		{
-			// gestion des hôtes importés pour réactivation dans la liste
+			/**
+			 *  gestion des hôtes importés pour réactivation dans la liste
+			 */
 			var tableau_hote_lig = document.getElementById("T_Liste_Hote").rows; //charge les lignes du tableau
 			var NbLigne_Hote = tableau_hote_lig.length; // récupération du nombre d'enregistrement
 			for (var i=1;i<NbLigne_Hote;i++)
@@ -571,9 +578,6 @@ function supprime_fieldset_hote(champ)
 				$('input:disabled[id=' + i +']').each(function() // on boucle sur chaque objet sélectionné
 				{
 					var tableau_hote_col = tableau_hote_lig[i].cells; //charge les cellules de chaque ligne désactivée dans un tableau
-					//alert("Hote="+Nom_Hote+IP_Hote);
-					//alert("TableauHote="+tableau_hote_col[1].innerHTML+tableau_hote_col[3].innerHTML);
-					//if (tableau_hote_col[1].innerHTML+tableau_hote_col[3].innerHTML == Nom_Hote+IP_Hote)
 					if (tableau_hote_col[3].innerHTML+tableau_hote_col[5].innerHTML == Nom_Hote+IP_Hote)
 					{
 						$(this).removeAttr("Disabled"); // réactive l'hôte inséré pour permettre un nouvel ajout.
@@ -603,27 +607,10 @@ function supprime_fieldset_hote(champ)
 //	};
 };
 
-/* déprécié le 05-11-14
-function supprime_hote_temp(nom_hote)
-{
-	var nom_hote = encodeURIComponent(nom_hote);
-	//alert("nom_hote="+nom_hote);
-	var xhr = getXMLHttpRequest(); //création de l'instance XHR
-	xhr.onreadystatechange = function() 
-	{
-		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
-		{
-			return xhr.responseText;
-		};
-	};
-	xhr.open("POST", "supprime_hote_temp.php", false);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
-	xhr.send("nom_hote="+nom_hote+"");
-};
-*/
 var Doublon = ""; // déclaration globale pour permettre l'appel à une fonction distante
 function supprime_fieldset_service(champ) 
 {
+	timer_enregistrement();
 	controle_doublon();
 	if (Doublon != "Oui")
 	{
@@ -658,11 +645,7 @@ function supprime_fieldset_service(champ)
 				};
 			};
 			// on supprime de la table service
-			//alert("Nom_Service="+Nom_Service);
-			//alert("Service_Hote="+Service_Hote);
 			supprime_service(Nom_Service,Service_Hote);
-			
-	
 			$("#"+parent).remove();  // supprime le fieldset de l'affichage
 		};
 	};
@@ -672,8 +655,6 @@ function supprime_service(nom_service,service_hote)
 {
 	var nom_service = encodeURIComponent(nom_service);
 	var service_hote = encodeURIComponent(service_hote);
-	//alert("nom_service="+nom_service);
-	//alert("service_hote="+service_hote);
 	var xhr = getXMLHttpRequest(); //création de l'instance XHR
 	xhr.onreadystatechange = function() 
 	{
@@ -689,9 +670,8 @@ function supprime_service(nom_service,service_hote)
 
 function supprime_fieldset_Plage(champ) 
 {
-//	var parent_plage=$(champ).parent().parent().attr("id");
+	timer_enregistrement();
 	var parent_plage=$(champ).parent().parent().parent().attr("id");
-	//alert("parent_plage="+parent_plage);
 	var NbFieldset_plage = $("fieldset.plage").length; // encodage inutile puisqu'il n'y a pas de transmission d'information à une autre page.
 /*	if ( NbFieldset_plage == 1 )
 	{
@@ -744,7 +724,8 @@ function supprime_fieldset_Plage(champ)
 		};
 //	};
 };
-
+/**
+ * Fonction désactivée car nécessié de conserver la période pour les autres services. cf ci-dessus
 function supprime_periode(nom_periode)
 {
 	var nom_periode = encodeURIComponent(nom_periode);
@@ -761,78 +742,75 @@ function supprime_periode(nom_periode)
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr.send("nom_periode="+nom_periode+"");
 };
-
+*/
 function clone_fieldset_Plage(champ) {
 	var parent=$(champ).parent().parent().parent().attr("id");
-//	alert("parent="+parent);
-//	alert("nombouton="+nombouton);
-//	alert("parentid="+parentid);
 	var NbFieldset = $("fieldset.plage").length;
 	var liste_plage = "";
-//	alert("NbFieldset="+NbFieldset);
-	var MessageConfirmation = "Vous allez dupliquer la " + parent + " . Etes-vous sûr?";
-	if (confirm(MessageConfirmation)) 
-	{
-		// boucler sur l'ensemble des champs de la plage
+// 06/10/15 confirmation de duplication supprimée 
+//	var MessageConfirmation = "Vous allez dupliquer la " + parent + " . Etes-vous sûr?";
+//	if (confirm(MessageConfirmation)) 
+//	{
+		/**
+		 *  boucler sur l'ensemble des champs de la plage
+		 */
 		$("." + parent.toLowerCase() + "").each(function()
 		{
-			// gestion des caractères spéciaux ! $ et | dans les champs.
+			/**
+			 *  gestion des caractères spéciaux ! $ et | dans les champs.
+			 */
 			var Valeur_Champ =  $(this).val();
 			Gestion_caractere_speciaux(Valeur_Champ);
-			// on prend tous les champs du formulaire sans exception
-			//if ($(this).val() != "Autre" && $(this).val() != "Vide")
-			//{
-				//alert($(this).val());
+			/**
+			 *  on prend tous les champs du formulaire sans exception
+			 */
 				liste_plage += "|" + Valeur_Champ;
-			//};
 		});
 		liste_plage += "$";
 
 		liste_plage = liste_plage.substring(1,liste_plage.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
 		liste_plage = liste_plage.replace(/\$\$/g,"$"); // remplace les "$$" par un simple "$"
-		//alert("liste_plage="+liste_plage);
 		
-		// calcul la valeur du nouvel plage
-		// compter le nombre total de fieldset
+		/**
+		 *  calcul la valeur du nouvel plage
+		 *  compter le nombre total de fieldset  
+		 */
 		var trou=false;
-		//var NbFieldset = $("fieldset.plage").length;
-		//	alert("NbFieldset="+NbFieldset);
-		// boucler sur chaque fieldset pour identifier les trous
+		/**
+		 *  boucler sur chaque fieldset pour identifier les trous
+		 */
 		queryAll = document.querySelectorAll('.hote');
 		for (var i = 0; i< NbFieldset; i++){
 			var h = i+1;
 			if (( "Plage"+ h != queryAll[i].id) && (!trou)) {
-				// Ajouter le fieldset dans le premier trou trouvé
+				/**
+				 *  Ajouter le fieldset dans le premier trou trouvé
+				 */
 				var numtrou = i;
 				var plagetrou = "Plage"+h;
-				//alert("plagetrou="+plagetrou);
 				var premierplage = queryAll[i].id; // on stocke la premiere plage trouvé après le trou
 				trou=true; 
-				//nouveau_plage(numtrou);
-				//alert("Numtrou="+numtrou+1);
 				break;
 			};
 		};
 		if (!trou){ // pas de trou dans la liste
-			//alert("Pas de trou");
 			numtrou = NbFieldset;
 			premierplage = "Plage"+numtrou;
-			//nouveau_plage(numtrou);
-			//alert("Numtrou="+numtrou);
-		}
+		};
 
-		// Appelle la fonction d'ajout d'une plage
+		/**
+		 *  Appelle la fonction d'ajout d'une plage
+		 */
 		ajoute_fieldset_plage();
 		numtrou++;
 		var numplage=numtrou;
-		// rempli les champs
+		/**
+		 *  rempli les champs
+		 */
 		T_liste_plage = liste_plage.split("|");
 		var i = 0;
 		$(".plage" + numplage + "").each(function()
 		{
-			//alert("champ="+$(this).innerHTML())// gestion des caractères spéciaux ! $ et | dans les champs.
-			//alert("champ="+$(this).attr("id"))// gestion des caractères spéciaux ! $ et | dans les champs.
-			//alert("valeur insertion Input="+T_liste_plage[i]);
 			if (T_liste_plage[i-1] == "Autre")
 			{
 				$(this).parent().removeAttr("style");
@@ -846,81 +824,79 @@ function clone_fieldset_Plage(champ) {
 			};
 			i++;
 		});
-	};
+// 06/10/15 confirmation de duplication supprimée
+//	};
 	alert("La plage n°" + numplage + " a été ajoutée.");
 };
 
 function clone_fieldset_hote(champ) {
 	var parent=$(champ).parent().parent().attr("id");
-//	alert("parent="+parent);
-//	alert("nombouton="+nombouton);
-//	alert("parentid="+parentid);
 	var NbFieldset = $("fieldset.hote").length;
 	var liste_hote = "";
-//	alert("NbFieldset="+NbFieldset);
-	var MessageConfirmation = "Vous allez dupliquer l'" + parent + " . Etes-vous sûr?";
-	if (confirm(MessageConfirmation)) 
-	{
-		// boucler sur l'ensemble des champs de l'hote
+// 06/10/15 confirmation de duplication supprimée
+//	var MessageConfirmation = "Vous allez dupliquer l'" + parent + " . Etes-vous sûr?";
+//	if (confirm(MessageConfirmation)) 
+//	{
+		/**
+		 *  boucler sur l'ensemble des champs de l'hote
+		 */
 		$("." + parent.toLowerCase() + "").each(function()
 		{
-			// gestion des caractères spéciaux ! $ et | dans les champs.
+			/**
+			 *  gestion des caractères spéciaux ! $ et | dans les champs.
+			 */
 			var Valeur_Champ =  $(this).val();
 			Gestion_caractere_speciaux(Valeur_Champ);
-			// on prend tous les champs du formulaire sans exception
-			//if ($(this).val() != "Autre" && $(this).val() != "Vide")
-			//{
-				//alert($(this).val());
+			/**
+			 *  on prend tous les champs du formulaire sans exception
+			 */
 				liste_hote += "|" + Valeur_Champ;
-			//};
 		});
 		liste_hote += "$";
 
 		liste_hote = liste_hote.substring(1,liste_hote.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
 		liste_hote = liste_hote.replace(/\$\$/g,"$"); // remplace les "$$" par un simple "$"
-		//alert("liste_hote="+liste_hote);
 		
-		// calcul la valeur du nouvel hote
-		// compter le nombre total de fieldset
+		/**
+		 *  calcul la valeur du nouvel hote
+		 *  compter le nombre total de fieldset
+		 */
 		var trou=false;
-		//var NbFieldset = $("fieldset.hote").length;
-		//	alert("NbFieldset="+NbFieldset);
-		// boucler sur chaque fieldset pour identifier les trous
+		/**
+		 *  boucler sur chaque fieldset pour identifier les trous
+		 */
 		queryAll = document.querySelectorAll('.hote');
 		for (var i = 0; i< NbFieldset; i++){
 			var h = i+1;
 			if (( "Hote"+ h != queryAll[i].id) && (!trou)) {
-				// Ajouter le fieldset dans le premier trou trouvé
+				/**
+				 *  Ajouter le fieldset dans le premier trou trouvé
+				 */
 				var numtrou = i;
 				var hotetrou = "Hote"+h;
-				//alert("hotetrou="+hotetrou);
 				var premierhote = queryAll[i].id; // on stocke le premier hote trouvé après le trou
 				trou=true; 
-				//nouveau_hote(numtrou);
-				//alert("Numtrou="+numtrou+1);
 				break;
 			};
 		};
 		if (!trou){ // pas de trou dans la liste
-			//alert("Pas de trou");
 			numtrou = NbFieldset;
 			premierhote = "Hote"+numtrou;
-			//nouveau_hote(numtrou);
-			//alert("Numtrou="+numtrou);
 		}
 
-		// Appelle la fonction d'ajout d'un hôte
+		/**
+		 *  Appelle la fonction d'ajout d'un hôte
+		 */
 		ajoute_fieldset_hote();
 		numtrou++;
 		var numhote=numtrou;
-		// rempli les champs
+		/**
+		 *  rempli les champs
+		 */
 		T_liste_hote = liste_hote.split("|");
 		var i = 0;
 		$(".hote" + numhote + "").each(function()
 		{
-			//alert("champ="+$(this).innerHTML())// gestion des caractères spéciaux ! $ et | dans les champs.
-			//alert("champ="+$(this).attr("id"))// gestion des caractères spéciaux ! $ et | dans les champs.
-			//alert("valeur insertion Input="+T_liste_hote[i]);
 			if (T_liste_hote[i-1] == "Autre")
 			{
 				$(this).parent().removeAttr("style");
@@ -934,48 +910,42 @@ function clone_fieldset_hote(champ) {
 			};
 			i++;
 		});
-	};
+// 06/10/15 confirmation de duplication supprimée
+//	};
 	alert("L'hôte n°" + numhote + " a été ajouté.");
 };
 
 function clone_fieldset_service(champ) {
 	var parent=$(champ).parent().parent().attr("id");
-//	alert("parent="+parent);
-//	alert("nombouton="+nombouton);
-//	alert("parentid="+parentid);
 	var NbFieldset = $("fieldset.service").length;
 	var liste_service = "";
-//	alert("NbFieldset="+NbFieldset);
-	var MessageConfirmation = "Vous allez dupliquer le " + parent + ". Etes-vous sûr?";
-	if (confirm(MessageConfirmation)) 
-	{
-		// boucler sur l'ensemble des champs de le service
+// 06/10/15 confirmation de duplication supprimée
+//	var MessageConfirmation = "Vous allez dupliquer le " + parent + ". Etes-vous sûr?";
+//	if (confirm(MessageConfirmation)) 
+//	{
+		/**
+		 *  boucler sur l'ensemble des champs de le service
+		 */
 		$("." + parent.toLowerCase() + "").each(function()
-//		$("#" + parent + "").each(function()
-//		$("#Service" + parent.substring(7) + " [id*='Service']").each(function()
 		{
-			// gestion des caractères spéciaux ! $ et | dans les champs.
+			/**
+			 *  gestion des caractères spéciaux ! $ et | dans les champs.
+			 */
 			var Valeur_Champ =  $(this).val();
 			Gestion_caractere_speciaux(Valeur_Champ);
-			// on prend tous les champs du formulaire sans exception
-			//if ($(this).val() != "Autre" && $(this).val() != "Vide")
-			//{
-				//alert($(this).val());
-				liste_service += "|" + Valeur_Champ;
-			//};
+			/**
+			 *  on prend tous les champs du formulaire sans exception
+			 */
+			liste_service += "|" + Valeur_Champ;
 		});
 		
 		var liste_service_Arg = ""; // cette liste est réinitialise pour chaque fieldset service
 		$(".Service_Argument" + parent.substring(7) + "").each(function()
-		//$("#Service_Argument" + parent.substring(7) + "").each(function()
 		{
-			//alert("Valeur_Champ avant="+Valeur_Champ);
-			// gestion des caractères spéciaux ! $ et | dans les champs.
-			//var Valeur_Champ_avant =  $(this).val();
-			//Gestion_caractere_speciaux(Valeur_Champ_avant);
-			//alert("Valeur_Champ apres="+Valeur_Champ);
 			var Valeur_Champ =  $(this).val();
-			// gestion du "!" en ant que caractère de l'argument afin qu'il ne soit pas considéré comme un séparateur d'argument pour l'affichage plus bas.
+			/**
+			 *  gestion du "!" en tant que caractère de l'argument afin qu'il ne soit pas considéré comme un séparateur d'argument pour l'affichage plus bas.
+			 */
 			var reg1=new RegExp("[!]","g");
 			if (Valeur_Champ.match(reg1))
 			{
@@ -983,67 +953,55 @@ function clone_fieldset_service(champ) {
 			};
 			liste_service_Arg += "!" + Valeur_Champ;
 		});
-		//liste_service += "|" + liste_service_Arg.substring(1) + "$"; // on enlève le premier | des arguments et on ajoute un $ à la fin
 		liste_service += "|" + liste_service_Arg.substring(1); // on enlève le premier | des arguments
 		liste_service += "$";
 
 		liste_service = liste_service.substring(1,liste_service.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
 		liste_service = liste_service.replace(/\$\$/g,"$"); // remplace les "$$" par un simple "$"
-		//alert("liste_service="+liste_service);
 		
-		// calcul la valeur du nouveau service
-		// compter le nombre total de fieldset
+		/**
+		 *  calcul la valeur du nouveau service
+		 *  compter le nombre total de fieldset 
+		 */
 		var trou=false;
-		//var NbFieldset = $("fieldset.service").length;
-		//	alert("NbFieldset="+NbFieldset);
-		// boucler sur chaque fieldset pour identifier les trous
+		/**
+		 *  boucler sur chaque fieldset pour identifier les trous
+		 */
 		queryAll = document.querySelectorAll('.service');
 		for (var i = 0; i< NbFieldset; i++){
 			var h = i+1;
 			if (( "Service"+ h != queryAll[i].id) && (!trou)) {
-				// Ajouter le fieldset dans le premier trou trouvé
+				/**
+				 *  Ajouter le fieldset dans le premier trou trouvé
+				 */
 				var numtrou = i;
 				var servicetrou = "Service"+h;
-				//alert("servicetrou="+servicetrou);
 				var premierservice = queryAll[i].id; // on stocke le premier service trouvé après le trou
 				trou=true; 
-				//nouveau_service(numtrou);
-				//alert("Numtrou="+numtrou+1);
 				break;
 			};
 		};
 		if (!trou){ // pas de trou dans la liste
-			//alert("Pas de trou");
 			numtrou = NbFieldset;
 			premierservice = "Service"+numtrou;
-			//nouveau_service(numtrou);
-			//alert("Numtrou="+numtrou);
 		};
 
-		// Appelle la fonction d'ajout d'un service
+		/**
+		 *  Appelle la fonction d'ajout d'un service
+		 */
 		ajoute_fieldset_service();
 		numtrou++;
 		var numservice=numtrou;
-		// rempli les champs
+		/**
+		 *  rempli les champs
+		 */
 		T_liste_service = liste_service.split("|");
 		var NbService = T_liste_service.length;
 		NbService--;
 		var liste_arg= T_liste_service[NbService];
-		//alert("liste argument="+liste_arg);
-		//var T_liste_argument = T_liste_service[NbService].split("!");
-		//alert("T_liste_argument avant="+T_liste_argument.length);
 		var i = 0;
 		$(".service" + numservice + "").each(function()
-//		$("#Service" + numservice + " [id*='Service']").each(function()
 		{
-			//alert("element="+$(this).val());
-			//alert("champ="+$(this).attr("id"))
-			//alert("valeur insertion Input="+T_liste_service[i]);
-/*			if (T_liste_service[i-1] == "Autre")
-			{
-				$(this).parent().removeAttr("style");
-			};
-*/
 			if ((T_liste_service[i] == "Modifier") || (T_liste_service[i] == "Desactiver") || (T_liste_service[i] == "Supprimer")) 
 			{
 				$(this).val("Creer")
@@ -1053,17 +1011,16 @@ function clone_fieldset_service(champ) {
 			};
 			if ($(this).attr("id") == "Service_Modele"+numservice)
 			{
-				//alert("liste_arg="+liste_arg);
 				/**
 				 * changement le 09/02/15 suite ajout fonction Sauve_argument
 				 */
-				//var Service_Modele = "Service_Modele" + numservice;
-				//afficher_argument(Service_Modele,liste_arg);
 				afficher_argument(numservice,liste_arg);
 			};
 			i++;
 		});
-	};
+//  06/10/15 confirmation de duplication supprimée
+//	};
+	alert("Le service n°" + numservice + " a été ajouté.");
 };
 
 function charger_liste_recherche_hote()
@@ -1082,7 +1039,6 @@ function charger_liste_recherche_hote()
 		};
 		var sClient = encodeURIComponent(Client);
 		var sSearch_Hote = encodeURIComponent(Search_Hote);
-//		alert("sSearch_Hote="+sSearch_Hote+"&sClient="+sClient+"");
 		xhr.open("POST", "requete_liste_recherche_hote.php", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 		xhr.send("sSearch_Hote="+sSearch_Hote+"&sClient="+sClient+""); 
@@ -1090,7 +1046,6 @@ function charger_liste_recherche_hote()
 	function readData_recherche_hote(liste_recherche_hote) 
 	{
 		$("#liste_recherche_hote").empty(); // purge la liste à chaque nouvelle sélection d'hôte
-//	alert("liste_recherche_hote="+liste_recherche_hote);
 		$("#liste_recherche_hote").append(liste_recherche_hote); // rempli la liste avec la sélection courante
 		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
 	};

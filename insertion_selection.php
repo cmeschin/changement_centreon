@@ -9,6 +9,11 @@ header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier l
 include('log.php'); // chargement de la fonction de log
 addlog("Chargement insertion_selection.php");
 
+/**
+ * Initialise le timer pour le brouillon
+ */
+$date=date_create();
+$_SESSION['Timer']=date_timestamp_get($date);
 include_once('connexion_sql_supervision.php');
 try {
 	

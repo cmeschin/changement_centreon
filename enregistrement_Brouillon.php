@@ -21,6 +21,11 @@ try {
 		'ID_Demande' => $ID_Demande
 		)) or die(print_r($MAJ_Plage->errorInfo()));
 	addlog("Enregistrement brouillon termine");
+	/**
+	 * Mise à jour de la variable Timer
+	 */
+	$_SESSION['Timer']=date_timestamp_get($date);
+	
 	$bdd_supervision->commit();
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();

@@ -33,6 +33,9 @@ function onglet_suivant()
 
 function enregistre_selection()
 {
+	/**
+	 * Fonction d'enregistrement du tout premier brouillon avec la sélection actuelle (Bouton "Valider votre sélection")
+	 */
 // désactivation du bouton "Valider Votre Sélection" pour ne pas cliquer deux fois dessus
 	$("#Rechercher").attr("Disabled","Disabled");
 	$("#Ajouter_Selection_Hote").attr("Disabled","Disabled");
@@ -355,6 +358,7 @@ function enregistre_selection()
 
 function PreEnregistrer_fieldset_hote(champ)
 {
+	timer_enregistrement();
 	var parent=$(champ).parent().parent().attr("id"); // récupèrele fieldset parent hote
 	var hote_bouton_id = $(champ).attr("id"); // récupère l'id du bouton
 	//alert("id_bouton="+hote_bouton_id);
@@ -442,6 +446,7 @@ function PreEnregistrer_fieldset_hote(champ)
 
 function PreEnregistrer_fieldset_plage(champ)
 {
+	timer_enregistrement();
 	var parent=$(champ).parent().parent().parent().attr("id"); // récupèrele fieldset parent plage
 	var plage_bouton_id = $(champ).attr("id"); // récupère l'id du bouton
 	//	alert(parent);
@@ -1551,6 +1556,40 @@ function correction_seuils_disque(liste_service_Arg)
 //	};
 //
 //};
+
+function timer_enregistrement()
+{
+	/**
+	 * Fonction permettant de vérifier la date du dernier brouilon enregistré dans la session
+	 * si délai supérieur à 10 minutes => proposition d'enregsitrer le brouillon
+	 */
+	function recuperation_Timer(callback)
+	{
+		var xhr_timer = getXMLHttpRequest(); //création de l'instance XHR
+		var loading=false;
+		xhr_timer.onreadystatechange = function() {
+			if (xhr_timer.readyState == 4 && (xhr_timer.status == 200 || xhr_timer.status == 0)) {
+				callback(xhr_timer.responseText); // C'est bon \o/
+				//alert(xhr_timer.responseText);
+			} else if(xhr_timer.readyState == 4 && xhr_timer.status != 200) { // En cas d'erreur !
+				gestion_erreur(xhr_timer);
+			};
+		};
+		
+		xhr_timer.open("POST", "recuperation_Timer.php", true);
+		xhr_timer.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+		xhr_timer.send(); 
+	};
+	function avertissement_Timer(Delai_Timer) //récupère la valeur retournée par le script php PreEnregistrement_Hote.php
+	{
+		//alert("Delai_Timer="+Delai_Timer);
+		if (Delai_Timer > 30)
+		{
+			alert("Cela fait plus de 10 minutes que rien n'a été enregistré en base.\nJe vous conseille vivement d'enregistrer votre brouillon maintenant.");
+		};
+	}; 
+	recuperation_Timer(avertissement_Timer);
+};
 
 function gestion_erreur(xhr)
 {

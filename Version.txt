@@ -1,4 +1,8 @@
-﻿2015-09-22 v8.6
+﻿2015-10-06 v8.7
+	Améliorations:
+		- Ajout d'un timer de signalement d'enregistrement de brouillon au bout de 10 minutes
+
+2015-09-22 v8.6
 	Correctifs:
 		- Gestion variable SESSION_PDF true/false plutot que "Oui"/"Non"
 		- Correction blocage WeekEnd, bloquait également le jour J
