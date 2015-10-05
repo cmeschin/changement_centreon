@@ -1,4 +1,4 @@
-timer pour enregistrer brouillon
+timer pour enregistrer brouillonsss
 Evolutions et bug à corriger dans la prochaine version
 ------------------------------------------------------
 	Gestion_BAM: Ajout champ Actif/Inactif + bouton suppression
