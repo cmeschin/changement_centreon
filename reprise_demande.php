@@ -9,6 +9,7 @@ $Demandeur = (isset($_GET["demandeur"])) ? $_GET["demandeur"] : NULL;
 $_SESSION['Reprise'] = true;
 $_SESSION['Nouveau'] = false;
 $_SESSION['PDF'] = false;
+$_SESSION['Timer']=date_timestamp_get($date);
 
 include('log.php'); // chargement de la fonction de log
 addlog("chargement reprise demande.");
