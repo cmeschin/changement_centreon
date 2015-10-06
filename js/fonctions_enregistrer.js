@@ -425,7 +425,11 @@ function PreEnregistrer_fieldset_hote(champ)
 				//alert($(this).val());
 				$(this).append('<option value="'+ ID_Hote +'">'+ Nom_Hote + ' - ' + IP_Hote + '</option>'); // on ajoute à la liste déroulante le nouvel hôte
 			});
+			var id_input_hote=hote_bouton_id.substring(14);
+			$("#Nom"+id_input_hote+"").attr("ReadOnly","ReadOnly"); // passe le champ Nom_Hote en lecture seule
+			$("#img_Nom"+id_input_hote+"").attr("src","images/img_ver.png"); // passe le champ im_Nom_Hote en Verrouillé
 			$("#"+hote_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
+			
 			alert("Pré-enregistrement de l'hôte terminé!\nCet hôte est désormais disponible dans la configuration des services");
 			//$("#Enregistrer_Brouillon").removeAttr("Disabled");
 			//$("#Valider_Demande").removeAttr("Disabled");
