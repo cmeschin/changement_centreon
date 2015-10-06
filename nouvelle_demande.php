@@ -21,6 +21,10 @@ session_start();
 
 	// déclaration des constantes de la demande
 	$date_demande=date("Y-m-d H:i:s");
+	
+	$date=date_create();
+	date_add($date,date_interval_create_from_date_string('7 days'));
+	$date_defaut=date_format($date,"Y-m-d");
 	$ref_demande=date("ymdHi") . "-" . $_SESSION['user_changement_centreon'];
 	$_SESSION['ref_dem'] = $ref_demande;
 	$_SESSION['ID_dem'] = 0;
@@ -98,8 +102,8 @@ session_start();
 
 <!-- 					<span id="span_date_livraison_demandee" style="visibility: hidden;"> -->
 						<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement cela devrait être la date de démarrage en production.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-						<input disabled="disabled" readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="" size="10" title="Cliquez sur le calendrier pour choisir la date."/>
-						<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_date_livraison_demandee" /> <br />
+						<input disabled="disabled" readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo $date_defaut;?>" size="10" title="Cliquez sur le calendrier pour choisir la date."/>
+						<img src="images/img_ok.png" class="verif" alt="correct" id="img_date_livraison_demandee" /> <br />
 <!-- 					</span> -->					
 <!-- Désactivé le 15/06/15 car trop de création exotique -->
 <!-- 					<span id="sclient_new" style="visibility: hidden;"> -->

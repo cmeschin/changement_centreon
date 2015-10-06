@@ -54,7 +54,7 @@ function verifNom_Hote(champ)
 function verifNom_Service(champ)
 {
 	//alert(champ.value);
-	var reg=/[^-_^a-z^0-9#@/\ ]/i; // exclu les caractères normaux du contrôle
+	var reg=/[^-_:.^a-z^0-9#@/\ ]/i; // exclu les caractères normaux du contrôle
 	if (reg.exec(champ.value)!=null)
 	{
 		surligne (document.getElementById("img_"+champ.id), true);

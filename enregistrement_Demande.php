@@ -70,6 +70,7 @@ try {
 	/**
 	 * Mise à jour de la variable Timer
 	 */
+	$date=create_date();
 	$_SESSION['Timer']=date_timestamp_get($date);
 	$bdd_supervision->commit();
 } catch (Exception $e) {

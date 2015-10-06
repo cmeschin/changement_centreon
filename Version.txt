@@ -1,6 +1,11 @@
 ﻿2015-10-06 v8.7
+	Corrections:
+		- Caractères . et : bloqués dans le nom des services => nécessaires pour les URL
+		
 	Améliorations:
 		- Ajout d'un timer de signalement d'enregistrement de brouillon au bout de 10 minutes
+		- Ajout par défaut de la date de supervision souhaitée à +7 jours
+		- Suppression de certains messages de confirmation (duplication hôte service et plage, enregistrement brouillon)
 
 2015-09-22 v8.6
 	Correctifs:

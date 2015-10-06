@@ -24,11 +24,13 @@ try {
 	/**
 	 * Mise à jour de la variable Timer
 	 */
+	$date=date_create();
 	$_SESSION['Timer']=date_timestamp_get($date);
 	
 	$bdd_supervision->commit();
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();
+	http_response_code(500);
 	die('Erreur enregistrement brouillon: '. $e->getMessage());
 };
 	

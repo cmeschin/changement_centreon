@@ -48,7 +48,8 @@ $req_liste_service = $bdd_supervision->prepare(
 			MS.MS_Macro AS MS_Macro,
 			MS.MS_EST_MACRO AS MS_EST_MACRO,
 			H.ID_Hote AS ID_Hote,
-			S.ID_Hote_Centreon AS ID_Hote_Centreon
+			S.ID_Hote_Centreon AS ID_Hote_Centreon,
+			S.ID_Service_Centreon AS ID_Service_Centreon
 	FROM ((service AS S 
 		LEFT JOIN modele_service AS MS ON S.ID_Modele_Service=MS.ID_Modele_Service)
 		LEFT JOIN hote AS H ON S.ID_Hote=H.ID_Hote)
@@ -82,3 +83,5 @@ $req_liste_service->execute(Array(
 // MS_Macro				18
 // MS_EST_MACRO			19
 // ID_Hote				20
+// ID_Hote_Centreon		21
+// ID_Service_Centreon	22

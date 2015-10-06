@@ -960,15 +960,16 @@ function Enregistrer_Brouillon(Bouton)
 			{
 				$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 				$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
-				var MessageConfirmation = "Voulez-vous enregistrer cette demande comme brouillon?\nElle ne sera pas traiter tant que vous ne l'aurez pas validée\n, vous pourrez la modifier à votre convenance via le menu \"Demandes en cours\".";
-				if (confirm(MessageConfirmation)) 
-				{
+// 06/10/15 désactivation message de confirmation.
+//				var MessageConfirmation = "Voulez-vous enregistrer cette demande comme brouillon?\nElle ne sera pas traiter tant que vous ne l'aurez pas validée\n, vous pourrez la modifier à votre convenance via le menu \"Demandes en cours\".";
+//				if (confirm(MessageConfirmation)) 
+//				{
 					Traitement_Enregistre();
-				} else
-				{
-					$("#Enregistrer_Brouillon").removeAttr("Disabled");
-					$("#Valider_Demande").removeAttr("Disabled");
-				};
+//				} else
+//				{
+//					$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//					$("#Valider_Demande").removeAttr("Disabled");
+//				};
 // Désactivation le 18/06/15
 //			} else
 //			{
@@ -1583,7 +1584,7 @@ function timer_enregistrement()
 	function avertissement_Timer(Delai_Timer) //récupère la valeur retournée par le script php PreEnregistrement_Hote.php
 	{
 		//alert("Delai_Timer="+Delai_Timer);
-		if (Delai_Timer > 30)
+		if (Delai_Timer > 600)
 		{
 			alert("Cela fait plus de 10 minutes que rien n'a été enregistré en base.\nJe vous conseille vivement d'enregistrer votre brouillon maintenant.");
 		};

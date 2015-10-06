@@ -50,6 +50,7 @@ while ($res_liste_service = $req_liste_service->fetch())
 // MS_EST_MACRO			19
 // ID_Hote				20
 // ID_Hote_Centreon		21
+// ID_Service_Centreon	22
 */
 	$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Nom_Service'])) + 5;
 	echo '<fieldset id="Service' . $NbFieldset_Service . '" class="service">';
