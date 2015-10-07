@@ -13,6 +13,8 @@ function surligne(img, erreur)
 }
 function verifChamp(champ)
 {
+	champ.value=champ.value.replace(/^\s$/,'NC'); //remplace les champs ne contenant qu'un espace par NC
+	champ.value=champ.value.trim(); //supprime les espaces devant et derrière
 	if(champ.value.length < 1 )
 	{
 		surligne (document.getElementById("img_"+champ.id), true);
@@ -54,6 +56,9 @@ function verifNom_Hote(champ)
 function verifNom_Service(champ)
 {
 	//alert(champ.value);
+	champ.value=champ.value.trim(); //supprime les espaces devant et derrière
+	champ.value=champ.value.replace(/\s{2,}/g,' '); // remplace tous les doubles espaces par des simples espaces
+	champ.value=champ.value.replace(/ /g,'_'); // remplace tous les espaces par des _
 	var reg=/[^-_:.^a-z^0-9#@/\ ]/i; // exclu les caractères normaux du contrôle
 	if (reg.exec(champ.value)!=null)
 	{

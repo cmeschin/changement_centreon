@@ -1,7 +1,15 @@
-﻿2015-10-06 v8.7
+﻿2015-10-07 v8.8
+	Corrections:
+		- correction blocage enregistrement demande ou brouillon par gestion des espaces dans les noms de service (voir amélioration ci-dessous)
+
+	Améliorations:
+		- remplacement automatique des espaces par des underscore dans le nom des services, gestion des espaces multiples
+		- Suppression automatique des espaces en début et fin de chaine (tous les champs)
+
+2015-10-06 v8.7
 	Corrections:
 		- Caractères . et : bloqués dans le nom des services => nécessaires pour les URL
-		
+				
 	Améliorations:
 		- Ajout d'un timer de signalement d'enregistrement de brouillon au bout de 10 minutes
 		- Ajout par défaut de la date de supervision souhaitée à +7 jours
