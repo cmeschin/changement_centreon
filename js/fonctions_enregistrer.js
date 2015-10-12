@@ -1,9 +1,7 @@
 function onglet_suivant()
 {
 	var Verif_Info = true;
-//	$("#info > input[type=text],textarea,select").each(function()
 	$("#info .verif").each(function(){
-		//alert($(this).attr("alt"));
 		if ($(this).attr("alt") != "correct"){
 			Verif_Info = false;
 		};
@@ -687,7 +685,7 @@ function Valider_Demande()
 	
 			});
 			liste_service = liste_service.substring(1,liste_service.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
-//			alert(liste_service);
+			//alert(liste_service);
 	//	DISK_/	#BEEWARE	#D-S 0h-Minuit	#30 min / 3 min	#actif	#	#	#Modifier	#79!/fghj!85!90
 		/////////////////////////////////////////////////////////
 		// transmettre les données au serveur pour MAJ des infos.
@@ -1588,9 +1586,9 @@ function timer_enregistrement()
 	function avertissement_Timer(Delai_Timer) //récupère la valeur retournée par le script php PreEnregistrement_Hote.php
 	{
 		//alert("Delai_Timer="+Delai_Timer);
-		if (Delai_Timer > 600)
+		if (Delai_Timer > 900)
 		{
-			alert("Cela fait plus de 10 minutes que rien n'a été enregistré en base.\nJe vous conseille vivement d'enregistrer votre brouillon maintenant.");
+			alert("Cela fait plus de 15 minutes que rien n'a été enregistré en base.\nJe vous conseille vivement d'enregistrer votre brouillon maintenant.");
 		};
 	}; 
 	recuperation_Timer(avertissement_Timer);

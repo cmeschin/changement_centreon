@@ -1,4 +1,9 @@
-﻿2015-10-07 v8.8
+﻿2015-10-13 v8.8.1
+	Correction:
+		- Modification de la méthode d'insertion en base sur les services (ON DUPLICATE KEY) pose problème
+		- Suppression du remplacement systématique des espaces par des underscores
+		
+2015-10-07 v8.8
 	Corrections:
 		- correction blocage enregistrement demande ou brouillon par gestion des espaces dans les noms de service (voir amélioration ci-dessous)
 

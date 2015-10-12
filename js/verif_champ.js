@@ -58,7 +58,7 @@ function verifNom_Service(champ)
 	//alert(champ.value);
 	champ.value=champ.value.trim(); //supprime les espaces devant et derrière
 	champ.value=champ.value.replace(/\s{2,}/g,' '); // remplace tous les doubles espaces par des simples espaces
-	champ.value=champ.value.replace(/ /g,'_'); // remplace tous les espaces par des _
+	//champ.value=champ.value.replace(/ /g,'_'); // remplace tous les espaces par des _
 	var reg=/[^-_:.^a-z^0-9#@/\ ]/i; // exclu les caractères normaux du contrôle
 	if (reg.exec(champ.value)!=null)
 	{

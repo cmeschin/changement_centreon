@@ -133,7 +133,7 @@ addlog("chargement reprise demande.");
 						</div>
 						<div id="tabs-2">
 							<h2>Reprise - Liste des hôtes et services</h2>
-							<p>Cet onglet recence l'ensemble des hôtes et services rattachés à la prestation précédemment choisie.</p>
+							<p>Cet onglet recense l'ensemble des hôtes et services rattachés à la prestation précédemment choisie.</p>
 							<div id="accordionListe">
 								<h3>Rechercher des hôtes</h3>
 								<div id="recherche_hotes">

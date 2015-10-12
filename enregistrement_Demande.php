@@ -1,4 +1,9 @@
 <?php
+if (session_id()=='')
+{
+	session_start();
+};
+
 include_once('connexion_sql_supervision.php');
 try {
 	$bdd_supervision->beginTransaction();
@@ -58,7 +63,7 @@ try {
 	$UPD_Dem_Service2->execute(Array(
 			'ID_Demande' => $ID_Demande
 	)) or die(print_r($UPD_Dem_Service2->errorInfo()));
-	
+	$bdd_supervision->commit();	
 	//###############################################################################
 	//};
 	//###############################################################################
@@ -72,7 +77,7 @@ try {
 	 */
 	$date=create_date();
 	$_SESSION['Timer']=date_timestamp_get($date);
-	$bdd_supervision->commit();
+
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();
 	http_response_code(500);

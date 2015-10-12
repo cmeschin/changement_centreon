@@ -5,9 +5,8 @@ if (session_id()=='')
 };
 header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 include('log.php'); // chargement de la fonction de log
-addlog("Chargement enregistrement_Demande.php");
+addlog("Chargement enregistrement_donnees.php");
 
-//include_once('connexion_sql_supervision.php'); // déporté sur enregistrement_brouillon.php et enregistrement_demande.php
 $sinfo_gen = (isset($_POST["info_gen"])) ? $_POST["info_gen"] : NULL;
 $sliste_hote = (isset($_POST["liste_hote"])) ? $_POST["liste_hote"] : NULL;
 $sliste_service = (isset($_POST["liste_service"])) ? $_POST["liste_service"] : NULL;
@@ -23,13 +22,6 @@ $ID_Demande = htmlspecialchars($_SESSION['ID_dem']);
 
 if ($info_gen[0] != "")  // S'il y a des données ce qui doit forcément être la cas
 {
-	// Calcul du nombre d'hôte à mettre à jour
-	//	$NbInfo = count($info_gen);
-	//	addlog("NbInfo=".$NbInfo);
-	//	for ($i = 0;$i<$NbInfo;$i++)
-	//	{
-	//		addlog("info_gen=".($info_gen[$i]));
-	//		$info_gen = explode("|",$info_gen[$i]);
 	addlog("Demandeur=".($info_gen[0]));
 	addlog("Date_Demande=".($info_gen[1]));
 	addlog("Etat_Demande=".($info_gen[2]));
@@ -39,24 +31,6 @@ if ($info_gen[0] != "")  // S'il y a des données ce qui doit forcément être l
 	addlog("email=".($info_gen[6]));
 	addlog("Commentaire=".($info_gen[7]));
 
-	//	0		1				2							3		4		5				6			7				8					9					10				11						12		13
-	//	BEEWARE	#10.33.253.8	#boitier Beeware Secours	#BDX1	#SRV	#NC				#32_bits	#Francais		#Reverse Proxy		#commentaire		#lien			#deesc					#actif	#Desactiver
-	
-//		$Select_infos = $bdd_supervision->prepare('SELECT Ref_Demande FROM demande WHERE ID_Demande= :ID_Demande;');
-//		$Select_infos->execute(array(
-//			'Ref_Demande' => htmlspecialchars($info_gen[3]),
-//			'ID_Demande' => $ID_Demande
-//		)) or die(print_r($Select_infos->errorInfo()));
-		
-//	$UPDATE_infos=False;
-//	$res_Select_infos = $Select_infos->fetchAll();
-//	foreach($res_Select_infos as $Ref_Demande) {
-//	addlog("Ref_Demande=".$Ref_Demande[3]);
-//	$UPDATE_infos = True;
-//	};
-
-//	if ($UPDATE_infos==True)
-//	{
 	addlog("MAJ Table Demande");
 	$MAJ_infos = $bdd_supervision->prepare('UPDATE demande 
 		SET Date_Demande= :Date_Demande,
@@ -71,24 +45,6 @@ if ($info_gen[0] != "")  // S'il y a des données ce qui doit forcément être l
 		'email' => htmlspecialchars(strtolower($info_gen[6])), // forçage en minuscule pour la compatibilité des mails
 		'ID_Demande' => $ID_Demande
 	)) or die(print_r($MAJ_infos->errorInfo()));
-//		} else
-//		{
-//				addlog("INSERT Table Demande");
-//			$MAJ_infos = $bdd_supervision->prepare('INSERT INTO demande 
-//				(Code_Client, Demandeur, Date_Demande, Ref_Demande, Date_Supervision_Demandee, Etat_Demande, Commentaire, email)
-//				VALUES (:Code_Client, :Demandeur, :Date_Demande, :Ref_Demande, :Date_Supervision_Demandee, :Etat_Demande, :Commentaire, :email)');
-//			$MAJ_hote->execute(array(
-//				'Code_Client' => htmlspecialchars($info_gen[5]),
-//				'Demandeur' => htmlspecialchars($info_gen[0]),
-//				'Date_Demande' => htmlspecialchars($info_gen[1]),
-//				'Date_Supervision_Demandee' => htmlspecialchars($info_gen[4]),
-//				'Etat_Demande' => htmlspecialchars($info_gen[2]),
-//				'Commentaire' => htmlspecialchars($info_gen[7]),
-//				'email' => htmlspecialchars($info_gen[6]),
-//				)) or die(print_r($MAJ_infos->errorInfo()));
-//		};
-//		addlog(print_r($MAJ_infos));
-//	};
 };
 
 if ($liste_hote[0] != "")  // S'il y a au moins un hôte
@@ -101,55 +57,43 @@ if ($liste_hote[0] != "")  // S'il y a au moins un hôte
 		addlog("liste_hote=".($liste_hote[$i]));
 		$liste_T_hote = explode("|",$liste_hote[$i]);
 		addlog("Nom_hote=".($liste_T_hote[0]));
-
-		//	0		1				2							3		4		5				6			7				8					9					10				11						12		13
-		//	BEEWARE	#10.33.253.8	#boitier Beeware Secours	#BDX1	#SRV	#NC				#32_bits	#Francais		#Reverse Proxy		#commentaire		#lien			#deesc					#actif	#Desactiver
-		//	// Efface les hôtes de la demande avant réinsertion
-		//	$DEL_Hote = $bdd_supervision->prepare('DELETE FROM hote WHERE ID_Demande= :ID_Demande;');
-		//	$DEL_Hote->execute(array(
-		//		'ID_Demande' => $ID_Demande
-		//	)) or die(print_r($DEL_Hote->errorInfo()));
-			addlog("INSERT Table Hote");
-//			$MAJ_hote = $bdd_supervision->prepare('INSERT INTO hote 
-//				(Nom_Hote, ID_Demande, Description, IP_Hote, Type_Hote, ID_Localisation, OS, Architecture, Langue, Fonction, Controle_Actif, Commentaire, Consigne, Detail_Consigne, Type_Action)
-//				VALUES (:Nom_Hote, :ID_Demande, :Description, :IP_Hote, :Type_Hote, :ID_Localisation, :OS, :Architecture, :Langue, :Fonction, :Controle_Actif, :Commentaire, :Consigne, :Detail_Consigne, :Type_Action)');
-			$MAJ_hote = $bdd_supervision->prepare('INSERT INTO hote 
-				(Nom_Hote, ID_Demande, Description, IP_Hote, Type_Hote, ID_Localisation, OS, Architecture, Langue, Fonction, Controle_Actif, Commentaire, Consigne, Detail_Consigne, Type_Action)
-				VALUES (:Nom_Hote, :ID_Demande, :Description, :IP_Hote, :Type_Hote, :ID_Localisation, :OS, :Architecture, :Langue, :Fonction, :Controle_Actif, :Commentaire, :Consigne, :Detail_Consigne, :Type_Action)
-				ON DUPLICATE KEY UPDATE Nom_Hote= :nom_hote2, ID_Demande= :id_demande2, Description= :description2, IP_Hote= :ip_hote2, Type_Hote= :type_hote2, ID_Localisation= :id_localisation2, OS= :os2, Architecture= :architecture2, Langue= :langue2, Fonction= :fonction2, Controle_Actif= :controle_actif2, Commentaire= :commentaire2, Consigne= :consigne2, Detail_Consigne= :detail_consigne2, Type_Action= :type_action2');
-			$MAJ_hote->execute(array(
-				'Nom_Hote' => htmlspecialchars($liste_T_hote[0]),
-				'ID_Demande' => $ID_Demande,
-				'Description' => htmlspecialchars($liste_T_hote[2]),
-				'IP_Hote' => htmlspecialchars($liste_T_hote[1]),
-				'Type_Hote' => htmlspecialchars($liste_T_hote[4]),
-				'ID_Localisation' => htmlspecialchars($liste_T_hote[3]),
-				'OS' => htmlspecialchars($liste_T_hote[5]), // récupérer la valeur texte pour affichage
-				'Architecture' => htmlspecialchars($liste_T_hote[6]),
-				'Langue' => htmlspecialchars($liste_T_hote[7]),
-				'Fonction' => htmlspecialchars($liste_T_hote[8]),
-				'Controle_Actif' => htmlspecialchars($liste_T_hote[12]),
-				'Commentaire' => htmlspecialchars($liste_T_hote[9]),
-				'Consigne' => htmlspecialchars($liste_T_hote[10]),
-				'Detail_Consigne' => htmlspecialchars($liste_T_hote[11]),
-				'Type_Action' => htmlspecialchars($liste_T_hote[13]),
-				'nom_hote2' => htmlspecialchars($liste_T_hote[0]),
-				'id_demande2' => $ID_Demande,
-				'description2' => htmlspecialchars($liste_T_hote[2]),
-				'ip_hote2' => htmlspecialchars($liste_T_hote[1]),
-				'type_hote2' => htmlspecialchars($liste_T_hote[4]),
-				'id_localisation2' => htmlspecialchars($liste_T_hote[3]),
-				'os2' => htmlspecialchars($liste_T_hote[5]), // récupérer la valeur texte pour affichage
-				'architecture2' => htmlspecialchars($liste_T_hote[6]),
-				'langue2' => htmlspecialchars($liste_T_hote[7]),
-				'fonction2' => htmlspecialchars($liste_T_hote[8]),
-				'controle_actif2' => htmlspecialchars($liste_T_hote[12]),
-				'commentaire2' => htmlspecialchars($liste_T_hote[9]),
-				'consigne2' => htmlspecialchars($liste_T_hote[10]),
-				'detail_consigne2' => htmlspecialchars($liste_T_hote[11]),
-				'type_action2' => htmlspecialchars($liste_T_hote[13])
-			)) or die(print_r($MAJ_hote->errorInfo()));
-		//};
+		addlog("INSERT Table Hote");
+		$MAJ_hote = $bdd_supervision->prepare('INSERT INTO hote 
+			(Nom_Hote, ID_Demande, Description, IP_Hote, Type_Hote, ID_Localisation, OS, Architecture, Langue, Fonction, Controle_Actif, Commentaire, Consigne, Detail_Consigne, Type_Action)
+			VALUES (:Nom_Hote, :ID_Demande, :Description, :IP_Hote, :Type_Hote, :ID_Localisation, :OS, :Architecture, :Langue, :Fonction, :Controle_Actif, :Commentaire, :Consigne, :Detail_Consigne, :Type_Action)
+			ON DUPLICATE KEY UPDATE Nom_Hote= :nom_hote2, ID_Demande= :id_demande2, Description= :description2, IP_Hote= :ip_hote2, Type_Hote= :type_hote2, ID_Localisation= :id_localisation2, OS= :os2, Architecture= :architecture2, Langue= :langue2, Fonction= :fonction2, Controle_Actif= :controle_actif2, Commentaire= :commentaire2, Consigne= :consigne2, Detail_Consigne= :detail_consigne2, Type_Action= :type_action2');
+		$MAJ_hote->execute(array(
+			'Nom_Hote' => htmlspecialchars($liste_T_hote[0]),
+			'ID_Demande' => $ID_Demande,
+			'Description' => htmlspecialchars($liste_T_hote[2]),
+			'IP_Hote' => htmlspecialchars($liste_T_hote[1]),
+			'Type_Hote' => htmlspecialchars($liste_T_hote[4]),
+			'ID_Localisation' => htmlspecialchars($liste_T_hote[3]),
+			'OS' => htmlspecialchars($liste_T_hote[5]), // récupérer la valeur texte pour affichage
+			'Architecture' => htmlspecialchars($liste_T_hote[6]),
+			'Langue' => htmlspecialchars($liste_T_hote[7]),
+			'Fonction' => htmlspecialchars($liste_T_hote[8]),
+			'Controle_Actif' => htmlspecialchars($liste_T_hote[12]),
+			'Commentaire' => htmlspecialchars($liste_T_hote[9]),
+			'Consigne' => htmlspecialchars($liste_T_hote[10]),
+			'Detail_Consigne' => htmlspecialchars($liste_T_hote[11]),
+			'Type_Action' => htmlspecialchars($liste_T_hote[13]),
+			'nom_hote2' => htmlspecialchars($liste_T_hote[0]),
+			'id_demande2' => $ID_Demande,
+			'description2' => htmlspecialchars($liste_T_hote[2]),
+			'ip_hote2' => htmlspecialchars($liste_T_hote[1]),
+			'type_hote2' => htmlspecialchars($liste_T_hote[4]),
+			'id_localisation2' => htmlspecialchars($liste_T_hote[3]),
+			'os2' => htmlspecialchars($liste_T_hote[5]), // récupérer la valeur texte pour affichage
+			'architecture2' => htmlspecialchars($liste_T_hote[6]),
+			'langue2' => htmlspecialchars($liste_T_hote[7]),
+			'fonction2' => htmlspecialchars($liste_T_hote[8]),
+			'controle_actif2' => htmlspecialchars($liste_T_hote[12]),
+			'commentaire2' => htmlspecialchars($liste_T_hote[9]),
+			'consigne2' => htmlspecialchars($liste_T_hote[10]),
+			'detail_consigne2' => htmlspecialchars($liste_T_hote[11]),
+			'type_action2' => htmlspecialchars($liste_T_hote[13])
+		)) or die(print_r($MAJ_hote->errorInfo()));
 		addlog("INSERTION données: nom_hote=" . htmlspecialchars($liste_T_hote[0]) . ",id_demande=" . $ID_Demande . ",description=" . htmlspecialchars($liste_T_hote[2]) .",ip_hote=" . htmlspecialchars($liste_T_hote[1]) .",type_hote=" . htmlspecialchars($liste_T_hote[4]).",id_localisation=" . htmlspecialchars($liste_T_hote[3]).",os=" . htmlspecialchars($liste_T_hote[5]).",architecture=" . htmlspecialchars($liste_T_hote[6]).",langue=" . htmlspecialchars($liste_T_hote[7]).",fonction=" . htmlspecialchars($liste_T_hote[8]).",controle_actif=" . htmlspecialchars($liste_T_hote[12]).",commentaire=" . htmlspecialchars($liste_T_hote[9]).",consigne=" . htmlspecialchars($liste_T_hote[10]).",detail_consigne=" . htmlspecialchars($liste_T_hote[11]).",type_action=" . htmlspecialchars($liste_T_hote[13]) ."");
 	};
 
@@ -166,13 +110,9 @@ if ($liste_hote[0] != "")  // S'il y a au moins un hôte
 		//addlog("boucle principale");
 		addlog("Hote_en_Base=". $Res_Hote_Base['Nom_Hote']);
 		$Trouve = "Non";
-		//addlog("trouve1=".$Trouve);
 		for ($i = 0;$i<$NbHote;$i++)
 		{
-			//addlog("debug liste_hote=". $liste_hote[$i]);
 			$Lst_Hote_Dem = explode("|",$liste_hote[$i]);
-
-			//addlog("Compar:". $Lst_Hote_Dem[0].$Lst_Hote_Dem[1]." == ".$Res_Hote_Base['Nom_Hote'].$Res_Hote_Base['IP_Hote']);
 			if ($Lst_Hote_Dem[0].$Lst_Hote_Dem[1] == $Res_Hote_Base['Nom_Hote'].$Res_Hote_Base['IP_Hote'])
 			{
 				$Trouve = "Oui";
@@ -180,17 +120,16 @@ if ($liste_hote[0] != "")  // S'il y a au moins un hôte
 				break;
 			};
 		};
-				//addlog("trouve3=".$Trouve);
 
 		if ($Trouve == "Non")
 		{
 			addlog("hote non trouvé dans l'interface, purge:".$Res_Hote_Base['Nom_Hote']);
+					
 			$DEL_Hote = $bdd_supervision->prepare('DELETE FROM hote 
 				WHERE Nom_Hote= :Nom_Hote AND IP_Hote = :IP_Hote AND Type_Action <> :type_action AND ID_Demande= :ID_Demande;');
 			$DEL_Hote->execute(array(
 				'Nom_Hote' => $Res_Hote_Base['Nom_Hote'],
 				'IP_Hote' => $Res_Hote_Base['IP_Hote'],
-				//'type_action' => "Traite",
 				'type_action' => "NC",
 				'ID_Demande' => $ID_Demande
 			)) or die(print_r($DEL_Hote->errorInfo()));
@@ -205,41 +144,24 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 	addlog("NbService=".$NbService);
 	for ($i = 0;$i<$NbService;$i++)
 	{
-		addlog("liste_service=".($liste_service[$i]));
+		addlog("liste_service".$i."=".($liste_service[$i]));
 		$liste_T_service = explode("|",$liste_service[$i]);
-		//addlog("Nom_service=".($liste_T_service[0]));
-		//addlog("Nom_Periode=".($liste_T_service[2]));
-		//addlog("Frequence=".($liste_T_service[6]));
-		//addlog("Controle_Actif=".($liste_T_service[3]));
-		//addlog("ID_Modele_Service=".($liste_T_service[5]));
-		//addlog("Consigne=".($liste_T_service[7]));
-		//addlog("Detail_Consigne=".($liste_T_service[8]));
-		//addlog("Type_Action=".($liste_T_service[9]));
-		//addlog("Commentaire=".($liste_T_service[10]));
-		//addlog("ID_Hote_Centreon=".($liste_T_service[4]));
-		//addlog("Parametres=".($liste_T_service[11]));
 		addlog("requete insertion Service:");
-		addlog("INSERT INTO service (Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon) 
-			VALUES ('" . htmlspecialchars($liste_T_service[0]) . "'," . $ID_Demande . "," . htmlspecialchars($liste_T_service[1]) . ",'" . htmlspecialchars($liste_T_service[2]) . "','" . htmlspecialchars($liste_T_service[6]) . "','" . htmlspecialchars($liste_T_service[3]) . "'," . htmlspecialchars($liste_T_service[5]) . ",'" . htmlspecialchars($liste_T_service[11]) . "','" . htmlspecialchars($liste_T_service[7]) . "','" . htmlspecialchars($liste_T_service[8]) . "','" . htmlspecialchars($liste_T_service[9]) . "','" . htmlspecialchars($liste_T_service[10]) . "'," . htmlspecialchars($liste_T_service[4]) . ")
-			ON DUPLICATE KEY UPDATE Nom_Service= '".htmlspecialchars($liste_T_service[0])."', ID_Demande= ".$ID_Demande.", ID_Hote= ".htmlspecialchars($liste_T_service[1]).", Nom_Periode= '".htmlspecialchars($liste_T_service[2])."', Frequence= '".htmlspecialchars($liste_T_service[6])."', Controle_Actif= '".htmlspecialchars($liste_T_service[3])."', ID_Modele_Service= ".htmlspecialchars($liste_T_service[5]).", Parametres= '".htmlspecialchars($liste_T_service[11])."', Consigne= '".htmlspecialchars($liste_T_service[7])."', Detail_Consigne= '".htmlspecialchars($liste_T_service[8])."', Type_Action= '".htmlspecialchars($liste_T_service[9])."', Commentaire= '".htmlspecialchars($liste_T_service[10])."', ID_Hote_Centreon= ".htmlspecialchars($liste_T_service[4]).";");
 		addlog("##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= ".htmlspecialchars($liste_T_service[1]).", Nom_Periode= '".htmlspecialchars($liste_T_service[2])."', Frequence= '".htmlspecialchars($liste_T_service[6])."', Controle_Actif= '".htmlspecialchars($liste_T_service[3])."', ID_Modele_Service= ".htmlspecialchars($liste_T_service[5]).", Parametres= '".htmlspecialchars($liste_T_service[11])."', Consigne= '".htmlspecialchars($liste_T_service[7])."', Detail_Consigne= '".htmlspecialchars($liste_T_service[8])."', Type_Action= '".htmlspecialchars($liste_T_service[9])."', Commentaire= '".htmlspecialchars($liste_T_service[10])."', ID_Hote_Centreon= ".htmlspecialchars($liste_T_service[4])." WHERE Nom_Service= '".htmlspecialchars($liste_T_service[0])."' AND ID_Hote= ".htmlspecialchars($liste_T_service[1])." AND ID_Demande= ".$ID_Demande.";");
-		
-		$MAJ_service = $bdd_supervision->prepare('INSERT INTO service 
+/**
+ * procedure ON DUPLICATE KEY UPDATE
+ *
+ 		$MAJ_service = $bdd_supervision->prepare('INSERT INTO service 
 			(Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon)
 			VALUES (:Nom_Service, :ID_Demande, :ID_Hote, :Nom_Periode, :Frequence, :Controle_Actif, :ID_Modele_Service, :Parametres, :Consigne, :Detail_Consigne, :Type_Action, :Commentaire, :id_hote_centreon)
 			ON DUPLICATE KEY UPDATE Nom_Service= :nom_service2, ID_Demande= :id_demande2, ID_Hote= :id_hote2, Nom_Periode= :nom_periode2, Frequence= :frequence2, Controle_Actif= :controle_actif2, ID_Modele_Service= :id_modele_service2, Parametres= :parametres2, Consigne= :consigne2, Detail_Consigne= :detail_consigne2, Type_Action= :type_action2, Commentaire= :commentaire2, ID_Hote_Centreon= :id_hote_centreon2');
 		$MAJ_service->execute(array(
 			'Nom_Service' => htmlspecialchars($liste_T_service[0]),
 			'ID_Demande' => $ID_Demande,
-			//'Nom_Hote' => htmlspecialchars($liste_T_service[1]),
 			'ID_Hote' => htmlspecialchars($liste_T_service[1]),
 			'Nom_Periode' => htmlspecialchars($liste_T_service[2]),
-			//'Frequence' => htmlspecialchars($liste_T_service[3]),
 			'Frequence' => htmlspecialchars($liste_T_service[6]),
-			//'Controle_Actif' => htmlspecialchars($liste_T_service[4]),
 			'Controle_Actif' => htmlspecialchars($liste_T_service[3]),
-			//'ID_Modele_Service' => htmlspecialchars($liste_T_service[5]),
-			//'ID_Modele_Service' => htmlspecialchars($liste_T_service[4]),
 			'ID_Modele_Service' => htmlspecialchars($liste_T_service[5]),
 			'Parametres' => htmlspecialchars($liste_T_service[11]),
 			'Consigne' => htmlspecialchars($liste_T_service[7]),
@@ -249,14 +171,10 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 			'id_hote_centreon' => htmlspecialchars($liste_T_service[4]),
 			'nom_service2' => htmlspecialchars($liste_T_service[0]),
 			'id_demande2' => $ID_Demande,
-			//'Nom_Hote' => htmlspecialchars($liste_T_service[1]),
 			'id_hote2' => htmlspecialchars($liste_T_service[1]),
 			'nom_periode2' => htmlspecialchars($liste_T_service[2]),
-			//'Frequence' => htmlspecialchars($liste_T_service[3]),
 			'frequence2' => htmlspecialchars($liste_T_service[6]),
-			//'Controle_Actif' => htmlspecialchars($liste_T_service[4]),
 			'controle_actif2' => htmlspecialchars($liste_T_service[3]),
-			//'ID_Modele_Service' => htmlspecialchars($liste_T_service[5]),
 			'id_modele_service2' => htmlspecialchars($liste_T_service[5]),
 			'parametres2' => htmlspecialchars($liste_T_service[11]),
 			'consigne2' => htmlspecialchars($liste_T_service[7]),
@@ -265,9 +183,141 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 			'commentaire2' => htmlspecialchars($liste_T_service[10]),
 			'id_hote_centreon2' => htmlspecialchars($liste_T_service[4])
 		)) or die(print_r($MAJ_service->errorInfo()));
+*/
+/**
+ * Procedure Try UPDATE catch INSERT
+ * 
+ 		try {
+			$MAJ_service = $bdd_supervision->prepare('UPDATE service
+			SET Nom_Periode= :nom_periode2,
+					 Frequence= :frequence2,
+					 Controle_Actif= :controle_actif2,
+					 ID_Modele_Service= :id_modele_service2,
+					 Parametres= :parametres2,
+					 Consigne= :consigne2,
+					 Detail_Consigne= :detail_consigne2,
+					 Type_Action= :type_action2,
+					 Commentaire= :commentaire2
+				 WHERE Nom_Service= :nom_service2 AND ID_Demande= :id_demande2 AND ID_Hote= :id_hote2;');
+			$MAJ_service->execute(array(
+					'nom_periode2' => htmlspecialchars($liste_T_service[2]),
+					'frequence2' => htmlspecialchars($liste_T_service[6]),
+					'controle_actif2' => htmlspecialchars($liste_T_service[3]),
+					'id_modele_service2' => htmlspecialchars($liste_T_service[5]),
+					'parametres2' => htmlspecialchars($liste_T_service[11]),
+					'consigne2' => htmlspecialchars($liste_T_service[7]),
+					'detail_consigne2' => htmlspecialchars($liste_T_service[8]),
+					'type_action2' => htmlspecialchars($liste_T_service[9]),
+					'commentaire2' => htmlspecialchars($liste_T_service[10]),
+					'nom_service2' => htmlspecialchars($liste_T_service[0]),
+					'id_demande2' => $ID_Demande,
+					'id_hote2' => htmlspecialchars($liste_T_service[1])
+			)) or die(print_r($MAJ_service->errorInfo()));
+		} catch (Exception $e) {
+			$MAJ_service = $bdd_supervision->prepare('INSERT INTO service 
+				(Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon)
+				VALUES (:Nom_Service, :ID_Demande, :ID_Hote, :Nom_Periode, :Frequence, :Controle_Actif, :ID_Modele_Service, :Parametres, :Consigne, :Detail_Consigne, :Type_Action, :Commentaire, :id_hote_centreon)');
+			$MAJ_service->execute(array(
+				'Nom_Service' => htmlspecialchars($liste_T_service[0]),
+				'ID_Demande' => $ID_Demande,
+				'ID_Hote' => htmlspecialchars($liste_T_service[1]),
+				'Nom_Periode' => htmlspecialchars($liste_T_service[2]),
+				'Frequence' => htmlspecialchars($liste_T_service[6]),
+				'Controle_Actif' => htmlspecialchars($liste_T_service[3]),
+				'ID_Modele_Service' => htmlspecialchars($liste_T_service[5]),
+				'Parametres' => htmlspecialchars($liste_T_service[11]),
+				'Consigne' => htmlspecialchars($liste_T_service[7]),
+				'Detail_Consigne' => htmlspecialchars($liste_T_service[8]),
+				'Type_Action' => htmlspecialchars($liste_T_service[9]),
+				'Commentaire' => htmlspecialchars($liste_T_service[10]),
+				'id_hote_centreon' => htmlspecialchars($liste_T_service[4])
+			)) or die(print_r($MAJ_service->errorInfo()));
+		};
+ */
+
+/**
+ * Procedure basique SELECT Compare si trouvé update sinon insert
+ */
+		$Select_service = $bdd_supervision->prepare('SELECT Concat(Nom_Service,"-", ID_Demande,"-", Id_Hote,"-0") FROM service WHERE ID_Demande = :ID_Demande;');
+		$Select_service->execute(array(
+				'ID_Demande' => $ID_Demande
+		)) or die(print_r($Select_service->errorInfo()));
+		
+		$UPDATE_service = False;
+		$res_Select_Service = $Select_service->fetchAll();
+		$MonService=$liste_T_service[0].'-'.$ID_Demande.'-'.$liste_T_service[1].'-'.$liste_T_service[4];
+		foreach($res_Select_Service as $Service)
+		{
+			if (md5($Service[0]) == md5($MonService) )
+			{ // Si la clé Nom_Service correspond
+				addlog("MonService=".$MonService);
+				addlog("Service=".$Service[0]);
+				addlog("md5_MonService=".md5($MonService));
+				addlog("md5_Service=".md5($Service[0]));
+				$UPDATE_service = True;
+			};
+		};
+		if ($UPDATE_service==True)
+		{
+			addlog("MAJ Table Service");
+			addlog("MonService=".$MonService);
+			addlog("Service=".$Service[0]);
+			addlog("md5_MonService=".md5($MonService));
+			addlog("md5_Service=".md5($Service[0]));					
+			$MAJ_service = $bdd_supervision->prepare('UPDATE service
+				SET Nom_Periode= :nom_periode2,
+					 Frequence= :frequence2,
+					 Controle_Actif= :controle_actif2,
+					 ID_Modele_Service= :id_modele_service2,
+					 Parametres= :parametres2,
+					 Consigne= :consigne2,
+					 Detail_Consigne= :detail_consigne2,
+					 Type_Action= :type_action2,
+					 Commentaire= :commentaire2
+				 WHERE Nom_Service= :nom_service2 AND ID_Demande= :id_demande2 AND ID_Hote= :id_hote2;');
+			$MAJ_service->execute(array(
+					'nom_periode2' => htmlspecialchars($liste_T_service[2]),
+					'frequence2' => htmlspecialchars($liste_T_service[6]),
+					'controle_actif2' => htmlspecialchars($liste_T_service[3]),
+					'id_modele_service2' => htmlspecialchars($liste_T_service[5]),
+					'parametres2' => htmlspecialchars($liste_T_service[11]),
+					'consigne2' => htmlspecialchars($liste_T_service[7]),
+					'detail_consigne2' => htmlspecialchars($liste_T_service[8]),
+					'type_action2' => htmlspecialchars($liste_T_service[9]),
+					'commentaire2' => htmlspecialchars($liste_T_service[10]),
+					'nom_service2' => htmlspecialchars($liste_T_service[0]),
+					'id_demande2' => $ID_Demande,
+					'id_hote2' => htmlspecialchars($liste_T_service[1])
+			)) or die(print_r($MAJ_service->errorInfo()));
+		} else
+		{
+			addlog("INSERT Table Service");
+			addlog("MonService=".$MonService);
+			addlog("Service=".$Service[0]);
+			addlog("md5_MonService=".md5($MonService));
+			addlog("md5_Service=".md5($Service[0]));					
+			$MAJ_service = $bdd_supervision->prepare('INSERT INTO service 
+				(Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon)
+				VALUES (:Nom_Service, :ID_Demande, :ID_Hote, :Nom_Periode, :Frequence, :Controle_Actif, :ID_Modele_Service, :Parametres, :Consigne, :Detail_Consigne, :Type_Action, :Commentaire, :id_hote_centreon)');
+			$MAJ_service->execute(array(
+				'Nom_Service' => htmlspecialchars($liste_T_service[0]),
+				'ID_Demande' => $ID_Demande,
+				'ID_Hote' => htmlspecialchars($liste_T_service[1]),
+				'Nom_Periode' => htmlspecialchars($liste_T_service[2]),
+				'Frequence' => htmlspecialchars($liste_T_service[6]),
+				'Controle_Actif' => htmlspecialchars($liste_T_service[3]),
+				'ID_Modele_Service' => htmlspecialchars($liste_T_service[5]),
+				'Parametres' => htmlspecialchars($liste_T_service[11]),
+				'Consigne' => htmlspecialchars($liste_T_service[7]),
+				'Detail_Consigne' => htmlspecialchars($liste_T_service[8]),
+				'Type_Action' => htmlspecialchars($liste_T_service[9]),
+				'Commentaire' => htmlspecialchars($liste_T_service[10]),
+				'id_hote_centreon' => htmlspecialchars($liste_T_service[4])
+			)) or die(print_r($MAJ_service->errorInfo()));
+		};
 	};
-	addlog(print_r($MAJ_service));
 };
+
 
 // Mise à jour Nom_Hote suite à insertion
 //	$UPD_Service = $bdd_supervision->prepare('UPDATE service AS S, hote AS H SET S.Nom_Hote=H.Nom_Hote WHERE S.ID_Hote=H.ID_Hote AND S.ID_Demande= :ID_Demande');
@@ -283,15 +333,18 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 	$UPD_Service->execute(array(
 			'ID_Demande' => $ID_Demande
 	)) or die(print_r($UPD_Service->errorInfo()));
+	
 	addlog("Mise a jour Type_Action=Creer pour selection=NULL");
 	addlog("UPDATE service SET Type_Action='Creer' WHERE selection IS NULL AND ID_Demande= " . $ID_Demande . ";");
 	
-/*
+/**
  * Désactivé le 23/12/14 puisque géré dans la suppr du fieldset => génère des suppressions à tord! => cas d'un ID_Hote non récupéré
+ * Réactivé le 13/10/15 suite à changment méthode d'insertion en base ON DUPLICATE KEY UPDATE posant problème avec les services!!!
+*/
 // epuration de la demande des services retirés et des doublons
 // vérifier si toujours utile puisque suppression gérée lors de la suppression du fieldset
 //	$Lst_Service_Base = $bdd_supervision->prepare('SELECT Nom_Service, Nom_Hote FROM service WHERE ID_Demande= :ID_Demande;');
-      $Lst_Service_Base = $bdd_supervision->prepare('SELECT Nom_Service, ID_Hote FROM service WHERE ID_Demande= :ID_Demande;');
+    $Lst_Service_Base = $bdd_supervision->prepare('SELECT Nom_Service, ID_Hote FROM service WHERE ID_Demande= :ID_Demande;');
 	$Lst_Service_Base->execute(array(
 		'ID_Demande' => $ID_Demande
 	)) or die(print_r($Lst_Service_Base->errorInfo()));
@@ -331,7 +384,6 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 	//include('gestion_doublon_service.php'); // A vérifier si toujours utile
 //};
 
- */
 
 if ($liste_plage[0] != "")  // S'il y a au moins une plage
 {
@@ -344,34 +396,25 @@ if ($liste_plage[0] != "")  // S'il y a au moins une plage
 		addlog("liste_plage=".($liste_plage[$i]));
 		$liste_T_plage = explode("|",$liste_plage[$i]);
 		addlog("Nom_plage=".($liste_T_plage[0]));
-	//	0				1				2				3				4				5				6		7			8				9
-	// 	09h-18h - L-V	#09:00-18:00	#09:00-18:00	#09:00-18:00	#09:00-18:00	#09:00-18:00	#samedi	#dimanche	#commentaire 	#OK
-
-//		// epuration plage avant réinsertion
-//	$DEL_plage = $bdd_supervision->prepare('DELETE FROM periode_temporelle WHERE ID_Demande = :ID_Demande;');
-//	$DEL_plage->execute(array(
-//		'ID_Demande' => $ID_Demande
-//	)) or die(print_r($DEL_plage->errorInfo()));
-
-
 		$Select_plage = $bdd_supervision->prepare('SELECT ID_Periode_Temporelle, Nom_Periode FROM periode_temporelle WHERE Nom_Periode = :Nom_Periode AND ID_Demande = :ID_Demande;');
 		$Select_plage->execute(array(
 			'Nom_Periode' => htmlspecialchars($liste_T_plage[0]),
 			'ID_Demande' => $ID_Demande
 		)) or die(print_r($Select_plage->errorInfo()));
 		
-			$UPDATE_plage = False;
-			$res_Select_Plage = $Select_plage->fetchAll();
-			foreach($res_Select_Plage as $Plage)
-			{
-				if ($Plage[1] == $liste_T_plage[0]) // Si la plage correspond
-				addlog("Plage=".$Plage[1]);
-				$UPDATE_plage = True;
-			};
+		$UPDATE_plage = False;
+		$res_Select_Plage = $Select_plage->fetchAll();
+		foreach($res_Select_Plage as $Plage)
+		{
+			if ($Plage[1] == $liste_T_plage[0]) // Si la plage correspond
+			addlog("Plage=".$Plage[1]);
+			$UPDATE_plage = True;
+		};
 
 		if ($UPDATE_plage==True)
 		{
 			addlog("MAJ Table Plage");
+					
 			$MAJ_plage = $bdd_supervision->prepare('UPDATE periode_temporelle 
 				SET Lundi= :Lundi,
 					Mardi= :Mardi,
@@ -396,9 +439,11 @@ if ($liste_plage[0] != "")  // S'il y a au moins une plage
 				'Nom_Periode' => htmlspecialchars($liste_T_plage[0]),
 				'ID_Demande' => $ID_Demande
 				)) or die(print_r($MAJ_plage->errorInfo()));
+				
 		} else
 		{
 			addlog("INSERT Table Plage");
+					
 			$MAJ_plage = $bdd_supervision->prepare('INSERT INTO periode_temporelle 
 				(ID_Demande, Nom_Periode, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, Dimanche, Commentaire, Type_Action)
 				VALUES (:ID_Demande, :Nom_Periode, :Lundi, :Mardi, :Mercredi, :Jeudi, :Vendredi, :Samedi, :Dimanche, :Commentaire, :Type_Action)');
@@ -457,28 +502,3 @@ if ($liste_plage[0] != "")  // S'il y a au moins une plage
 		};
 	};
 };
-
-
-// /**
-//  * Supprimer les accents
-//  *
-//  * @param string $str chaîne de caractères avec caractères accentués
-//  * @param string $encoding encodage du texte (exemple : utf-8, ISO-8859-1 ...)
-//  */
-// function suppr_accents($str, $encoding='utf-8')
-// {
-// 	// transformer les caractères accentués en entités HTML
-// 	$str = htmlentities($str, ENT_NOQUOTES, $encoding);
-
-// 	// remplacer les entités HTML pour avoir juste le premier caractères non accentués
-// 	// Exemple : "&ecute;" => "e", "&Ecute;" => "E", "Ã " => "a" ...
-// 	$str = preg_replace('#&([A-za-z])(?:acute|grave|cedil|circ|orn|ring|slash|th|tilde|uml);#', '\1', $str);
-
-// 	// Remplacer les ligatures tel que : Œ, Æ ...
-// 	// Exemple "Å“" => "oe"
-// 	$str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str);
-// 	// Supprimer tout le reste
-// 	$str = preg_replace('#&[^;]+;#', '', $str);
-
-// 	return $str;
-// }

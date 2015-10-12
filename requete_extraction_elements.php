@@ -548,28 +548,39 @@ try {
 					$Chaine_Macro = "";
 					while ( $res_Select_Macro = $req_Select_Macro->fetch () ) {
 						$Chaine_Macro .= " " . htmlspecialchars ( $res_Select_Macro ['Macro'] );
-	// 					if ($ID_Service_Centreon == "31932"){
-	// 						addlog("Chaine_Macro=".$Chaine_Macro);
-	// 					};
+	 					if ($ID_Service_Centreon == "15224"){
+	 						addlog("Chaine_Macro=".$Chaine_Macro);
+	 					};
 					};
-					// addlog("Chaine_Macro=".$Chaine_Macro);
+					//addlog("Chaine_Macro=".$Chaine_Macro);
 					$T_Chaine_Macro = explode ( " ", TRIM ( $Chaine_Macro ) ); // découpe la chaine en tableau
 					
-	// 				echo '<pre>';
-	// 				print_r($T_Chaine_Macro);
-	// 				echo '</pre>';
+					if ($ID_Service_Centreon == "15224"){
+						echo '<pre>';
+						print_r($T_Chaine_Macro);
+	 					echo '</pre>';
+					};
+	 				
 					
 					$NbLigne = count ( $T_Chaine_Macro );
 					$Liste_Macro = Array (); // recrée un nouveau tableau qui contiendra uniquement les noms des macro
 					$i = 0;
 					for($j = 0; $j < $NbLigne; $j ++) {
 						// echo "ChaineMacro=".substr($T_Chaine_Macro[$j],0,9) . "\n";
-						if (substr ( $T_Chaine_Macro [$j], 0, 9 ) == "\$_SERVICE") {
+						// récupération de la chaine après $_SERVICE
+						$chaine=substr($T_Chaine_Macro[$j],strpos($T_Chaine_Macro[$j],"\$_SERVICE"));
+						$chaine=substr($chaine,0,strpos($chaine,"\$"));
+						//if (substr ( $T_Chaine_Macro [$j], 0, 9 ) == "\$_SERVICE") {
+						if (substr ( $chaine, 0, 9 ) == "\$_SERVICE") {
 							// $Liste_Macro[$i] = substr($res_liste_Macro,9,-1); // retourne la valeur de la macro sans "$_SERVICE" et le dernier "$" et la stocke dans un nouveau tableau
-							$Liste_Macro [$i] = $T_Chaine_Macro [$j]; // retourne la valeur de la macro et la stocke dans un nouveau tableau
-	// 						if ($ID_Service_Centreon == "31932"){
-	// 							addlog("Liste_Macro=".$Liste_Macro [$i]);
-	// 						};
+							//$Liste_Macro [$i] = $T_Chaine_Macro [$j]; // retourne la valeur de la macro et la stocke dans un nouveau tableau
+							$Liste_Macro[$i] = substr($res_liste_Macro,9,-1); // retourne la valeur de la macro sans "$_SERVICE" et le dernier "$" et la stocke dans un nouveau tableau
+	 						if ($ID_Service_Centreon == "15224"){
+	 							//addlog("Liste_Macro=".$Liste_Macro [$i]);
+	 							echo '<pre>';
+	 							print_r($Liste_Macro);
+	 							echo '</pre>';
+	 						};
 							$i ++;
 						};
 					};
