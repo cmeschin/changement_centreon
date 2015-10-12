@@ -238,7 +238,7 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 /**
  * Procedure basique SELECT Compare si trouvé update sinon insert
  */
-		$Select_service = $bdd_supervision->prepare('SELECT Concat(Nom_Service,"-", ID_Demande,"-", Id_Hote,"-0") FROM service WHERE ID_Demande = :ID_Demande;');
+		$Select_service = $bdd_supervision->prepare('SELECT Concat(Nom_Service,"-", ID_Demande,"-", Id_Hote,"-",Id_Hote_Centreon) FROM service WHERE ID_Demande = :ID_Demande;');
 		$Select_service->execute(array(
 				'ID_Demande' => $ID_Demande
 		)) or die(print_r($Select_service->errorInfo()));
