@@ -75,8 +75,8 @@ try {
 	/**
 	 * Mise à jour de la variable Timer
 	 */
-	$date=create_date();
-	$_SESSION['Timer']=date_timestamp_get($date);
+	//$date=create_date();
+	//$_SESSION['Timer']=date_timestamp_get($date);
 
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();
