@@ -48,3 +48,16 @@ Temporary Items
 doc/*
 log/*
 extraction_pdf/*
+/.settings/
+/js/
+/.buildpath
+/enregistrement_Brouillon.php
+/enregistrement_Demande.php
+/enregistrement_donnees.php
+/insertion_selection.php
+/recuperation_Timer.php
+/remplissage_param_service.php
+/reprise_demande.php
+/requete_extraction_elements.php
+/requete_Remplissage_Service.php
+/top.php
