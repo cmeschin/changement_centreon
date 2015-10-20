@@ -1,14 +1,15 @@
 Evolutions et bug à corriger dans la prochaine version
 ------------------------------------------------------
 	Gestion_BAM: Ajout champ Actif/Inactif + bouton suppression
+-------------
 =>	mieux gérer les nouvelles URL avec $HOSTNAME$ et $SERVICEDESC$
+-------------
 	Gérer les caractères spéciaux dans les arguments centreon \ notamment
-	
-	Bloquer l'enregistrement si aucun hôte n'est renseigné dans les services
-	Bloquer la validation d'une demande sans service ni hôte
-	Supprimer les doubles espaces dans le nom des services
+-------------
 	Vérifier le contenu du champ "Action à effectuer"
+-------------
 	Corriger pb ID_demande suite à visualisation directe sur lien puis affichage depuis la liste (l'ancien ID est conservé car la variable de session n'est pas réinitialisée.)
+-------------
 	gérer les états d'avancement de la demande en fonction de l'état actuel
 		Brouillon 	A traiter
 					Annulé
@@ -30,34 +31,32 @@ Evolutions et bug à corriger dans la prochaine version
 					Supprimé
 		Annulé		A Traiter
 					Supprimé	
-						
-					
-------------------------------------------------------
-évolutions à prévoir:
+-------------
 
-Reprise_demande
-	* Afficher directement l'onglet Paramétrage => gain en ergonomie
-	* sur une reprise lors de l'enregistrement final, ajouter un message de confirmation si tous les champs ne sont pas revalidés et forcer la demande (gain de temps sur les grosses demandes).
-
-Demandes En Cours (DEC):
-	* Ajouter un champ Commentaire_Traitement dans la table demande pour les cas d'annulation
-	* prévoir un pourcentage d'avancement selon l'état d'avancement des sondes
-	
+	Reprise_demande: Afficher directement l'onglet Paramétrage => gain en ergonomie
+-------------
+	Reprise_demande: lors de l'enregistrement final, ajouter un message de confirmation si tous les champs ne sont pas revalidés et forcer la demande (gain de temps sur les grosses demandes).
+		=> A voir si vraiment bénéfique => gros risque de validation sans controle et donc des demandes incorrectes supplémentaires
+-------------
+	Demandes En Cours (DEC): Ajouter un champ Commentaire_Traitement dans la table demande pour les cas d'annulation => le message devra être transmis dans le mail pour ajout dans le ticket.
+-------------
+	Demandes En Cours (DEC): prévoir un pourcentage d'avancement selon l'état de paramétrage des sondes
+-------------
+	Demandes En Cours (DEC): afficher dan l'entête du tableau l'estimation globale du temps de traitement
+-------------
 Globale:
 	* mise en page à terminer (alignement correct des champs, etc...)
+-------------
 	* ajouter le nombre de service qui utilise la plage (champ supplémentaire en base)
+-------------
 	* ajouter les infos bulles sur les services
+-------------
 	* Proposer à la création d'un hôte une liste de sonde à mettre en place en regard de la fonction indiquée => récupérée à partir du modèle d'hôte
+-------------
 	* mettre en place des arguments par défaut
 		- modification modèle de service sur la page administration
 		- étudier la mise ne place de liste de choix pour certains services (service windows Mode et état par ex.)
-
-Ajout fonctionnalité:
-	* récupérer dynamiquement la liste des catégories pour gérer les champs déroulants de l'hôte
+-------------
 	* afficher visuellement les modifs demandées sur un hôte ou un service (nécessite l'ajout d'un flag pour chaque champ)
+-------------
 	* sur les sélection "A Supprimer", "A désactiver" => forcer l'icône de controle OK puisque ne nécessite pas de modif des arguments; par contre le contrôle doit être fait sur "A activer"
-	
-page Demande en cours:
-	
-Onglet Administration:
-	* gérer la liste des centres pour la localisation => à récupérer dans les groupes d'hôte directement dans Centreon

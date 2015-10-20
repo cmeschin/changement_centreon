@@ -17,6 +17,7 @@ session_start();
 <?php
 	//include('top.php');
 	include('log.php'); // chargement de la fonction de log
+	include_once('connexion_sql_centreon.php');
 	addlog("chargement nouvelle demande.");
 
 	// déclaration des constantes de la demande
@@ -82,7 +83,6 @@ session_start();
 <!-- Désactivé le 15/06/15 car trop de création exotiques -->
 <!-- 							<option value="Nouveau">Nouveau</option> -->
 							<?php
-								include_once('connexion_sql_centreon.php'); 
 								try {
 									include_once('requete_liste_client.php');
 								} catch (Exception $e) {

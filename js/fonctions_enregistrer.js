@@ -529,6 +529,13 @@ function Valider_Demande()
 	$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 	$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 
+	var NbFieldset_hote = $("fieldset.hote").length;
+	var NbFieldset_service = $("fieldset.service").length;
+	var NbFieldset_plage = $("fieldset.plage").length;
+	if (NbFieldset_hote == 0 && NbFieldset_service == 0 && NbFieldset_plage == 0){
+		alert("Votre demande ne comporte aucun hôte ni service ni période temporelle à traiter. L'enregistrement est arrêté.\nVous devez renseigner au moins un hôte, un service ou une plage horaire pour que la demande soit valide.");
+		return false;
+	};
 	controle_doublon();
 	if (Doublon != "Oui")
 	{
@@ -740,9 +747,6 @@ function Valider_Demande()
 				$("#Valider_Demande").removeAttr("Disabled");
 				return false;
 			};
-
-
-	
 		} else
 		{
 			$("#Enregistrer_Brouillon").removeAttr("Disabled");

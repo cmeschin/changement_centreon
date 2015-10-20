@@ -1,7 +1,13 @@
-﻿2015-10-13 v8.8.1
+﻿2015-10-20 8.9
+	Améliorations:
+		- Blocage de la validation des demandes vides (aucun hote, service ou période).
+		- Déplacement de la connexion à la base Centreon (au début) sur la page nouvelle_demande
+		- Modification du message d'erreur de connexion pour plus de précision.
+		
+2015-10-13 v8.8.1
 	Correction:
 		- Modification de la méthode d'insertion en base sur les services (ON DUPLICATE KEY) pose problème
-		- Suppression du remplacement systématique des espaces par des underscores
+		- Suppression du remplacement systématique des espaces par des underscores car n'était pas la cause du blocage des doublons
 		
 2015-10-07 v8.8
 	Corrections:
@@ -10,6 +16,7 @@
 	Améliorations:
 		- remplacement automatique des espaces par des underscore dans le nom des services, gestion des espaces multiples
 		- Suppression automatique des espaces en début et fin de chaine (tous les champs)
+		- Verrouillage à l'enregistrement (brouillon et validation) des champs vides sur Hôte, Plage et modèle de service
 
 2015-10-06 v8.7
 	Corrections:
@@ -19,6 +26,7 @@
 		- Ajout d'un timer de signalement d'enregistrement de brouillon au bout de 10 minutes
 		- Ajout par défaut de la date de supervision souhaitée à +7 jours
 		- Suppression de certains messages de confirmation (duplication hôte service et plage, enregistrement brouillon)
+		- MAJ_Modele_Centreon => mise à jour des tables OS, Localisation, Site, Type et fonction
 
 2015-09-22 v8.6
 	Correctifs:
