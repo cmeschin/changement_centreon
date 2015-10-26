@@ -534,6 +534,8 @@ function Valider_Demande()
 	var NbFieldset_plage = $("fieldset.plage").length;
 	if (NbFieldset_hote == 0 && NbFieldset_service == 0 && NbFieldset_plage == 0){
 		alert("Votre demande ne comporte aucun hôte ni service ni période temporelle à traiter. L'enregistrement est arrêté.\nVous devez renseigner au moins un hôte, un service ou une plage horaire pour que la demande soit valide.");
+		$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
+		$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 		return false;
 	};
 	controle_doublon();
