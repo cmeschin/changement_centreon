@@ -1320,6 +1320,21 @@ function Gestion_caractere_speciaux(str)
 	{
 		str = str.replace(/\*/g,"_ETOIL_");
 	};
+	var reg1=new RegExp("[']","g");
+	if (str.match(reg1))
+	{
+		str = str.replace(/\'/g,"_SQUOTE_");
+	};
+	var reg1=new RegExp("[\"]","g");
+	if (str.match(reg1))
+	{
+		str = str.replace(/\"/g,"_DQUOTE_");
+	};
+//	var reg1=new RegExp("[\]","g");
+//	if (str.match(reg1))
+//	{
+//		str = str.replace(/\\/g,"_BCKSL_");
+//	};
 	var str2 = "";
 	str2 = encodeURI(str);
 	Valeur_Champ = str2;

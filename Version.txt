@@ -1,4 +1,12 @@
-﻿2015-10-26 8.9
+﻿2015-10-x 8.10
+	Correction:
+		- #3 Meilleure gestion des caractères spéciaux tels que \ ' et " dans les arguments des services
+			=> substitutions effectuées:
+				 \ => _BCKSL_
+				 ' => _SQUOTE_
+				 " => _DQUOTE_
+	
+2015-10-26 8.9
 	Améliorations:
 		- Blocage de la validation des demandes vides (aucun hote, service ou période).
 		- Déplacement de la connexion à la base Centreon (au début) sur la page nouvelle_demande

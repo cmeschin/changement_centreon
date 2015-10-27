@@ -328,16 +328,24 @@ try {
 				$ID_Modele_Service_Centreon = $res_elements ['ID_Modele_Service_Centreon'];
 			};
 			//VALUES(:Nom_Service, :Frequence, :Nom_Periode, :Controle_Actif, :ID_Service_Centreon, :ID_Hote_Centreon, :ID_Modele_Service_Centreon, :consigne, :nom_hote, :parametres)
-			$value_service .= ",('" . $res_elements ['Nom_Service'] . "','" . $res_elements ['Frequence'] . "','" . $res_elements ['Nom_Periode'] . "','" . $res_elements ['Controle_Actif'] . "'," . $res_elements ['ID_Service_Centreon'] . "," . $res_elements ['ID_Hote_Centreon'] . "," . $ID_Modele_Service_Centreon . ",'" . $res_elements ['Consigne_Service'] . "','" . $Nom_Hote . "',\"" . substr($res_elements ['Parametres'],1) . "\")";
+			//$value_service .= ",('" . $res_elements ['Nom_Service'] . "','" . $res_elements ['Frequence'] . "','" . $res_elements ['Nom_Periode'] . "','" . $res_elements ['Controle_Actif'] . "'," . $res_elements ['ID_Service_Centreon'] . "," . $res_elements ['ID_Hote_Centreon'] . "," . $ID_Modele_Service_Centreon . ",'" . $res_elements ['Consigne_Service'] . "','" . $Nom_Hote . "',\"" . substr($res_elements ['Parametres'],1) . "\")";
+			/**
+			 * Traitement des ' => remplacement par _SQUOTE_ dans le champ Parametre
+			 */
+				addlog("avant=" . $value_service);
+				$res_elements ['Parametres']=str_replace("'","_SQUOTE_",$res_elements ['Parametres']);
+				addlog("apres=" . $value_service);
+					
+			$value_service .= ",('" . $res_elements ['Nom_Service'] . "','" . $res_elements ['Frequence'] . "','" . $res_elements ['Nom_Periode'] . "','" . $res_elements ['Controle_Actif'] . "'," . $res_elements ['ID_Service_Centreon'] . "," . $res_elements ['ID_Hote_Centreon'] . "," . $ID_Modele_Service_Centreon . ",'" . $res_elements ['Consigne_Service'] . "','" . $Nom_Hote . "','" . substr($res_elements ['Parametres'],1) . "')";
 			
 			if ($i % 500 == 0)
 			{
-	// 	/**
-	// 	 * Traitement des Antislash => remplacement par _BCKSL_ ==>> en cours de test voir pour privilégier les / au lieu des \ dans les arguments 
-	// 	 */
-	// 		addlog("avant=" . $value_service);
-	// 		$value_service=str_replace("\\","_BCKSL_",$value_service);
-	// 		addlog("apres=" . $value_service);
+	// 		/**
+	// 		 * Traitement des Antislash => remplacement par _BCKSL_ ==>> en cours de test voir pour privilégier les / au lieu des \ dans les arguments 
+	// 		 */
+	// 			addlog("avant=" . $value_service);
+	// 			$value_service=str_replace("\\","_BCKSL_",$value_service);
+	// 			addlog("apres=" . $value_service);
 	
 				addlog("insertion service partielle " . $i/500 . "...");
 				$value_service = substr($value_service,1); // suppression de la première virgule
@@ -354,17 +362,18 @@ try {
 		$value_service = substr($value_service,1); // suppression de la première virgule
 		addlog($value_service);
 		
-	// 	/**
-	// 	 * Traitement des Antislash => remplacement par _BCKSL_ ==>> en cours de test voir pour privilégier les / au lieu des \ dans les arguments 
-	// 	 */
-	// 		addlog("avant=" . $value_service);
-	// 		$value_service=str_replace("\\","_BCKSL_",$value_service);
-	// 		addlog("apres=" . $value_service);
+// 		/**
+// 		 * Traitement des Antislash => remplacement par _BCKSL_ ==>> en cours de test voir pour privilégier les / au lieu des \ dans les arguments 
+// 		 */
+// 			addlog("avant=" . $value_service);
+// 			$value_service=str_replace("\\","_BCKSL_",$value_service);
+// 			addlog("apres=" . $value_service);
+
 		//addlog('INSERT INTO ' . $tbl_tmp_service . ' (Nom_Service, Frequence, Nom_Periode, Controle_Actif, ID_Service_Centreon, ID_Hote_Centreon, ID_Modele_Service_Centreon, Consigne, Nom_Hote, Parametres) VALUES ' . $value_service . '');
-			$insert_service_selec = $bdd_supervision->prepare ( 'INSERT INTO ' . $tbl_tmp_service . ' (Nom_Service, Frequence, Nom_Periode, Controle_Actif, ID_Service_Centreon, ID_Hote_Centreon, ID_Modele_Service_Centreon, Consigne, Nom_Hote, Parametres)
-				 VALUES ' . $value_service . '');
-			$insert_service_selec->execute(array()) or die (print_r( $insert_service_selec->errorInfo()));
-			addlog("traitement service...OK");
+		$insert_service_selec = $bdd_supervision->prepare ( 'INSERT INTO ' . $tbl_tmp_service . ' (Nom_Service, Frequence, Nom_Periode, Controle_Actif, ID_Service_Centreon, ID_Hote_Centreon, ID_Modele_Service_Centreon, Consigne, Nom_Hote, Parametres)
+			 VALUES ' . $value_service . '');
+		$insert_service_selec->execute(array()) or die (print_r( $insert_service_selec->errorInfo()));
+		addlog("traitement service...OK");
 			
 		
 		/**

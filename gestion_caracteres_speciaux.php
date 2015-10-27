@@ -45,6 +45,14 @@ if ($_SESSION['Admin']==False)
 	{
 		$Valeur_Champ = str_replace("_ETOIL_","*",$Valeur_Champ);
 	};
+	if (preg_match("#_SQUOTE_#",$Valeur_Champ))
+	{
+		$Valeur_Champ = str_replace("_SQUOTE_","'",$Valeur_Champ);
+	};
+	if (preg_match("#_DQUOTE_#",$Valeur_Champ))
+	{
+		$Valeur_Champ = str_replace("_DQUOTE_","\"",$Valeur_Champ);
+	};
 	
 // /**
 //  * Gestion antislash en cours de test
