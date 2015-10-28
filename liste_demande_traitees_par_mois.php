@@ -69,6 +69,7 @@ echo '<table id="T_Liste_Demande">';
 //				echo '<label for="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '">Etat:</label>';
 				echo '<select onChange="set_focus_bouton('.htmlspecialchars($res_dem['ID_Demande']).');" name="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '" id="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '">';
 				try {
+					$etat_dem = $res_dem['Etat_Demande'];
 					include('requete_liste_Etat_Demande.php');
 				} catch (Exception $e) {
 					echo '</select>';
@@ -76,7 +77,14 @@ echo '<table id="T_Liste_Demande">';
 				};
 				while ($res_etat = $req_etat->fetch())
 				{
-					if (htmlspecialchars($res_dem['Etat_Demande']) != htmlspecialchars($res_etat['Etat_Dem']))
+// 					if (htmlspecialchars($res_dem['Etat_Demande']) != htmlspecialchars($res_etat['Etat_Dem']))
+// 					{
+// 						echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
+// 					};
+					if (htmlspecialchars($res_dem['Etat_Demande']) == htmlspecialchars($res_etat['Etat_Dem']))
+					{
+						echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
+					} else
 					{
 						echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
 					};
