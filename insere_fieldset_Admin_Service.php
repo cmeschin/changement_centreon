@@ -7,6 +7,7 @@ session_start();
 if (isset($ID_Service))
 {
 	try {
+		$etat_dem = $res_liste_service['Etat_Parametrage'];
 		include('requete_liste_Etat_Demande.php');
 	} catch (Exception $e) {
 		echo '</select>';

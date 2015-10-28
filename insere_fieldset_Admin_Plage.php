@@ -7,6 +7,7 @@ session_start();
 if (isset($ID_Plage))
 {
 	try {
+		$etat_dem = $res_liste_plage['Etat_Parametrage'];
 		include('requete_liste_Etat_Demande.php');
 	} catch (Exception $e) {
 		echo '</select>';

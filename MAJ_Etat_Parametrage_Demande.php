@@ -33,19 +33,19 @@ try {
 				'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Demande->errorInfo()));
 		};
-		$MAJ_Hote = $bdd_supervision->prepare('UPDATE hote SET Etat_Parametrage= :Etat_Param WHERE ID_Demande= :ID_Demande;');
+		$MAJ_Hote = $bdd_supervision->prepare('UPDATE hote SET Etat_Parametrage= :Etat_Param WHERE ID_Demande= :ID_Demande AND Etat_Parametrage<>"Annulé";');
 		$MAJ_Hote->execute(array(
 			'Etat_Param' => $Etat_Param,
 			'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Hote->errorInfo()));
 	
-		$MAJ_Service = $bdd_supervision->prepare('UPDATE service SET Etat_Parametrage= :Etat_Param WHERE ID_Demande= :ID_Demande;');
+		$MAJ_Service = $bdd_supervision->prepare('UPDATE service SET Etat_Parametrage= :Etat_Param WHERE ID_Demande= :ID_Demande AND Etat_Parametrage<>"Annulé";');
 		$MAJ_Service->execute(array(
 			'Etat_Param' => $Etat_Param,
 			'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Service->errorInfo()));
 	
-		$MAJ_Plage = $bdd_supervision->prepare('UPDATE periode_temporelle SET Etat_Parametrage= :Etat_Param WHERE ID_Demande= :ID_Demande;');
+		$MAJ_Plage = $bdd_supervision->prepare('UPDATE periode_temporelle SET Etat_Parametrage= :Etat_Param WHERE ID_Demande= :ID_Demande AND Etat_Parametrage<>"Annulé";');
 		$MAJ_Plage->execute(array(
 			'Etat_Param' => $Etat_Param,
 			'ID_Demande' => $ID_Demande

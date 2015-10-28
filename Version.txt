@@ -1,11 +1,53 @@
-﻿2015-10-x 8.10
+﻿2015-10-28 8.10
 	Correction:
 		- #3 Meilleure gestion des caractères spéciaux tels que \ ' et " dans les arguments des services
 			=> substitutions effectuées:
 				 \ => _BCKSL_
 				 ' => _SQUOTE_
 				 " => _DQUOTE_
-	
+	Amélioration:
+		- #5	gestion des états des demandes en fonction de l'avancement
+				Conservation du statut annulé sur les éléments si la demande passe dans un autre statut.
+			Ajout table relation_etat_demande:
+			#####
+			CREATE TABLE relation_etat_demande (red_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, red_etat_id int(11) NOT NULL, red_etat_parent_id int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+			#####
+			Définition des relation comme suit:
+			Etat Actuel	Choix possible
+			Brouillon
+						A traiter
+			            Annulé
+			            Supprimé
+			
+						Brouillon
+			A Traiter
+						En cours
+						Annulé
+						Supprimé
+			
+						A Traiter
+			En cours
+						Validation
+						Annulé
+						Supprimé
+						
+						En cours
+			Validation
+						Traité
+						Annulé
+						Supprimé
+						
+						Validation
+			Traité
+						Annulé
+						Supprimé
+						
+						Brouillon
+						A Traiter
+			Annulé
+						Supprimé 
+						
+
 2015-10-26 8.9
 	Améliorations:
 		- Blocage de la validation des demandes vides (aucun hote, service ou période).

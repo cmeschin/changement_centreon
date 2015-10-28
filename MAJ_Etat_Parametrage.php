@@ -67,7 +67,6 @@ try {
 			if (htmlspecialchars($res_demande['mail_encours']) == False)
 			{ // si mail_encours n'est pas coché, on envoie le mail
 				addlog("MAJ_ETAT_PARAMETRAGE_DEM:" . $ID_Demande . " Envoi du mail encours.");
-				// A activer lorsque l'automate SUSI sera en place
 				include('envoi_mail_encours.php');		
 			};
 		};
