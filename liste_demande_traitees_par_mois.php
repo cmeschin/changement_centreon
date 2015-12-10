@@ -14,7 +14,18 @@ try {
 } catch (Exception $e) {
 	die('Erreur requete liste demande traite: ' . $e->getMessage());
 };
-
+try {
+	include_once('requete_liste_demande_traite_par_mois_temps_global.php');
+} catch (Exception $e) {
+	http_response_code(500);
+	echo '<p>Erreur requete liste demande traite par mois temps global: ' . $e->getMessage() . '<p/>';
+	die('Erreur requete liste demande traite par mois temps global: ' . $e->getMessage());
+};
+$res_dem_tg = $req_dem_tg->fetchall();
+foreach($res_dem_tg as $element)
+{
+	$Temps_Global = $element['Temps_Global'];
+};
 echo '<table id="T_Liste_Demande">';
 	echo '<tr>';
 	echo '<th>Action</th>';
@@ -27,7 +38,7 @@ echo '<table id="T_Liste_Demande">';
 	echo '<th>Nombre de Services</th>';
 	echo '<th>Nombre de Plages</th>';
 	echo '<th>Etat de la Demande</th>';
-	echo '<th onclick="alert(\'Cette estimation purement indicative est basée sur les valeurs suivantes:\nPour les hôtes:\n - Création => 30 minutes\n - Modification => 5 minutes\n - Désactivation ou Suppression => 2 minutes\nPour les services:\n - Création => 5 minutes\n - Modification => 3 minutes\n - Désactivation ou Suppression => 2 minutes\');">Temps estimé <img alt="point_interrogation" src="images/point-interrogation-16.png"></th>';
+	echo '<th onclick="alert(\'Cette estimation purement indicative est basée sur les valeurs suivantes:\nPour les hôtes:\n - Création => 30 minutes\n - Modification => 5 minutes\n - Désactivation ou Suppression => 2 minutes\nPour les services:\n - Création => 5 minutes\n - Modification => 3 minutes\n - Désactivation ou Suppression => 2 minutes\');">Temps estimé ' . $Temps_Global .'<img alt="point_interrogation" src="images/point-interrogation-16.png"></th>';
 
         if ( $_SESSION['Admin'] == True)
         {
@@ -60,7 +71,9 @@ echo '<table id="T_Liste_Demande">';
 			echo '<td>' . htmlspecialchars($res_dem['NbService']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbPlage']) . '</td>';
 			echo '<td ' . $class . '>' . htmlspecialchars($res_dem['Etat_Demande']) . '</td/>';
-			echo '<td>' . htmlspecialchars(floor($res_dem['Temps']/60) . 'h' . ($res_dem['Temps']%60)) . '</td>';
+			// le formatage est fait directement dans la requête d'extraction.
+			//echo '<td>' . htmlspecialchars(floor($res_dem['Temps']/60) . 'h' . ($res_dem['Temps']%60)) . '</td>';
+			echo '<td>' . htmlspecialchars($res_dem['Temps']) . '</td>';
 			if ( $_SESSION['Admin'] == True)
 			{
 				echo '<td>';

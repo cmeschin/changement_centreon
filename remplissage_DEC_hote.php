@@ -3,6 +3,7 @@ if (session_id()=='')
 {
 session_start();
 };
+include('log.php'); // chargement de la fonction de log
 if ($_SESSION['R_ID_Demande'] == NULL)
 {
 	$ID_Demande = (isset($_POST["ID_Dem"])) ? $_POST["ID_Dem"] : NULL;
@@ -10,7 +11,7 @@ if ($_SESSION['R_ID_Demande'] == NULL)
 {
 	$ID_Demande = $_SESSION['R_ID_Demande'];
 }
-
+addlog("ID_Demande=" . $ID_Demande);
 include_once('connexion_sql_supervision.php');
 
 try {
@@ -19,11 +20,22 @@ try {
 	die('Erreur requete liste hote_demande: ' . $e->getMessage());
 };
 
-$NbFieldset = 1;
+/**
+ * #21 meilleure gestion de la coloration par ajout de l'id_dem dans les id des balises
+ * $NbFieldset est désormais construit avec l'id_demande + le numéro de fieldset courant
+ * // $NbFieldset = 1;
+ */
+
+$NumFieldset = 1;
+
 while ($res_liste_hote = $req_liste_hote->fetch())
 { 
+	/**
+	 * #21
+	 */
+	$NbFieldset = $ID_Demande . "_" . $NumFieldset;
 	echo '<fieldset id="Hote' . $NbFieldset . '" class="hote">';
-		echo '<legend>Hôte n°' . $NbFieldset . '</legend>';
+		echo '<legend>Hôte n°' . $NumFieldset . '</legend>';
 		echo '<!-- Hote -->';
 		echo '<div id="model_param_hote">';
 			echo '<label for="Nom_Hote' . $NbFieldset . '">Nom de l\'hôte :</label>';
@@ -88,6 +100,11 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			include('insere_fieldset_Admin_Hote.php');
 		};
 	echo '</fieldset>';
-	$NbFieldset++;
+
+	/**
+	 * #21
+	 *$NbFieldset ++; 
+	 */
+	$NumFieldset ++;
 };
 $Statut_Hote=true;

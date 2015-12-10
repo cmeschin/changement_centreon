@@ -10,7 +10,7 @@ $req_liste_plage = $bdd_supervision->prepare('SELECT
 		 if(Dimanche="","-",Dimanche) as dimanche,
 		 Commentaire as commentaire,
 		 Type_Action as type_action,
-		 Etat_Parametrage as etat_parametrage,
+		 Etat_Parametrage as Etat_Parametrage,
 		 ID_Periode_Temporelle as id_periode_temporelle
 	FROM periode_temporelle
 	 WHERE Type_Action <> "NC"

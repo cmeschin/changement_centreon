@@ -3,6 +3,7 @@ if (session_id()=='')
 {
 session_start();
 };
+include('log.php'); // chargement de la fonction de log
 if ($_SESSION['R_ID_Demande'] == NULL)
 {
 	$ID_Demande = (isset($_POST["ID_Dem"])) ? $_POST["ID_Dem"] : NULL;
@@ -10,6 +11,7 @@ if ($_SESSION['R_ID_Demande'] == NULL)
 {
 	$ID_Demande = $_SESSION['R_ID_Demande'];
 }
+addlog("ID_Demande=" . $ID_Demande);
 
 include_once('connexion_sql_supervision.php');
 
@@ -46,11 +48,22 @@ try {
 // ID_Hote_Centreon		21
 
 $liste_service = "";
-$NbFieldset_Service = 1;
+/**
+ * #21 meilleure gestion de la coloration par ajout de l'id_dem dans les id des balises
+ * $NbFieldset_Service est désormais construit avec l'id_demande + le numéro de fieldset courant
+ * // $NbFieldset_Service = 1;
+ */
+
+$NumFieldset = 1;
+
 while ($res_liste_service = $req_liste_service->fetch())
 { 
+	/**
+	 * #21
+	 */
+	$NbFieldset_Service = $ID_Demande . "_" . $NumFieldset;
 	echo '<fieldset id="Service' . $NbFieldset_Service . '" class="service">';
-		echo '<legend>Service n°' . $NbFieldset_Service . '</legend>';
+		echo '<legend>Service n°' . $NumFieldset . '</legend>';
 		echo '<!-- Nom service -->';
 		//$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Nom_Service'])) + 20*strlen(htmlspecialchars($res_liste_service['Nom_Service']))/100;
 		$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Nom_Service'])) + 10;
@@ -127,6 +140,11 @@ while ($res_liste_service = $req_liste_service->fetch())
 		};
 	echo '</fieldset>';
 
-	$NbFieldset_Service ++;
+	/**
+	 * #21
+	 *$NbFieldset_Service ++; 
+	 */
+	
+	$NumFieldset ++;
 };
 $Statut_Service=true;

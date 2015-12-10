@@ -16,6 +16,7 @@ try {
 	$ID_Plage = (isset($_POST["ID_Plage"])) ? $_POST["ID_Plage"] : NULL;
 	$Etat_Param = (isset($_POST["Etat_Param"])) ? $_POST["Etat_Param"] : NULL;
 	$MAJ_OK=False;
+	addlog("MAJ Paramétrage à effectuer: ID_Demande=[" . $ID_Demande . "], ID_Hote=[" . $ID_Hote . "], ID_Service=[" . $ID_Service . "], ID_Plage=[" . $ID_Plage . "], Etat_Param=[" . $Etat_Param . "]!");
 	if ($ID_Hote != NULL) 
 	{
 		$MAJ_Hote = $bdd_supervision->prepare('UPDATE hote SET Etat_Parametrage= :Etat_Param WHERE ID_Hote = :ID_Hote AND ID_Demande= :ID_Demande;');
@@ -76,4 +77,3 @@ try {
 	$bdd_supervision->rollBack();
 	die('Erreur MAJ Etat parametrage: ' . $e->getMessage());
 };
-	

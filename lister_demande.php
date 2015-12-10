@@ -4,9 +4,9 @@ if (session_id()=='')
 {
 session_start();
 };
-$R_ID_Demande = (isset($_GET["id_dem"])) ? $_GET["id_dem"] : NULL;
-$_SESSION['R_ID_Demande'] = htmlspecialchars($R_ID_Demande);
-$_SESSION['Reprise'] = false;
+$R_ID_Demande = (isset($_GET["id_dem"])) ? $_GET["id_dem"] : NULL; 	// si l'id_dem est transmis dans l'URL
+$_SESSION['R_ID_Demande'] = htmlspecialchars($R_ID_Demande);		// on charge la variable de session avc la valeur sinon NULL
+$_SESSION['Reprise'] = false;	// Il ne s'agit pas d'une reprise
 
 ?>
 <html>

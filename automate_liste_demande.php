@@ -75,7 +75,7 @@ try {
 // 	};
 		
 /**
- * Récupération de la liste des notifications
+ * Récupération de la liste des demandes en cours
  */
 // 	$req_lst_J = $bdd_supervision->prepare('
 // 		SELECT
@@ -93,7 +93,10 @@ try {
 			 Date_Demande,
 			 Date_Supervision_Demandee,
 			 Code_Client,
-			 Etat_Demande
+			 Etat_Demande,
+			 (SELECT CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global
+				FROM demande
+				WHERE Etat_Demande IN ("A Traiter","En cours","Validation")) as Temps_Global
 		 FROM demande
 		 WHERE Etat_Demande IN ("A Traiter","En cours","Validation")
 		 ORDER BY Date_Supervision_Demandee, Code_Client;');
@@ -547,6 +550,7 @@ try {
 	
 	While($res_lst_J = $req_lst_J->fetch())
 	{
+		$Temps_Global = $res_lst_J['Temps_Global'];
 		$contenu_html .= "<tr>
 	 				<td class='Tableau1_A1'>" . $res_lst_J['Date_Supervision_Demandee'] . "</td>
 	 				<td class='Tableau1_A1'>" . $res_lst_J['Demandeur'] . "</td>
@@ -555,6 +559,7 @@ try {
 	 			</tr>";
 	};
 	$contenu_html .= "</table><br />";
+	$contenu_html .= "<p class=\"P1\">Le temps global de traitement estimé pour ces demandes est de ". $Temps_Global . "</p>";
 	
 //	$contenu_html = $contenu_htmlJ ."<br />" . $contenu_html8J . "<br />" . $contenu_htmlPLUS8J;
 				/**

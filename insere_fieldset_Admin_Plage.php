@@ -15,7 +15,7 @@ if (isset($ID_Plage))
 		die('Erreur requete liste Etat demande:' . $e->getMessage());
 	};
 	
-	$etat=htmlspecialchars($res_liste_plage['etat_parametrage']);
+	$etat=htmlspecialchars($res_liste_plage['Etat_Parametrage']);
 	include('gestion_class_etat_dem.php');
 	
 	echo '<fieldset id="Admin_bouton_Plage' . $NbFieldset_plage . '" class="Admin_bouton_Plage">';
@@ -26,7 +26,7 @@ if (isset($ID_Plage))
 	{ 
 		if ( htmlspecialchars($res_etat['Etat_Dem']) != "Supprimer") // on ne peut pas supprimer un élément unitaire de la demande, donc il n'est pas ajouté à la liste.
 		{
-			if (htmlspecialchars($res_liste_plage['etat_parametrage']) == htmlspecialchars($res_etat['Etat_Dem']))
+			if (htmlspecialchars($res_liste_plage['Etat_Parametrage']) == htmlspecialchars($res_etat['Etat_Dem']))
 			{
 				echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
 			} else

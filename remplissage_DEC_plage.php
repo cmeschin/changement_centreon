@@ -21,11 +21,21 @@ include_once('requete_liste_periode_demande.php');
 	die ('Erreur requete_liste_periode_demande: ' . $e->getMessage());
 };
 
-$NbFieldset_plage = 1;
+/**
+ * #21 meilleure gestion de la coloration par ajout de l'id_dem dans les id des balises
+ * $NbFieldset_plage est désormais construit avec l'id_demande + le numéro de fieldset courant
+ * // $NbFieldset_plage = 1;
+ */
+
+$NumFieldset = 1;
 while ($res_liste_plage = $req_liste_plage->fetch())
 { 
+	/**
+	 * #21
+	 */
+	$NbFieldset_plage = $ID_Demande . "_" . $NumFieldset;
 	echo '<fieldset id="Plage' . $NbFieldset_plage . '" class="plage">';
-	echo '<legend>Plage horaire n°' . $NbFieldset_plage . '</legend>';
+	echo '<legend>Plage horaire n°' . $NumFieldset . '</legend>';
 		echo '<div id="model_param_plage">';
 			echo '<!-- Nom_Période -->';
 			$LongueurArg=  strlen(htmlspecialchars($res_liste_plage['nom_periode']));// + 10;
@@ -80,6 +90,11 @@ while ($res_liste_plage = $req_liste_plage->fetch())
 			include('insere_fieldset_Admin_Plage.php');
 		};
 	echo '</fieldset>';
-	$NbFieldset_plage++; // incrémentation du fieldset
+
+	/**
+	 * #21
+	 *$NbFieldset_plage ++; 
+	 */
+	$NumFieldset ++;
 };
 $Statut_Plage=true;

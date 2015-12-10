@@ -989,11 +989,14 @@ function Enregistrer_Brouillon(Bouton)
 
 function enregistre_Etat_Demande(champ,ID)
 { // fonction d'enregistrement de l'état du paramétrage pour le fieldset hote, service ou plage en cours => passe la demande globale au statut "En cours" si ce n'est pas le cas.
+	/**
+	 * ID correspond à l'ID_Hote, l'ID_Service ou l'ID_periode selon le cas
+	 */
 	var parent=$(champ).parent().parent().parent().attr("id"); // récupèrele fieldset parent DEC_hote contenant l'ID_Demande
 	var ID_Hote = "";
 	var ID_Service = "";
 	var ID_Plage = "";
-//	alert(champ.id.substring(12));
+	//alert(champ.id.substring(12));
 	var Etat_Param = $("Select#"+champ.id.substring(12)).val();
 	if (Etat_Param == "Brouillon")
 	{
@@ -1052,24 +1055,32 @@ function enregistre_Etat_Demande(champ,ID)
 	{
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
 		{
+			// version 8.11
+			var Etat_dem=$("#Liste_DEC_Enregistrer_Etat"+ID_Demande).val();
+			alert("Etat_dem="+Etat_dem+" Etat_Param="+Etat_Param);
+			if (Etat_Param == "En cours" && Etat_dem == "A Traiter")
+			{
+				window.location.reload(); // rechargement de la page pour afficher le statut "en cours"
+			};
+			
 			alert("Mise à jour Etat paramétrage OK!");
-			//$("#DEC_service" + ID_Dem + "").empty();
-			//$("#DEC_service" + ID_Dem + "").append(xhr_s.responseText);
 		} else if(xhr.readyState == 4 && xhr.status != 200) 
 		{ // En cas d'erreur !
 			gestion_erreur(xhr);
 		};
 	};
-
-	ID_Demande = encodeURIComponent(ID_Demande);
-	ID_Hote = encodeURIComponent(ID_Hote);
-	ID_Service = encodeURIComponent(ID_Service);
-	ID_Plage = encodeURIComponent(ID_Plage);
-	Etat_Param = encodeURIComponent(Etat_Param);
+	/**
+	 * déclaration nouvelles variables encodee (prefixée e)
+	 */
+	var eID_Demande = encodeURIComponent(ID_Demande);
+	var eID_Hote = encodeURIComponent(ID_Hote);
+	var eID_Service = encodeURIComponent(ID_Service);
+	var eID_Plage = encodeURIComponent(ID_Plage);
+	var eEtat_Param = encodeURIComponent(Etat_Param);
 	
 	xhr.open("POST", "MAJ_Etat_Parametrage.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
-	xhr.send("ID_Demande="+ID_Demande+"&ID_Hote="+ID_Hote+"&ID_Service="+ID_Service+"&ID_Plage="+ID_Plage+"&Etat_Param="+Etat_Param+""); 
+	xhr.send("ID_Demande="+eID_Demande+"&ID_Hote="+eID_Hote+"&ID_Service="+eID_Service+"&ID_Plage="+eID_Plage+"&Etat_Param="+eEtat_Param+""); 
 
 };
 
@@ -1098,7 +1109,9 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 //				if (confirm(MessageRecharger)) 
 //				{
 //					//alert("Mise à jour Etat demande OK! Rechargement de la page pour mise à jour de la liste.");
-					window.location.replace('lister_demande.php'); // si OK => recharge la page nouvelle demande
+				// version 8.11	
+				//window.location.replace('lister_demande.php'); // si OK => recharge la page lister demande
+				window.location.reload(); // si OK => recharge la page lister demande
 //				};
 			} else if(xhr.readyState == 4 && xhr.status != 200) 
 			{ // En cas d'erreur !

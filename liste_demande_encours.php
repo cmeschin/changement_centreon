@@ -13,32 +13,42 @@ try {
 	http_response_code(500);
 	echo '<p>Erreur requete liste demande encours: ' . $e->getMessage() . '<p/>';
 	die('Erreur requete liste demande encours: ' . $e->getMessage());
-}
+};
+try {
+	include_once('requete_liste_demande_encours_temps_global.php');
+} catch (Exception $e) {
+	http_response_code(500);
+	echo '<p>Erreur requete liste demande encours temps global: ' . $e->getMessage() . '<p/>';
+	die('Erreur requete liste demande encours temps global: ' . $e->getMessage());
+};
 
+$res_dem_tg = $req_dem_tg->fetchall();
+foreach($res_dem_tg as $element)
+{
+	$Temps_Global = $element['Temps_Global'];
+};
 //	$req_hote = $bdd_centreon->prepare('SELECT Distinct(host_name), H.host_id, host_alias ,host_address ,if(host_activate=2,"actif","inactif") AS Controle ,Hote from vInventaireServices AS vIS inner join host AS H on vIS.host_id=H.host_id where Code_Client= :Code_Client ORDER BY H.host_name');
 //	$req_hote->execute(array('Code_Client' => htmlspecialchars($sMonClient))) or die(print_r($req_hote->errorInfo()));
-?>
-<table id="T_Liste_Demande">
-	<tr>
-	<th>Action</th>
-	<th>Réf Demande</th>
-	<th>Date Demande</th>
-	<th>Demandeur</th>
-	<th>Date de Supervision souhaitée</th>
-	<th>Prestation</th>
-	<th>Nombre d'Hôtes</th>
-	<th>Nombre de Services</th>
-	<th>Nombre de Plages</th>
-	<th>Etat de la Demande</th>
-	<th onclick="alert('Cette estimation purement indicative est basée sur les valeurs suivantes:\nPour les hôtes:\n - Création => 30 minutes\n - Modification => 5 minutes\n - Désactivation ou Suppression => 2 minutes\nPour les services:\n - Création => 5 minutes\n - Modification => 3 minutes\n - Désactivation ou Suppression => 2 minutes');">Temps estimé <img alt="point_interrogation" src="images/point-interrogation-16.png"></th>
-	<?php
+echo '<table id="T_Liste_Demande">';
+	echo '<tr>';
+	echo '<th>Action</th>';
+	echo '<th>Réf Demande</th>';
+	echo '<th>Date Demande</th>';
+	echo '<th>Demandeur</th>';
+	echo '<th>Date de Supervision souhaitée</th>';
+	echo '<th>Prestation</th>';
+	echo "<th>Nombre d'Hôtes</th>";
+	echo '<th>Nombre de Services</th>';
+	echo '<th>Nombre de Plages</th>';
+	echo '<th>Etat de la Demande</th>';
+	echo '<th onclick="alert(\'Cette estimation purement indicative est basée sur les valeurs suivantes:\nPour les hôtes:\n - Création => 30 minutes\n - Modification => 5 minutes\n - Désactivation ou Suppression => 2 minutes\nPour les services:\n - Création => 5 minutes\n - Modification => 3 minutes\n - Désactivation ou Suppression => 2 minutes\');">Temps estimé ' . htmlspecialchars($Temps_Global) . '<img alt="point_interrogation" src="images/point-interrogation-16.png"></th>';
+
 	if ( $_SESSION['Admin'] == True)
 	{
 		echo '<th>Admin</th>';
 	};
-	?>
-	</tr> 
-	<?php
+	echo '</tr>'; 
+
 	$i = 1;
 	while ($res_dem = $req_dem->fetch())
 	{ 
@@ -96,7 +106,9 @@ try {
 				echo '<td>' . htmlspecialchars($res_dem['Etat_Demande']) .'</td>';
 			};
 			
-			echo '<td>' . htmlspecialchars(floor($res_dem['Temps']/60) . ':' . ($res_dem['Temps']%60)) . '</td>';
+			// le formatage est fait directement dans la requête d'extraction.
+			//echo '<td>' . htmlspecialchars(floor($res_dem['Temps']/60) . ':' . ($res_dem['Temps']%60)) . '</td>';
+			echo '<td>' . htmlspecialchars($res_dem['Temps']) . '</td>';
 			if ( $_SESSION['Admin'] == True)
 			{
 				$bouton_ID="DEC_Enregistrer_Etat" . htmlspecialchars ( $res_dem ['ID_Demande'] );
@@ -164,8 +176,6 @@ try {
 		echo '</div>';
 		$i ++;
 	};
-	?>
-</table>
-<?php
+echo '</table>';
 
  

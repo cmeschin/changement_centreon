@@ -3,6 +3,7 @@ if (session_id()=='')
 {
 session_start();
 };
+include('log.php'); // chargement de la fonction de log
 if ($_SESSION['R_ID_Demande'] == NULL)
 {
 	$ID_Demande = (isset($_POST["ID_Dem"])) ? $_POST["ID_Dem"] : NULL;
@@ -10,6 +11,7 @@ if ($_SESSION['R_ID_Demande'] == NULL)
 {
 	$ID_Demande = $_SESSION['R_ID_Demande'];
 }
+addlog("ID_Demande=" . $ID_Demande);
 
 include_once('connexion_sql_supervision.php');
 
@@ -20,9 +22,20 @@ try {
 	die('Erreur requete_liste_infos_demande: ' . $e->getMessage());
 };
 
-$NbFieldset_Infos = 1;
+/**
+ * #21 meilleure gestion de la coloration par ajout de l'id_dem dans les id des balises
+ * $NbFieldset_Infos est désormais construit avec l'id_demande + le numéro de fieldset courant
+ * // $NbFieldset_Infos = 1;
+ */
+
+$NumFieldset = 1;
+
 while ($res_liste_infos = $req_liste_infos->fetch())
 { 
+	/**
+	 * #21
+	 */
+	$NbFieldset_Infos = $ID_Demande . "_" . $NumFieldset;
 	echo '<fieldset id="Infos' . $NbFieldset_Infos . '" class="infos">';
 		echo '<legend>Infos</legend>';
 		echo '<!-- Liste diffusion -->';
@@ -43,6 +56,11 @@ while ($res_liste_infos = $req_liste_infos->fetch())
 		echo '<textarea readonly type="text" id="Commentaire_DEM' . $NbFieldset_Infos . '" name="Commentaire_DEM' . $NbFieldset_Infos . '" rows="3" cols="50">' . htmlspecialchars($res_liste_infos['Commentaire']) . '</textarea> <br/>';
 		
 	echo '</fieldset>';
-	$NbFieldset_Infos++;
+
+	/**
+	 * #21
+	 *$NbFieldset_Infos ++; 
+	 */
+	$NumFieldset ++;
 };
 $Statut_Infos=true;
