@@ -67,12 +67,13 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		echo '<!-- Fonction -->';
 		echo '<label for="Fonction' . $NbFieldset . '">Fonction(s) :</label>';
 		echo '<input readonly type="text" id="Fonction' . $NbFieldset . '" name="Fonction' . $NbFieldset . '" value="' . htmlspecialchars($res_liste_hote['Fonction']) . '" size="30" maxlength="50"/> </br>';
-		echo '<!-- Commentaire -->';
-		echo '<label for="Hote_Commentaire' . $NbFieldset . '">Commentaire :</label>';
-		echo '<textarea readonly id="Hote_Commentaire' . $NbFieldset . '" name="Hote_Commentaire' . $NbFieldset . '" rows="2" cols="50">' . htmlspecialchars($res_liste_hote['Commentaire']) . '</textarea> <br />';
 		echo '<!-- Consigne -->';
-		echo '<label for="Consigne_Hote' . $NbFieldset . '">Lien vers consigne :</label>';
-		echo '<input readonly type="text" id="Consigne_Hote' . $NbFieldset . '" name="Consigne_Hote' . $NbFieldset . '" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255"/> <br />';
+/**
+ * Modification consigne obligatoire
+ */
+//		echo '<label for="Consigne_Hote' . $NbFieldset . '">Lien vers consigne :</label>';
+//		echo '<input readonly type="text" id="Consigne_Hote' . $NbFieldset . '" name="Consigne_Hote' . $NbFieldset . '" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255"/> <br />';
+		echo '<span id="Consigne_Hote' . $NbFieldset . '" class="hote' . $NbFieldset . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_hote['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_hote['Consigne']) . '</a></span> <br />';
 		echo '<!-- Detail consigne -->';
 		echo '<label for="Consigne_Hote_Detail' . $NbFieldset . '">Description consigne:</label>';
 		echo '<textarea readonly id="Consigne_Hote_Detail' . $NbFieldset . '" name="Consigne_Hote_Detail' . $NbFieldset . '" rows="3" cols="50">' . htmlspecialchars($res_liste_hote['Detail_Consigne']) . '</textarea> <br/>';
@@ -99,6 +100,9 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			$ID_Hote = htmlspecialchars($res_liste_hote['ID_Hote']);
 			include('insere_fieldset_Admin_Hote.php');
 		};
+		echo '<!-- Commentaire -->';
+		echo '<label for="Hote_Commentaire' . $NbFieldset . '">Commentaire :</label>';
+		echo '<textarea readonly id="Hote_Commentaire' . $NbFieldset . '" name="Hote_Commentaire' . $NbFieldset . '" rows="2" cols="50">' . htmlspecialchars($res_liste_hote['Commentaire']) . '</textarea> <br />';
 	echo '</fieldset>';
 
 	/**

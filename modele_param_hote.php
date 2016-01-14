@@ -200,24 +200,19 @@ $_SESSION['R_ID_Demande'] = NULL;
 		maxlength="50" class="hote<?php echo $NbFieldset;?>"/>
 
 	<br />
-	<!-- Commentaire -->
-	<label for="Hote_Commentaire<?php echo $NbFieldset;?>" onclick="alert('Indiquez ici tout complément d\'information pouvant être utile à la configuration et mise en surveillance de l\'hôte.')">Commentaire <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-	<textarea id="Hote_Commentaire<?php echo $NbFieldset;?>"
-		name="Hote_<?php echo $NbFieldset;?>_Commentaire" rows="2" cols="50"
-		class="hote<?php echo $NbFieldset;?>"></textarea>
-	<br />
-
 	<!-- Consigne -->
-	<label for="Consigne_Hote<?php echo $NbFieldset;?>" onclick="alert('Indiquez ici le lien vers une consigne du wiki.\nLes consignes ont pour but de fournir les indications nécessaires et suffisantes quant aux actions\nà réaliser par les équipes EPI et/ou CDS si un évènement se produit sur l\'équipement (relance d\'un process, envoi de mail, etc...)')">Lien vers consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-	<input type="text" id="Consigne_Hote<?php echo $NbFieldset;?>" name="Hote_<?php echo $NbFieldset;?>_Consigne" value="" size="90"	maxlength="255" class="hote<?php echo $NbFieldset;?>"/>
+<!-- 	<label for="Consigne_Hote<?php //echo $NbFieldset;?>" onclick="alert('Indiquez ici le lien vers une consigne du wiki.\nLes consignes ont pour but de fournir les indications nécessaires et suffisantes quant aux actions\nà réaliser par les équipes EPI et/ou CDS si un évènement se produit sur l\'équipement (relance d\'un process, envoi de mail, etc...)')">Lien vers consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
+	<input type="text" id="Consigne_Hote<?php //echo $NbFieldset;?>" name="Hote_<?php //echo $NbFieldset;?>_Consigne" value="" size="90"	maxlength="255" class="hote<?php //echo $NbFieldset;?>"/> -->
+	<span id="Consigne_Hote<?php echo $NbFieldset;?>" class="hote<?php echo $NbFieldset;?>">Lien vers la consigne :<a href="" target="_blank"></a></span>
 	<br />
 
 	<!-- Detail consigne -->
 	<label for="Consigne_Hote_Detail<?php echo $NbFieldset;?>" onclick="alert('Décrivez ici les opérations à effectuer par les équipes EPI et/ou CDS si un évènement se produit sur l\'équipement (relancer un process, envoyer un mail, etc...). Les consignes doivent être claires et précises afin qu\'elles puissent être appliquées rapidement et sans ambiguïté par les équipes de support. Les adresses mails doivent être indiquées en toute lettre soit par ex: envoyer un mail à support_bmd@tessi.fr et pas simplement envoyer un mail support bmd. Cette consigne sera ensuite retranscrite dans le wiki tessi-techno et un lien sera rattaché à l\'hôte.')">Description
 		consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 	<textarea id="Consigne_Hote_Detail<?php echo $NbFieldset;?>"
-		name="Hote_<?php echo $NbFieldset;?>_Description_Consigne" rows="3"
+		name="Hote_<?php echo $NbFieldset;?>_Description_Consigne" onblur="verifChamp(this)" rows="3"
 		cols="50" class="hote<?php echo $NbFieldset;?>"></textarea>
+		<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Consigne_Hote_Detail<?php echo $NbFieldset;?>" ondblclick="deverouille_liste(this)"/>
 	<br />
 
 	<!-- Controle_actif -->
@@ -228,14 +223,20 @@ $_SESSION['R_ID_Demande'] = NULL;
 		size="5" style="visibility: hidden"
 		class="hote<?php echo $NbFieldset;?>" /> <br />
 
-	<!-- Action Ã  effectuer -->
+	<!-- Action à  effectuer -->
 	<fieldset id="Action_Hote<?php echo $NbFieldset;?>" class="hote_action">
 		<legend onclick="alert('Sélectionnez l\'action à réaliser sur l\'équipement; selon les cas plusieurs choix sont disponibles: Créer, Modifier, Activer, Désactiver, Supprimer. La différence entre Désactiver et Supprimer tient dans le fait qu\'un équipement désactivé pourra être réactivé rapidement sans paramétrage supplémentaire alors qu\'un équipement supprimé devra faire l\'objet d\'un reparamétrage complet. La désactivation est à privilégier si l\'équipement ne doit plus être supervisé pour une période assez longue pour ensuite être réactivé. Si un serveur doit être reconfiguré (réinstallation de l\'OS par ex.) il convient de demander la désactivation du premier et la création du nouveau; le paramétrage des sondes étant différents selon les OS.')">Actions à effectuer <img alt="point_interrogation" src="images/point-interrogation-16.png"></legend>
 		<select id="Hote_action<?php echo $NbFieldset;?>"
 			name="Hote_<?php echo $NbFieldset;?>_Action"
 			class="hote<?php echo $NbFieldset;?>">
 			<option value="Creer">A créer</option>
-		</select>
+		</select><br />
+		<!-- Commentaire -->
+		<label for="Hote_Commentaire<?php echo $NbFieldset;?>" onclick="alert('Indiquez ici tout complément d\'information pouvant être utile à la configuration et mise en surveillance de l\'hôte.')">Commentaire <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
+		<textarea id="Hote_Commentaire<?php echo $NbFieldset;?>"
+			name="Hote_<?php echo $NbFieldset;?>_Commentaire" rows="2" cols="50"
+			class="hote<?php echo $NbFieldset;?>"></textarea>
+		<br />
 	</fieldset>
 
 	<span id="bouton_Hote<?php echo $NbFieldset;?>">

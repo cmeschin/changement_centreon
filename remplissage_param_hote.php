@@ -17,13 +17,6 @@ try {
 	die('Erreur requete_liste_hote_demande: ' . $e->getMessage());
 };
 
-// $req_liste_hote = $bdd_supervision->prepare('SELECT Nom_Hote, IP_Hote, Description, Type_Hote, ID_Localisation, OS, Architecture, Langue, Fonction, Controle_Actif, Commentaire, Consigne, Detail_Consigne, Type_Action, Etat_Parametrage FROM hote WHERE Type_Action <> :Type_Action AND ID_Demande= :ID_Demande');
-// $req_liste_hote->execute(Array(
-// 	'Type_Action' => "NC",
-// 	//'Type_Action' => "Traite",
-// 	'ID_Demande' => htmlspecialchars($ID_Demande)
-// 	)) or die(print_r($req_liste_hote->errorInfo()));
-
 $NbFieldset = 1;
 while ($res_liste_hote = $req_liste_hote->fetch())
 { 
@@ -33,7 +26,6 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		echo '<div id="model_param_hote">';
 			echo '<!-- Hote -->';
 			echo '<label for="Nom_Hote' . $NbFieldset . '" class="hote_Nom_IP" onclick="alert(\'Saisir le nom de l\\\'hôte tel que définit dans les propriétés systèmes.\')">Nom de l\'hôte <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
-			//echo '<input Readonly type="text" id="Nom_Hote' . $NbFieldset . '" name="Nom_Hote' . $NbFieldset . '" onblur="verifChamp(this)" value="' . htmlspecialchars($res_liste_hote[0]) . '" size="20" length="20" class="hote' . $NbFieldset . '" title="Saisir le nom de l\'hôte tel que définit dans les propriétés systèmes"/>';
 			echo '<input Readonly type="text" id="Nom_Hote' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Nom" value="' . htmlspecialchars($res_liste_hote['Nom_Hote']) . '" size="20" length="20" class="hote' . $NbFieldset . '"/>';
 			echo '<img src="images/img_ver.png" class="verif" alt="correct" id="img_Nom_Hote' . $NbFieldset . '" /> <br />';
 			echo '';
@@ -74,10 +66,10 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			while ($res_Loc = $req_Localisation->fetch())
 			{
 				echo '<option value="' . htmlspecialchars($res_Loc['ID_Localisation']) . '">' . htmlspecialchars($res_Loc['Lieux']) . ' [' . htmlspecialchars($res_Loc['ID_Localisation']) . ']</option>';
-				//include('option_localisation.php');
 			};
 			echo '</select>';
-			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Localisation' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+//			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Localisation' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Localisation' . $NbFieldset . '"/>';
 		} else
 		{
 			echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_Localisation" id="Localisation' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '">  <!-- Liste Localisation -->';
@@ -118,9 +110,6 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			echo '</select>';
 			echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Localisation' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
 		};
-//		addlog("Trouve_Loc=". $Trouve_Loc);
-// 		echo '</select>';
-// 		echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Localisation' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
 		if ($Trouve_Loc == false) // si autre initialisé on l'affiche
 		{
 			echo '<span id="Localisation' . $NbFieldset . '_new">';
@@ -143,8 +132,6 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		echo '';
 		echo '<!-- Type Hote -->';
 		echo '<label for="Type_Hote' . $NbFieldset . '" onclick="alert(\'Sélectionnez le type d\\\'hôte dans la liste.\\nCette information fait partie de la règle de nommage des hôtes dans Centreon.\\nVous trouverez plus d\\\'explication dans la documentation en ligne.\')">Type <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
-// 		echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_Type" id="Type_Hote' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '">  <!-- Liste Type_Hote -->';
-// 		echo '<option value="" >...</option> <!-- Valeur par défaut -->';
 		try {
 			include('requete_liste_Hote_Type.php');
 		} catch (Exception $e)
@@ -152,7 +139,8 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			http_response_code(500);
 			die('Erreur requete_liste_hote_type' . $e->getMessage());
 		};
-/*
+/**
+ * Désactivation possibilité création nouveau type d'hôte
 			echo '<option value="Autre">Autre</option> <!-- Valeur à sélectionner pour en créer un -->';
 			include('requete_liste_Hote_Type.php'); 
 			while ($res_type = $req_type->fetch())
@@ -176,8 +164,8 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 				include('option_type.php');
 			};
 			echo '</select>';
-			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Type_Hote' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
-				
+//			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Type_Hote' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Type_Hote' . $NbFieldset . '"/>';
 		} else
 		{
 			echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_Type" id="Type_Hote' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '">  <!-- Liste Type_Hote -->';
@@ -216,10 +204,6 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			echo '</select>';
 			echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Type_Hote' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
 		};
-//		addlog("Trouve_Type=". $Trouve_Type);
-
-// 		echo '</select>';
-// 		echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Type_Hote' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
 		if ($Trouve_Type == false) // si autre initialisé on l'affiche
 		{
 			echo '<span id="Type_Hote' . $NbFieldset . '_new">';
@@ -242,7 +226,6 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		echo '';
 		echo '<!-- OS -->';
 		echo '<label for="Type_OS' . $NbFieldset . '" onclick="alert(\'Sélectionnez le système d\\\'exploitation installé sur l\\\'hôte.\\nPour les hôtes de type ESX, Routeur, Switch, Firewall, etc... sélectionnez <Non concerné>.\')">Système d\'exploitation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
-// 		echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_OS" id="Type_OS' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '">  <!-- Liste Type_OS -->';
 		try {
 			include('requete_liste_Hote_OS.php');				
 		} catch (Exception $e) {
@@ -250,8 +233,6 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			die('Erreur requete_liste_hote_OS'. $e->getMessage());
 		};
 			 
-// 			echo '<option value="" >...</option> <!-- Valeur par défaut -->';
-// 			echo '<option value="NC" >Non Concerné</option> <!-- Valeur si Non Concerné -->';
 		if ($res_liste_hote['OS'] == "")
 		{
 			echo '<select name="Hote_' . $NbFieldset . '_OS" id="Type_OS' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '">  <!-- Liste Type_OS -->';			$Trouve_OS = true; // on force à true pour le champ masqué
@@ -263,7 +244,8 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 				echo '<option value="' . htmlspecialchars($res_OS['Type_OS']) . '">' . htmlspecialchars($res_OS['Type_OS_Desc']) . '</option>';
 			};
 			echo '</select>';
-			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Type_OS' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+//			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Type_OS' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Type_OS' . $NbFieldset . '"/>';
 		} else
 		{
 			echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_OS" id="Type_OS' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '">  <!-- Liste Type_OS -->';			$Trouve_OS = true; // on force à true pour le champ masqué
@@ -285,11 +267,9 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 				{
 					if ($res_liste_hote['OS'] == $champ['Type_OS'])
 					{
-						//echo '<option Selected="Selected" value="' . htmlspecialchars($champ['Type_OS']) . '">' . htmlspecialchars($champ['Type_OS']) . ' / ' . htmlspecialchars($champ['Type_OS_Desc']) . '</option>';
 						echo '<option Selected="Selected" value="' . htmlspecialchars($champ['Type_OS']) . '">' . htmlspecialchars($champ['Type_OS_Desc']) . '</option>';
 					} else
 					{
-						//echo '<option value="' . htmlspecialchars($champ['Type_OS']) . '">' . htmlspecialchars($champ['Type_OS']) . ' / ' . htmlspecialchars($champ['Type_OS_Desc']) . '</option>';
 						echo '<option value="' . htmlspecialchars($champ['Type_OS']) . '">' . htmlspecialchars($champ['Type_OS_Desc']) . '</option>';
 					};
 				};
@@ -298,17 +278,12 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 				echo '<option Selected="Selected" value="Autre">Autre</option> <!-- Valeur à sélectionner pour en créer un -->';
 				foreach($res_OS as $champ)
 				{
-					//echo '<option value="' . htmlspecialchars($champ['Type_OS']) . '">' . htmlspecialchars($champ['Type_OS']) . ' / ' . htmlspecialchars($champ['Type_OS_Desc']) . '</option>';
 					echo '<option value="' . htmlspecialchars($champ['Type_OS']) . '">' . htmlspecialchars($champ['Type_OS_Desc']) . '</option>';
 				};
 			};
 			echo '</select>';
 			echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Type_OS' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
 		};
-//		addlog("Trouve_OS=". $Trouve_OS);
-
-// 		echo '</select>';
-// 		echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Type_OS' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
 		if ($Trouve_OS == false) // si autre initialisé on l'affiche
 		{
 			echo '<span id="Type_OS' . $NbFieldset . '_new">';
@@ -339,7 +314,8 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			echo '<option value="32_bits">32_bits</option> ';
 			echo '<option value="64_bits">64_bits</option> ';
 			echo '</select>';
-			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Architecture' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+//			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Architecture' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Architecture' . $NbFieldset . '"/>';
 		} else
 		{
 			echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_Architecture" id="Architecture' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '"> <!-- Liste Architecture -->';
@@ -374,12 +350,12 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			echo '<option value="Francais">Francais</option> ';
 			echo '<option value="Anglais">Anglais</option> ';
 			echo '</select>';
-			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Langue' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+//			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Langue' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
+			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Langue' . $NbFieldset . '"/>';
 		} else
 		{
 			echo '<select Disabled="Disabled" name="Hote_' . $NbFieldset . '_Langue" id="Langue' . $NbFieldset . '" onChange="afficher_autre(this)" onblur="verifChamp(this)" class="hote' . $NbFieldset . '"> <!-- Liste Langue -->';
 			echo '<option value="" >...</option> <!-- Valeur par défaut -->';
-// 			echo '<option value="NC" >Non Concerné</option> <!-- Valeur si Non Concerné -->';
 			if ($res_liste_hote['Langue'] == "NC")
 			{
 				echo '<option Selected="Selected" value="NC">Non Concerné</option> ';
@@ -399,24 +375,31 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			echo '</select>';
 			echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Langue' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
 		};
-// 		echo '</select>';
-// 		echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Langue' . $NbFieldset . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/>';
 		echo '';
 		echo '<!-- Fonction -->';
 		echo '<label for="Fonction' . $NbFieldset . '" onclick="alert(\'Indiquez la ou les fonctions principales de l\\\'hôte. Cette information permettra de catégoriser l\\\'équipement. Les fonctions principales sont les suivantes: BosManager, BosDocument, Marcel, Tri, Videocodage, ICR, CFT, IBML, Fax, etc...\')">Fonction(s) <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
 		echo '<input type="text" id="Fonction' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Fonction" value="' . htmlspecialchars($res_liste_hote['Fonction']) . '" size="30" maxlength="50" class="hote' . $NbFieldset . '"/> </br>';
 		echo '';
-		echo '<!-- Commentaire -->';
-		echo '<label for="Hote_Commentaire' . $NbFieldset . '" onclick="alert(\'Indiquez ici tout complément d\\\'information pouvant être utile à la mise en surveillance.\')">Commentaire <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
-		echo '<textarea id="Hote_Commentaire' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Commentaire" rows="2" cols="50" class="hote' . $NbFieldset . '">' . htmlspecialchars($res_liste_hote['Commentaire']) . '</textarea> <br />';
-		echo '';
 		echo '<!-- Consigne -->';
-		echo '<label for="Consigne_Hote' . $NbFieldset . '" onclick="alert(\'Indiquez ici le lien vers une consigne du wiki. Les consignes ont pour but de fournir les indications quant aux actions à réaliser par les équipes EPI et/ou CDS si un évènement se produit sur l\\\'équipement (relance d\\\'un process, envoi de mail, etc...)\')">Lien vers consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
-		echo '<input type="text" id="Consigne_Hote' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Lien_Consigne" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255" class="hote' . $NbFieldset . '"/> <br />';
+/**
+ * Modification consigne obligatoire
+ */
+//		echo '<label for="Consigne_Hote' . $NbFieldset . '" onclick="alert(\'Indiquez ici le lien vers une consigne du wiki. Les consignes ont pour but de fournir les indications quant aux actions à réaliser par les équipes EPI et/ou CDS si un évènement se produit sur l\\\'équipement (relance d\\\'un process, envoi de mail, etc...)\')">Lien vers consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
+//		echo '<input type="text" id="Consigne_Hote' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Lien_Consigne" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255" class="hote' . $NbFieldset . '"/> <br />';
+		echo '<span id="Consigne_Hote' . $NbFieldset . '" class="hote' . $NbFieldset . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_hote['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_hote['Consigne']) . '</a></span> <br />';
 		echo '';
 		echo '<!-- Detail consigne -->';
 		echo '<label for="Consigne_Hote_Detail' . $NbFieldset . '" onclick="alert(\'Décrivez ici les opérations à effectuer par les équipes EPI et/ou CDS si un évènement se produit sur l\\\'équipement (relancer un process, envoyer un mail, etc...).\\nLes consignes doivent être claires et précises afin qu\\\'elles puissent être appliquées rapidement et sans ambiguïté par les équipes de support.\\nLes adresses mails doivent être indiquées en toute lettre soit par ex: envoyer un mail à support_bmd@tessi.fr et pas simplement envoyer un mail support bmd.\\nCette consigne sera ensuite retranscrite dans le wiki tessi-techno et un lien sera rattaché à l\\\'hôte; le lien apparaitra par la suite dans le champ ci-dessus.\')">Description consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
-		echo '<textarea id="Consigne_Hote_Detail' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Description_Consigne" rows="3" cols="50" class="hote' . $NbFieldset . '">' . htmlspecialchars($res_liste_hote['Detail_Consigne']) . '</textarea> <br />';
+		echo '<textarea id="Consigne_Hote_Detail' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Description_Consigne" onblur="verifChamp(this)" rows="3" cols="50" class="hote' . $NbFieldset . '">' . htmlspecialchars($res_liste_hote['Detail_Consigne']) . '</textarea>';
+		if ($res_liste_hote['Consigne'] == "")
+		{
+			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Consigne_Hote_Detail' . $NbFieldset . '" <br />/>';
+		} else 
+		{
+			echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Consigne_Hote_Detail' . $NbFieldset . '" ondblclick="deverouille_liste(this)" <br />/>';
+		}
+
+		
 		echo '';
 		echo '<!-- Controle_actif -->';
 		echo '<label for="Controle_Actif_Hote' . $NbFieldset . '">Controle :</label>';
@@ -460,8 +443,12 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 			{
 				echo '<option value="Supprimer">A Supprimer</option>';
 			};
-		echo '</select>';
-	echo '</fieldset>';
+		echo '</select> <br />';
+		echo '<!-- Commentaire -->';
+		echo '<label for="Hote_Commentaire' . $NbFieldset . '" onclick="alert(\'Indiquez ici tout complément d\\\'information pouvant être utile à la mise en surveillance.\')">Commentaire <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
+		echo '<textarea id="Hote_Commentaire' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Commentaire" rows="2" cols="50" class="hote' . $NbFieldset . '">' . htmlspecialchars($res_liste_hote['Commentaire']) . '</textarea> <br />';
+		echo '';
+		echo '</fieldset>';
 	echo '';
 	echo '<span id="bouton_Hote' . $NbFieldset . '">';
 		echo '<button id="Valider_Hote' . $NbFieldset . '" onclick="valider_fieldset_hote(this)" hidden>Valider</button>'; // => doit ajouter automatiquement les services par défaut lié au modèle hote

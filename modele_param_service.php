@@ -112,21 +112,23 @@ $_SESSION['R_ID_Demande'] = NULL; // sur un ajout on force systématiquement à 
 	</fieldset><br />
 
 <!-- Service Consigne -->
-	<label for="Service_Consigne<?php echo $NbFieldset_Service;?>">Lien vers la consigne :</label>
-	<input type="text" id="Service_Consigne<?php echo $NbFieldset_Service;?>" name="Service_<?php echo $NbFieldset_Service;?>_Lien_Consigne" value="" size="70" maxlength="255" class="service<?php echo $NbFieldset_Service;?>"/> <br />
+<!-- 	<label for="Service_Consigne<?php //echo $NbFieldset_Service;?>">Lien vers la consigne :</label> -->
+<!-- 	<input type="text" id="Service_Consigne<?php //echo $NbFieldset_Service;?>" name="Service_<?php //echo $NbFieldset_Service;?>_Lien_Consigne" value="" size="70" maxlength="255" class="service<?php //echo $NbFieldset_Service;?>"/> <br /> -->
+	<span id="Service_Consigne<?php echo $NbFieldset_Service;?>" class="service<?php echo $NbFieldset_Service;?>">Lien vers la consigne :<a href="" target="_blank"></a></span>	<br />
 	
 <!-- Service Consigne Description -->
 	<label for="Consigne_Service_Detail<?php echo $NbFieldset_Service;?>">Description consigne :</label>
-	<textarea id="Consigne_Service_Detail<?php echo $NbFieldset_Service;?>" name="Service_<?php echo $NbFieldset_Service;?>_Description_Consigne" rows="3" cols="50" class="service<?php echo $NbFieldset_Service;?>"></textarea> <br />
-
+	<textarea id="Consigne_Service_Detail<?php echo $NbFieldset_Service;?>" name="Service_<?php echo $NbFieldset_Service;?>_Description_Consigne" onblur="verifChamp(this)" rows="3" cols="50" class="service<?php echo $NbFieldset_Service;?>"></textarea>
+	<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Consigne_Service_Detail<?php echo $NbFieldset_Service;?>" ondblclick="deverouille_liste(this)"/><br />
+	
 <!-- Action à effectuer -->
 	<fieldset id="Action_Service<?php echo $NbFieldset_Service;?>" class="service_action">
 		<legend>Actions à effectuer</legend>
 		<select id="Service_action<?php echo $NbFieldset_Service;?>" name="Service_<?php echo $NbFieldset_Service;?>_Action" class="service<?php echo $NbFieldset_Service;?>">
 			<option value="Creer">A créer</option>
-		</select>
+		</select> <br />
 <!-- Service Commentaire -->
-		<label for="Service_Commentaire<?php echo $NbFieldset_Service;?>">Commentaire :</label>
+		<label for="Service_Commentaire<?php echo $NbFieldset_Service;?>" onclick="Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s\'il doit être changé.">Commentaire  <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 		<textarea id="Service_Commentaire<?php echo $NbFieldset_Service;?>" name="Service_<?php echo $NbFieldset_Service;?>_Commentaire" rows="3" cols="50" class="service<?php echo $NbFieldset_Service;?>" title="Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s'il doit être changé car peu explicite."></textarea> <br />
 
 	</fieldset>

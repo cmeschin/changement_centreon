@@ -105,9 +105,12 @@ while ($res_liste_service = $req_liste_service->fetch())
 		echo '<!-- Service Consigne -->';
 //		$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Consigne'])) + 20*strlen(htmlspecialchars($res_liste_service['Consigne']))/100;
 		$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Consigne']));
-		echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
-		echo '<input Readonly type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_Consigne' . $NbFieldset_Service . '" value="' . htmlspecialchars($res_liste_service['Consigne']) . '" size="'. $LongueurArg . '" maxlength="255"/> <br />';
-		echo '<!-- Service Consigne Description-->';
+/**
+ * Modification consigne obligatoire
+ */
+//		echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
+//		echo '<input Readonly type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_Consigne' . $NbFieldset_Service . '" value="' . htmlspecialchars($res_liste_service['Consigne']) . '" size="'. $LongueurArg . '" maxlength="255"/> <br />';
+		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_service['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_service['Consigne']) . '</a></span>	<br />';		echo '<!-- Service Consigne Description-->';
 		echo '<label for="Consigne_Service_Detail' . $NbFieldset_Service . '">Description consigne :</label>';
 		echo '<textarea Readonly id="Consigne_Service_Detail' . $NbFieldset_Service . '" name="Consigne_Service_Detail' . $NbFieldset_Service . '" rows="3" cols="50">' . htmlspecialchars($res_liste_service['Detail_Consigne']) . '</textarea> <br />';
 		echo '<!-- Action à effectuer -->';
@@ -130,7 +133,7 @@ while ($res_liste_service = $req_liste_service->fetch())
 		};
 		echo '<br />';
 		echo '<!-- Service Commentaire -->';
-		echo '<label for="Service_Commentaire' . $NbFieldset_Service . '">Commentaire :</label>';
+		echo '<label for="Service_Commentaire' . $NbFieldset_Service . '" onclick="Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s\'il doit être changé.">Commentaire  <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
 		echo '<textarea id="Service_Commentaire' . $NbFieldset_Service . '" name="Service_Commentaire' . $NbFieldset_Service . '" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars($res_liste_service['Commentaire']) . '</textarea> <br />';
 
 		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer

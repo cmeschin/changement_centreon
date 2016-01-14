@@ -5,8 +5,6 @@ session_start();
 };
 // récupération de la ref demande
 $ID_Demande= $_SESSION['ID_dem'];
-//$ID_Demande= 7;
-//include('log.php'); // chargement de la fonction de log
 
 include_once('connexion_sql_supervision.php');
 
@@ -17,12 +15,7 @@ try {
 	die('Erreur requete_Remplissage_Service: ' . $e->getMessage());
 };
 
-
-//$Nb_Hote = count($req_liste_hote);
-//$tableau[$j]=$liste_hote;
-//$chaine=implode(";",$liste_hote[$j]);
 $liste_service = "";
-//$Num_Service_Modele = "";
 $NbFieldset_Service = 1;
 while ($res_liste_service = $req_liste_service->fetch())
 { 
@@ -58,7 +51,6 @@ while ($res_liste_service = $req_liste_service->fetch())
 	echo '';
 		echo '<!-- Nom service -->';
 		echo '<label for="Nom_Service' . $NbFieldset_Service . '">Nom de la sonde :</label>';
-		//echo '<input Readonly type="text" id="Nom_Service' . $NbFieldset_Service . '" name="Nom_Service' . $NbFieldset_Service . '" onblur="verifChamp(this)" value="' . htmlspecialchars($res_liste_service['Nom_Service']) . '" size="40" maxlength="100" class="service' . $NbFieldset_Service . '"/>';
 		echo '<input Readonly type="text" id="Nom_Service' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Nom" value="' . htmlspecialchars($res_liste_service['Nom_Service']) . '" size="'. $LongueurArg .'" maxlength="100" class="service' . $NbFieldset_Service . '"/>';
 		echo '<img src="images/img_ver.png" class="verif" alt="correct" id="img_Nom_Service' . $NbFieldset_Service . '" />';
 		echo '';
@@ -76,15 +68,12 @@ while ($res_liste_service = $req_liste_service->fetch())
 			while ($res_Service_H = $req_Service_Hote->fetch())
 			{
 				if ($res_liste_service['Nom_Hote'] == $res_Service_H['Nom_Hote']){
-//					echo '<option Selected="Selected" value="' . htmlspecialchars($res_Service_H['Nom_Hote']) . '">' . htmlspecialchars($res_Service_H['Nom_Hote']) . ' - ' . htmlspecialchars($res_Service_H['IP_Hote']) . '</option> ';
 					echo '<option Selected="Selected" value="' . htmlspecialchars($res_Service_H['ID_Hote']) . '">' . htmlspecialchars($res_Service_H['Nom_Hote']) . ' - ' . htmlspecialchars($res_Service_H['IP_Hote']) . '</option> ';
 				} else {
-//					echo '<option value="' . htmlspecialchars($res_Service_H['Nom_Hote']) . '">' . htmlspecialchars($res_Service_H['Nom_Hote']) . ' - ' . htmlspecialchars($res_Service_H['IP_Hote']) . '</option> ';
 					echo '<option value="' . htmlspecialchars($res_Service_H['ID_Hote']) . '">' . htmlspecialchars($res_Service_H['Nom_Hote']) . ' - ' . htmlspecialchars($res_Service_H['IP_Hote']) . '</option> ';
 				};
 			};
 		echo '</select>';
-//		echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Hote_Service' . $NbFieldset_Service . '" ondblclick="deverouille_liste(this)" title="double-clic pour déverrouiller le champ"/> <br />';
 		echo '<img src="images/img_ver.png" class="verif" alt="correct" id="img_Hote_Service' . $NbFieldset_Service . '"/> <br />';
 		echo '';
 		echo '<!-- Plage Horaire -->';
@@ -115,8 +104,6 @@ while ($res_liste_service = $req_liste_service->fetch())
 		echo '';
 		echo '<!-- Modele service -->';
 		echo '<label for="Service_Modele' . $NbFieldset_Service . '">Modèle :</label>';
-		//$Num_Service_Modele = "Service_Modele" . $NbFieldset_Service;
-//		echo '<select Disabled="Disabled" name="Service_' . $NbFieldset_Service . '_Modele" id="Service_Modele' . $NbFieldset_Service . '" onChange="sauve_argument(' . $NbFieldset_Service . ',' . $res_liste_service['MS_Modele_Service'] . ');afficher_argument(' . $NbFieldset_Service . ')" onblur="verifChamp(this)" class="service' . $NbFieldset_Service . '">  <!-- Liste Type_Service -->';
 		echo '<select Disabled="Disabled" name="Service_' . $NbFieldset_Service . '_Modele" id="Service_Modele' . $NbFieldset_Service . '" onChange="sauve_argument(' . $NbFieldset_Service . ',\'' . $res_liste_service['MS_Modele_Service'] . '\');afficher_argument(' . $NbFieldset_Service . ')" onblur="verifChamp(this)" class="service' . $NbFieldset_Service . '">  <!-- Liste Type_Service -->';
 		try {
 				include('requete_liste_Modele_Service.php'); 
@@ -125,16 +112,6 @@ while ($res_liste_service = $req_liste_service->fetch())
 				die('Erreur requete_liste_Modele_Service: ' . $e->getMessage());
 			}; 
 			echo '<option value="" >...</option> <!-- Valeur par défaut -->';
-/*
-			while ($res_modele = $req_modele->fetch())
-			{
-				if ($res_liste_service['MS_Modele_Service'] == $res_modele['Modele_Service']){
-					echo '<option Selected="Selected" value="' . htmlspecialchars($res_liste_service['MS_Modele_Service']) .'">' . htmlspecialchars($res_liste_service['MS_Modele_Service']) .'</option>';
-				} else {
-					echo '<option value="' . htmlspecialchars($res_liste_service['MS_Modele_Service']) .'">' . htmlspecialchars($res_liste_service['MS_Modele_Service']) .'</option>';
-				};
-			};
-*/
 		if ($res_liste_service['MS_Modele_Service'] == "")
 		{
 			$Trouve_modele = true; // on force à true pour le champ masqué
@@ -188,12 +165,23 @@ while ($res_liste_service = $req_liste_service->fetch())
 		echo '</fieldset> ';
 		echo ' <br />';
 		echo '<!-- Service Consigne -->';
-		echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
-		echo '<input type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Lien_Consigne" value="' . htmlspecialchars($res_liste_service['Consigne']) . '" size="70" maxlength="255" class="service' . $NbFieldset_Service . '"/> <br />';
+/**
+ * Modification consigne obligatoire
+ */
+//		echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
+//		echo '<input type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Lien_Consigne" value="' . htmlspecialchars($res_liste_service['Consigne']) . '" size="70" maxlength="255" class="service' . $NbFieldset_Service . '"/> <br />';
+		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_service['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_service['Consigne']) . '</a></span>	<br />';
 		echo '';
 		echo '<!-- Service Consigne Description-->';
 		echo '<label for="Consigne_Service_Detail' . $NbFieldset_Service . '">Description consigne :</label>';
-		echo '<textarea id="Consigne_Service_Detail' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Description_Consigne" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars($res_liste_service['Detail_Consigne']) . '</textarea> <br />';
+		echo '<textarea id="Consigne_Service_Detail' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Description_Consigne" onblur="verifChamp(this)" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars($res_liste_service['Detail_Consigne']) . '</textarea>';
+		if ($res_liste_service['Consigne'] == "")
+		{
+			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Consigne_Service_Detail' .  $NbFieldset_Service . '"/> <br />';
+		} else
+		{
+			echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Consigne_Service_Detail' .  $NbFieldset_Service . '" ondblclick="deverouille_liste(this)"/> <br />';
+		};
 		echo '';
 		echo '<!-- Action à effectuer -->';
 		echo '<fieldset id="Action_Service' . $NbFieldset_Service . '" class="service_action">';
@@ -237,8 +225,8 @@ while ($res_liste_service = $req_liste_service->fetch())
 			echo '</select>';
 			echo '<br />';
 			echo '<!-- Service Commentaire -->';
-			echo '<label for="Service_Commentaire' . $NbFieldset_Service . '">Commentaire :</label>';
-			echo '<textarea id="Service_Commentaire' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Commentaire" rows="3" cols="50" class="service' . $NbFieldset_Service . '" title="Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s\'il doit être changé car peu explicite.">' . htmlspecialchars($res_liste_service['Commentaire']) . '</textarea> <br />';
+			echo '<label for="Service_Commentaire' . $NbFieldset_Service . '" onclick="Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s\'il doit être changé.">Commentaire  <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
+			echo '<textarea id="Service_Commentaire' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Commentaire" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars($res_liste_service['Commentaire']) . '</textarea> <br />';
 
 		echo '</fieldset>';
 		echo '';
