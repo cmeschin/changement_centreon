@@ -77,7 +77,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 	 * Constitution du corps du mail
 	 */
 	//=====Définition de l'ogjet.
-	$sujet = "Gestion des changements CENTREON: Recapitulatif de vos demandes non finalisees au ". $heure_envoi;
+	$sujet = "[CENTREON] Recapitulatif de vos demandes de changement non finalisees au ". $heure_envoi;
 	//=========
 	//=====Déclaration du message au format HTML.
 	$message_html = "

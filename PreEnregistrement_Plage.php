@@ -49,6 +49,11 @@ try {
 	$MAJ_plage->execute(array(
 		'ID_Demande' => $ID_Demande
 		)) or die(print_r($MAJ_Plage->errorInfo()));
+	/**
+	 * Mise à jour de la variable Timer
+	 */
+	$date=date_create();
+	$_SESSION['Timer']=date_timestamp_get($date);
 	$bdd_supervision->commit();
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();

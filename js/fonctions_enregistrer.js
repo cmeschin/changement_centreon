@@ -1057,7 +1057,7 @@ function enregistre_Etat_Demande(champ,ID)
 		{
 			// version 8.11
 			var Etat_dem=$("#Liste_DEC_Enregistrer_Etat"+ID_Demande).val();
-			alert("Etat_dem="+Etat_dem+" Etat_Param="+Etat_Param);
+			//alert("Etat_dem="+Etat_dem+" Etat_Param="+Etat_Param);
 			if (Etat_Param == "En cours" && Etat_dem == "A Traiter")
 			{
 				window.location.reload(); // rechargement de la page pour afficher le statut "en cours"

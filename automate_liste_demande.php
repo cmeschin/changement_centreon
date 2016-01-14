@@ -77,31 +77,24 @@ try {
 /**
  * Récupération de la liste des demandes en cours
  */
-// 	$req_lst_J = $bdd_supervision->prepare('
-// 		SELECT
-// 			 Demandeur,
-// 			 Date_Demande,
-// 			 Date_Supervision_Demandee,
-// 			 Code_Client,
-// 			 Etat_Demande
-// 		 FROM demande
-// 		 WHERE Date_Supervision_Demandee<="' . $dateJ . '" AND Etat_Demande IN ("A Traiter","En cours","Validation")
-// 		 ORDER BY Date_Supervision_Demandee, Code_Client;');
+
 	$req_lst_J = $bdd_supervision->prepare('
 		SELECT
 			 Demandeur,
 			 Date_Demande,
 			 Date_Supervision_Demandee,
 			 Code_Client,
-			 Etat_Demande,
-			 (SELECT CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global
-				FROM demande
-				WHERE Etat_Demande IN ("A Traiter","En cours","Validation")) as Temps_Global
+			 Etat_Demande			 
 		 FROM demande
 		 WHERE Etat_Demande IN ("A Traiter","En cours","Validation")
 		 ORDER BY Date_Supervision_Demandee, Code_Client;');
 	$req_lst_J->execute(array()) or die(print_r($req_lst_J->errorInfo()));
 
+	$req_Temps_Global = $bdd_supervision->prepare('
+		SELECT CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global
+				FROM demande
+				WHERE Etat_Demande IN ("A Traiter","En cours","Validation");');
+	$req_Temps_Global->execute(array()) or die(print_r($req_Temps_Global->errorInfo()));
 	
 	$req_S3 = $bdd_supervision->prepare('
 		SELECT
@@ -233,7 +226,6 @@ try {
 		GROUP BY Etat_Demande;');
 	$req_7J->execute(array()) or die(print_r($req_7J->errorInfo()));
 
-	//echo "requete7J=" . 'SELECT Etat_Demande, count(Etat_demande) AS Nbre FROM demande WHERE Date_Supervision_Demandee>"' . $dateJ . '" AND  Date_Supervision_Demandee<= "' . $dateP7J . '" AND Etat_Demande IN ("A Traiter","En cours","Validation","Traité") ORDER BY Etat_Demande;';
 	$req_P7J = $bdd_supervision->prepare('
 		SELECT
 			 Etat_Demande,
@@ -246,13 +238,7 @@ try {
 	//initialisation mail
 	$adresse_mail = "jean-marc.raud@tessi.fr;pascal.picchiottino@tessi.fr;nicolas.schmitt@tessi.fr;cedric.meschin@tessi.fr";
 	//$adresse_mail = "cedric.meschin@tessi.fr";
-	// 				$adresse_mail .= " " . htmlspecialchars($res_lst_notif['gb_mail_liste']);
-	//addlog("liste_mail initiale=" . $adresse_mail);
 	$adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
-	// 				$adresse_mail = str_replace(",", ", ", $adresse_mail); // ajoute un espace après les virgules
-	// 			    $adresse_mail = str_replace(",", " ", $adresse_mail); // converti la virgule en espace
-	// 				$adresse_mail = str_replace("  ", " ", $adresse_mail); // supprime les espaces en double.
-	//addlog("liste_mail corrigee=" . $adresse_mail);
 	if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
 	{
 		$passage_ligne = "\r\n";
@@ -262,7 +248,6 @@ try {
 		$passage_ligne = "\n";
 	};
 	
-//	$contenu_brut="";
 	$contenu_html="";
 	
 /**
@@ -539,8 +524,12 @@ try {
                                         <td class='Tableau1_A1'>" . $NbJP7_S0 . "</td>
                                 </tr>";
 	$contenu_html .= "</table><br />";
-		
-	$contenu_html .= "<p>Liste des demandes à traiter</p>";
+	While($res_Temps_Global = $req_Temps_Global->fetch())
+	{
+		$Temps_Global = $res_Temps_Global['Temps_Global'];
+	};
+	
+	$contenu_html .= "<p>Liste des demandes à traiter (temps total de traitement estimé " . $Temps_Global . ")</p>";
 	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='0' class='Tableau1'>
 							<tr><th class='Tableau1_A1'>Date Supervision Demandée</th>
 								<th class='Tableau1_A1'>Demandeur</th>
@@ -550,7 +539,6 @@ try {
 	
 	While($res_lst_J = $req_lst_J->fetch())
 	{
-		$Temps_Global = $res_lst_J['Temps_Global'];
 		$contenu_html .= "<tr>
 	 				<td class='Tableau1_A1'>" . $res_lst_J['Date_Supervision_Demandee'] . "</td>
 	 				<td class='Tableau1_A1'>" . $res_lst_J['Demandeur'] . "</td>
@@ -559,14 +547,12 @@ try {
 	 			</tr>";
 	};
 	$contenu_html .= "</table><br />";
-	$contenu_html .= "<p class=\"P1\">Le temps global de traitement estimé pour ces demandes est de ". $Temps_Global . "</p>";
 	
-//	$contenu_html = $contenu_htmlJ ."<br />" . $contenu_html8J . "<br />" . $contenu_htmlPLUS8J;
 				/**
 				 * Constitution du corps du mail
 				 */
 				//=====Définition de l'ogjet.
-				$sujet = "Gestion des changements CENTREON: Recapitulatif des demande en cours au ". $heure_envoi;
+				$sujet = "[CENTREON] Recapitulatif des demandes de changement en cours au ". $heure_envoi;
 				//=========
 				//=====Déclaration des messages au format texte et au format HTML.
 // 				$message_txt = "Liste des demandes de changement à traiter ou en cours de traitement le " . $heure_envoi . "\n

@@ -1,13 +1,16 @@
-﻿2015-11-xx 8.11
+﻿2015-12-29 8.11
 	Corrections:
 		- #21 meilleure gestion de la coloration. corrige la modification du statut des autres demandes lorsque l'édition de plusieurs demandes est faite simultanément
+		- Correction liste déroulante "Etat" sur les périodes temporelles
 
 	Améliorations:
 		- appel de la fonction location.reload() au lieu de location.replace() qui après rechargement remontait tout en haut de la page.
 		- appel de la fonction location.reload() sur le passage d'une demande en statut "en cours" => permet d'avoir le statut validation sans avoir à recharger la page une fois tous les services traités.
 		- #10 uniformisation du temps estimé et affichage du temps global estimé dans l'entête du tableau.
 		- #10 Ajout du temps global estimé dans le mail de récap du jeudi
-				
+		- reformatage de l'objet des mails avec [CENTREON] en début d'objet
+		- prise en compte MAJ Timer sur Pré-enregistrement Hote et Plage
+		
 2015-10-31 8.10
 	Correction:
 		- #3 Meilleure gestion des caractères spéciaux tels que \ ' et " dans les arguments des services

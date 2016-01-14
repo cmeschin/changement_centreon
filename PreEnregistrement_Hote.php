@@ -82,6 +82,11 @@ try {
 	{ // on boucle sur les valeurs remontée par la requête 
 		$ID_Hote=$valeur[0];
 	};
+	/**
+	 * Mise à jour de la variable Timer
+	 */
+	$date=date_create();
+	$_SESSION['Timer']=date_timestamp_get($date);
 	echo $ID_Hote;
 	$bdd_supervision->commit();
 } catch (Exception $e) {
