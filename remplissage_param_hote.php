@@ -393,13 +393,11 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		echo '<textarea id="Consigne_Hote_Detail' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Description_Consigne" onblur="verifChamp(this)" rows="3" cols="50" class="hote' . $NbFieldset . '">' . htmlspecialchars($res_liste_hote['Detail_Consigne']) . '</textarea>';
 		if ($res_liste_hote['Consigne'] == "")
 		{
-			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Consigne_Hote_Detail' . $NbFieldset . '" <br />/>';
+			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Consigne_Hote_Detail' . $NbFieldset . '" <br />';
 		} else 
 		{
-			echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Consigne_Hote_Detail' . $NbFieldset . '" ondblclick="deverouille_liste(this)" <br />/>';
+			echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_Consigne_Hote_Detail' . $NbFieldset . '" ondblclick="deverouille_liste(this)" <br />';
 		}
-
-		
 		echo '';
 		echo '<!-- Controle_actif -->';
 		echo '<label for="Controle_Actif_Hote' . $NbFieldset . '">Controle :</label>';

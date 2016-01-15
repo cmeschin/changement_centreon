@@ -1,4 +1,4 @@
-﻿2016-01-14 8.11
+﻿2016-01-15 8.11
 	Corrections:
 		- #21 meilleure gestion de la coloration. corrige la modification du statut des autres demandes lorsque l'édition de plusieurs demandes est faite simultanément
 		- Correction liste déroulante "Etat" sur les périodes temporelles
@@ -11,6 +11,8 @@
 		- reformatage de l'objet des mails avec [CENTREON] en début d'objet
 		- prise en compte MAJ Timer sur Pré-enregistrement Hote et Plage
 		- transformation du lien de consigne en lien cliquable
+		- réorganisation de certains champs dans les formulaires
+		
 	Nouveautés:
 		- Obligation de saisie d'une consigne (champ description consigne).
 		

@@ -95,14 +95,14 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		{
 			echo '<input readonly name="Hote_action' . $NbFieldset . '" id="Hote_action' . $NbFieldset . '" value="Activer"/>';
 		};
+		echo '<!-- Commentaire -->';
+		echo '<label for="Hote_Commentaire' . $NbFieldset . '">Commentaire :</label>';
+		echo '<textarea readonly id="Hote_Commentaire' . $NbFieldset . '" name="Hote_Commentaire' . $NbFieldset . '" rows="2" cols="50">' . htmlspecialchars($res_liste_hote['Commentaire']) . '</textarea> <br />';
 		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
 		{
 			$ID_Hote = htmlspecialchars($res_liste_hote['ID_Hote']);
 			include('insere_fieldset_Admin_Hote.php');
 		};
-		echo '<!-- Commentaire -->';
-		echo '<label for="Hote_Commentaire' . $NbFieldset . '">Commentaire :</label>';
-		echo '<textarea readonly id="Hote_Commentaire' . $NbFieldset . '" name="Hote_Commentaire' . $NbFieldset . '" rows="2" cols="50">' . htmlspecialchars($res_liste_hote['Commentaire']) . '</textarea> <br />';
 	echo '</fieldset>';
 
 	/**

@@ -102,8 +102,9 @@ while ( $res_liste_service = $SEL_tmp_service->fetch () ) {
 	{
 		echo '<!-- Service Consigne -->';
 		// $LongueurArg= strlen(htmlspecialchars($res_liste_service['Consigne'])) + 20*strlen(htmlspecialchars($res_liste_service['Consigne']))/100;
-		echo '<span id="Lbl_Service_Consigne' . $NbFieldset_Service . '" style="text-decoration: underline">Lien vers la consigne:</span>';
-		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars ( $res_liste_service ['Consigne'] ) . '</span>';
+//		echo '<span id="Lbl_Service_Consigne' . $NbFieldset_Service . '" style="text-decoration: underline">Lien vers la consigne:</span>';
+//		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars ( $res_liste_service ['Consigne'] ) . '</span>';
+		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_service['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_service['Consigne']) . '</a></span>';
 		echo '<br />';
 	};
 	echo '</fieldset>';

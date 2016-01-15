@@ -173,7 +173,7 @@ while ($res_liste_service = $req_liste_service->fetch())
 		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_service['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_service['Consigne']) . '</a></span>	<br />';
 		echo '';
 		echo '<!-- Service Consigne Description-->';
-		echo '<label for="Consigne_Service_Detail' . $NbFieldset_Service . '">Description consigne :</label>';
+		echo '<label for="Consigne_Service_Detail' . $NbFieldset_Service . '" onclick="alert(\'Décrivez ici les opérations à effectuer par les équipes EPI et/ou CDS si un évènement se produit sur l\\\'équipement (relancer un process, envoyer un mail, etc...).\\nLes consignes doivent être claires et précises afin qu\\\'elles puissent être appliquées rapidement et sans ambiguïté par les équipes de support.\\nLes adresses mails doivent être indiquées en toute lettre soit par ex: envoyer un mail à support_bmd@tessi.fr et pas simplement envoyer un mail support bmd.\\nCette consigne sera ensuite retranscrite dans le wiki tessi-techno et un lien sera rattaché à l\\\'hôte; le lien apparaitra par la suite dans le champ ci-dessus.\')">Description consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
 		echo '<textarea id="Consigne_Service_Detail' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Description_Consigne" onblur="verifChamp(this)" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars($res_liste_service['Detail_Consigne']) . '</textarea>';
 		if ($res_liste_service['Consigne'] == "")
 		{
@@ -225,7 +225,7 @@ while ($res_liste_service = $req_liste_service->fetch())
 			echo '</select>';
 			echo '<br />';
 			echo '<!-- Service Commentaire -->';
-			echo '<label for="Service_Commentaire' . $NbFieldset_Service . '" onclick="Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s\'il doit être changé.">Commentaire  <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
+			echo '<label for="Service_Commentaire' . $NbFieldset_Service . '" onclick="alert(\'Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s\\\'il doit être changé.\')">Commentaire  <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
 			echo '<textarea id="Service_Commentaire' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Commentaire" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars($res_liste_service['Commentaire']) . '</textarea> <br />';
 
 		echo '</fieldset>';
