@@ -6,17 +6,28 @@ addlog("Chargement suppression_modele_service.php");
 
 include_once('connexion_sql_supervision.php');
 $sID_Modele_Service = (isset($_POST["ID_Modele_Service"])) ? $_POST["ID_Modele_Service"] : NULL;
-//$ID_Modele_valeur = explode("$",$sID_Modele_valeur); // découpe la chaine en tableau avec comme séparateur le $
 
 try {
-	// Verification sur l'existence d'un nom identique
+	$bdd_supervision->beginTransaction();
+	/**
+	 * Suppression du modèle de service
+	 */
 	$del_Modele = $bdd_supervision->prepare('DELETE
 			 FROM modele_service
 			 WHERE ID_Modele_Service = :ID_Modele_Service');
 	$del_Modele->execute(Array(
 			'ID_Modele_Service' => htmlspecialchars($sID_Modele_Service)
 	)) or die(print_r($del_Modele->errorInfo()));
+	$del_Relation_Modele = $bdd_supervision->prepare('DELETE
+			 FROM relation_modeles
+			 WHERE ID_Modele_Service = :ID_Modele_Service');
+	$del_Relation_Modele->execute(Array(
+			'ID_Modele_Service' => htmlspecialchars($sID_Modele_Service)
+	)) or die(print_r($del_Relation_Modele->errorInfo()));
+	$bdd_supervision->commit();
 } catch (Exception $e) {
+	$bdd_supervision->rollBack();
+	http_response_code(500);
 	die('Erreur suppression_modele_service: ' . $e->getMessage());
 };
 

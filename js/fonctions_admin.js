@@ -532,7 +532,7 @@ function MAJ_Modele_Centreon(callback)
 			$("#p_loading").remove();
 			//callback(xhr.responseText); // C'est bon \o/
 			alert("MAJ effectuée");
-			//window.location.reload();
+			window.location.reload();
 		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 			$("#img_loading").remove();
 			$("#p_loading").remove();

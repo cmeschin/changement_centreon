@@ -216,22 +216,39 @@ session_start();
 		$i=0;
 		foreach ($Liste_Macro AS $Macro_Name)
 		{
-			//			echo "Macro_Name=".$Macro_Name;
-			for ($j=0;$j<$NbMacro;$j++)
+//			echo "Macro_Name=".$Macro_Name;
+			$Macro_trouvee=False;
+//			for ($j=0;$j<$NbMacro;$j++)
+			foreach ($Liste_Argument AS $Macro_Argument)
 			{
-			//				echo "Argument_Name=".stristr($Liste_Argument[$j],':',True);
-				if (!isset($Liste_Argument[$j]))
+				$Argument_Name=stristr($Macro_Argument,':',True);
+				$Argument_Valeur=substr(stristr($Macro_Argument,':'),1);
+				//echo "Argument_Name".$j."=".stristr($Liste_Argument[$j],':',True);
+//				echo "Argument_Name=" . $Argument_Name;
+//				echo "Argument_Valeur=" . $Argument_Valeur;
+				//if (!isset($Liste_Argument[$j]))
+				if (!isset($Macro_Argument))
 				{
-					$Liste_Argument[$j] = "NC:NC";
+					//$Liste_Argument[$j] = "NC:NC";
+					$Macro_Argument = "NC:NC";
 				};
-				if ($Macro_Name == stristr($Liste_Argument[$j],':',True))
+				//if ($Macro_Name == stristr($Liste_Argument[$j],':',True))
+				//if (($Macro_Name == $Argument_Name) && ($Macro_trouvee==False))
+				/**
+				 * Concordance Macro et Argument
+				 * Prise en compte automatique INTERFACE ou INTERFACEID pour les équipements réseau
+				 */
+				if ((($Macro_Name == $Argument_Name) || ($Macro_Name . "ID" == $Argument_Name)) && ($Macro_trouvee==False))
 				{
-				//					echo "valeur".$j."=".substr(stristr($Liste_Argument[$j],':'),1);
-					$T_Argument[$i] = substr(stristr($Liste_Argument[$j],':'),1);
+					//$T_Argument[$i] = substr(stristr($Liste_Argument[$j],':'),1);
+					$T_Argument[$i] = $Argument_Valeur;
+					$Macro_trouvee=True;
+//					echo "Argument_Valeur=" . $T_Argument[$i] . "\n";
+					//addlog("valeur".$j."=".$T_Argument[$i]);
 				};
 			};
-			//			echo "\n";
-			if (!isset($T_Argument[$i]))
+//			echo "\n";
+			if (!isset($T_Argument[$i]) || ($Macro_trouvee==False))
 			{
 				$T_Argument[$i] = "NC";
 			}

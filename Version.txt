@@ -1,8 +1,10 @@
-﻿2016-01-15 8.11
+﻿2016-01-17 8.11
 	Corrections:
 		- #21 meilleure gestion de la coloration. corrige la modification du statut des autres demandes lorsque l'édition de plusieurs demandes est faite simultanément
 		- Correction liste déroulante "Etat" sur les périodes temporelles
-
+		- #22 [Administration] Correction affichage liste modèle associé lignes vides (charge_liste_modele_associe.php)
+		- #23 correction gestion des macro et des nouvelles commandes de centreon_plugins 
+		 
 	Améliorations:
 		- appel de la fonction location.reload() au lieu de location.replace() qui après rechargement remontait tout en haut de la page.
 		- appel de la fonction location.reload() sur le passage d'une demande en statut "en cours" => permet d'avoir le statut validation sans avoir à recharger la page une fois tous les services traités.
@@ -12,6 +14,7 @@
 		- prise en compte MAJ Timer sur Pré-enregistrement Hote et Plage
 		- transformation du lien de consigne en lien cliquable
 		- réorganisation de certains champs dans les formulaires
+		- #22 [Administration] Nettoyage et suppression automatique des relation_modele si suppression d'un modèle et lors de la MAJ_modele
 		
 	Nouveautés:
 		- Obligation de saisie d'une consigne (champ description consigne).

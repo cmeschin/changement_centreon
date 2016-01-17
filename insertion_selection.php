@@ -320,9 +320,6 @@ try {
 	// Insertion liste plages
 	////////////////////////////////
 	
-	//Purge de la table Hote_Temp pour les hôtes dont la demande est traitée ou annulée
-	//include('Delete_hote_temp.php');
-	
 	$nbligne_plage=count($plage_liste);
 		addlog('nbligne_plage=' . $nbligne_plage);
 /*		echo '<pre>';

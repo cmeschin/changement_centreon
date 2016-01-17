@@ -269,9 +269,23 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 // 			WHERE c.command_line IS NOT NULL
 // 				AND TRIM(TRAILING SUBSTRING_INDEX(SUBSTRING(c.command_line,POSITION("$_SERVICE" IN c.command_line)),"$",-1) FROM SUBSTRING(c.command_line,POSITION("$_SERVICE" IN c.command_line))) <> ""
 // 				AND S.service_id= :ID_Service_Centreon');
-			$req_Select_Macro = $bdd_centreon->prepare('
+/**
+ * 			$req_Select_Macro = $bdd_centreon->prepare('
 			SELECT TRIM(SUBSTRING_INDEX(SUBSTRING(c.command_line,POSITION("$_SERVICE" IN c.command_line)),"$",-1) FROM SUBSTRING(c.command_line,POSITION("$_SERVICE" IN c.command_line))) AS Macro
 			 FROM service AS S 
+			 LEFT JOIN service AS T1 on S.service_template_model_stm_id = T1.service_id
+			 LEFT JOIN service AS T2 on T1.service_template_model_stm_id = T2.service_id
+			 LEFT JOIN service AS T3 on T2.service_template_model_stm_id = T3.service_id
+			 LEFT JOIN service AS T4 on T3.service_template_model_stm_id = T4.service_id
+			 LEFT JOIN service AS T5 on T4.service_template_model_stm_id = T5.service_id
+			 LEFT JOIN service AS T6 on T5.service_template_model_stm_id = T6.service_id
+			 LEFT JOIN service AS T7 on T6.service_template_model_stm_id = T7.service_id
+			 LEFT JOIN command AS c on c.command_id = coalesce(S.command_command_id,T1.command_command_id,T2.command_command_id,T3.command_command_id,T4.command_command_id,T5.command_command_id,T6.command_command_id,T7.command_command_id)
+			 WHERE c.command_line IS NOT NULL AND S.service_id= :ID_Service_Centreon');
+ */
+			$req_Select_Macro = $bdd_centreon->prepare('
+			SELECT SUBSTRING(c.command_line,POSITION("$_SERVICE" IN c.command_line)-2) AS Macro
+			 FROM service AS S
 			 LEFT JOIN service AS T1 on S.service_template_model_stm_id = T1.service_id
 			 LEFT JOIN service AS T2 on T1.service_template_model_stm_id = T2.service_id
 			 LEFT JOIN service AS T3 on T2.service_template_model_stm_id = T3.service_id
@@ -295,10 +309,10 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 			{
 				$Chaine_Macro .= " " . htmlspecialchars($res_Select_Macro['Macro']);
 			};
-			addlog("Chaine_Macro=".substr(TRIM($Chaine_Macro),1,strlen(TRIM($Chaine_Macro))-2));
-//			$T_Chaine_Macro = explode(" ",TRIM($Chaine_Macro)); // découpe la chaine en tableau par les espaces
-			$T_Chaine_Macro = explode("$",substr(TRIM($Chaine_Macro),1,strlen(TRIM($Chaine_Macro))-1)); // découpe la chaine en tableau par le dollar
-					
+			addlog("Chaine_Macro=".TRIM($Chaine_Macro));
+			$T_Chaine_Macro = explode(" ",TRIM($Chaine_Macro)); // découpe la chaine en tableau par les espaces
+//			$T_Chaine_Macro = explode("$",substr(TRIM($Chaine_Macro),1,strlen(TRIM($Chaine_Macro))-1)); // découpe la chaine en tableau par le dollar
+			
 // 			echo '<pre>';
 // 			print_r($T_Chaine_Macro);
 // 			echo '</pre>';
@@ -309,16 +323,58 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 			$i=0;
 			for ($j=0;$j<$NbLigne;$j++)
 			{
+				/**
+				 * redécoupe les chaines pour extraire les valeurs des MACRO
+				 * cas possibles
+				 * 	--warning-in-traffic=$_SERVICEWARNING$
+				 * 	$_SERVICEINTERFACEID$'
+				 * 	--critical-in-traffic='$_SERVICECRITICAL$'
+				 * 	--interface='^$_SERVICEINTERFACE$$$'
+				 */
 
+				/**
+				 * récupérer la position du premier $
+				 */
+				$ChaineBrute=$T_Chaine_Macro[$j];
+//				echo "chaineMacrobrute_avant=" . $ChaineBrute . "\n";
+//				addlog("chaineMacrobrute_avant=" . $ChaineBrute);
+				$ChaineBrute=preg_replace('/\${2,}/', '\$', $ChaineBrute);
+//				echo "chaineMacrobrute_apres=" . $ChaineBrute . "\n";
+//				addlog("chaineMacrobrute_apres=" . $ChaineBrute);
+				
+				$pos_premier_dollar=strpos($ChaineBrute,'$');
+				$pos_second_dollar=strpos($ChaineBrute,'$',$pos_premier_dollar+1);
+//				echo "a partir second dollar=" . substr($ChaineBrute,$pos_second_dollar);
+				$ChaineMacro=substr($ChaineBrute,$pos_premier_dollar,$pos_second_dollar-$pos_premier_dollar);
+//				echo "chaineMacro=" . $ChaineMacro . "\n";
+//				echo "position premier $=" . $pos_premier_dollar . "\n";
+//				echo "position second $=" . $pos_second_dollar . "\n";
+//				addlog("position premier dollar=".$pos_premier_dollar);
+//				addlog("position second dollar=".$pos_second_dollar);
+//				addlog("chaineMacro=".$ChaineMacro);
 //				addlog("test ChaineMacro=".substr($T_Chaine_Macro[$j],0,9));
-				addlog("test ChaineMacro=".substr($T_Chaine_Macro[$j],0,8)); // _SERVICE
+//				addlog("test ChaineMacro=".substr($T_Chaine_Macro[$j],0,8)); // _SERVICE
 				
 //				if (substr($T_Chaine_Macro[$j],0,9) == "\$_SERVICE")
-				if (substr($T_Chaine_Macro[$j],0,8) == "_SERVICE")
+				if (substr($ChaineMacro,0,9) == "\$_SERVICE")
+//				if (substr($T_Chaine_Macro[$j],0,8) == "_SERVICE")
 				{
 					//$Liste_Macro[$i] = substr($res_liste_Macro,9,-1); // retourne la valeur de la macro sans "$_SERVICE" et le dernier "$" et la stocke dans un nouveau tableau
-					$Liste_Macro[$i] = $T_Chaine_Macro[$j]; // retourne la valeur de la macro et la stocke dans un nouveau tableau
-					addlog("valeur_macro ajoutée=".$Liste_Macro[$i]);
+/**					if (strpos($ChaineMacro,'\$\$') > 0)
+					{
+						addlog("double dollar");
+						$Liste_Macro[$i] = substr($ChaineMacro,9,-2); // retourne la valeur de la macro sans "$_SERVICE" et les deux derniers "$" et la stocke dans un nouveau tableau
+					} else
+					{
+						addlog("simple dollar");
+						//$Liste_Macro[$i] = substr($ChaineMacro,9,-1); // retourne la valeur de la macro sans "$_SERVICE" et le dernier "$" et la stocke dans un nouveau tableau
+					}
+*/
+					//$Liste_Macro[$i] = substr($ChaineMacro,9,-1); // retourne la valeur de la macro sans "$_SERVICE" et le dernier "$" et la stocke dans un nouveau tableau
+					$Liste_Macro[$i] = substr($ChaineMacro,9,$pos_second_dollar); // retourne la valeur de la macro sans "$_SERVICE" et le dernier "$" et la stocke dans un nouveau tableau
+								
+					//$Liste_Macro[$i] = $T_Chaine_Macro[$j]; // retourne la valeur de la macro et la stocke dans un nouveau tableau
+//					addlog("valeur_macro ajoutée=".$Liste_Macro[$i]);
 					$i++;
 				};
 			};
@@ -362,7 +418,8 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 					addlog("svc_svc_id=".$svc_svc_id);
 					if (($svc_svc_id != NULL) OR ($svc_svc_id != "")) // si le modèle n'est pas null, on traite
 					{
-						$req_Macro_Valeur = $bdd_centreon->prepare('SELECT SUBSTR(svc_macro_name, 2, CHAR_LENGTH(svc_macro_name) - 2),svc_macro_value FROM on_demand_macro_service WHERE svc_svc_id= :svc_svc_id');
+//						$req_Macro_Valeur = $bdd_centreon->prepare('SELECT SUBSTR(svc_macro_name, 2, CHAR_LENGTH(svc_macro_name) - 2),svc_macro_value FROM on_demand_macro_service WHERE svc_svc_id= :svc_svc_id');
+						$req_Macro_Valeur = $bdd_centreon->prepare('SELECT SUBSTR(svc_macro_name, 10, CHAR_LENGTH(svc_macro_name) - 10),svc_macro_value FROM on_demand_macro_service WHERE svc_svc_id= :svc_svc_id');
 						$req_Macro_Valeur->execute(Array(
 							'svc_svc_id' => $svc_svc_id
 						)) or die(print_r($req_Macro_Valeur->errorInfo()));
@@ -377,18 +434,23 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 							//foreach ($res_Macro_Valeur AS $Macro_Name => $Macro_Valeur) // on boucle sur les valeurs remontée par la requête
 							foreach ($res_Macro_Valeur AS $Macro_Name) // on boucle sur les valeurs remontée par la requête
 							{
+/**
 								addlog("Liste_Macro=".$Liste_Macro[$j]);
 								addlog("Macro_Name=".$Macro_Name[0]);
 								addlog("Macro_value=".$Macro_Name[1]);
+*/
+								addlog("Liste_Macro=".$Liste_Macro[$j] . "\n" . "Macro_Name=".$Macro_Name[0] . "\n" . "Macro_value=".$Macro_Name[1]);
 								//if (($Liste_Macro[$j] == $Macro_Name) AND ($Macro_Valeur != "")) // Si Liste_Macro = Macro_Name et MAcro_Valeur non vide, on stocke la valeur dans le tableau Val_Macro
 								//if (($Liste_Macro[$j] == $Macro_Name[0]) AND ($Macro_Name[1] != "")) // Si Liste_Macro = Macro_Name et MAcro_Valeur non vide, on stocke la valeur dans le tableau Val_Macro
 								if ((strcasecmp($Liste_Macro[$j], $Macro_Name[0]) == 0) AND ($Macro_Name[1] != "")) // Si Liste_Macro = Macro_Name et Macro_Valeur non vide, on stocke la valeur dans le tableau Val_Macro
 								// strcasecmp => comparaison insensible à la casse
 								{
 									//$Val_Macro[$Macro_Name] = $Macro_Valeur; // tableau nommé
-									addlog("Val_Macro:".$Macro_Name[0]."=".$Macro_Name[1]);
+//									addlog("Val_Macro:".$Macro_Name[0]."=".$Macro_Name[1]);
 // 									$Val_Macro[$Macro_Name[0]] = substr($Macro_Name[0],8,-1) . ":" . $Macro_Name[1]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
-									$Val_Macro[$Macro_Name[0]] = substr($Macro_Name[0],8) . ":" . $Macro_Name[1]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
+//									$Val_Macro[$Macro_Name[0]] = substr($Macro_Name[0],8) . ":" . $Macro_Name[1]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
+//									$Val_Macro[$Macro_Name[0]] = substr($Macro_Name[0]) . ":" . $Macro_Name[1]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
+									$Val_Macro[$Macro_Name[0]] = $Macro_Name[0] . ":" . $Macro_Name[1]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
 									//											exemple	IFSPEED:1000 
 									addlog("valeur stockée=". $Val_Macro[$Macro_Name[0]]);
 								};
@@ -469,7 +531,6 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 						'ID_Service_Centreon' => $ID_Service_Centreon
 				)) or die(print_r($upd_service->errorInfo()));
 			};
-				
 		};
 	};
 	/**

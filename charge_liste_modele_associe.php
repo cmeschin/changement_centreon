@@ -13,7 +13,7 @@ try {
 			 FROM ((modele_service AS MS
 				 INNER JOIN relation_modeles AS RM
 					 ON MS.ID_Modele_Service=RM.ID_Modele_Service)
-				 LEFT JOIN modele_centreon AS MC
+				 RIGHT JOIN modele_centreon AS MC
 				 	ON RM.ID_Modele_Service_Centreon=MC.service_id)
 			 WHERE MS.Modele_Service= :Modele_Service');
 	$req_liste_associes->execute(Array(

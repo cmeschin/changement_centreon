@@ -9,6 +9,9 @@ include('log.php'); // chargement de la fonction de log
 
 try {
 	$bdd_supervision->beginTransaction();
+	/**
+	 * Mise à jour de la table modele_centreon
+	 */
 	$Del_Modele_centreon = $bdd_supervision->query('TRUNCATE table modele_centreon') or die(print_r($Del_Modele_centreon->errorInfo()));
 	
 	$req_mod_centreon = $bdd_centreon->query('SELECT DISTINCT(service_description),service_alias,service_id FROM service WHERE service_id IN (SELECT service_template_model_stm_id FROM service) ORDER BY service_description') or die(print_r($req_mod_centreon->errorInfo()));
@@ -22,7 +25,14 @@ try {
 			'service_id' => htmlspecialchars($res_mod_centreon['service_id'])
 		)) or die(print_r($ins_modele_centreon->errorInfo()));
 	}; 
-
+	
+	/**
+	 * Nettoyage des relations modele_service <=> modele_centreon
+	 */
+	$Nettoyage_relation = $bdd_supervision->query('
+			DELETE FROM relation_modeles WHERE id_modele_service NOT IN (SELECT ID_Modele_service FROM modele_service);
+			') or die(rpint_r($Nettoyage_relation->errorinfo()));
+	
 	/**
 	 * Mise à jour des tables hote_os
 	 */
