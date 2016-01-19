@@ -1,4 +1,8 @@
-﻿2016-01-17 8.11
+﻿2016-01-19 8.12
+	Correction:
+		- Problème d'affichage des arguments de type Macro après enregistrement brouillon ou validation. (correction enregistrement_donnees.php)
+		
+2016-01-17 8.11
 	Corrections:
 		- #21 meilleure gestion de la coloration. corrige la modification du statut des autres demandes lorsque l'édition de plusieurs demandes est faite simultanément
 		- Correction liste déroulante "Etat" sur les périodes temporelles

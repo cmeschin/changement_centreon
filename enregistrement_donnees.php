@@ -145,12 +145,133 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 	for ($i = 0;$i<$NbService;$i++)
 	{
 		addlog("liste_service".$i."=".($liste_service[$i]));
+			// Nom_service							|ID_Hote	|Periode	|Controle	| ID_Hote_Centreon	| ID_Modele_service	| Frequence		| Consigne	|Description Consigne	| Action	|Commentaire	| Parametres
+			//	[0]									|[1]		|[2]		|[3]		|[4]				|[5]				|[6]			|[7]		|[8]					|[9]		|[10]			|[11]
+			// Traffic - vmxnet3 Ethernet Adapter #3|24796		|24/24 - 7/7|actif		|1752				|66					|1 min / 1 min	|			|gdfhfghfghh			|Modifier	|				|12!4294!80!90!NC
 		$liste_T_service = explode("|",$liste_service[$i]);
+		/**
+		 * Traitement des arguments de type Macro
+		 * Similaire au traitement effectué dans complete_table.php
+		 */
+//		echo "Valeur ID_Modele_Service=".$liste_T_service[5] . "\n";
+		// vérifie le type d'arguments du modèle (argument ou Macro) via le flag MS_EST_MACRO
+		//$req_type_modele = $bdd_supervision->prepare('SELECT MS.MS_EST_MACRO FROM service AS S INNER JOIN modele_service AS MS ON S.ID_Modele_Service=MS.ID_Modele_Service WHERE S.ID_Modele_Service = :ID_Modele_Service AND ID_Demande = :ID_Demande');
+		$req_type_modele = $bdd_supervision->prepare('SELECT MS_EST_MACRO FROM modele_service WHERE ID_Modele_Service = :ID_Modele_Service');
+// 		$req_type_modele->execute(Array(
+// 				'ID_Modele_Service' => $liste_T_service[5],
+// 				'ID_Demande' => $ID_Demande
+// 		)) or die(print_r($req_type_modele->errorinfo()));
+		$req_type_modele->execute(Array(
+				'ID_Modele_Service' => $liste_T_service[5]
+		)) or die(print_r($req_type_modele->errorinfo()));
+		
+		while ($res_type_modele = $req_type_modele->fetch()) // ne doit retourner qu'un seul enregistrement
+		{
+			if ($res_type_modele[0] == 1) // Si MS_EST_MACRO = 1 les arguments sont de type MACRO
+			{
+				$EST_MACRO = True;
+				addlog("EST_MACRO=".$EST_MACRO);
+		
+				// récupère les arguments de type Macro
+				//1) récupère la liste exhaustive des macro liées à la commande à partir du modele de service
+// 				$req_Select_Macro = $bdd_supervision->prepare('
+// 					SELECT 
+// 						MS.MS_Macro,
+// 					 FROM service AS S INNER JOIN modele_service AS MS ON S.ID_Modele_Service=MS.ID_Modele_Service
+// 					 WHERE S.ID_Modele_Service = :ID_Modele_Service AND ID_Demande = :ID_Demande');
+// 				$req_Select_Macro->execute(Array(
+// 						'ID_Modele_Service' => $liste_T_service[5],
+// 						'ID_Demande' => $ID_Demande
+// 				)) or die(print_r($req_Select_Macro->errorinfo()));
+				$req_Select_Macro = $bdd_supervision->prepare('
+					SELECT MS_Macro FROM modele_service WHERE ID_Modele_Service = :ID_Modele_Service');
+				$req_Select_Macro->execute(Array(
+						'ID_Modele_Service' => $liste_T_service[5]
+				)) or die(print_r($req_Select_Macro->errorinfo()));
+				
+// 				echo '<pre>';
+// 				print_r($req_Select_Macro);
+// 				echo '</pre>';
+		
+				//2) extrait chaque Macro de la chaine et stocke dans un nouveau tableau
+				while ($res_Select_Macro = $req_Select_Macro->fetch())
+				{
+					$Liste_Macro = explode("!",$res_Select_Macro[0]); // stocke la valeur de chaque macro dans un nouveau tableau
+				};
+// 				echo '<pre>';
+// 				print_r($Liste_Macro);
+// 				echo '</pre>';
+				/**
+				 * 3) reconstruction de la chaine de paramètres
+				 * basé sur la valeur $liste_T_service[11] correspondant aux paramètres de la sonde
+				 * 	Parametres: 12!4294!80!90!NC
+				 * 	MS_Macro: INTERFACEID!IFSPEED!WARNING!CRITICAL!64BITS
+				 */
+				$Liste_Valeur = explode("!",$liste_T_service[11]);
+// 				echo '<pre>';
+// 				print_r($Liste_Valeur);
+// 				echo '</pre>';
+				$j=0;
+				$Val_Macro=Array();
+				foreach ($Liste_Macro AS $Macro_Name) // on boucle sur les valeurs de Macro pour associer les arguments
+				{
+					/**
+					 addlog("Liste_Macro=".$Liste_Macro[$j]);
+					 addlog("Macro_Name=".$Macro_Name[0]);
+					 addlog("Macro_value=".$Macro_Name[1]);
+					 */
+					addlog("Macro_Name=".$Macro_Name . "\n" . "Macro_value=".$Liste_Valeur[$j]);
+// 					//if (($Liste_Macro[$j] == $Macro_Name) AND ($Macro_Valeur != "")) // Si Liste_Macro = Macro_Name et MAcro_Valeur non vide, on stocke la valeur dans le tableau Val_Macro
+// 					//if (($Liste_Macro[$j] == $Macro_Name[0]) AND ($Macro_Name[1] != "")) // Si Liste_Macro = Macro_Name et MAcro_Valeur non vide, on stocke la valeur dans le tableau Val_Macro
+// 					if ((strcasecmp($Liste_Macro[$j], $Macro_Name[0]) == 0) AND ($Macro_Name[1] != "")) // Si Liste_Macro = Macro_Name et Macro_Valeur non vide, on stocke la valeur dans le tableau Val_Macro
+// 					// strcasecmp => comparaison insensible à la casse
+// 					{
+// 						//$Val_Macro[$Macro_Name] = $Macro_Valeur; // tableau nommé
+// 						//									addlog("Val_Macro:".$Macro_Name[0]."=".$Macro_Name[1]);
+// 						// 									$Val_Macro[$Macro_Name[0]] = substr($Macro_Name[0],8,-1) . ":" . $Macro_Name[1]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
+// 						//									$Val_Macro[$Macro_Name[0]] = substr($Macro_Name[0],8) . ":" . $Macro_Name[1]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
+// 						//									$Val_Macro[$Macro_Name[0]] = substr($Macro_Name[0]) . ":" . $Macro_Name[1]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
+						$Val_Macro[$Macro_Name] = $Macro_Name . ":" . $Liste_Valeur[$j]; // tableau nommé, on stocke dans la valeur le nom puis ":" puis la valeur
+						//											exemple	IFSPEED:1000
+						addlog("valeur stockée=". $Val_Macro[$Macro_Name]);
+//					};
+					$j++;
+				};
+// 				//7) On récupère la consigne éventuelle pour être cohérent avec les arguments classique
+// 				$req_Consigne = $bdd_centreon->prepare('SELECT Consigne_Sonde AS Consigne FROM vInventaireServices WHERE service_id = :ID_Service_Centreon');
+// 				$req_Consigne->execute(Array(
+// 						'ID_Service_Centreon' => $ID_Service_Centreon
+// 				)) or die(print_r($req_Consigne->errorInfo()));
+// 				while ($res_Consigne = $req_Consigne->fetch())
+// 				{
+// 					$Consigne = $res_Consigne[0];
+// 				}
+				/**
+				 * reconstruction de la chaine d'arguments
+				 */
+				$Chaine_Val_Macro = "";
+				foreach($Val_Macro as $Macro_Nom => $Macro_Val)
+				{
+					$Chaine_Val_Macro .= "!" . $Macro_Val;
+				};
+				/**
+				 * re affectation dans le tableau initial $liste_T_service[11]
+				 */
+				$liste_T_service[11] = $Chaine_Val_Macro;
+// 				echo 'Liste_T_service[11] = ' . $liste_T_service[11];
+// 				echo 'Chaine_Val_Macro = ' . $Chaine_Val_Macro;
+			};
+		};
+		
+		
+		/**
+		 * Insertion des données de service
+		 */
 		addlog("requete insertion Service:");
 		addlog("##### DEBUG SI NECESSAIRE pour réinsertion manuelle ##### UPDATE service SET ID_Hote= ".htmlspecialchars($liste_T_service[1]).", Nom_Periode= '".htmlspecialchars($liste_T_service[2])."', Frequence= '".htmlspecialchars($liste_T_service[6])."', Controle_Actif= '".htmlspecialchars($liste_T_service[3])."', ID_Modele_Service= ".htmlspecialchars($liste_T_service[5]).", Parametres= '".htmlspecialchars($liste_T_service[11])."', Consigne= '".htmlspecialchars($liste_T_service[7])."', Detail_Consigne= '".htmlspecialchars($liste_T_service[8])."', Type_Action= '".htmlspecialchars($liste_T_service[9])."', Commentaire= '".htmlspecialchars($liste_T_service[10])."', ID_Hote_Centreon= ".htmlspecialchars($liste_T_service[4])." WHERE Nom_Service= '".htmlspecialchars($liste_T_service[0])."' AND ID_Hote= ".htmlspecialchars($liste_T_service[1])." AND ID_Demande= ".$ID_Demande.";");
-/**
- * procedure ON DUPLICATE KEY UPDATE
- *
+		/**
+		 * procedure ON DUPLICATE KEY UPDATE
+		 *
  		$MAJ_service = $bdd_supervision->prepare('INSERT INTO service 
 			(Nom_Service, ID_Demande, ID_Hote, Nom_Periode, Frequence, Controle_Actif, ID_Modele_Service, Parametres, Consigne, Detail_Consigne, Type_Action, Commentaire, ID_Hote_Centreon)
 			VALUES (:Nom_Service, :ID_Demande, :ID_Hote, :Nom_Periode, :Frequence, :Controle_Actif, :ID_Modele_Service, :Parametres, :Consigne, :Detail_Consigne, :Type_Action, :Commentaire, :id_hote_centreon)
@@ -184,9 +305,9 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 			'id_hote_centreon2' => htmlspecialchars($liste_T_service[4])
 		)) or die(print_r($MAJ_service->errorInfo()));
 */
-/**
- * Procedure Try UPDATE catch INSERT
- * 
+		/**
+		 * Procedure Try UPDATE catch INSERT
+		 * 
  		try {
 			$MAJ_service = $bdd_supervision->prepare('UPDATE service
 			SET Nom_Periode= :nom_periode2,
@@ -235,9 +356,9 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 		};
  */
 
-/**
- * Procedure basique SELECT Compare si trouvé update sinon insert
- */
+		/**
+		 * Procedure basique SELECT Compare si trouvé update sinon insert
+		 */
 		$Select_service = $bdd_supervision->prepare('SELECT Concat(Nom_Service,"-", ID_Demande,"-", Id_Hote) FROM service WHERE ID_Demande = :ID_Demande;');
 		$Select_service->execute(array(
 				'ID_Demande' => $ID_Demande

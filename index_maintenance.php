@@ -4,6 +4,7 @@
 <!--	<meta charset="utf-8" /> -->
 <!--	<link href="css/style.css" rel="stylesheet" type="text/css" /> -->
 <!--	<title>Changement Centreon - Tessi Technologies</title> -->
+<link rel="icon" href="./images/favicon.ico" />
 <?php
 	if (session_id()=='')
 	{
@@ -39,7 +40,8 @@
 				echo 'nous sommes le ' . $date_demande;
 			?>
 		<br />
-		Site en maintenance, merci de votre compréhension.</p>
+		<br />
+		<h3>Site en maintenance, merci de votre compréhension.</h3></p>
 	</section>
 	<footer>
 		<?php

@@ -7,6 +7,7 @@ session_start();
 // découpage des libelles et Arguments
 	$T_Libelle = explode('!',$res_liste_service['MS_Libelles']);
 	$T_Argument_Mod = explode('!',$res_liste_service['MS_Arguments']);
+	
 	// Suppression des \ dans la liste des arguments
 	$res_liste_service['Parametres'] = str_replace("\\","",$res_liste_service['Parametres']); // supprime les \ ajoutés automatiquement par centreon
 
@@ -75,7 +76,7 @@ session_start();
 					{
 						$T_Argument[$i]=substr($T_Argument[$i],0,strlen($T_Argument[$i])-2)/1000 . "GB";
 					};
-	                        } else if (substr($T_Argument[$i],-2) == "GB") // Taille en GB, on ne change rien
+	            } else if (substr($T_Argument[$i],-2) == "GB") // Taille en GB, on ne change rien
 				{
 					$T_Argument[$i] = $T_Argument[$i];
 				} else if ((substr($T_Argument[$i],-3) == "%25") || (substr($T_Argument[$i],-1) == "%")) // Taille en pourcentage encodés (% => %25), on ne change rien
@@ -84,9 +85,9 @@ session_start();
 				} else // Taille sans unité donc en MB, on converti si dépasse le GB et on affiche l'unité
 				{
 					if (strlen($T_Argument[$i]) >= 4) // la taille dépasse le GB
-	                                {
-	                                        $T_Argument[$i]=$T_Argument[$i]/1000 . "GB";
-	                                }else
+					{
+						$T_Argument[$i]=$T_Argument[$i]/1000 . "GB";
+					}else
 					{
 						$T_Argument[$i]=$T_Argument[$i] . "MB";
 					};
@@ -206,11 +207,14 @@ session_start();
 		//echo 'EST_MACRO'.$res_liste_service['MS_EST_MACRO'];
 		$Liste_Argument = explode('!',$res_liste_service['Parametres']);
 		$Liste_Macro = explode('!',$res_liste_service['MS_Macro']);
-		/*
-		 echo '<pre>';
-		print_r($Liste_Macro);
-		echo '</pre>';
-		*/
+		
+// 		echo '<pre>';
+// 		print_r($Liste_Macro);
+// 		echo '</pre>';
+// 		echo '<pre>';
+// 		print_r($Liste_Argument);
+// 		echo '</pre>';
+		
 		// pour chaque Valeur de MS_Macro, faire correspondre l'argument de la liste
 		$NbMacro = count($Liste_Macro);
 		$i=0;

@@ -337,10 +337,10 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 				 */
 				$ChaineBrute=$T_Chaine_Macro[$j];
 //				echo "chaineMacrobrute_avant=" . $ChaineBrute . "\n";
-//				addlog("chaineMacrobrute_avant=" . $ChaineBrute);
-				$ChaineBrute=preg_replace('/\${2,}/', '\$', $ChaineBrute);
+				addlog("chaineMacrobrute_avant=" . $ChaineBrute);
+				$ChaineBrute=preg_replace('/\${2,}/', '\$', $ChaineBrute); // Supprime les dollars multiples
 //				echo "chaineMacrobrute_apres=" . $ChaineBrute . "\n";
-//				addlog("chaineMacrobrute_apres=" . $ChaineBrute);
+				addlog("chaineMacrobrute_apres=" . $ChaineBrute);
 				
 				$pos_premier_dollar=strpos($ChaineBrute,'$');
 				$pos_second_dollar=strpos($ChaineBrute,'$',$pos_premier_dollar+1);
@@ -349,9 +349,9 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 //				echo "chaineMacro=" . $ChaineMacro . "\n";
 //				echo "position premier $=" . $pos_premier_dollar . "\n";
 //				echo "position second $=" . $pos_second_dollar . "\n";
-//				addlog("position premier dollar=".$pos_premier_dollar);
-//				addlog("position second dollar=".$pos_second_dollar);
-//				addlog("chaineMacro=".$ChaineMacro);
+				addlog("position premier dollar=".$pos_premier_dollar);
+				addlog("position second dollar=".$pos_second_dollar);
+				addlog("chaineMacro=".$ChaineMacro);
 //				addlog("test ChaineMacro=".substr($T_Chaine_Macro[$j],0,9));
 //				addlog("test ChaineMacro=".substr($T_Chaine_Macro[$j],0,8)); // _SERVICE
 				
@@ -374,7 +374,7 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 					$Liste_Macro[$i] = substr($ChaineMacro,9,$pos_second_dollar); // retourne la valeur de la macro sans "$_SERVICE" et le dernier "$" et la stocke dans un nouveau tableau
 								
 					//$Liste_Macro[$i] = $T_Chaine_Macro[$j]; // retourne la valeur de la macro et la stocke dans un nouveau tableau
-//					addlog("valeur_macro ajoutée=".$Liste_Macro[$i]);
+					addlog("valeur_macro ajoutée=".$Liste_Macro[$i]);
 					$i++;
 				};
 			};
@@ -467,8 +467,7 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 			echo '</pre>';
 */
 				
-			//7) On construit la chaine des Macro selon le modèle des arguments
-			//On récupère la consigne éventuelle pour être cohérent avec les arguments classique
+			//7) On récupère la consigne éventuelle pour être cohérent avec les arguments classique
 			$req_Consigne = $bdd_centreon->prepare('SELECT Consigne_Sonde AS Consigne FROM vInventaireServices WHERE service_id = :ID_Service_Centreon');
 			$req_Consigne->execute(Array(
 					'ID_Service_Centreon' => $ID_Service_Centreon
@@ -485,7 +484,7 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 			$Liste_Argument = $Chaine_Val_Macro . "#" . $Consigne;
 			//addlog("truc");
 			//echo '<p>' . $Liste_Argument . '</p>';
-			addlog("Liste_Argument récupérés=" . $Liste_Argument);
+			//addlog("Liste_Argument récupérés=" . $Liste_Argument);
 			$req_C_service = explode("#",$Liste_Argument); // conversion de la chaine en tableau
 
 			// on insère les arguments en base
@@ -499,8 +498,7 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 			
 			//for ($i=0;$i<$NbLigne;$i++)
 			//{
-				//echo "Parametres=".$req_C_service[0];
-				//echo "Consigne=".$req_C_service[1];
+				addlog("Parametres=".$req_C_service[0] . "\nConsigne=".$req_C_service[1] . "\n");
 				
 				$upd_service = $bdd_supervision->prepare('UPDATE service SET Parametres= :Parametres, Consigne= :Consigne WHERE ID_Demande = :ID_Demande AND ID_Service_Centreon = :ID_Service_Centreon');
 				$upd_service->execute(Array(
