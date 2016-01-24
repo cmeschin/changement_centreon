@@ -1,4 +1,16 @@
-﻿2016-01-19 8.12
+﻿2016-01-24 8.13
+	Correction:
+		- Problème d'affichage des arguments sur la page d'extraction (modifications précédantes non reportées dans le module "requete_extraction_elements.php").
+		- correction enregistrement des données pour supprimer le premier "!" de la chaine des paramètres.
+	
+	Amélioration:
+		- Meilleure gestion de la page de maintenance.
+			Il suffit désormais simplement supprimer le préfixe "_" de la page maintenance.php pour mettre le site en maintenance.
+			Il suffit de repréfixer cette même page pour rétablir l'accès au site.
+		- création d'un module commun "requete_traitement_macros.php" pour les traitements "complete_table.php" et "requete_extraction_elements.php".
+		- Modification du message si aucun éléments trouvés sur la page d'extraction.
+		
+2016-01-19 8.12
 	Correction:
 		- Problème d'affichage des arguments de type Macro après enregistrement brouillon ou validation. (correction enregistrement_donnees.php)
 		

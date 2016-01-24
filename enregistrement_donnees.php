@@ -257,6 +257,7 @@ if ($liste_service[0] != "")  // S'il y a au moins un service
 				/**
 				 * re affectation dans le tableau initial $liste_T_service[11]
 				 */
+				$Chaine_Val_Macro = substr($Chaine_Val_Macro, 1); // stocke les arguments sans le premier !
 				$liste_T_service[11] = $Chaine_Val_Macro;
 // 				echo 'Liste_T_service[11] = ' . $liste_T_service[11];
 // 				echo 'Chaine_Val_Macro = ' . $Chaine_Val_Macro;

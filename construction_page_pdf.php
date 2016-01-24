@@ -6,10 +6,11 @@ echo '<fieldset id=f_extraction_hote">';
 
 echo '<h3 style="text-align:center">Liste des hôtes</h3>';
 
-if ($Nb_Hote == 0) {
-	echo '<p>Aucun résultat trouvé. Cette prestation semble vide.</p>';
-	exit;
-} else {
+// 2016-01-24 gestion effectuée lors de l'extraction des elements.
+// if ($Nb_Hote == 0) {
+// 	echo '<p>Aucun résultat trouvé. Cette prestation semble vide.</p>';
+// 	exit;
+// } else {
 	echo '<table id="T_Liste_Hote" class="extraction_hote" style="width:100%;border-collapse:collapse">';
 	echo '<tr>';
 	echo '<th style="border:1px solid #888888;width:20%;text-align:center;">Hôte</th>';
@@ -52,7 +53,7 @@ if ($Nb_Hote == 0) {
 		$i ++;
 	};
 	echo '</table>';
-};
+//};
 echo '</fieldset>';
 
 // ///////////////////
@@ -61,7 +62,10 @@ echo '</fieldset>';
 echo '<fieldset id="f_extraction_service" style="width:98%;">';
 echo '<h3 style="text-align:center">Liste des services</h3>';
 
-while ( $res_liste_service = $SEL_tmp_service->fetch () ) {
+foreach ( $r_service as $res_liste_service ) // on boucle sur les valeurs remontée par la requête
+{
+// while ( $res_liste_service = $SEL_tmp_service->fetch () )
+// {
 	if ($res_liste_service ['Controle_Actif'] == "actif")
 	{
 		echo '<fieldset id="Service' . $NbFieldset_Service . '" class="extraction_service" style="width:100%;">';

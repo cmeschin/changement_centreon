@@ -17,9 +17,10 @@ echo '<h2> Prestation ' . $prestation . '</h2>';
 echo '<fieldset id=f_extraction_hote">';
 echo '<legend>Liste des hôtes</legend>';
 
-if ($Nb_Hote == 0) {
-	echo '<p>Aucun résultat trouvé.</p>';
-} else {
+// 2016-01-24 gestion effectuée lors de l'extraction des elements ("requete_extraction_elements.php").
+// if ($Nb_Hote == 0) {
+// 	echo '<p>Aucun résultat trouvé.</p>';
+// } else {
 	echo '<table id="T_Liste_Hote" class="extraction_hote">';
 	echo '<tr>';
 	echo '<th>Hôte</th>';
@@ -57,7 +58,7 @@ if ($Nb_Hote == 0) {
 		$i ++;
 	};
 	echo '</table>';
-};
+//};
 echo '</fieldset>';
 // addlog("creation tableau hote... OK.");
 
@@ -68,7 +69,10 @@ echo '</fieldset>';
 echo '<fieldset id="f_extraction_service">';
 echo '<legend>Liste des services</legend>';
 
-while ( $res_liste_service = $SEL_tmp_service->fetch () ) {
+foreach ( $r_service as $res_liste_service ) // on boucle sur les valeurs remontée par la requête
+{
+// while ( $res_liste_service = $r_service->fetch () )
+// {
 	if ($res_liste_service ['Controle_Actif'] == "actif")
 	{
 		echo '<fieldset id="Service' . $NbFieldset_Service . '" class="extraction_service">';
@@ -136,10 +140,10 @@ echo '</fieldset>';
 echo '<fieldset id="f_extraction_periode">';
 echo '<legend>Liste des périodes temporelles</legend>';
 
-if ($nb_plage == 0) {
-	echo '<p>Aucun résultat trouvé.</p>';
-} else
-{
+// if ($nb_plage == 0) {
+// 	echo '<p>Aucun résultat trouvé.</p>';
+// } else
+// {
 	echo '<table id="T_Liste_Plage" class="extraction_periode">';
 	echo '<tr>';
 	echo '<th>Plage Horaire</th>';
@@ -167,6 +171,6 @@ if ($nb_plage == 0) {
 		$i ++;
 	};
 	echo '</table>';
-};
+//};
 echo '</fieldset>';
 	// addlog("creation tableau periode... OK.");

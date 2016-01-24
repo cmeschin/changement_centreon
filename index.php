@@ -19,41 +19,42 @@
 	$_SESSION['Reprise'] = false;
 	$_SESSION['Nouveau'] = false;
 	$_SESSION['PDF'] = false;
+	$date_demande=date("d-m-Y H:i:s");
 	if ((isset($_SESSION['groupe_changement_centreon'])) && ($_SESSION['groupe_changement_centreon']=="GG_DEMANDECENTREON_ADMIN")) 
 	{
 	        $_SESSION['Admin']=True;
-	        //echo "Admin";
 	}else {
 	        $_SESSION['Admin']=False;
-	//      $_SESSION['user']="toto";
-	        //echo "erreur authentification";
 	};
 	include_once('head.php');
-?>
-</head>
-<body>
-<div id="principal">
-	<header id="en-tete">
-		<?php
-			include_once('menu.php');
-		?>
-	</header>
-	<section>
-		<p>Bonjour <?php echo (isset($_SESSION['groupe_changement_centreon'])) ? $_SESSION['name_changement_centreon']: "" ?>,
-		<br />
-			<?php
-				$date_demande=date("d-m-Y H:i:s");
-				echo 'nous sommes le ' . $date_demande;
-			?>
-		<br />
-		Merci de choisir un menu ci dessus!</p>
-		<!-- <h3 style="color:red">Interface validée uniquement sous firefox pour l'instant</h3> -->
-	</section>
-	<footer>
-		<?php
+	echo '</head>';
+echo '<body>';
+echo '<div id="principal">';
+	echo '<header id="en-tete">';
+	if (file_exists('maintenance.php')==False)
+	{
+		include_once('menu.php');
+	};
+	echo '</header>';
+	echo '<section>';
+		echo '<p>Bonjour ';
+		 if(isset($_SESSION['groupe_changement_centreon']))
+		{ echo $_SESSION['name_changement_centreon'];} else{ echo '';};
+		echo ',';
+		echo '<br />';
+		echo 'nous sommes le ' . $date_demande;
+		echo '<br />';
+		if	(file_exists('maintenance.php')==False)
+		{ 
+			echo 'Merci de choisir un menu ci dessus!</p>';
+		} else 
+		{
+			include('index_maintenance.php');
+		};
+	echo '</section>';
+	echo '<footer>';
 			include_once('PiedDePage.php');
-		?>
-	</footer>
-</div>
-</body>
-</html>
+	echo '</footer>';
+echo '</div>';
+echo '</body>';
+echo '</html>';
