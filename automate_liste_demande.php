@@ -236,7 +236,7 @@ try {
 	$req_P7J->execute(array()) or die(print_r($req_P7J->errorInfo()));
 	
 	//initialisation mail
-	$adresse_mail = "jean-marc.raud@tessi.fr;pascal.picchiottino@tessi.fr;nicolas.schmitt@tessi.fr;cedric.meschin@tessi.fr";
+	$adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
 	//$adresse_mail = "cedric.meschin@tessi.fr";
 	$adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
 	if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
