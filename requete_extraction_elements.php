@@ -627,7 +627,7 @@ try {
 					// $upd_service = $bdd_supervision->prepare('UPDATE ' . $tbl_service . ' SET Parametres= :Parametres, Consigne= :Consigne WHERE ID_Service_Centreon = :ID_Service_Centreon');
 					$upd_service = $bdd_supervision->prepare ( 'UPDATE ' . $tbl_service . ' SET Parametres= :Parametres WHERE ID_Service_Centreon = :ID_Service_Centreon' );
 					$upd_service->execute ( Array (
-							'Parametres' => htmlspecialchars($req_C_service[0]),
+							'Parametres' => htmlspecialchars(substr($req_C_service[0]),1),
 							'ID_Service_Centreon' => $ID_Service_Centreon 
 					) ) or die ( print_r ( $upd_service->errorInfo () ) );
 				};

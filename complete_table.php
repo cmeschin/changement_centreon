@@ -507,12 +507,13 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 					'ID_Service_Centreon' => $ID_Service_Centreon
 			)) or die(print_r($req_C_service->errorInfo()));
 			
+			
 			// on insère les arguments en base
 			while ($res_C_service = $req_C_service->fetch())
 			{
 				$upd_service = $bdd_supervision->prepare('UPDATE service SET Parametres= :Parametres, Consigne= :Consigne WHERE ID_Demande = :ID_Demande AND ID_Service_Centreon = :ID_Service_Centreon');
 				$upd_service->execute(Array(
-						'Parametres' => htmlspecialchars($res_C_service[0]),
+						'Parametres' => htmlspecialchars(substr($res_C_service[0]),1),
 						'Consigne' => htmlspecialchars($res_C_service[1]),
 						'ID_Demande' => $ID_Demande,
 						'ID_Service_Centreon' => $ID_Service_Centreon
