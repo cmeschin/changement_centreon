@@ -30,6 +30,7 @@ echo '<th>Objet du mail</th>';
 echo '<th>Liste de diffusion</th>';
 echo '<th>Jours de notification</th>';
 echo '<th>Heure d\'envoi</th>';
+echo '<th>Gestion des notifications</th>';
 echo '</tr>';
 $i = 1;
 foreach ($res_bam AS $valeur) // on boucle sur les valeurs remontée par la requête
@@ -70,13 +71,17 @@ foreach ($res_bam AS $valeur) // on boucle sur les valeurs remontée par la requ
 	$gb_jour = substr($gb_jour,1);
 	echo '<td>' . $gb_jour . '</td>';
 	echo '<td>' . htmlspecialchars ( $valeur ['gb_heure'] ) . '</td>';
-// 		if (htmlspecialchars ( $res_hote ['Controle_Actif'] ) == "inactif")
-// 	{
-// 		echo '<td class="inactif">' . htmlspecialchars ( $res_hote ['Controle_Actif'] ) . '</td>';
-// 	} else
-// 	{
-// 		echo '<td>' . htmlspecialchars ( $res_hote ['Controle_Actif'] ) . '</td>';
-// 	};
+	echo '<td>';
+	if (htmlspecialchars ( $valeur ['gb_actif'] ) == 0)
+	{
+		echo '<input type="checkbox" id="gb_activation'.$valeur['gb_id'].'" name="gb_activation'.$valeur['gb_id'].'" onchange="gb_activation('.$valeur['gb_id'].')" title="Activer cette notification."></input>';
+	} else
+	{
+		echo '<input checked="Checked" type="checkbox" id="gb_activation'.$valeur['gb_id'].'" name="gb_activation'.$valeur['gb_id'].'" onchange="gb_activation('.$valeur['gb_id'].')" title="Désactiver cette notification."></input>';
+	};
+		echo '<button id="gb_supprimer'.$valeur['gb_id'].'" onclick="gb_supprimer('.$valeur['gb_id'].')" title="Supprimer cette notification.">Supprimer</button>';
+		echo '<button id="gb_forcer'.$valeur['gb_id'].'" onclick="gb_forcer('.$valeur['gb_id'].')" title="Forcer la notification maintenant.">Forcer</button><br />';
+		echo '</td>';
 	echo '</tr>';
 	$i ++;
 };

@@ -1,4 +1,13 @@
-﻿2016-01-24 8.13
+﻿2016-01-x 9
+	Nouveauté:
+		#1 Ajout option activation/désactivation/suppression/forçage des Notifications BAM
+			- Fonction Activation/Désactivation OK
+				Ajout du champ gb_actif dans la table gestion_bam_notification
+				#### ALTER TABLE gestion_bam_notification MODIFY gb_actif ENUM('0','1') '0' NOT NULL;
+			- Fonction Suppression OK
+			- Fonction Forcer notification A FAIRE (et corriger le bouton "Test envoi mail" qui envoie toutes les notifications valides)
+		
+2016-01-24 8.13
 	Correction:
 		- Problème d'affichage des arguments sur la page d'extraction (modifications précédantes non reportées dans le module "requete_extraction_elements.php").
 		- correction enregistrement des données pour supprimer le premier "!" de la chaine des paramètres.

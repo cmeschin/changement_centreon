@@ -14,7 +14,8 @@ $req_bam = $bdd_supervision->prepare(
 			gb_heure,
 			gb_mail_objet,
 			gb_mail_titre,
-			gb_mail_liste
+			gb_mail_liste,
+			gb_actif
 		FROM gestion_bam_notification
 		ORDER BY gb_nom');
 $req_bam->execute(array()) or die(print_r($req_bam->errorInfo()));

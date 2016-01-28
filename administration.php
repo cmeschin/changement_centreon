@@ -24,9 +24,9 @@ session_start();
 	<section>
 		<div id="tabs">
 			<ul>
-				<li><a href="#tabs-1">Gestion des modèles de service</a></li>
-				<li><a href="#tabs-2">Association des modèles</a></li>
- 				<li><a href="#tabs-3">Gestion des notifications BAM</a></li>
+				<li><a href="./administration.php#tabs-1">Gestion des modèles de service</a></li>
+				<li><a href="./administration.php#tabs-2">Association des modèles</a></li>
+ 				<li><a href="./administration.php#tabs-3">Gestion des notifications BAM</a></li>
 			</ul>
 			<div id="tabs-1">
 <!--				<h2>Modèles de service</h2> -->

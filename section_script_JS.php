@@ -68,10 +68,9 @@ $(function() {
 	$("#Ajouter_Argument").click(function(){
 		ajoute_Argument();
 	});
-
+	
 	$("#Ajouter_Hote").click(function(){
 		ajoute_fieldset_hote();
-//			efface_formulaire(this);
 	});
 
 	$("#Ajouter_Plage").click(function(){
@@ -80,14 +79,8 @@ $(function() {
 
 	$("#Ajouter_Service").click(function(){
 		ajoute_fieldset_service();
-//			efface_formulaire(this);
 	});
 
-// 	$("#Enregistrer_Modele").click(function(){
-// 		if (verifAll()){
-// 		enregistre_Modele();
-// 		}
-// 	});
 
 	$("#MAJ_Modele_Centreon").click(function(){
 		MAJ_Modele_Centreon();
@@ -96,40 +89,13 @@ $(function() {
 	$("#Supprimer_Modele").click(function(){
 		supprime_Modele();
 	});
-
-// 	$("#Envoie_Mail_BAM").click(function(){
-// 		Envoie_Mail_BAM();
-// 	});
 	
-// 	// Return selected days as dates,
-// 	// starting from coming Monday
-// 	//var weekCal4 = $("#weekCal4").weekLine({
-// 	var nextMonday = nextDay(0);
-// 	$("#weekCal4").weekLine({
-// 		startDate: nextMonday(),
-// 		dayLabels: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
-// 		onChange: function () {
-// 			$("#selectedDays").html(
-// 				$(this).weekLine('getSelected', 'dates')
-// 			);
-// 		}
-// 	 });
-
-	//$("#gb_heure").click(function(){
-		$('#gb_heure').datetimepicker({
-			datepicker:false,
-			format:'H:i',
-			step: 30,
-			validateOnBlur:true
-		});
-	//});
-	
-/*		$("#Cloner_Hote").click(function(){
-		var NbFieldset = $("fieldset.hote").length;
-		alert("ClonageNbFieldset="+NbFieldset);
-		$("#Hote"+NbFieldset).clone().appendTo("#param_hote");
-		
-	}); */
+	$('#gb_heure').datetimepicker({
+		datepicker:false,
+		format:'H:i',
+		step: 30,
+		validateOnBlur:true
+	});
 
 });
 </script>
