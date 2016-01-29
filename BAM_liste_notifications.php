@@ -1,15 +1,12 @@
 <?php
 // header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 include_once('connexion_sql_supervision.php');
-//include('log.php'); // chargement de la fonction de log
-/* echo $_POST['monclient']; */
-//$sMonClient = (isset($_POST["monclient"])) ? $_POST["monclient"] : NULL;
 
-//if ($sMonClient ) {
-// récupérer la liste de toutes les demandes à traiter et en cours
-try {
+try
+{
 	include_once('requete_BAM_liste_notifications.php');
-} catch (Exception $e) {
+} catch (Exception $e)
+{
 	die('Erreur requete BAM liste notifications: ' . $e->getMessage());
 };
 
@@ -17,11 +14,6 @@ try {
  * parcourir les éléments et construire le tableau
  */ 
 $res_bam = $req_bam->fetchall();
-foreach ($res_bam AS $valeur)
-{
-	
-};
-
 
 echo '<table id="T_Liste_Notif" class="liste_notification_bam">';
 echo '<tr>';

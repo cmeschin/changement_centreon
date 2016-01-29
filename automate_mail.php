@@ -4,6 +4,7 @@ session_start();
  * Script de gestion des envois de mail automatique pour BAM
  * Execution par un cron sur le serveur Web
  */
+header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 
 /**
  * Initialisation des constantes
@@ -16,6 +17,19 @@ try {
 	include_once('connexion_sql_centreon.php'); // connexion à la base centreon
 	include_once('connexion_sql_supervision.php'); // connexion à la base changement
 	$bdd_supervision->beginTransaction();
+	/**
+	 * Récupération du gb_id à envoyer
+	 * Si non transmis dans l'URL, on ne force rien
+	 */
+	$gb_id = (isset($_POST["gb_id"])) ? $_POST["gb_id"] : NULL;
+	if ($gb_id == NULL)
+	{
+		$forcer=False;
+	} else
+	{
+		$forcer=True;
+	};
+	
 	$heure_envoi = date("Y-m-d H:i:s");
 	$date_make = date("m,d,Y");
 	$jour_semaine = date("N");
@@ -71,7 +85,7 @@ try {
 	{
 		addlog("##### gb_nom=" . htmlspecialchars($res_lst_notif['gb_nom']) . " #####");
 		/**
-		 * Vérification si Jour est OK
+		 * Vérification si Jour est OK ou si forcer=true et gb_id correspond
 		 * si oui on continue, si non on passe à la notif suivante
 		 */
 		if((htmlspecialchars($res_lst_notif['gb_lundi']) == '1' && $lundi==true) 
@@ -80,34 +94,35 @@ try {
 			|| (htmlspecialchars($res_lst_notif['gb_jeudi']) == '1' && $jeudi==true)
 			|| (htmlspecialchars($res_lst_notif['gb_vendredi']) == '1' && $vendredi==true)
 			|| (htmlspecialchars($res_lst_notif['gb_samedi']) == '1' && $samedi==true)
-			|| (htmlspecialchars($res_lst_notif['gb_dimanche']) == '1' && $dimanche==true))
+			|| (htmlspecialchars($res_lst_notif['gb_dimanche']) == '1' && $dimanche==true)
+			|| (($forcer == True) && (htmlspecialchars($res_lst_notif['gb_id']) == $gb_id)))
 		{
-			addlog("lundi=".$lundi);
-			addlog("mardi=".$mardi);
-			addlog("mercredi=".$mercredi);
-			addlog("jeudi=".$jeudi);
-			addlog("vendredi=".$vendredi);
-			addlog("samedi=".$samedi);
-			addlog("dimanche=".$dimanche);
+			addlog("lundi=".$lundi . "\r\n
+					mardi=".$mardi . "\r\n
+					mercredi=".$mercredi . "\r\n
+					jeudi=".$jeudi . "\r\n
+					vendredi=".$vendredi . "\r\n
+					samedi=".$samedi . "\r\n
+					dimanche=".$dimanche . "\r\n"
+					);
+// 			addlog("lundi=".$lundi);
+// 			addlog("mardi=".$mardi);
+// 			addlog("mercredi=".$mercredi);
+// 			addlog("jeudi=".$jeudi);
+// 			addlog("vendredi=".$vendredi);
+// 			addlog("samedi=".$samedi);
+// 			addlog("dimanche=".$dimanche);
 			/**
 			 * Vérification si Heure atteinte et notif non encore envoyée (date_notif < heure d'envoi du jour)
 			 * si oui on continue, si non on passe à la notif suivante
 			 */
-// 			addlog("#################### gb_heure_avant=".substr(htmlspecialchars($res_lst_notif['gb_heure']),0,2) . "," . substr(htmlspecialchars($res_lst_notif['gb_heure']),3,2));
-// 			$gb_heure_avant = substr(htmlspecialchars($res_lst_notif['gb_heure']),0,2) . "," . substr(htmlspecialchars($res_lst_notif['gb_heure']),3,2) . ",0";
-// 			$date_calcul = $gb_heure_avant . "," . $date_make;
-// 			addlog("#################### date_calcul=".$date_calcul);
 			$gb_heure = mktime(substr(htmlspecialchars($res_lst_notif['gb_heure']),0,2),substr(htmlspecialchars($res_lst_notif['gb_heure']),3,2),0,date("m"),date("d"),date("Y")); // heure paramétrée calculée avec la date du jour au format timestamp
 			addlog("gb_heure=".$gb_heure);
 			$gb_date_notif = htmlspecialchars($res_lst_notif['gb_date_notif']);
 			$gb_date_notif = mktime(substr($gb_date_notif,11,2),substr($gb_date_notif,14,2),substr($gb_date_notif,17,2),substr($gb_date_notif,5,2),substr($gb_date_notif,8,2),substr($gb_date_notif,0,4)); // date dernière notif au format timestamp
-// 			addlog("gb_heure manuel=".date("Y-m-d H:i",mktime(01,00,0,03,06,2015)));
-// 			$gb_heure_date = date("Y-m-d H:i",$gb_heure);
-// 			addlog("gb_heure_date=".$gb_heure_date);
-// 			$heure_date = date("Y-m-d H:i",$heure);
 			addlog("heure=".$heure);
-// 			addlog("heure_date=".$heure_date);
-			if (($heure >= $gb_heure) && ($gb_date_notif < $gb_heure)){
+			if ((($heure >= $gb_heure) && ($gb_date_notif < $gb_heure)) || ($forcer == True))
+			{
 				/**
 				 * Récupération des ba à notifier
 				 */
@@ -327,7 +342,12 @@ try {
 				//==========
 				addlog("message constitué");
 				//=====Envoi de l'e-mail.
-				mail($adresse_mail,$sujet,$message,$header);
+				$mail_envoye = mail($adresse_mail,$sujet,$message,$header);
+				if ($mail_envoye == False && $forcer == True)
+				{
+					http_response_code(500);
+					return False;
+				};
 				//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
 				addlog("mail envoyé à " . $adresse_mail);
 				//==========
@@ -340,15 +360,21 @@ try {
 					'gb_nom' => htmlspecialchars($res_lst_notif['gb_nom'])
 				)) or die(print_r($maj_notif->errorInfo()));
 				
-				
+				$mail_envoye=True;
 				
 			};// fin condition heure atteinte
 		}; // fin condition jour OK
-	};// finde la boucle des notifs
+		if (($forcer == True) && ($mail_envoye == True))
+		{// si forcage notif effectué on arrête la boucle
+			//echo '<p>Mail envoyé</p>';
+			break;
+		};
+	};// fin de la boucle des notifs
  
 	$bdd_supervision->commit();
 } catch (Exception $e) {
  	$bdd_supervision->rollBack();
+ 	http_response_code(500);
  	addlog('Erreur traitement envoi mail'. $e->getMessage());
  	die('Erreur traitement envoi_mail: '. $e->getMessage());
 };

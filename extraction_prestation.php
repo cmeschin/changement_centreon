@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<link rel="icon" href="./images/favicon.ico" />
 <html>
 <head>
 <?php

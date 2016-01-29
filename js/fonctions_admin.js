@@ -426,6 +426,37 @@ function Dissocier_Selection_am()
 	});
 };
 
+function config_notification()
+{
+	$("fieldset#field_config_notification").empty(); // vide le fieldset de configuration
+	var xhr = getXMLHttpRequest(); //création de l'instance XHR
+	var loading=false;
+	xhr.onreadystatechange = function() 
+	{
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			$("#img_loading").remove();
+			$("#p_loading").remove();
+//				callback(xhr.responseText); // C'est bon \o/
+			$("#field_config_notification").append(xhr.responseText);
+//				//alert("MAJ effectuée");
+//				//window.location.reload();
+		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+			$("#img_loading").remove();
+			$("#p_loading").remove();
+//				$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
+			gestion_erreur(xhr);
+		} else if (loading == false){
+			loading=true;
+			$("fieldset#field_config_notification").prepend('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant le chargement du formulaire..."/> ');
+			$("fieldset#field_config_notification").prepend('<p id="p_loading">Veuillez patienter pendant le chargement du formulaire...</p>');
+		};
+	};
+	
+	xhr.open("POST", "BAM_config_notifications.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+	xhr.send(); 
+};
+
 function Envoie_Mail_BAM()
 {
 	var xhr = getXMLHttpRequest(); //création de l'instance XHR
@@ -482,4 +513,31 @@ function gb_supprimer(gb_id)
 	xhr.open("POST", "requete_MAJ_gb_supprimer.php", false);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr.send("gb_id="+gb_id+"");
+};
+
+function gb_forcer(gb_id) 
+{
+	var xhr = getXMLHttpRequest(); //création de l'instance XHR
+	xhr.onreadystatechange = function() 
+	{
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+		{
+			alert("Mail envoyé.");
+		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+			gestion_erreur(xhr);
+		};
+	};
+	xhr.open("POST", "automate_mail.php", false);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+	xhr.send("gb_id="+gb_id+"");
+};
+
+function gb_heure()
+{
+	$('#gb_heure').datetimepicker({
+		datepicker:false,
+		format:'H:i',
+		step: 30,
+		validateOnBlur:true
+	});
 };

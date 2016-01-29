@@ -90,12 +90,12 @@ $(function() {
 		supprime_Modele();
 	});
 	
-	$('#gb_heure').datetimepicker({
-		datepicker:false,
-		format:'H:i',
-		step: 30,
-		validateOnBlur:true
-	});
+// 	$('#gb_heure').datetimepicker({
+// 		datepicker:false,
+// 		format:'H:i',
+// 		step: 30,
+// 		validateOnBlur:true
+// 	});
 
 });
 </script>
