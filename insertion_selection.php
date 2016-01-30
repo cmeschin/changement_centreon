@@ -4,7 +4,6 @@ if (session_id()=='')
 session_start();
 };
 set_time_limit(600); //fixe un délai maximum d'exécution de 600 secondes soit 10 minutes.
-//session_start();
 header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 include('log.php'); // chargement de la fonction de log
 addlog("Chargement insertion_selection.php");
@@ -20,31 +19,19 @@ try {
 	$bdd_supervision->beginTransaction();
 	$sinfo_gen = (isset($_POST["info_gen"])) ? $_POST["info_gen"] : NULL;
 	$info_gen = explode("$",$sinfo_gen); // découpe la chaine en tableau avec comme séparateur le $
-	/* déprécié le 03-11-2014
-	$shote_selec = (isset($_POST["hote_selec"])) ? $_POST["hote_selec"] : NULL;
-	$hote_selec = explode("$",$shote_selec); // découpe la chaine en tableau avec comme séparateur le $
-	*/
+
 	$shote_liste = (isset($_POST["hote_liste"])) ? $_POST["hote_liste"] : NULL;
 	$hote_liste = explode("$",$shote_liste); // découpe la chaine en tableau avec comme séparateur le $
-	//addlog("liste_hotes=".$shote_selec);
 	addlog("liste_hotesliste=".$shote_liste);
-	
 	
 	$sservice_selec = (isset($_POST["service_selec"])) ? $_POST["service_selec"] : NULL;
 	$service_selec = explode("$",$sservice_selec); // découpe la chaine en tableau avec comme séparateur le $
-	
 	addlog("liste_services=".$sservice_selec);
 	
-/* déprécié le 02/12/14
-	$splage_selec = (isset($_POST["plage_selec"])) ? $_POST["plage_selec"] : NULL;
-	$plage_selec = explode("$",$splage_selec); // découpe la chaine en tableau avec comme séparateur le $
-*/
 	$splage_liste = (isset($_POST["plage_liste"])) ? $_POST["plage_liste"] : NULL;
 	$plage_liste = explode("$",$splage_liste); // découpe la chaine en tableau avec comme séparateur le $
-//	addlog("liste_plages=".$splage_selec);
 	addlog("liste_plagesliste=".$splage_liste);
 	
-	//print_r($info_gen);
 	$nbligne_info=count($info_gen);
 	if ($_SESSION['ID_dem']==0) // si ID_dem=0 on enregistre les info générales et on déclare la demande en etat "Brouillon".
 	{
@@ -53,24 +40,26 @@ try {
 	
 	/*
 	//Ordre des champs: ATTENTION EN CAS DE CHANGEMENT DES CHAMPS DU FORMULAIRE INFO GENERALE
+	 * Modifier également enregistrement_donnees.php
 		0 => demandeur
 		1=> Date_demande
 		2=> ref_demande
-		3=> Etat
-		4=> Prestation // => inversion le 12/09/15
-		5=> Date_supervision // => inversion le 12/09/15
+		3=> Type Demande(Démarrage production ou Mise A Jour)
+		4=> Date_supervision
+		5=> Prestation
 		6=> email
 		7=> commentaire
 	*/
-			$insert_info_gen = $bdd_supervision->prepare('INSERT INTO demande (Code_Client, Demandeur, Date_Demande, Ref_Demande, Date_Supervision_Demandee, Commentaire, Etat_Demande, email) VALUES(:Code_Client, :Demandeur, :Date_Demande, :Ref_Demande, :Date_Supervision_Demandee, :Commentaire, :Etat_Demande, :email)');
+			$insert_info_gen = $bdd_supervision->prepare('INSERT INTO demande (Code_Client, Demandeur, Date_Demande, Ref_Demande, Date_Supervision_Demandee, Type_Demande, Commentaire, Etat_Demande, email) VALUES(:Code_Client, :Demandeur, :Date_Demande, :Ref_Demande, :Date_Supervision_Demandee, :Type_Demande, :Commentaire, :Etat_Demande, :email)');
 			$insert_info_gen->execute(array(
 				'Demandeur' => htmlspecialchars($info_gen[0]),
 				'Date_Demande' => htmlspecialchars($info_gen[1]),
 				'Ref_Demande' => htmlspecialchars($info_gen[2]),
-				'Code_Client' => htmlspecialchars($info_gen[4]),
-				'Date_Supervision_Demandee' => htmlspecialchars($info_gen[5]),
+				'Code_Client' => htmlspecialchars($info_gen[5]),
+				'Date_Supervision_Demandee' => htmlspecialchars($info_gen[4]),
+				'Type_Demande' => htmlspecialchars($info_gen[3]),
 				'Commentaire' => htmlspecialchars($info_gen[7]),
-				'Etat_Demande' => htmlspecialchars("Brouillon"),
+				'Etat_Demande' => "Brouillon",
 				'email' => htmlspecialchars(strtolower($info_gen[6])) // on force la chaine en minuscule pour garantir la compatibilité des adresses mails.
 				)) or die(print_r($insert_info_gen->errorInfo()));
 			

@@ -83,10 +83,29 @@ addlog("chargement reprise demande.");
 									
 									<label for="ref_demande">Référence de la demande :</label>
 									<input readonly="readonly" type="text" id="ref_demande" class="info_generale" name="ref_demande" value="<?php echo $ref_demande ;?>" size="20"/>
-									<label for="etat_demande">Etat :</label>
-									<input readonly="readonly" type="text" id="etat_demande" class="info_generale" name="etat_demande" value="<?php echo htmlspecialchars($res_Demande['Etat_Demande']);?>" size="10"/>
-								</span> <br>									
-
+								</span> <br />									
+								<span>
+									<label for="type_demande">Etat :</label>
+<!-- 								<input readonly="readonly" type="text" id="type_demande" class="info_generale" name="type_demande" value="<?php echo htmlspecialchars($res_Demande['Type_Demande']);?>" size="10"/> -->
+									<?php 
+									echo '<select Disabled="Disabled" name="type_demande" id="type_demande" class="info_generale" onblur="verifChamp(this)">';
+									if (htmlspecialchars($res_Demande['Type_Demande']) == "Demarrage")
+									{
+										echo '<option value="MiseAJour">Mise à jour</option>';
+										echo '<option Selected="Selected" value="Demarrage">Démarrage en production</option>';
+									} else 
+									{
+										echo '<option Selected="Selected" value="MiseAJour">Mise à jour</option>';
+										echo '<option value="Demarrage">Démarrage en production</option>';
+									};
+			 						echo '</select>';
+			 						?>
+									<img src="images/img_ok.png" class="verif" alt="correct" id="img_type_demande" ondblclick="deverouille_liste(this)" />
+									<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement la date de démarrage en production.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
+									<input readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo htmlspecialchars($res_Demande['Date_Supervision_Demandee']);?>" size="10"/>
+									<img src="images/img_ok.png" class="verif" alt="correct" id="img_date_livraison_demandee" />
+								</span> <br />									
+									
 								<label for="client" onclick="alert('Une fois que la demande est initialisée, il n\'est plus possible de changer la prestation.')" title="Cliquez pour plus d'informations.">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 								<?php
 // désactivé le 12/09/15
@@ -99,7 +118,7 @@ addlog("chargement reprise demande.");
 									echo '<select Disabled="Disabled" name="client" id="clientsup" class="info_generale">  <!-- Liste Client -->';
 									echo '<option Selected="Selected" value="' . htmlspecialchars($res_Demande['Code_Client']) . '">' . htmlspecialchars($res_Demande['Code_Client']) . '</option>';
 //									};
-									echo '<select/>';
+									echo '</select>';
 									//}; 
 								?>
 								<img src="images/img_ver.png" class="verif" alt="correct" id="img_client" />
@@ -118,10 +137,6 @@ addlog("chargement reprise demande.");
 // 									echo '</span> <br />';
 // 								};
 //								?>
-
-								<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement la date de démarrage en production.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-								<input disabled="disabled" readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo htmlspecialchars($res_Demande['Date_Supervision_Demandee']);?>" size="10"/>
-								<img src="images/img_ok.png" class="verif" alt="correct" id="img_date_livraison_demandee" /> <br />
 								
 								<label for="email" onclick="alert('Saisissez ici les emails des personnes qui devront être notifiées de la demande, centreon_tt est automatiquement notifié de la demande.\nSéparez les adresses par un point-virgule.')" title="Cliquez pour plus d'informations.">Liste des personnes à notifier <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 								<input type="text" id="email" class="info_generale" name="email" value="<?php echo htmlspecialchars($res_Demande['email']) ;?>" onblur="verifChampMail(this)" placeholder="séparer les adresses par un point-virgule" size="100"/>

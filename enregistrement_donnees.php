@@ -22,25 +22,27 @@ $ID_Demande = htmlspecialchars($_SESSION['ID_dem']);
 
 if ($info_gen[0] != "")  // S'il y a des données ce qui doit forcément être la cas
 {
-	addlog("Demandeur=".($info_gen[0]));
-	addlog("Date_Demande=".($info_gen[1]));
-	addlog("Etat_Demande=".($info_gen[2]));
-	addlog("Ref_Demande=".($info_gen[3]));
-	addlog("Code_Client=".($info_gen[4]));
-	addlog("Date_supervision=".($info_gen[5]));
-	addlog("email=".($info_gen[6]));
-	addlog("Commentaire=".($info_gen[7]));
+	addlog("Demandeur=".($info_gen[0]) . "\n
+		Date_Demande=".($info_gen[1]) . "\n
+		Ref_Demande=".($info_gen[2]) . "\n
+		Type_Demande=".($info_gen[3]) . "\n
+		Date_supervision=".($info_gen[4]) . "\n
+		Code_Client=".($info_gen[5]) . "\n
+		email=".($info_gen[6]) . "\n
+		Commentaire=".($info_gen[7]) . "\n
+		MAJ Table Demande");
 
-	addlog("MAJ Table Demande");
 	$MAJ_infos = $bdd_supervision->prepare('UPDATE demande 
 		SET Date_Demande= :Date_Demande,
 			Date_Supervision_Demandee= :Date_Supervision_Demandee,
+			Type_Demande= :Type_Demande,
 			Commentaire= :Commentaire,
 			email= :email
 		WHERE ID_Demande= :ID_Demande;');
 	$MAJ_infos->execute(array(
 		'Date_Demande' => date("Y-m-d H:i:s"), // date de la demande mise à jour au moment de la validation de la demande
-		'Date_Supervision_Demandee' => htmlspecialchars($info_gen[5]),
+		'Date_Supervision_Demandee' => htmlspecialchars($info_gen[4]),
+		'Type_Demande' => htmlspecialchars($info_gen[3]),
 		'Commentaire' => htmlspecialchars($info_gen[7]),
 		'email' => htmlspecialchars(strtolower($info_gen[6])), // forçage en minuscule pour la compatibilité des mails
 		'ID_Demande' => $ID_Demande

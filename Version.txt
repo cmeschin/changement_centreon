@@ -1,14 +1,20 @@
-﻿2016-01-x 9
+﻿2016-02-x 9
 	Nouveauté:
-		#1 Ajout option activation/désactivation/suppression/forçage des Notifications BAM
+		- #1 Ajout option activation/désactivation/suppression/forçage des Notifications BAM
 			- Ajout Fonction Activation/Désactivation OK
 				Ajout du champ gb_actif dans la table gestion_bam_notification
 				#### ALTER TABLE gestion_bam_notification MODIFY gb_actif ENUM('0','1') '0' NOT NULL;
 			- Ajout Fonction Suppression OK
 			- Ajout Fonction Forcer notification et Suppression bouton "Test envoi Mail" devenu inutile OK.
-	
+		- #18 Ajout d'un indicateur "Démarrage en production" ou "Mise à jour supervision"
+			- ajout liste déroulante dans infos générales sur nouvelle demande et reprise.
+			- ajout colonne Type_Demande dans les listes des demandes.
+		
 	Amélioration:
-		- Ajout de l'icône dans l'onglet sur chaque page principale.
+		- Ajout de l'icône dans l'onglet du navigateur sur chaque page principale.
+	
+	Corrections:
+		- #2 gestion des variables $HOSTNAME$ et $SERVICEDESC$ dans les consignes directement depuis la vue.
 		
 2016-01-24 8.13
 	Correction:

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Requête dépréciée depuis le regroupement par mois
+ */
 $req_dem = $bdd_supervision->prepare(
 		'SELECT D.ID_Demande,
 		D.Ref_Demande,

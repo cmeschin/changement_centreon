@@ -31,17 +31,6 @@ try {
 	///////////////////////////////////////////////////////
 	// Gestion du temps de traitement de la demande
 	///////////////////////////////////////////////////////
-	//##########################################################
-	//# boucle à désactiver après la première nouvelle demande #
-	//##########################################################
-	
-	//##############################################################################
-	//$SELECT_ID_Dem =$bdd_supervision->prepare('SELECT ID_Demande FROM demande;');
-	//$SELECT_ID_Dem->execute(Array()) or die(print_r($SELECT_ID_Dem->errorInfo()));
-	//While ($res_ID_Dem = $SELECT_ID_Dem->fetch())
-	//{
-	// $ID_Demande = $res_ID_Dem[0];
-	//###############################################################################
 	$UPD_Dem_Hote = $bdd_supervision->prepare('UPDATE demande SET temps_hote=(SELECT SUM(Temps_Hote) FROM (SELECT CASE H.Type_Action WHEN "Creer" THEN count(H.ID_Hote) * 30 WHEN "Modifier" THEN count(H.ID_Hote) * 5 WHEN "Desactiver" THEN count(H.ID_Hote) * 2 WHEN "Supprimer" THEN count(H.ID_Hote) * 2 WHEN "" THEN count(H.ID_Hote) * 5 END AS Temps_Hote FROM demande AS D INNER JOIN hote AS H ON D.ID_Demande=H.ID_Demande WHERE D.ID_Demande= :ID_Demande1 GROUP BY D.ID_Demande, H.Type_Action ORDER BY D.ID_Demande ASC ) as Tps_Total) where ID_Demande= :ID_Demande2');
 	$UPD_Dem_Hote->execute(Array(
 			'ID_Demande1' => $ID_Demande,
@@ -64,9 +53,6 @@ try {
 			'ID_Demande' => $ID_Demande
 	)) or die(print_r($UPD_Dem_Service2->errorInfo()));
 	$bdd_supervision->commit();	
-	//###############################################################################
-	//};
-	//###############################################################################
 	
 	addlog("Enregistrement Demande termine");
 	// envoie du mail à SUSI
@@ -74,9 +60,10 @@ try {
 	addlog("Mail envoyé");
 	/**
 	 * Mise à jour de la variable Timer
+	 * Désactivé puisque la validation de la demande renvoie à la page d'accueil.
+	$date=create_date();
+	$_SESSION['Timer']=date_timestamp_get($date);
 	 */
-	//$date=create_date();
-	//$_SESSION['Timer']=date_timestamp_get($date);
 
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();

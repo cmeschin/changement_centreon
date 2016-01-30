@@ -68,21 +68,23 @@ session_start();
 						
 						<label for="ref_demande">Référence de la demande :</label>
 						<input readonly="readonly" type="text" id="ref_demande" class="info_generale" name="ref_demande" value="<?php echo $ref_demande ;?>" size="20"/>
-						<label for="etat_demande">Etat :</label>
-						<input readonly="readonly" type="text" id="etat_demande" class="info_generale" name="etat_demande" value="Brouillon" size="10"/>
-					</span> <br />						
-<!-- déplacé le 12/09/15 à côté de la prestation
+					</span> <br />
+					<span>
+						<label for="type_demande">Type de la demande :</label>
+<!-- 					<input readonly="readonly" type="text" id="type_demande" class="info_generale" name="type_demande" value="Brouillon" size="10"/> -->
+ 						<select name="type_demande" id="type_demande" class="info_generale" onblur="verifChamp(this)">
+ 							<option value="" selected="selected">...</option> <!-- Valeur par défaut -->
+ 							<option value="MiseAJour">Mise à jour</option>
+ 							<option value="Demarrage">Démarrage en production</option>
+ 						</select>
+						<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_type_demande" />
 						<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement cela devrait être la date de démarrage en production.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-						<input disabled="disabled" readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="" size="10" title="Cliquez sur le calendrier pour choisir la date."/>
-						<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_date_livraison_demandee" /> <br />
- -->
+						<input readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" onblur="verifChamp(this)" value="<?php echo $date_defaut;?>" size="10" title="Cliquez sur le calendrier pour choisir la date."/>
+						<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_date_livraison_demandee" />
+					</span> <br />						
 					<label for="client" onclick="alert('Sélectionnez la prestation dans la liste; si elle n\'existe pas encore contactez l\'administrateur (05.57.22.77.13 ou centreon_tt@tessi.fr).')" title="Cliquez pour plus d'informations.">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-<!--						<select name="client" id="clientsup" class="info_generale" onChange="chargerlistes()" onblur="verifChamp(this)" title="Sélectionnez la prestation dans la liste ou choisissez nouveau si elle n'existe pas encore..."> -->  <!-- Liste Client -->
-<!-- 						<select name="client" id="clientsup" class="info_generale" title="Sélectionnez la prestation dans la liste ou choisissez nouveau si elle n'existe pas encore..."> -->
  						<select name="client" id="clientsup" class="info_generale">
  							<option value="" selected="selected" >...</option> <!-- Valeur par défaut -->
-<!-- Désactivé le 15/06/15 car trop de création exotiques -->
-<!-- 							<option value="Nouveau">Nouveau</option> -->
 							<?php
 								try {
 									include_once('requete_liste_client.php');
@@ -99,18 +101,7 @@ session_start();
 								}; 
 							?>
 					</select>
-					<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_client" />
-
-<!-- 					<span id="span_date_livraison_demandee" style="visibility: hidden;"> -->
-						<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement cela devrait être la date de démarrage en production.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-						<input disabled="disabled" readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo $date_defaut;?>" size="10" title="Cliquez sur le calendrier pour choisir la date."/>
-						<img src="images/img_ok.png" class="verif" alt="correct" id="img_date_livraison_demandee" /> <br />
-<!-- 					</span> -->					
-<!-- Désactivé le 15/06/15 car trop de création exotique -->
-<!-- 					<span id="sclient_new" style="visibility: hidden;"> -->
-<!-- 						<input onblur="verifChamp(this)" type="text" name="client_new" id="client_new" class="info_generale" value="" placeholder="saisir le nom de la prestation..." size="50" maxlength="40" title="Saisissez le nom qui a été définit pour cette prestation lors du projet. Si vous ne le connaissez pas rapprochez vous du service qualité qui saura vous renseigner."/> -->
-<!-- 						<img src="images/img_ok.png" class="verif" alt="correct" id="img_client_new" /> -->
-<!-- 					</span> --> <br />
+					<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_client" /> <br />
 					<label for="email" onclick="alert('Saisissez ici les emails des personnes qui devront être notifiées de la demande, centreon_tt est automatiquement notifié de la demande.\nSéparez les adresses par un point-virgule.')" title="Cliquez pour plus d'informations.">Liste des personnes à notifier <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 					<input type="text" id="email" class="info_generale" name="email" value="<?php echo $_SESSION['email_changement_centreon'] ;?>" onblur="verifChampMail(this)" placeholder="séparez les adresses par un point-virgule" size="100"/>
 					<?php if ($_SESSION['email_changement_centreon'] != "")
@@ -119,9 +110,7 @@ session_start();
 						{ echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_email" />';}?> <br/>
 					<label for="commentaire" onclick="alert('Saisissez ici toute information complémentaire susceptible d\'être utile au paramétrage de la supervision')">Commentaires <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label> <br/>
 					<textarea id="commentaire" name="commentaire" class="info_generale" rows="5" cols="100"> </textarea>
-<!--						<iimg src="images/img_ok.png" class="verif" alt="correct" id="img_commentaire" sstyle="visibility: hidden;"/> -->
 				</fieldset>
-<!--									<button class="Valider_Selection_info" id="Valider_Selection_info" onclick="enregistre_selection()">Valider votre sélection</button> -->
 				<button class="info_suivant" id="info_suivant" onclick="onglet_suivant()">Suivant</button>
 			</div>
 			<div id="tabs-2">

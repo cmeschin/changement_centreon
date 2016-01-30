@@ -524,12 +524,14 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 	/**
 	 * Ramasse miette
 	 */
+	
 	/**
 	 * MAJ periode temporelle vide en attendant de trouver la correction sur la sélection des services
-	 */
+	 * Désactivé le 30/01/16
 	$MAJ_Service = $bdd_supervision->prepare('UPDATE service SET Nom_Periode="24/24 - 7/7" where Nom_Periode="";');
 	$MAJ_Service->execute(Array()) or die(print_r($MAJ_Service->errorInfo()));
-//	$num_service++;
+	*/
+
 };
 
 /*

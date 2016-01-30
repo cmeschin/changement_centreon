@@ -44,10 +44,10 @@ echo '<table id="T_Liste_Demande">';
 			echo '</tr>';
 			if ( $_SESSION['Admin'] == True)
 			{
-				echo '<td colspan="12">'; // Si profil admin 12 colonnes
+				echo '<td colspan="13">'; // Si profil admin 13 colonnes
 			} else
 			{
-				echo '<td colspan="11">'; // sinon seulement 11
+				echo '<td colspan="12">'; // sinon seulement 12
 			};
  			echo '<div id="DEC_Detail_groupee' . htmlspecialchars($res_dem_groupee['ID_Date']) . '">';
  				//include('liste_demande_traitees_par_mois.php');

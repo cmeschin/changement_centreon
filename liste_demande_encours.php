@@ -36,6 +36,7 @@ echo '<table id="T_Liste_Demande">';
 	echo '<th>Date Demande</th>';
 	echo '<th>Demandeur</th>';
 	echo '<th>Date de Supervision souhaitée</th>';
+	echo '<th>Type de la demande</th>';
 	echo '<th>Prestation</th>';
 	echo "<th>Nombre d'Hôtes</th>";
 	echo '<th>Nombre de Services</th>';
@@ -71,7 +72,11 @@ echo '<table id="T_Liste_Demande">';
 				$couleur_demande = "date_m10";
 			};
 		};	
-		
+		$couleur_type = "type_MiseAJour";
+		if (htmlspecialchars($res_dem['Type_Demande']) == "Demarrage")
+		{
+			$couleur_type = "type_Demarrage";
+		};
 //					$nom_hote = substr(stristr(substr(stristr($res_hote['host_name'],'-'),1),'-'),1); // enlève la localisation et la fonction et les deux -
 		//$hote_Hote=$res_hote['Hote'];
 		echo '<div id="Demande">';
@@ -84,13 +89,17 @@ echo '<table id="T_Liste_Demande">';
 			echo '<td>' . htmlspecialchars($res_dem['Date_Demande']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['Demandeur']) . '</td>';
 			echo '<td class="' . $couleur_demande . '">' . htmlspecialchars($res_dem['Date_Supervision_Demandee']) . '</td>';
-			if (substr(htmlspecialchars($res_dem['Code_Client']),0,4) == "NEW_")
-			{
-				echo '<td class="nouvelle_presta">' . substr(htmlspecialchars($res_dem['Code_Client']),4) . '</td>';
-			} else
-			{
+			echo '<td class="' . $couleur_type . '">' . htmlspecialchars($res_dem['Type_Demande']) . '</td>';
+			/**
+			 * déprécié depuis la désactivation de la possibilité de créer sa propre prestation
+			 */
+			//if (substr(htmlspecialchars($res_dem['Code_Client']),0,4) == "NEW_")
+			//{
+			//	echo '<td class="nouvelle_presta">' . substr(htmlspecialchars($res_dem['Code_Client']),4) . '</td>';
+			//} else
+			//{
 				echo '<td>' . htmlspecialchars($res_dem['Code_Client']) . '</td>';
-			};
+			//};
 			echo '<td>' . htmlspecialchars($res_dem['NbHote']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbService']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbPlage']) . '</td>';

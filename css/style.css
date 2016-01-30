@@ -1,7 +1,7 @@
 /* body */
 #principal
 {
-	width: 90%;
+	width: 95%;
 	height: 890px;
 	margin: auto;
 	text-align: center;
@@ -256,6 +256,18 @@ label
 /* etat demande "supprimé" => pas de couleur car pas d'enregistrement :)*/
 {
 /*	background-color: red; */
+}
+
+.type_MiseAJour
+/* type demande "MiseAJour" => pas de couleur car non prioritaire par défaut :)*/
+{
+	/* background-color: #ff8000; */
+}
+
+.type_Demarrage
+/* type demande "Demarrage" => orange*/
+{
+	background-color: #ff8000;
 }
 
 .nouvelle_presta

@@ -33,6 +33,7 @@ echo '<table id="T_Liste_Demande">';
 	echo '<th>Date Demande</th>';
 	echo '<th>Demandeur</th>';
 	echo '<th>Date de Supervision souhaitée</th>';
+	echo '<th>Type de la demande</th>';
 	echo '<th>Prestation</th>';
 	echo '<th>Nombre d\'Hôtes</th>';
 	echo '<th>Nombre de Services</th>';
@@ -48,10 +49,16 @@ echo '<table id="T_Liste_Demande">';
 	$i = 1;
 	while ($res_dem = $req_dem->fetch())
 	{ 
-		$class="";
+		$couleur_type = "type_MiseAJour";
+		if (htmlspecialchars($res_dem['Type_Demande']) == "Demarrage")
+		{
+			$couleur_type = "type_Demarrage";
+		};
+		
+		$couleur_etat="";
 		if (htmlspecialchars($res_dem['Etat_Demande']) == "Annulé")
 		{
-			$class="class='etat_dem_annu'";
+			$couleur_etat="etat_dem_annu";
 		}; 
 		echo '<div id="Demande">';
 			echo '<tr>';
@@ -60,17 +67,21 @@ echo '<table id="T_Liste_Demande">';
 			echo '<td>' . htmlspecialchars($res_dem['Date_Demande']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['Demandeur']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['Date_Supervision_Demandee']) . '</td>';
-			if (substr(htmlspecialchars($res_dem['Code_Client']),0,4) == "NEW_")
-			{
-				echo '<td class="nouvelle_presta">' . substr(htmlspecialchars($res_dem['Code_Client']),4) . '</td>';
-			} else
-			{
-				echo '<td>' . htmlspecialchars($res_dem['Code_Client']) . '</td>';
-			};
+			echo '<td class="' . $couleur_type . '">' . htmlspecialchars($res_dem['Type_Demande']) . '</td>';
+			/**
+			 * déprécié depuis la désactivation de la possibilité de créer sa propre prestation
+			 */
+			//if (substr(htmlspecialchars($res_dem['Code_Client']),0,4) == "NEW_")
+			//{
+			//	echo '<td class="nouvelle_presta">' . substr(htmlspecialchars($res_dem['Code_Client']),4) . '</td>';
+			//} else
+			//{
+			echo '<td>' . htmlspecialchars($res_dem['Code_Client']) . '</td>';
+			//};
 			echo '<td>' . htmlspecialchars($res_dem['NbHote']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbService']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbPlage']) . '</td>';
-			echo '<td ' . $class . '>' . htmlspecialchars($res_dem['Etat_Demande']) . '</td/>';
+			echo '<td class="' . $couleur_etat . '">' . htmlspecialchars($res_dem['Etat_Demande']) . '</td/>';
 			// le formatage est fait directement dans la requête d'extraction.
 			//echo '<td>' . htmlspecialchars(floor($res_dem['Temps']/60) . 'h' . ($res_dem['Temps']%60)) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['Temps']) . '</td>';
@@ -110,10 +121,10 @@ echo '<table id="T_Liste_Demande">';
 			echo '</tr>';
 			if ( $_SESSION['Admin'] == True)
 			{
-				echo '<td colspan="12">'; // Si profil admin 12 colonnes 
+				echo '<td colspan="13">'; // Si profil admin 13 colonnes 
 			} else 
 			{
-				echo '<td colspan="11">'; // sinon seulement 11
+				echo '<td colspan="12">'; // sinon seulement 12
 			};
 			echo '<div id="DEC_Detail' . htmlspecialchars($res_dem['ID_Demande']) . '">';
 				echo '<div id="DEC_infos' . htmlspecialchars($res_dem['ID_Demande']) . '">';
