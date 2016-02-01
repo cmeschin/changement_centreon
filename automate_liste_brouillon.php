@@ -35,15 +35,17 @@ while ($res_demandeur=$req_demandeur->fetch())
 		Code_Client As Prestation,
 		id_demande,
 		Date_Supervision_Demandee,
-		Date_Demande
+		Date_Demande,
+		Type_Demande
 	 FROM demande
 	 WHERE Etat_Demande="Brouillon" AND Demandeur="'. $res_demandeur['Demandeur'] .'" AND Date_Demande < DATE_ADD(curdate(), INTERVAL -15 DAY) 
 	 ORDER BY demandeur;');
 	$req_lst->execute(array()) or die(print_r($req_lst->errorInfo()));
 	
 	$contenu_html="";
-	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='0' class='Tableau1'>
-						<tr><th class='Tableau1_A1'>Prestation</th>
+	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
+						<tr><th class='Tableau1_A1'>Type de demande</th>
+							<th class='Tableau1_A1'>Prestation</th>
 							<th class='Tableau1_A1'>Date de supervision souhaitée</th>
 							<th class='Tableau1_A1'>Date de dernière modification</th>
 							<th class='Tableau1_A1'>Référence de la demande</th>
@@ -52,7 +54,8 @@ while ($res_demandeur=$req_demandeur->fetch())
 	{
 		echo $res_lst['Ref_Demande'] . "\n";
 		$contenu_html .= "<tr>
- 				<td class='Tableau1_A1'>" . $res_lst['Prestation'] . "</td>
+ 				<td class='Tableau1_A1'>" . $res_lst['Type_Demande'] . "</td>
+				<td class='Tableau1_A1'>" . $res_lst['Prestation'] . "</td>
  				<td class='Tableau1_A1'>" . $res_lst['Date_Supervision_Demandee'] . "</td>
  				<td class='Tableau1_A1'>" . $res_lst['Date_Demande'] . "</td>
  				<td class='Tableau1_A1'><a href='http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_lst['id_demande'] . "'>" . $res_lst['Ref_Demande'] . "</a></td>
@@ -85,7 +88,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 				<html>
 					<style type=\"text/css\">
 						@page {  }
-						table { border-collapse:collapse; border-spacing:0; empty-cells:show }
+						table { border-collapse:collapse; border-spacing:0; empty-cells:show; display:flex; justify-content: space-around; flex-border: none }
 						td, th { vertical-align:top; font-size:12pt;}
 						h1, h2, h3, h4, h5, h6 { clear:both }
 						ol, ul { margin:0; padding:0;}
@@ -93,14 +96,14 @@ while ($res_demandeur=$req_demandeur->fetch())
 						<!-- \"li span.odfLiEnd\" - IE 7 issue-->
 						li span. { clear: both; line-height:0; width:0; height:0; margin:0; padding:0; }
 						span.footnodeNumber { padding-right:1em; }
-						span.annotation_style_by_filter { font-size:95%; font-family:Arial; background-color:#fff000;  margin:0; border:0; padding:0;  }
+						span.annotation_style_by_filter { font-size:95%; font-family: Helvetica Neue, arial, sans-serif; background-color:#fff000;  margin:0; border:0; padding:0;  }
 						* { margin:0;}
-						.P1 { font-size:12pt; font-family:Times New Roman; writing-mode:page; }
-						.P2 { font-size:12pt; font-family:Times New Roman; writing-mode:page; text-decoration:underline; font-weight:bold; }
-						.P3 { font-size:8pt; font-family:Times New Roman; writing-mode:page; background-color:transparent; }
-						.P4 { font-size:8pt; font-family:Times New Roman; writing-mode:page; color:#33cc66; background-color:transparent; }
-						.P5 { font-size:14pt; margin-bottom:0.212cm; margin-top:0.423cm; font-family:Arial; writing-mode:page; text-align:center ! important; text-decoration:underline; font-weight:bold; }
-						.P6 { font-size:14pt; margin-bottom:0.212cm; margin-top:0.423cm; font-family:Arial; writing-mode:page; text-align:center ! important; font-weight:bold; }
+						.P1 { font-size:12pt; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; }
+						.P2 { font-size:12pt; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; text-decoration:underline; font-weight:bold; }
+						.P3 { font-size:8pt; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; background-color:transparent; }
+						.P4 { font-size:8pt; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; color:#33cc66; background-color:transparent; }
+						.P5 { font-size:14pt; margin-bottom:0.212cm; margin-top:0.423cm; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; text-align:center ! important; text-decoration:underline; font-weight:bold; }
+						.P6 { font-size:14pt; margin-bottom:0.212cm; margin-top:0.423cm; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; text-align:center ! important; font-weight:bold; }
 						<!-- ODF styles with no properties representable as CSS -->
 						.T1 .T6  { }
 						.Tableau1_A1 { border: 1px solid #000; }
@@ -108,9 +111,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 					</head>
 					<body>
 						<header>
-							<p class='P5'>
-								<span>Liste des demandes non finalisées au " . $heure_envoi . ".</span>
-							</p>
+							<p class='P6'>Liste des demandes non finalisées au " . $heure_envoi . ".</p>
 						</header>
 						<section>
 							<div>

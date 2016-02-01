@@ -73,7 +73,31 @@ session_start();
 		//=====Déclaration des messages au format texte et au format HTML.
 		$lien_html = "http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_mail['id_demande'] . ""; 
 //		$message_txt = "Type DEM = Autre\nTitulaires = Changement__bCentreon\nPrestation = INFRA_TT_{INT}\nClient Bénéficiaire = Tessi Technologies\nService = TESSI-TECHNO DSI\nRéférentiel SLA = Convention STD\nContrat = -\nTypeService = CENTREON\nListe de diffusion = " . htmlspecialchars($adresse_mail) . "\n\nRéférence Demande: " . htmlspecialchars($res_mail['ref_demande']) . "\nLien vers le gestionnaire des changements Centreon: " . htmlspecialchars($lien_html) . "\nDate de la demande: " . htmlspecialchars($res_mail['date_demande']) . "\nDemandeur: " . htmlspecialchars($res_mail['demandeur']) . "\nDate activation souhaitée: " . htmlspecialchars($res_mail['date_supervision_demandee']) . "\nPrestation concernée: " . htmlspecialchars($res_mail['prestation']) . "\nParamétrage à effectuer:\n    - " . htmlspecialchars($res_mail['nb_hote']) . " hôte(s)\n      - " . htmlspecialchars($res_mail['nb_service']) . " service(s)\n   - " . htmlspecialchars($res_mail['nb_plage']) . " plage(s) horaire(s)\nCommentaire: " . htmlspecialchars($res_mail['commentaire']) . "";
-		$message_txt = "Type DEM = Autre\nRéférence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\nUrgence = Faible\nImpact = Aucun\nTitulaires = Changement__bCentreon\nPrestation = INFRA_TT_{INT}\nClient Bénéficiaire = Tessi Technologies\nService = TESSI-TECHNO DSI\nRéférentiel SLA = Convention STD\nContrat = -\nTypeService = CENTREON\nListe de diffusion = " . htmlspecialchars($adresse_mail) . "\n\nRéférence Demande: " . htmlspecialchars($res_mail['ref_demande']) . "\nLien vers le gestionnaire des changements Centreon: " . htmlspecialchars($lien_html) . "\nDate de la demande: " . htmlspecialchars($res_mail['date_demande']) . "\nDemandeur: " . htmlspecialchars($res_mail['demandeur']) . "\nDate activation souhaitée: " . htmlspecialchars($res_mail['date_supervision_demandee']) . "\nPrestation concernée: " . htmlspecialchars($res_mail['prestation']) . "\nParamétrage à effectuer:\n    - " . htmlspecialchars($res_mail['nb_hote']) . " hôte(s)\n      - " . htmlspecialchars($res_mail['nb_service']) . " service(s)\n   - " . htmlspecialchars($res_mail['nb_plage']) . " plage(s) horaire(s)\nCommentaire: " . htmlspecialchars($res_mail['commentaire']) . "";
+		$message_txt = "
+				Type DEM = Autre\n
+				Référence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n
+				Urgence = Faible\n
+				Impact = Aucun\n
+				Titulaires = Changement__bCentreon\n
+				Prestation = INFRA_TT_{INT}\n
+				Client Bénéficiaire = Tessi Technologies\n
+				Service = TESSI-TECHNO DSI\n
+				Référentiel SLA = Convention STD\n
+				Contrat = -\n
+				TypeService = CENTREON\n
+				Liste de diffusion = " . htmlspecialchars($adresse_mail) . "\n
+				\n
+				Référence Demande: " . htmlspecialchars($res_mail['ref_demande']) . "\n
+				Lien vers le gestionnaire des changements Centreon: " . htmlspecialchars($lien_html) . "\n
+				Date de la demande: " . htmlspecialchars($res_mail['date_demande']) . "\n
+				Demandeur: " . htmlspecialchars($res_mail['demandeur']) . "\n
+				Date activation souhaitée: " . htmlspecialchars($res_mail['date_supervision_demandee']) . "\n
+				Prestation concernée: " . htmlspecialchars($res_mail['prestation']) . "\n
+				Paramétrage à effectuer:\n
+					    - " . htmlspecialchars($res_mail['nb_hote']) . " hôte(s)\n
+					    - " . htmlspecialchars($res_mail['nb_service']) . " service(s)\n
+					    - " . htmlspecialchars($res_mail['nb_plage']) . " plage(s) horaire(s)\n
+					    Commentaire: " . htmlspecialchars($res_mail['commentaire']) . "";
 		
 		//==========
 	}; 

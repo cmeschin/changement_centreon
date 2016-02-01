@@ -10,6 +10,19 @@
  * Jour de la semaine => pour la vérification sur la calendrier => De 1 (pour Lundi) à 7 (pour Dimanche)
  * Heure actuelle => pour la vérification sur l'heure de notification
  */
+//initialisation mail
+$adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
+//$adresse_mail = "c.meschin@free.fr";
+$adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
+if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
+{
+	$passage_ligne = "\r\n";
+}
+else
+{
+	$passage_ligne = "\n";
+};
+
 try {
 	//include('log.php'); // chargement de la fonction de log
 // 	include_once('connexion_sql_centreon.php'); // connexion à la base centreon
@@ -83,8 +96,11 @@ try {
 			 Demandeur,
 			 Date_Demande,
 			 Date_Supervision_Demandee,
-			 Code_Client,
-			 Etat_Demande			 
+			 Code_Client AS Prestation,
+			 Etat_Demande,
+			 Type_Demande,
+			 Ref_Demande,
+			 ID_Demande			 
 		 FROM demande
 		 WHERE Etat_Demande IN ("A Traiter","En cours","Validation")
 		 ORDER BY Date_Supervision_Demandee, Code_Client;');
@@ -234,19 +250,6 @@ try {
 		WHERE Date_Supervision_Demandee>= "' . $dateP7J . '" AND Etat_Demande IN ("A Traiter","En cours","Validation","Traité") 
 		GROUP BY Etat_Demande;');
 	$req_P7J->execute(array()) or die(print_r($req_P7J->errorInfo()));
-	
-	//initialisation mail
-	$adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
-	//$adresse_mail = "cedric.meschin@tessi.fr";
-	$adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
-	if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
-	{
-		$passage_ligne = "\r\n";
-	}
-	else
-	{
-		$passage_ligne = "\n";
-	};
 	
 	$contenu_html="";
 	
@@ -431,8 +434,8 @@ try {
 	$total_P7J_prct = round($total_P7J * 100 / $total,1);
 	$total_prct = $total * 100 / $total;
 	
-	$contenu_html .="<p>Etat des demandes à traiter et en cours.</p>";
-	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='0' class='Tableau1'>
+	$contenu_html .="<p class='P2'>Etat des demandes à traiter et en cours.</p> <br />";
+	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
 							<tr><th class='Tableau1_A1'>Statut</th>
 								<th class='Tableau1_A1'>échéance<br/>au plus tard le " . $date_mailJ . "</th>
 								<th class='Tableau1_A1'>échéance<br/>entre le " . $date_mailP1J . " et le " . $date_mailP7J . "</th>
@@ -478,8 +481,8 @@ try {
 	
 	
 	$contenu_html .= "</table><br />";
-	$contenu_html .="<p class='P1'>Evolution du nombre de demandes traitées sur les quatres dernières semaines</p>";
-	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='0' class='Tableau1'>
+	$contenu_html .="<p class='P2'>Evolution du nombre de demandes traitées sur les quatres dernières semaines</p> <br />";
+	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
                                    <tr><th class='Tableau1_A1'>semaine S-3</th>
                                    <th class='Tableau1_A1'>semaine S-2</th>
                                    <th class='Tableau1_A1'>semaine S-1</th>
@@ -493,8 +496,8 @@ try {
 	 			</tr>";
 	$contenu_html .= "</table><br />";
 
-	$contenu_html .="<p class='P1'>Indicateur d'anticipation des demandes</p>";
-	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='0' class='Tableau1'>
+	$contenu_html .="<p class='P2'>Indicateur d'anticipation des demandes</p> <br />";
+	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
                                 <tr>
                                         <th class='Tableau1_A1'>Délai entre la date de la demande <br/>et la date de supervision souhaitée</th>
                                         <th class='Tableau1_A1'>semaine S-3</th>
@@ -529,22 +532,28 @@ try {
 		$Temps_Global = $res_Temps_Global['Temps_Global'];
 	};
 	
-	$contenu_html .= "<p>Liste des demandes à traiter (temps total de traitement estimé " . $Temps_Global . ")</p>";
-	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='0' class='Tableau1'>
-							<tr><th class='Tableau1_A1'>Date Supervision Demandée</th>
-								<th class='Tableau1_A1'>Demandeur</th>
-								<th class='Tableau1_A1'>Prestation</th>
-								<th class='Tableau1_A1'>Etat demande</th>
-							</tr>";
+	$contenu_html .= "<p class='P2'>Liste des demandes à traiter (temps total de traitement estimé " . $Temps_Global . ")</p> <br />";
+	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
+		<tr>
+			<th class='Tableau1_A1'>Demandeur</th>
+			<th class='Tableau1_A1'>Type de demande</th>
+			<th class='Tableau1_A1'>Prestation</th>
+			<th class='Tableau1_A1'>Etat demande</th>
+			<th class='Tableau1_A1'>Date Supervision Demandée</th>
+			<th class='Tableau1_A1'>Référence de la demande</th>
+		</tr>";
 	
 	While($res_lst_J = $req_lst_J->fetch())
 	{
-		$contenu_html .= "<tr>
-	 				<td class='Tableau1_A1'>" . $res_lst_J['Date_Supervision_Demandee'] . "</td>
-	 				<td class='Tableau1_A1'>" . $res_lst_J['Demandeur'] . "</td>
-	 				<td class='Tableau1_A1'>" . $res_lst_J['Code_Client'] . "</td>
-	 				<td class='Tableau1_A1'>" . $res_lst_J['Etat_Demande'] . "</td>
-	 			</tr>";
+		$contenu_html .= "
+			<tr>
+	 			<td class='Tableau1_A1'>" . $res_lst_J['Demandeur'] . "</td>
+	 			<td class='Tableau1_A1'>" . $res_lst_J['Type_Demande'] . "</td>
+	 			<td class='Tableau1_A1'>" . $res_lst_J['Prestation'] . "</td>
+	 			<td class='Tableau1_A1'>" . $res_lst_J['Etat_Demande'] . "</td>
+	 			<td class='Tableau1_A1'>" . $res_lst_J['Date_Supervision_Demandee'] . "</td>
+	 			<td class='Tableau1_A1'><a href='http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_lst_J['ID_Demande'] . "'>" . $res_lst_J['Ref_Demande'] . "</a></td>
+	 		</tr>";
 	};
 	$contenu_html .= "</table><br />";
 	
@@ -552,7 +561,7 @@ try {
 				 * Constitution du corps du mail
 				 */
 				//=====Définition de l'ogjet.
-				$sujet = "[CENTREON] Recapitulatif des demandes de changement en cours au ". $heure_envoi;
+				$sujet = "[CENTREON] Recapitulatif des demandes de changement en cours.";
 				//=========
 				//=====Déclaration des messages au format texte et au format HTML.
 // 				$message_txt = "Liste des demandes de changement à traiter ou en cours de traitement le " . $heure_envoi . "\n
@@ -570,27 +579,22 @@ try {
 					<html>
 						<style type=\"text/css\">
 							@page {  }
-							table { border-collapse:collapse; border-spacing:0; empty-cells:show }
-							td, th { vertical-align:top; font-size:12pt;}
+							table { border-collapse:collapse; border-spacing:0; empty-cells:show; display:flex; justify-content: space-around; flex-border: none}
+							td, th { vertical-align:top; text-align:center; font-size:11pt;}
 							h1, h2, h3, h4, h5, h6 { clear:both }
 							ol, ul { margin:0; padding:0;}
 							li { list-style: none; margin:0; padding:0;}
 							<!-- \"li span.odfLiEnd\" - IE 7 issue-->
 							li span. { clear: both; line-height:0; width:0; height:0; margin:0; padding:0; }
 							span.footnodeNumber { padding-right:1em; }
-							span.annotation_style_by_filter { font-size:95%; font-family:Arial; background-color:#fff000;  margin:0; border:0; padding:0;  }
+							span.annotation_style_by_filter { font-size:95%; font-family: Helvetica Neue, arial, sans-serif; background-color:#fff000;  margin:0; border:0; padding:0;  }
 							* { margin:0;}
-							.P1 { font-size:12pt; font-family:Times New Roman; writing-mode:page; }
-							.P2 { font-size:12pt; font-family:Times New Roman; writing-mode:page; text-decoration:underline; font-weight:bold; }
-							.P3 { font-size:8pt; font-family:Times New Roman; writing-mode:page; background-color:transparent; }
-							.P4 { font-size:8pt; font-family:Times New Roman; writing-mode:page; color:#33cc66; background-color:transparent; }
-							.P5 { font-size:14pt; margin-bottom:0.212cm; margin-top:0.423cm; font-family:Arial; writing-mode:page; text-align:center ! important; text-decoration:underline; font-weight:bold; }
-							.P6 { font-size:14pt; margin-bottom:0.212cm; margin-top:0.423cm; font-family:Arial; writing-mode:page; text-align:center ! important; font-weight:bold; }
-							.STATUT_OK { background-color:#00ff00;border: 1px solid #000; }
-							.STATUT_DEGR { background-color:#ff950e;border: 1px solid #000; }
-							.STATUT_CRIT { background-color:#ff0000;border: 1px solid #000; }
-							.STATUT_INC { background-color:#808080;border: 1px solid #000; }
-							.STATUT_ATT { background-color:#0084d1;border: 1px solid #000; }
+							.P1 { font-size:12pt; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; }
+							.P2 { font-size:12pt; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; text-align:center; text-decoration:underline; font-weight:bold; }
+							.P3 { font-size:8pt; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; background-color:transparent; }
+							.P4 { font-size:8pt; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; color:#33cc66; background-color:transparent; }
+							.P5 { font-size:14pt; margin-bottom:0.212cm; margin-top:0.423cm; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; text-align:center ! important; text-decoration:underline; font-weight:bold; }
+							.P6 { font-size:14pt; margin-bottom:0.212cm; margin-top:0.423cm; font-family: Helvetica Neue, arial, sans-serif; writing-mode:page; text-align:center ! important; font-weight:bold; }
 							<!-- ODF styles with no properties representable as CSS -->
 							.T1 .T6  { }
 							.Tableau1_A1 { border: 1px solid #000; }
@@ -598,22 +602,24 @@ try {
 						</head>
 						<body>
 							<header>
-								<p class=\"P5\">
-									<span class=\"T1\">Liste des demandes de changement à traiter ou en cours de traitement le " . $heure_envoi . ".</span>
-								</p>
+								<p class='P6'>Liste des demandes de changement à traiter ou en cours de traitement au " . $heure_envoi . ".</p>
 							</header>
 							<section>
 								" . $contenu_html . "
 								<br />
-								<p>Ce message est envoyé au(x) destinataire(s) suivant(s): " . str_replace(',',' ',$adresse_mail) . ".</p>
+<!--								<p>Ce message est envoyé au(x) destinataire(s) suivant(s): " . str_replace(',',' ',$adresse_mail) . ".</p>
+								<br />
+ 	-->
 							</section>
 							<footer>
-								<p class=\"P3\">
-									<span class=\"T6\">Ce message est envoyé par un robot, merci de ne pas y répondre. Pour toute information complémentaire veuillez contacter cedric.meschin@tessi.fr</span>
-								</p>
-								<p class=\"P4\">
-									<span class=\"T6\">Pensez à l'environnement, n'imprimer ce mail que si nécessaire.</span>
-								</p>
+ 								<p class='P3'>Ce message est envoyé par un robot, merci de ne pas y répondre. Pour toute information complémentaire veuillez contacter cedric.meschin@tessi.fr</p>
+ 								<p class='P4'>Pensez à l'environnement, n'imprimer ce mail que si nécessaire.</p>
+<!-- 								<p class='P3'>
+ 									<span class=\"T6\">Ce message est envoyé par un robot, merci de ne pas y répondre. Pour toute information complémentaire veuillez contacter cedric.meschin@tessi.fr</span>
+ 								</p>
+ 								<p class='P4'>
+ 									<span class=\"T6\">Pensez à l'environnement, n'imprimer ce mail que si nécessaire.</span>
+ 								</p> -->
 							</footer>
 						</body>
 					</html>
@@ -632,22 +638,22 @@ try {
 				//==========
 				
 				//=====Création du message.
-				$message = $passage_ligne."--".$boundary.$passage_ligne;
+				//$message = $passage_ligne."--".$boundary.$passage_ligne; // Ouverture Boundary Text
 				//=====Ajout du message au format texte.
 				//$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
 // 				$message.= "Content-Type: text/plain; charset=\"UTF-8\"".$passage_ligne;
 // 				$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 				//$message.= $passage_ligne.$message_txt.$passage_ligne;
 				//==========
-// 				$message.= $passage_ligne."--".$boundary.$passage_ligne;
+ 				$message.= $passage_ligne."--".$boundary.$passage_ligne; // Ouverture Boundary HTML
 				//=====Ajout du message au format HTML
 				//$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
 				$message.= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
 				$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 				$message.= $passage_ligne.$message_html.$passage_ligne;
 				//==========
-				$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
-				$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
+				//$message.= $passage_ligne."--".$boundary."--".$passage_ligne; // Fermeture Boundary Text
+				$message.= $passage_ligne."--".$boundary."--".$passage_ligne; // Fermeture Boundary HTML
 				//==========
 				//addlog("message constitué");
 				//=====Envoi de l'e-mail.
