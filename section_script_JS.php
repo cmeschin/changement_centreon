@@ -29,7 +29,7 @@ $(function() {
 	$("#accordionDoc_truc").accordion({ heightStyle: "content", collapsible: true, active: false});	
 //		$( "#accordionPlage" ).accordion({ heightStyle: "content" });
 
-	$("#accordion_bam_notifications").accordion({ heightStyle: "content", collapsible: true, active: false});	
+	$("#accordion_bam_notifications").accordion({ heightStyle: "content", collapsible: true, active: 0});	
 
 	/** Days to be disabled as an array */
 	var disabledSpecificDays = ["1-1-2016", "9-15-2015", "9-17-2015"];
@@ -90,12 +90,12 @@ $(function() {
 		supprime_Modele();
 	});
 	
-// 	$('#gb_heure').datetimepicker({
-// 		datepicker:false,
-// 		format:'H:i',
-// 		step: 30,
-// 		validateOnBlur:true
-// 	});
+ 	$('#gb_heure').datetimepicker({
+ 		datepicker:false,
+ 		format:'H:i',
+ 		step: 30,
+ 		validateOnBlur:true
+ 	});
 
 });
 </script>

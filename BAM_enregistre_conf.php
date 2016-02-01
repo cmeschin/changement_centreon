@@ -77,17 +77,12 @@ try {
  	 * Découpage en tableau de la liste des am
  	 */
  	$liste_T_conf = explode("$",$liste_conf[12]);
- 	
  	$Nbam = count($liste_T_conf);
  	addlog("Nbam=".$Nbam);
  	$value_gba = "";
  	for ( $i=0;$i<$Nbam;$i++ )
  	{
  		addlog("liste_T_conf=".($liste_T_conf[$i]));
-//  		$Localisation = stristr ( $res_elements ['Nom_Hote'], '-', TRUE ); // récupère la localisation => les caractères avant le premier tiret
-//  		$Type = stristr ( substr ( stristr ( $res_elements ['Nom_Hote'], '-' ), 1 ), '-', TRUE ); // enlève localisation et le tiret et récupère la fonction => les caractères entre les deux premiers tirets
-//  		$Nom_Hote = substr ( stristr ( substr ( stristr ( $res_elements ['Nom_Hote'], '-' ), 1 ), '-' ), 1 ); // enlève localisation et type
- 	
  		$value_gba .= ",(" . $gb_id . "," . $liste_T_conf[$i] . ")";
  	};
  	$value_gba = substr($value_gba,1); // suppression de la première virgule
@@ -95,9 +90,33 @@ try {
  	$insert_gba = $bdd_supervision->prepare (
  			'INSERT IGNORE INTO gestion_bam_associe (gba_gb_id, gba_ba_id) VALUES ' . $value_gba . '');
  	$insert_gba->execute(array()) or die(print_r($insert_gba->errorInfo()));
+
+ 	/**
+ 	 * MAJ table gestion_bam_notification pour insertion liste_bam
+ 	 */
+ 	$liste_am = str_replace("$", ",", $liste_conf[12]);
+ 	/**
+ 	 * récupère la liste texte des AM
+ 	 */
+ 	$req_am = $bdd_supervision->prepare(
+ 			'SELECT mbc_ba_id,
+ 				 mbc_ba_nom
+ 			 FROM mod_bam_centreon
+ 			 WHERE mbc_ba_id IN (' . $liste_am . ')
+ 			 ORDER BY mbc_ba_nom;');
+ 	$req_am->execute(array()) or die(print_r($req_am->errorinfo()));
+ 	$res_am = $req_am->fetchAll();
+ 	$liste_nom = "";
+ 	foreach($res_am as $valeur)
+ 	{
+ 		$liste_nom .= ", " . $valeur['mbc_ba_nom'];
+ 	};
+ 	// on supprime la première virgule
+ 	$liste_nom = substr($liste_nom,2);
+ 	addlog("liste_nom=" . $liste_nom);
+ 	$insert_gba = $bdd_supervision->prepare('UPDATE gestion_bam_notification SET gb_bam_liste="' . $liste_nom . '" WHERE gb_id = ' . $gb_id . ';');
+ 	$insert_gba->execute(array()) or die(print_r($insert_gba->errorInfo()));
  	addlog("traitement gestion BAM associé...OK");
- 	
- 	
  	
 	$bdd_supervision->commit();
 } catch (Exception $e) {

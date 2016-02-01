@@ -13,6 +13,7 @@
 	Amélioration:
 		- Ajout de l'icône dans l'onglet du navigateur sur chaque page principale.
 		- remise en page des mails (uniformisation des polices et des titres, centrage des tableaux, etc...)
+		- gestion_BAM info bulle sur la liste des BA contenues dans la notification (sur survol de l'objet du mail).
 		
 	Corrections:
 		- #2 gestion des variables $HOSTNAME$ et $SERVICEDESC$ dans les consignes directement depuis la vue.

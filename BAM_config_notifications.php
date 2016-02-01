@@ -32,7 +32,7 @@ echo '<p id="liste_jour">Cochez les jours de notifications :<br />';
 echo '</div>';
 	echo '<div id="heure">';
 	echo '<label for="gb_heure" class="gb_heure" onclick="alert(\'Heure de la notification.\')">Heure d\'envoi de la notification <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
-	echo '<input type="text" id="gb_heure" name="gb_heure" onclick="gb_heure();" size="5" onblur="verifChamp(this)" class="gb_heure gb_config"/>';
+	echo '<input type="text" id="gb_heure" name="gb_heure" size="5" onblur="verifChamp(this)" class="gb_heure gb_config"/>';
 	echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_gb_heure" /><br />';
 echo '</div>';
 echo '<div id="charger_liste_am">';

@@ -19,7 +19,12 @@ try {
 		$req_bam->execute(array(
 			'gb_id' => htmlspecialchars($gb_id)
 		)) or die(print_r($req_bam->errorInfo()));
-		
+		$req_bam_associe = $bdd_supervision->prepare(
+				'DELETE FROM gestion_bam_associe WHERE gba_gb_id= :gba_gb_id;'
+		);
+		$req_bam_associe->execute(array(
+				'gba_gb_id' => htmlspecialchars($gb_id)
+		)) or die(print_r($req_bam_associe->errorInfo()));
 	};
 	$bdd_supervision->commit();
 	addlog("Suppression notification BAM id=" . $gb_id ."");

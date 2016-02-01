@@ -386,7 +386,8 @@ function MAJ_Modele_Centreon(callback)
 			$("#img_loading").remove();
 			$("#p_loading").remove();
 			alert("MAJ effectuée");
-			window.location.reload();
+			window.location.replace("./administration.php#tabs-2"); // repositionne la vue sur l'onglet souhaité
+			window.location.reload(); // recharge la page actuelle
 		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 			$("#img_loading").remove();
 			$("#p_loading").remove();
@@ -505,6 +506,7 @@ function gb_supprimer(gb_id)
 	{
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
 		{
+			window.location.replace("./administration.php#tabs-3");
 			window.location.reload();
 		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 			gestion_erreur(xhr);
@@ -530,14 +532,4 @@ function gb_forcer(gb_id)
 	xhr.open("POST", "automate_mail.php", false);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr.send("gb_id="+gb_id+"");
-};
-
-function gb_heure()
-{
-	$('#gb_heure').datetimepicker({
-		datepicker:false,
-		format:'H:i',
-		step: 30,
-		validateOnBlur:true
-	});
 };

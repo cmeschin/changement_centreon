@@ -922,7 +922,7 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 				 * Désactivation demande rechargement => rechargement obligatoire avec l'activation des mails auto.
 				 */
 				// version 8.11	
-				window.location.reload(); // si OK => recharge la page lister demande
+				window.location.reload();
 			} else if(xhr.readyState == 4 && xhr.status != 200) 
 			{ 
 				gestion_erreur(xhr);
@@ -943,6 +943,7 @@ function Enregistre_Notif_BAM()
 	/**
 	 * Fonction d'enregistrement de la configuration des notifications BAM
 	 */
+	$("#Enregistre_Notif_BAM").attr("Disabled","Disabled");
 	var Verif_Info = true;
 	$("#field_config_notification .verif").each(function(){
 		if ($(this).attr("alt") != "correct"){
@@ -953,6 +954,7 @@ function Enregistre_Notif_BAM()
 	if (Verif_Info != true) // l'onglet info générale doit contenir 7 valeurs impérativement
 	{
 		var message="STOP! Tous les champs ne sont pas valides!";
+		$("#Enregistre_Notif_BAM").removeAttr("Disabled"); // réactive le bouton
 		alert(message);
 		return false;
 	};
@@ -1004,10 +1006,12 @@ function Enregistre_Notif_BAM()
 			$("#img_loading").remove();
 			$("#p_loading").remove();
 			alert("enregistrement terminé.");
+			window.location.replace("./administration.php#tabs-3");
+			window.location.reload();
 		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 			$("#img_loading").remove();
 			$("#p_loading").remove();
-			$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
+			
 			gestion_erreur(xhr);
 		} else if (loading == false){
 			loading=true;

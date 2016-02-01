@@ -30,7 +30,7 @@ foreach ($res_bam AS $valeur) // on boucle sur les valeurs remontée par la requ
 	$gb_jour="";
 	echo '<tr>';
 	echo '<td>' . htmlspecialchars ( $valeur ['gb_nom'] ) . '</td>';
-	echo '<td>' . htmlspecialchars ( $valeur ['gb_mail_objet'] ) . '</td>';
+	echo '<td title="Liste des BA: ' . htmlspecialchars ( $valeur ['gb_bam_liste'] ) . '">' . htmlspecialchars ( $valeur ['gb_mail_objet'] ) . '</td>';
 	echo '<td>' . htmlspecialchars ( $valeur ['gb_mail_liste'] ) . '</td>';
 	if (htmlspecialchars($valeur['gb_lundi'])=='1')
 	{
