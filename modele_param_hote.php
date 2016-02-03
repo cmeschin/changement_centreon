@@ -201,8 +201,8 @@ $_SESSION['R_ID_Demande'] = NULL;
 
 	<br />
 	<!-- Consigne -->
-<!-- 	<label for="Consigne_Hote<?php //echo $NbFieldset;?>" onclick="alert('Indiquez ici le lien vers une consigne du wiki.\nLes consignes ont pour but de fournir les indications nécessaires et suffisantes quant aux actions\nà réaliser par les équipes EPI et/ou CDS si un évènement se produit sur l\'équipement (relance d\'un process, envoi de mail, etc...)')">Lien vers consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-	<input type="text" id="Consigne_Hote<?php //echo $NbFieldset;?>" name="Hote_<?php //echo $NbFieldset;?>_Consigne" value="" size="90"	maxlength="255" class="hote<?php //echo $NbFieldset;?>"/> -->
+<!-- 	<label for="Consigne_Hote<?php //echo $NbFieldset;?>" onclick="alert('Indiquez ici le lien vers une consigne du wiki.\nLes consignes ont pour but de fournir les indications nécessaires et suffisantes quant aux actions\nà réaliser par les équipes EPI et/ou CDS si un évènement se produit sur l\'équipement (relance d\'un process, envoi de mail, etc...)')">Lien vers consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label> -->
+<!-- 	<input style="visibility: hidden;" type="text" id="Consigne_Hote<?php //echo $NbFieldset;?>" name="Hote_<?php //echo $NbFieldset;?>_Consigne" value="" size="90"	maxlength="255" class="hote<?php //echo $NbFieldset;?>"/> -->
 	<span id="Consigne_Hote<?php echo $NbFieldset;?>" class="hote<?php echo $NbFieldset;?>">Lien vers la consigne :<a href="" target="_blank"></a></span>
 	<br />
 

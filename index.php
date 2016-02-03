@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--	<meta charset="utf-8" /> -->
-<!--	<link href="css/style.css" rel="stylesheet" type="text/css" /> -->
-<!--	<title>Changement Centreon - Tessi Technologies</title> -->
-<link rel="icon" href="./images/favicon.ico" />
 <?php
 	if (session_id()=='')
 	{

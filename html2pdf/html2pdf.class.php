@@ -1,17 +1,17 @@
 <?php
 /**
- * HTML2PDF Librairy - main class
+ * HTML2PDF Library - main class
  *
  * HTML => PDF convertor
  * distributed under the LGPL License
  *
- * @author  Laurent MINGUET <webmaster@html2pdf.fr>
- * @version 4.03
+ * @package   Html2pdf
+ * @author    Laurent MINGUET <webmaster@html2pdf.fr>
+ * @copyright 2016 Laurent MINGUET
  */
-
 if (!defined('__CLASS_HTML2PDF__')) {
 
-    define('__CLASS_HTML2PDF__', '4.03');
+    define('__CLASS_HTML2PDF__', '4.4.0');
     define('HTML2PDF_USED_TCPDF_VERSION', '5.0.002');
 
     require_once(dirname(__FILE__).'/_class/exception.class.php');
@@ -93,7 +93,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         protected $_pageMarges       = array();     // float marges of the current page
         protected $_background       = array();     // background informations
 
-
+        protected $_hideHeader       = array();     // array : list of pages which the header gonna be hidden
         protected $_firstPage        = true;        // flag : first page
         protected $_defList          = array();     // table to save the stats of the tags UL and OL
 
@@ -118,10 +118,10 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * @access public
          * @param  string   $orientation page orientation, same as TCPDF
          * @param  mixed    $format      The format used for pages, same as TCPDF
-         * @param  $tring   $langue      Langue : fr, en, it...
+         * @param  $tring   $langue      Lang : fr, en, it...
          * @param  boolean  $unicode     TRUE means that the input text is unicode (default = true)
          * @param  String   $encoding    charset encoding; default is UTF-8
-         * @param  array    $marges      Default marges (left, top, right, bottom)
+         * @param  array    $marges      Default margins (left, top, right, bottom)
          * @return HTML2PDF $this
          */
         public function __construct($orientation = 'P', $format = 'A4', $langue='fr', $unicode=true, $encoding='UTF-8', $marges = array(5, 5, 5, 8))
@@ -220,7 +220,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * Set the test of TD thdat can not take more than one page
+         * Set the test of TD that can not take more than one page
          *
          * @access public
          * @param  boolean  $mode
@@ -262,10 +262,10 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * Set the default font to use, if no font is specify, or if the asked font does not exist
+         * Set the default font to use, if no font is specified, or if the asked font does not exist
          *
          * @access public
-         * @param  string   $default name of the default font to use. If null : Arial is no font is specify, and error if the asked font does not exist
+         * @param  string   $default name of the default font to use. If null : Arial if no font is specified, and error if the asked font does not exist
          * @return HTML2PDF $this
          */
         public function setDefaultFont($default = null)
@@ -282,7 +282,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * @access public
          * @param string $family Font family. The name can be chosen arbitrarily. If it is a standard family name, it will override the corresponding font.
          * @param string $style Font style. Possible values are (case insensitive):<ul><li>empty string: regular (default)</li><li>B: bold</li><li>I: italic</li><li>BI or IB: bold italic</li></ul>
-         * @param string $fontfile The font definition file. By default, the name is built from the family and style, in lower case with no spaces.
+         * @param string $file The font definition file. By default, the name is built from the family and style, in lower case with no spaces.
          * @return HTML2PDF $this
          * @see TCPDF::addFont
          */
@@ -339,9 +339,9 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * @param  string $name The name of the file when saved.
          * @param  string $dest Destination where to send the document.
          * @return string content of the PDF, if $dest=S
-         * @see TCPDF::close
+         * @throws HTML2PDF_exception
+         * @see    TCPDF::close
          * @access public
-
          */
         public function Output($name = '', $dest = false)
         {
@@ -412,7 +412,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * convert the HTML of a real page, to a code adapted to HTML2PDF
          *
          * @access public
-         * @param  string HTML of a real page
+         * @param  string $html HTML code of a real page
          * @return string HTML adapted to HTML2PDF
          */
         public function getHtmlFromPage($html)
@@ -441,7 +441,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * init a sub HTML2PDF. does not use it directly. Only the method createSubHTML must use it
+         * init a sub HTML2PDF. do not use it directly. Only the method createSubHTML must use it
          *
          * @access public
          * @param  string  $format
@@ -474,7 +474,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * display the content in HTML moden for debug
          *
          * @access protected
-         * @param  string $contenu
+         * @param  string $content
          */
         protected function _vueHTML($content)
         {
@@ -529,7 +529,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * @param  mixed   $format
          * @param  string  $orientation
          * @param  array   $background background information
-         * @param  integer $curr real position in the html parseur (if break line in the write of a text)
+         * @param  integer $curr real position in the html parser (if break line in the write of a text)
          * @param  boolean $resetPageNumber
          */
         protected function _setNewPage($format = null, $orientation = '', $background = null, $curr = null, $resetPageNumber=false)
@@ -807,6 +807,8 @@ if (!defined('__CLASS_HTML2PDF__')) {
         protected function _setPageHeader()
         {
             if (!count($this->_subHEADER)) return false;
+            
+            if (in_array($this->pdf->getPage(), $this->_hideHeader)) return false;
 
             $oldParsePos = $this->_parsePos;
             $oldParseCode = $this->parsingHtml->code;
@@ -935,13 +937,13 @@ if (!defined('__CLASS_HTML2PDF__')) {
 
             // create the sub object
             HTML2PDF::$_subobj = new HTML2PDF(
-                                        $this->_orientation,
-                                        $this->_format,
-                                        $this->_langue,
-                                        $this->_unicode,
-                                        $this->_encoding,
-                                        array($this->_defaultLeft,$this->_defaultTop,$this->_defaultRight,$this->_defaultBottom)
-                                    );
+                $this->_orientation,
+                $this->_format,
+                $this->_langue,
+                $this->_unicode,
+                $this->_encoding,
+                array($this->_defaultLeft,$this->_defaultTop,$this->_defaultRight,$this->_defaultBottom)
+            );
 
             // init
             HTML2PDF::$_subobj->setTestTdInOnePage($this->_testTdInOnepage);
@@ -1012,7 +1014,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * Convert a arabic number in roman number
+         * Convert an arabic number into a roman number
          *
          * @access protected
          * @param  integer $nbArabic
@@ -1028,20 +1030,20 @@ if (!defined('__CLASS_HTML2PDF__')) {
             if ($nbArabic>3999) return $nbArabic;
 
             for ($i=3; $i>=0 ; $i--) {
-                $chiffre=floor($nbArabic/pow(10, $i));
-                if ($chiffre>=1) {
-                    $nbArabic=$nbArabic-$chiffre*pow(10, $i);
-                    if ($chiffre<=3) {
-                        for ($j=$chiffre; $j>=1; $j--) {
+                $digit=floor($nbArabic/pow(10, $i));
+                if ($digit>=1) {
+                    $nbArabic=$nbArabic-$digit*pow(10, $i);
+                    if ($digit<=3) {
+                        for ($j=$digit; $j>=1; $j--) {
                             $nbRoman=$nbRoman.$nbBaseTen[$i];
                         }
-                    } else if ($chiffre==9) {
+                    } else if ($digit==9) {
                         $nbRoman=$nbRoman.$nbBaseTen[$i].$nbBaseTen[$i+1];
-                    } else if ($chiffre==4) {
+                    } else if ($digit==4) {
                     $nbRoman=$nbRoman.$nbBaseTen[$i].$nbBaseFive[$i];
                     } else {
                         $nbRoman=$nbRoman.$nbBaseFive[$i];
-                        for ($j=$chiffre-5; $j>=1; $j--) {
+                        for ($j=$digit-5; $j>=1; $j--) {
                             $nbRoman=$nbRoman.$nbBaseTen[$i];
                         }
                     }
@@ -1169,7 +1171,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * remove a level to the list
+         * remove a level from the list
          *
          * @access protected
          */
@@ -1232,6 +1234,8 @@ if (!defined('__CLASS_HTML2PDF__')) {
          *
          * @access protected
          * @param  array $action
+         *
+         * @throws HTML2PDF_exception
          */
         protected function _executeAction($action)
         {
@@ -1241,7 +1245,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
             // parameters of the action
             $param = $action['param'];
 
-            // if it the first action of the first page, and if it is not a open tag of PAGE => create the new page
+            // if it is the first action of the first page, and if it is not an open tag of PAGE => create the new page
             if ($fnc!='_tag_open_PAGE' && $this->_firstPage) {
                 $this->_setNewPage();
             }
@@ -1251,7 +1255,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
                 throw new HTML2PDF_exception(1, strtoupper($action['name']), $this->parsingHtml->getHtmlErrorCode($action['html_pos']));
             }
 
-            // lauch the action
+            // run the action
             $res = $this->{$fnc}($param);
 
             // save the name of the action
@@ -1262,7 +1266,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * get the position of the element on the current line, depending on his height
+         * get the position of the element on the current line, depending on its height
          *
          * @access protected
          * @param  float $h
@@ -1299,12 +1303,13 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * display a image
+         * display an image
          *
          * @access protected
          * @param  string $src
          * @param  boolean $subLi if true=image of a list
          * @return boolean depending on "isForOneLine"
+         * @throws HTML2PDF_exception
          */
         protected function _drawImage($src, $subLi=false)
         {
@@ -1475,10 +1480,11 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * @param  float $w
          * @param  float $h
          * @param  array $border
-         * @param  float $padding - internal marge of the rectanble => not used, but...
-         * @param  float $margin  - external marge of the rectanble
+         * @param  float $padding - internal margin of the rectangle => not used, but...
+         * @param  float $margin  - external margin of the rectangle
          * @param  array $background
          * @return boolean
+         * @throws HTML2PDF_exception
          */
         protected function _drawRectangle($x, $y, $w, $h, $border, $padding, $margin, $background)
         {
@@ -1870,11 +1876,11 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * draw a ligne with a specific type, and specific start and end for radius
+         * draw a line with a specific type, and specific start and end for radius
          *
          * @access protected
          * @param  array   $pt
-         * @param  float   $color
+         * @param  array   $color
          * @param  string  $type (dashed, dotted, double, solid)
          * @param  float   $width
          * @param  integer $radius (binary from 0 to 3 with 1=>start with a radius, 2=>end with a radius)
@@ -2081,7 +2087,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
                 }
             }
 
-            // if ther is no actions => return
+            // if there are no actions => return
             if (!$actions) return null;
 
             // get the first matrix
@@ -2179,7 +2185,10 @@ if (!defined('__CLASS_HTML2PDF__')) {
                     if (isset($corr[$y][$x]) && is_array($corr[$y][$x]) && $corr[$y][$x][3]>1) {
 
                         // sum the max height of each line in rowspan
-                        $s = 0; for ($i=0; $i<$corr[$y][$x][3]; $i++) $s+= $sh[$y+$i];
+                        $s = 0;
+                        for ($i=0; $i<$corr[$y][$x][3]; $i++) {
+                            $s+= isset($sh[$y+$i]) ? $sh[$y+$i] : 0;
+                        }
 
                         // if the max height is < the height of the cell with rowspan => we adapt the height of each max height
                         if ($s>0 && $s<$cases[$corr[$y][$x][1]][$corr[$y][$x][0]]['h']) {
@@ -2235,6 +2244,10 @@ if (!defined('__CLASS_HTML2PDF__')) {
             $newPageSet= (!isset($param['pageset']) || $param['pageset']!='old');
 
             $resetPageNumber = (isset($param['pagegroup']) && $param['pagegroup']=='new');
+            
+            if (array_key_exists('hideheader', $param) && $param['hideheader']!='false' && !empty($param['hideheader'])) {
+                $this->_hideHeader = (array) array_merge($this->_hideHeader, split(',', $param['hideheader']));
+            }
 
             $this->_maxH = 0;
 
@@ -2561,7 +2574,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * It is not a real tag. Does not use it directly
+         * It is not a real tag. Do not use it directly
          *
          * @param  array $param
          * @return boolean
@@ -3259,11 +3272,11 @@ if (!defined('__CLASS_HTML2PDF__')) {
 
             if ($this->parsingCss->value['text-transform']!='none') {
                 if ($this->parsingCss->value['text-transform']=='capitalize')
-                    $txt = ucwords($txt);
+                    $txt = mb_convert_case($txt, MB_CASE_TITLE, $this->_encoding);
                 else if ($this->parsingCss->value['text-transform']=='uppercase')
-                    $txt = strtoupper($txt);
+                    $txt = mb_convert_case($txt, MB_CASE_UPPER, $this->_encoding);
                 else if ($this->parsingCss->value['text-transform']=='lowercase')
-                    $txt = strtolower($txt);
+                    $txt = mb_convert_case($txt, MB_CASE_LOWER, $this->_encoding);
             }
 
             // size of the text
@@ -3325,7 +3338,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
                 }
                 $str = $old;
 
-                // if  nothing fit on the line, and if the first word does not fit on the line => the word is too long, we put it
+                // if nothing fits on the line, and if the first word does not fit on the line => the word is too long, we put it
                 if ($i==0 && (($left+$words[0][1])>=$right)) {
                     $str = $words[0];
                     array_shift($words);
@@ -4201,7 +4214,6 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * mode : OPEN
          *
          * @param  array $param
-         * @param  string $other
          * @return boolean
          */
         protected function _tag_open_CODE($param)
@@ -4704,7 +4716,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * It is not a real TAG, does not use it !
+         * It is not a real TAG, do not use it !
          *
          * @param  array $param
          * @return boolean
@@ -4722,7 +4734,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * It is not a real TAG, does not use it !
+         * It is not a real TAG, do not use it !
          *
          * @param  array $param
          * @return boolean
@@ -4738,7 +4750,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * It is not a real TAG, does not use it !
+         * It is not a real TAG, do not use it !
          *
          * @param    array $param
          * @return boolean
@@ -4756,7 +4768,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * It is not a real TAG, does not use it !
+         * It is not a real TAG, do not use it !
          *
          * @param  array $param
          * @return boolean
@@ -5269,7 +5281,10 @@ if (!defined('__CLASS_HTML2PDF__')) {
          * mode : OPEN
          *
          * @param  array $param
+         * @param string $other
+         *
          * @return boolean
+         * @throws HTML2PDF_exception
          */
         protected function _tag_open_TD($param, $other = 'td')
         {
@@ -5304,7 +5319,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
             // flag for collapse table
             $collapse = false;
 
-            // specific traitment for TD and TH
+            // specific treatment for TD and TH
             if (in_array($other, array('td', 'th'))) {
                 // id of the column
                 $numCol = isset(HTML2PDF::$_tables[$param['num']]['cases'][$y][$x]['Xr']) ? HTML2PDF::$_tables[$param['num']]['cases'][$y][$x]['Xr'] : HTML2PDF::$_tables[$param['num']]['corr_x'];
@@ -5314,7 +5329,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
 
                     $colParam = HTML2PDF::$_tables[$param['num']]['cols'][$numCol];
 
-                    // for colspans => we get all the neede widths
+                    // for colspans => we get all the needed widths
                     $colParam['style']['width'] = array();
                     for ($k=0; $k<$colspan; $k++) {
                         if (isset(HTML2PDF::$_tables[$param['num']]['cols'][$numCol+$k]['style']['width'])) {
@@ -5383,7 +5398,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
             $this->parsingCss->setPosition();
             $this->parsingCss->fontSet();
 
-            // if tale collapse => modify the borders
+            // if table collapse => modify the borders
             if ($collapse) {
                 if (!$this->_subPart) {
                     if (
@@ -6464,7 +6479,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
         }
 
         /**
-         * new page for the automatic Index, does not use thie method. Only HTML2PDF_myPdf could use it !!!!
+         * new page for the automatic Index, do not use this method. Only HTML2PDF_myPdf could use it !!!!
          *
          * @param  &int $page
          * @return integer $oldPage

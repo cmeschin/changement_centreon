@@ -101,7 +101,7 @@ addlog("chargement reprise demande.");
 			 						echo '</select>';
 			 						?>
 									<img src="images/img_ok.png" class="verif" alt="correct" id="img_type_demande" ondblclick="deverouille_liste(this)" />
-									<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement la date de démarrage en production.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
+									<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement la date de démarrage en production.\nCliquez sur le calendrier pour choisir une date.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 									<input readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo htmlspecialchars($res_Demande['Date_Supervision_Demandee']);?>" size="10"/>
 									<img src="images/img_ok.png" class="verif" alt="correct" id="img_date_livraison_demandee" />
 								</span> <br />									

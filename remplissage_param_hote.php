@@ -385,7 +385,7 @@ while ($res_liste_hote = $req_liste_hote->fetch())
  * Modification consigne obligatoire
  */
 //		echo '<label for="Consigne_Hote' . $NbFieldset . '" onclick="alert(\'Indiquez ici le lien vers une consigne du wiki. Les consignes ont pour but de fournir les indications quant aux actions à réaliser par les équipes EPI et/ou CDS si un évènement se produit sur l\\\'équipement (relance d\\\'un process, envoi de mail, etc...)\')">Lien vers consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
-//		echo '<input type="text" id="Consigne_Hote' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Lien_Consigne" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255" class="hote' . $NbFieldset . '"/> <br />';
+//		echo '<input style="visibility: hidden;" type="text" id="Consigne_Hote' . $NbFieldset . '" name="Hote_' . $NbFieldset . '_Lien_Consigne" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255" class="hote' . $NbFieldset . '"/> <br />';
 		echo '<span id="Consigne_Hote' . $NbFieldset . '" class="hote' . $NbFieldset . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_hote['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_hote['Consigne']) . '</a></span> <br />';
 		echo '';
 		echo '<!-- Detail consigne -->';
@@ -406,40 +406,72 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		echo '<!-- Action à effectuer -->';
 		echo '<fieldset id="Action_Hote' . $NbFieldset . '" class="hote_action">';
 		echo '<legend onclick="alert(\'Sélectionnez l\\\'action à réaliser sur l\\\'équipement; selon les cas plusieurs choix sont disponibles: Créer, Modifier, Activer, Désactiver, Supprimer.\\nVous trouverez plus d\\\'information sur l\\\'aide en ligne.\')">Actions à effectuer <img alt="point_interrogation" src="images/point-interrogation-16.png"></legend>';
-		echo '<select name="Hote_' . $NbFieldset . '_Action" id="Hote_action' . $NbFieldset . '" class="hote' . $NbFieldset . '">';
-			if (htmlspecialchars($res_liste_hote['Type_Action']) == "Modifier")
-			{
-				echo '<option Selected="Selected" value="Modifier">A Modifier</option>';
-			} else
-			{
-				echo '<option value="Modifier">A Modifier</option>';
-			};
+		echo '<select name="Hote_' . $NbFieldset . '_Action" id="Hote_action' . $NbFieldset . '" class="hote' . $NbFieldset . '" onChange="change_statut(this)">';
+// 			if (htmlspecialchars($res_liste_hote['Type_Action']) == "Modifier")
+// 			{
+// 				echo '<option Selected="Selected" value="Modifier">A Modifier</option>';
+// 			} else
+// 			{
+// 				echo '<option value="Modifier">A Modifier</option>';
+// 			};
 			
-			if (htmlspecialchars($res_liste_hote['Controle_Actif']) == "actif")
-			{
-				if (htmlspecialchars($res_liste_hote['Type_Action']) == "Desactiver")
-				{	
-					echo '<option Selected="Selected" value="Desactiver">A Désactiver</option>';
-				} else
-				{
+// 			if (htmlspecialchars($res_liste_hote['Controle_Actif']) == "actif")
+// 			{
+// 				if (htmlspecialchars($res_liste_hote['Type_Action']) == "Desactiver")
+// 				{	
+// 					echo '<option Selected="Selected" value="Desactiver">A Désactiver</option>';
+// 				} else
+// 				{
+// 					echo '<option value="Desactiver">A Désactiver</option>';
+// 				};
+// 			} else
+// 			{
+// 				if (htmlspecialchars($res_liste_hote['Type_Action']) == "Activer")
+// 				{	
+// 					echo '<option Selected="Selected" value="Activer">A Activer</option>';
+// 				} else
+// 				{
+// 					echo '<option value="Activer">A Activer</option>';
+// 				};
+// 			};
+// 			if (htmlspecialchars($res_liste_hote['Type_Action']) == "Supprimer")
+// 			{	
+// 				echo '<option Selected="Selected" value="Supprimer">A Supprimer</option>';
+// 			} else
+// 			{
+// 				echo '<option value="Supprimer">A Supprimer</option>';
+// 			};
+			if (htmlspecialchars($res_liste_hote['Controle_Actif']) == "actif"){
+				if (htmlspecialchars($res_liste_hote['Type_Action']) == "Creer"){
+					echo '<option Selected="Selected" value="Creer">A Créer</option>';
+				} else if (htmlspecialchars($res_liste_hote['Type_Action']) == "Modifier"){
+					echo '<option Selected="Selected" value="Modifier">A Modifier</option>';
 					echo '<option value="Desactiver">A Désactiver</option>';
+					echo '<option value="Supprimer">A Supprimer</option>';
+				} else if (htmlspecialchars($res_liste_hote['Type_Action']) == "Desactiver"){
+					echo '<option value="Modifier">A Modifier</option>';
+					echo '<option Selected="Selected" value="Desactiver">A Désactiver</option>';
+					echo '<option value="Supprimer">A Supprimer</option>';
+				} else if  (htmlspecialchars($res_liste_hote['Type_Action']) == "Supprimer"){
+					echo '<option value="Modifier">A Modifier</option>';
+					echo '<option value="Desactiver">A Désactiver</option>';
+					echo '<option Selected="Selected" value="Supprimer">A Supprimer</option>';
 				};
 			} else
 			{
-				if (htmlspecialchars($res_liste_hote['Type_Action']) == "Activer")
-				{	
-					echo '<option Selected="Selected" value="Activer">A Activer</option>';
-				} else
-				{
+				if (htmlspecialchars($res_liste_hote['Type_Action']) == "Modifier"){
+					echo '<option Selected="Selected" value="Modifier">A Modifier (et activer)</option>';
 					echo '<option value="Activer">A Activer</option>';
+					echo '<option value="Supprimer">A Supprimer</option>';
+				} else if (htmlspecialchars($res_liste_hote['Type_Action']) == "Activer"){
+					echo '<option value="Modifier">A Modifier (et activer)</option>';
+					echo '<option Selected="Selected" value="Activer">A Activer</option>';
+					echo '<option value="Supprimer">A Supprimer</option>';
+				} else if  (htmlspecialchars($res_liste_hote['Type_Action']) == "Supprimer"){
+					echo '<option value="Modifier">A Modifier (et activer)</option>';
+					echo '<option value="Activer">A Activer</option>';
+					echo '<option Selected="Selected" value="Supprimer">A Supprimer</option>';
 				};
-			};
-			if (htmlspecialchars($res_liste_hote['Type_Action']) == "Supprimer")
-			{	
-				echo '<option Selected="Selected" value="Supprimer">A Supprimer</option>';
-			} else
-			{
-				echo '<option value="Supprimer">A Supprimer</option>';
 			};
 		echo '</select> <br />';
 		echo '<!-- Commentaire -->';

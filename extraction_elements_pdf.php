@@ -14,13 +14,14 @@ ob_start();
 include( "requete_extraction_elements.php" ); // préparation des données
 include("construction_page_pdf.php");// construction de la page spécifique HTML2PDF
 $content = ob_get_clean();
-require_once( "html2pdf/html2pdf.class.php");
+//require_once( "html2pdf/html2pdf.class.php");
+require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
 try
 {
 	$html2pdf = new HTML2PDF("L", "A4", "fr");
 	// $html2pdf->setModeDebug();
 	$html2pdf->getHtmlFromPage($content);
-	$html2pdf->setDefaultFont("Arial");
+//	$html2pdf->setDefaultFont("Arial");
 	$html2pdf->pdf->setDisplayMode("fullpage");
 	$html2pdf->writeHTML($content);
 	//$html2pdf->Output("votre_pdf.pdf");

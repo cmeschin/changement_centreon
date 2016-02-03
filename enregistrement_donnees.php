@@ -60,6 +60,9 @@ if ($liste_hote[0] != "")  // S'il y a au moins un hôte
 		$liste_T_hote = explode("|",$liste_hote[$i]);
 		addlog("Nom_hote=".($liste_T_hote[0]));
 		addlog("INSERT Table Hote");
+		// ATTENTION à modifier l'ordre d'enregistrement si l'ordre du formulaire change.
+		//0 Nom_Hote		1 IP_Hote	2 Description				3 Loc	4 Type	5 OS			6 Archi		7 Langue	8 Fonction	9 Lien	10 consigne				11 Controle	12 Action	13 Commentaire
+		//B1-DBMUT-BKPOD	|10.33.2.4	|Sauvegarde des ODs Docubase|BDX1	|VM		|Windows_2012	|64_bits	|Anglais	|Sauvegarde	|		|description consigne	|actif		|Desactiver	|commentaire
 		$MAJ_hote = $bdd_supervision->prepare('INSERT INTO hote 
 			(Nom_Hote, ID_Demande, Description, IP_Hote, Type_Hote, ID_Localisation, OS, Architecture, Langue, Fonction, Controle_Actif, Commentaire, Consigne, Detail_Consigne, Type_Action)
 			VALUES (:Nom_Hote, :ID_Demande, :Description, :IP_Hote, :Type_Hote, :ID_Localisation, :OS, :Architecture, :Langue, :Fonction, :Controle_Actif, :Commentaire, :Consigne, :Detail_Consigne, :Type_Action)
@@ -75,11 +78,11 @@ if ($liste_hote[0] != "")  // S'il y a au moins un hôte
 			'Architecture' => htmlspecialchars($liste_T_hote[6]),
 			'Langue' => htmlspecialchars($liste_T_hote[7]),
 			'Fonction' => htmlspecialchars($liste_T_hote[8]),
-			'Controle_Actif' => htmlspecialchars($liste_T_hote[12]),
-			'Commentaire' => htmlspecialchars($liste_T_hote[9]),
-			'Consigne' => htmlspecialchars($liste_T_hote[10]),
-			'Detail_Consigne' => htmlspecialchars($liste_T_hote[11]),
-			'Type_Action' => htmlspecialchars($liste_T_hote[13]),
+			'Controle_Actif' => htmlspecialchars($liste_T_hote[11]),
+			'Commentaire' => htmlspecialchars($liste_T_hote[13]),
+			'Consigne' => htmlspecialchars($liste_T_hote[9]),
+			'Detail_Consigne' => htmlspecialchars($liste_T_hote[10]),
+			'Type_Action' => htmlspecialchars($liste_T_hote[12]),
 			'nom_hote2' => htmlspecialchars($liste_T_hote[0]),
 			'id_demande2' => $ID_Demande,
 			'description2' => htmlspecialchars($liste_T_hote[2]),
@@ -90,13 +93,13 @@ if ($liste_hote[0] != "")  // S'il y a au moins un hôte
 			'architecture2' => htmlspecialchars($liste_T_hote[6]),
 			'langue2' => htmlspecialchars($liste_T_hote[7]),
 			'fonction2' => htmlspecialchars($liste_T_hote[8]),
-			'controle_actif2' => htmlspecialchars($liste_T_hote[12]),
-			'commentaire2' => htmlspecialchars($liste_T_hote[9]),
-			'consigne2' => htmlspecialchars($liste_T_hote[10]),
-			'detail_consigne2' => htmlspecialchars($liste_T_hote[11]),
-			'type_action2' => htmlspecialchars($liste_T_hote[13])
+			'controle_actif2' => htmlspecialchars($liste_T_hote[11]),
+			'commentaire2' => htmlspecialchars($liste_T_hote[13]),
+			'consigne2' => htmlspecialchars($liste_T_hote[9]),
+			'detail_consigne2' => htmlspecialchars($liste_T_hote[10]),
+			'type_action2' => htmlspecialchars($liste_T_hote[12])
 		)) or die(print_r($MAJ_hote->errorInfo()));
-		addlog("INSERTION données: nom_hote=" . htmlspecialchars($liste_T_hote[0]) . ",id_demande=" . $ID_Demande . ",description=" . htmlspecialchars($liste_T_hote[2]) .",ip_hote=" . htmlspecialchars($liste_T_hote[1]) .",type_hote=" . htmlspecialchars($liste_T_hote[4]).",id_localisation=" . htmlspecialchars($liste_T_hote[3]).",os=" . htmlspecialchars($liste_T_hote[5]).",architecture=" . htmlspecialchars($liste_T_hote[6]).",langue=" . htmlspecialchars($liste_T_hote[7]).",fonction=" . htmlspecialchars($liste_T_hote[8]).",controle_actif=" . htmlspecialchars($liste_T_hote[12]).",commentaire=" . htmlspecialchars($liste_T_hote[9]).",consigne=" . htmlspecialchars($liste_T_hote[10]).",detail_consigne=" . htmlspecialchars($liste_T_hote[11]).",type_action=" . htmlspecialchars($liste_T_hote[13]) ."");
+		addlog("INSERTION données: nom_hote=" . htmlspecialchars($liste_T_hote[0]) . ",id_demande=" . $ID_Demande . ",description=" . htmlspecialchars($liste_T_hote[2]) .",ip_hote=" . htmlspecialchars($liste_T_hote[1]) .",type_hote=" . htmlspecialchars($liste_T_hote[4]).",id_localisation=" . htmlspecialchars($liste_T_hote[3]).",os=" . htmlspecialchars($liste_T_hote[5]).",architecture=" . htmlspecialchars($liste_T_hote[6]).",langue=" . htmlspecialchars($liste_T_hote[7]).",fonction=" . htmlspecialchars($liste_T_hote[8]).",controle_actif=" . htmlspecialchars($liste_T_hote[11]).",commentaire=" . htmlspecialchars($liste_T_hote[13]).",consigne=" . htmlspecialchars($liste_T_hote[9]).",detail_consigne=" . htmlspecialchars($liste_T_hote[10]).",type_action=" . htmlspecialchars($liste_T_hote[12]) ."");
 	};
 
 	// epuration de la demande des hotes retirés

@@ -121,9 +121,7 @@ echo '<table id="T_Liste_Demande">';
 			if ( $_SESSION['Admin'] == True)
 			{
 				$bouton_ID="DEC_Enregistrer_Etat" . htmlspecialchars ( $res_dem ['ID_Demande'] );
-
-
-	                echo '<td>';
+                echo '<td>';
 				echo 'ID_Dem=' .  htmlspecialchars($res_dem['ID_Demande']);
 //				echo htmlspecialchars($res_dem['Etat_Demande']) . '';
 //                              echo '<label for="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '">Etat:</label>';
@@ -165,13 +163,17 @@ echo '<table id="T_Liste_Demande">';
                                 echo '';
                                 echo '<button id="DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '" onclick="DEC_enregistre_Etat_Demande(this,' . htmlspecialchars($res_dem['ID_Demande']) . ')">Forcer</button>';
 			echo '</td>';
-	
-
-
 			};
 			echo '</tr>';
-			echo '<td colspan="12">
-					<div id="DEC_Detail' . htmlspecialchars($res_dem['ID_Demande']) . '">
+			// Ajuster la valeur au nombre de colonnes
+			if ( $_SESSION['Admin'] == True)
+			{
+				echo '<td colspan="13">'; // Si profil admin 13 colonnes 
+			} else 
+			{
+				echo '<td colspan="12">'; // sinon seulement 12
+			};
+			echo '<div id="DEC_Detail' . htmlspecialchars($res_dem['ID_Demande']) . '">
 						<div id="DEC_infos' . htmlspecialchars($res_dem['ID_Demande']) . '">
 						</div>
 						<div id="DEC_hote' . htmlspecialchars($res_dem['ID_Demande']) . '">

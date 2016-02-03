@@ -114,7 +114,7 @@ $_SESSION['R_ID_Demande'] = NULL; // sur un ajout on force systématiquement à 
 <!-- Service Consigne -->
 <!-- 	<label for="Service_Consigne<?php //echo $NbFieldset_Service;?>">Lien vers la consigne :</label> -->
 <!-- 	<input type="text" id="Service_Consigne<?php //echo $NbFieldset_Service;?>" name="Service_<?php //echo $NbFieldset_Service;?>_Lien_Consigne" value="" size="70" maxlength="255" class="service<?php //echo $NbFieldset_Service;?>"/> <br /> -->
-	<span id="Service_Consigne<?php echo $NbFieldset_Service;?>" class="service<?php echo $NbFieldset_Service;?>">Lien vers la consigne :<a href="" target="_blank"></a></span>	<br />
+	<span id="Service_Consigne<?php echo $NbFieldset_Service;?>" class="service<?php echo $NbFieldset_Service;?>">Lien vers la consigne :<a id="Service_Consigne_lien<?php echo $NbFieldset_Service;?>" href="" target="_blank"></a></span>	<br />
 	
 <!-- Service Consigne Description -->
 	<label for="Consigne_Service_Detail<?php echo $NbFieldset_Service;?>" onclick="alert('Décrivez ici les opérations à effectuer par les équipes EPI et/ou CDS si un évènement se produit sur l\'équipement (relancer un process, envoyer un mail, etc...).\nLes consignes doivent être claires et précises afin qu\'elles puissent être appliquées rapidement et sans ambiguïté par les équipes de support.\nLes adresses mails doivent être indiquées en toute lettre soit par ex: envoyer un mail à support_bmd@tessi.fr et pas simplement envoyer un mail support bmd.\nCette consigne sera ensuite retranscrite dans le wiki tessi-techno et un lien sera rattaché à l\'hôte; le lien apparaitra par la suite dans le champ ci-dessus.')">Description consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>

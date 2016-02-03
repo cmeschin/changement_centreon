@@ -1065,6 +1065,111 @@ function deverouille_liste(champ)
 	};
 };
 
+function change_statut(champ)
+{
+	/**
+	 * fonction de modification de validation des champs obligatoires
+	 * en fonction de l'action à effectuer
+	 * 	- si désactivation ou suppression => force champs à "correct"
+	 *  - si activation ou modification => force champs à "incorrect"
+	 */
+	// récupérer l'id et la valeur sélectionnée
+	var id_champ=$(champ).attr("id");
+	var valeur_champ=document.getElementById(champ.id).options[document.getElementById(champ.id).selectedIndex];
+//	alert("id_champ="+ id_champ);
+//	alert("valeur_champ="+ valeur_champ.value);
+	if (id_champ.substring(0,7) == "Service") // s'il s'agit d'un service
+	{
+		var numservice = id_champ.substring(14);
+//		alert("numservice="+numservice);
+		$("[id*='img_Service_Argument" + numservice + "']").each(function() // pour chaque champ argument à valider
+		{
+			if ((valeur_champ.value == "Desactiver") ||(valeur_champ.value == "Supprimer")) // si la sélection est supprimer ou désactiver
+			{
+				$(this).attr("alt","correct");
+				$(this).attr("src","images/img_ok.png");
+				$("#img_Consigne_Service_Detail"+numservice).attr("alt","correct");
+				$("#img_Consigne_Service_Detail"+numservice).attr("src","images/img_ok.png");
+			} else // si la sélection est activer ou modifier
+			{
+				$(this).attr("alt","incorrect");
+				$(this).attr("src","images/img_edit.png");
+				$("#img_Consigne_Service_Detail"+numservice).attr("alt","incorrect");
+				$("#img_Consigne_Service_Detail"+numservice).attr("src","images/img_edit.png");
+			};
+		});
+	} else if (id_champ.substring(0,4) == "Hote") // s'il s'agit d'un hote
+	{
+		var numhote = id_champ.substring(11);
+//		alert("numservice="+numservice);
+//		$("[id*='img_Hote_Argument" + numhote + "']").each(function() // pour chaque champ argument à valider
+//		{
+			if ((valeur_champ.value == "Desactiver") ||(valeur_champ.value == "Supprimer")) // si la sélection est supprimer ou désactiver
+			{
+				$("#img_IP_Hote"+numhote).attr("alt","correct");
+				$("#img_IP_Hote"+numhote).attr("src","images/img_ok.png");
+				$("#img_Hote_Description"+numhote).attr("alt","correct");
+				$("#img_Hote_Description"+numhote).attr("src","images/img_ok.png");
+				$("#img_Localisation"+numhote).attr("alt","correct");
+				$("#img_Localisation"+numhote).attr("src","images/img_ok.png");
+				$("#img_Type_Hote"+numhote).attr("alt","correct");
+				$("#img_Type_Hote"+numhote).attr("src","images/img_ok.png");
+				$("#img_Type_OS"+numhote).attr("alt","correct");
+				$("#img_Type_OS"+numhote).attr("src","images/img_ok.png");
+				$("#img_Architecture"+numhote).attr("alt","correct");
+				$("#img_Architecture"+numhote).attr("src","images/img_ok.png");
+				$("#img_Langue"+numhote).attr("alt","correct");
+				$("#img_Langue"+numhote).attr("src","images/img_ok.png");
+				$("#img_Consigne_Hote_Detail"+numhote).attr("alt","correct");
+				$("#img_Consigne_Hote_Detail"+numhote).attr("src","images/img_ok.png");
+			} else // si la sélection est activer ou modifier
+			{
+				$("#img_IP_Hote"+numhote).attr("alt","incorrect");
+				$("#img_IP_Hote"+numhote).attr("src","images/img_edit.png");
+				$("#IP_Hote"+numhote).removeAttr("Disabled");
+				$("#IP_Hote"+numhote).removeAttr("readOnly");
+				$("#img_Hote_Description"+numhote).attr("alt","incorrect");
+				$("#img_Hote_Description"+numhote).attr("src","images/img_edit.png");
+				$("#Hote_Description"+numhote).removeAttr("Disabled");
+				$("#Hote_Description"+numhote).removeAttr("readOnly");
+				$("#img_Localisation"+numhote).attr("alt","incorrect");
+				$("#img_Localisation"+numhote).attr("src","images/img_edit.png");
+				$("#Localisation"+numhote).removeAttr("Disabled");
+				$("#Localisation"+numhote).removeAttr("readOnly");
+				$("#img_Type_Hote"+numhote).attr("alt","incorrect");
+				$("#img_Type_Hote"+numhote).attr("src","images/img_edit.png");
+				$("#Type_Hote"+numhote).removeAttr("Disabled");
+				$("#Type_Hote"+numhote).removeAttr("readOnly");
+				$("#img_Type_OS"+numhote).attr("alt","incorrect");
+				$("#img_Type_OS"+numhote).attr("src","images/img_edit.png");
+				$("#Type_OS"+numhote).removeAttr("Disabled");
+				$("#Type_OS"+numhote).removeAttr("readOnly");
+				$("#img_Architecture"+numhote).attr("alt","incorrect");
+				$("#img_Architecture"+numhote).attr("src","images/img_edit.png");
+				$("#Architecture"+numhote).removeAttr("Disabled");
+				$("#Architecture"+numhote).removeAttr("readOnly");
+				$("#img_Langue"+numhote).attr("alt","incorrect");
+				$("#img_Langue"+numhote).attr("src","images/img_edit.png");
+				$("#Langue"+numhote).removeAttr("Disabled");
+				$("#Langue"+numhote).removeAttr("readOnly");
+				$("#img_Consigne_Hote_Detail"+numhote).attr("alt","incorrect");
+				$("#img_Consigne_Hote_Detail"+numhote).attr("src","images/img_edit.png");
+			};
+//		});
+	};
+////	$(".service" + numservice + "").each(function()
+////	{
+//	$("#"+champ.id.substring(4)).removeAttr("Disabled"); // on réactive la liste déroulante
+//	$("#"+champ.id.substring(4)).removeAttr("readOnly"); // on réactive la liste déroulante
+//	$("#"+champ.id).attr("alt","incorrect"); // on repositionne les attributs de l'icône
+//	$("#"+champ.id).attr("src","images/img_edit.png"); // on repositionne les attributs de l'icône
+//	if ($("#"+champ.id).parent().attr("id") == "model_param_plage"){// si deverrouille plage => Suppression action OK, ne reste que "A Modifier"
+//		var class_plage=$(champ).parent().parent().attr("id").toLowerCase();
+//		$("."+class_plage+" option").remove();
+//		$("select."+class_plage+"").append('<option value="Modifier">A Modifier</option>');
+//	};
+};
+
 /* inutilisé le 21/10/2014
 function deverouille_etat(champ)
 {
@@ -1177,11 +1282,12 @@ function afficher_argument(Num_Service_Modele,liste_arg)
 	//return true;
 };
 
-/////////////////////////////////////////////////////////////////
-// fonction dédiée à l'extraction d'une prestation
-/////////////////////////////////////////////////////////////////
+
 function valider_extraction()
 {
+	/**
+	 *  fonction dédiée à l'extraction d'une prestation
+	 */
 	var ma_selection= document.getElementById('prestation').options[document.getElementById('prestation').selectedIndex];
 	if(ma_selection.value =="")
 	{

@@ -136,7 +136,7 @@ while ($res_liste_hote_demande = $liste_hote_demande->fetch())
 // mise à jour du type d'action à effecuer pour filtrer l'affichage sur l'onglet paramétrage
 // => si selection=true => si controle_actif=actif => Modifier sinon Activer
 // => si selection=false => NC
-$MAJ_Hote2 = $bdd_supervision->prepare('UPDATE hote SET type_action=if(selection="true",if(Controle_Actif="actif","Modifier","Activer"),"NC") WHERE ID_Demande= :id_demande');
+$MAJ_Hote2 = $bdd_supervision->prepare('UPDATE hote SET type_action=if(selection="true",if(Controle_Actif="actif","Modifier","Activer"),"NC"), etat_parametrage="Brouillon" WHERE ID_Demande= :id_demande');
 $MAJ_Hote2->execute(Array(
 		'id_demande' => $ID_Demande
 )) or die(print_r($MAJ_Hote2->errorInfo()));
@@ -524,6 +524,10 @@ while ($res_liste_service_demande = $liste_service_demande->fetch())
 	/**
 	 * Ramasse miette
 	 */
+	$MAJ_Service = $bdd_supervision->prepare('UPDATE service SET etat_parametrage="Brouillon" where ID_Demande= :ID_Demande;');
+	$MAJ_Service->execute(Array(
+			'ID_Demande' => $ID_Demande
+	)) or die(print_r($MAJ_Service->errorInfo()));
 	
 	/**
 	 * MAJ periode temporelle vide en attendant de trouver la correction sur la sélection des services
@@ -594,7 +598,7 @@ while($res_select_plage = $select_plage->fetch())
 */
 	// Mise à jour de l'état des période en fonction de leur sélection
 	//	$upd_periode = $bdd_supervision->prepare('UPDATE Periode_Temporelle SET Lundi = :Lun, Mardi = :Mar, Mercredi = :Mer, Jeudi = :Jeu, Vendredi = :Ven, Samedi = :Sam, Dimanche = :Dim WHERE Nom_Periode = :Nom_Periode');
-		$insert_periode = $bdd_supervision->prepare('UPDATE periode_temporelle SET Type_Action=if(selection="true","Modifier","NC") WHERE ID_Demande= :id_demande');
+		$insert_periode = $bdd_supervision->prepare('UPDATE periode_temporelle SET Type_Action=if(selection="true","Modifier","NC"), etat_parametrage="Brouillon" WHERE ID_Demande= :id_demande');
 		$insert_periode->execute(Array(
 			'id_demande' => $ID_Demande
 		)) or die(print_r($insert_periode->errorInfo()));

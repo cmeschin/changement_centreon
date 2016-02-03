@@ -126,7 +126,7 @@ function verifChampMail(champ)
 	{
 		if (reg.exec(T_mail[i].trim())==null && T_mail[i].trim()!= "")
 		{
-			alert("L'adresse mail ["+ T_mail[i] +"] est invalide!\nLes adresses mails doivent être séparées par un point-virgule (;)");
+			alert("L'adresse mail [ "+ T_mail[i] +" ] est invalide!\nLes adresses mails doivent être séparées par un point-virgule (;)");
 			compterreur++;
 		};
 	};

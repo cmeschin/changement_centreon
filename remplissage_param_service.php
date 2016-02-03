@@ -170,7 +170,7 @@ while ($res_liste_service = $req_liste_service->fetch())
  */
 //		echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
 //		echo '<input type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_' . $NbFieldset_Service . '_Lien_Consigne" value="' . htmlspecialchars($res_liste_service['Consigne']) . '" size="70" maxlength="255" class="service' . $NbFieldset_Service . '"/> <br />';
-		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_service['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_service['Consigne']) . '</a></span>	<br />';
+		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">Lien vers la consigne :<a id="Service_Consigne_lien' . $NbFieldset_Service . '" href="' . htmlspecialchars($res_liste_service['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_service['Consigne']) . '</a></span>	<br />';
 		echo '';
 		echo '<!-- Service Consigne Description-->';
 		echo '<label for="Consigne_Service_Detail' . $NbFieldset_Service . '" onclick="alert(\'Décrivez ici les opérations à effectuer par les équipes EPI et/ou CDS si un évènement se produit sur l\\\'équipement (relancer un process, envoyer un mail, etc...).\\nLes consignes doivent être claires et précises afin qu\\\'elles puissent être appliquées rapidement et sans ambiguïté par les équipes de support.\\nLes adresses mails doivent être indiquées en toute lettre soit par ex: envoyer un mail à support_bmd@tessi.fr et pas simplement envoyer un mail support bmd.\\nCette consigne sera ensuite retranscrite dans le wiki tessi-techno et un lien sera rattaché à l\\\'hôte; le lien apparaitra par la suite dans le champ ci-dessus.\')">Description consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
@@ -186,41 +186,73 @@ while ($res_liste_service = $req_liste_service->fetch())
 		echo '<!-- Action à effectuer -->';
 		echo '<fieldset id="Action_Service' . $NbFieldset_Service . '" class="service_action">';
 		echo '<legend>Actions à effectuer</legend>';
-			echo '<select name="Service_' . $NbFieldset_Service . '_Action" id="Service_action' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">';
+			echo '<select name="Service_' . $NbFieldset_Service . '_Action" id="Service_action' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '" onChange="change_statut(this)">';
 				//addlog("type_action=". htmlspecialchars($res_liste_service['Nom_Service']));
 				//addlog("type_action=". htmlspecialchars($res_liste_service['Type_Action']));
-				if (htmlspecialchars($res_liste_service['Type_Action']) == "Modifier")
-				{
-					echo '<option Selected="Selected" value="Modifier">A Modifier</option>';
-				} else if (htmlspecialchars($res_liste_service['Type_Action']) == "Creer")
-				{
-					echo '<option Selected="Selected" value="Creer">A Créer</option>';
-				};
-				if (htmlspecialchars($res_liste_service['Controle_Actif']) == "actif")
-				{
-					if (htmlspecialchars($res_liste_service['Type_Action']) == "Desactiver")
-					{
-						echo '<option Selected="Selected" value="Desactiver">A Désactiver</option>';
-					} else
-					{
+// 				if (htmlspecialchars($res_liste_service['Type_Action']) == "Modifier")
+// 				{
+// 					echo '<option Selected="Selected" value="Modifier">A Modifier</option>';
+// 				} else if (htmlspecialchars($res_liste_service['Type_Action']) == "Creer")
+// 				{
+// 					echo '<option Selected="Selected" value="Creer">A Créer</option>';
+// 				};
+// 				if (htmlspecialchars($res_liste_service['Controle_Actif']) == "actif")
+// 				{
+// 					if (htmlspecialchars($res_liste_service['Type_Action']) == "Desactiver")
+// 					{
+// 						echo '<option Selected="Selected" value="Desactiver">A Désactiver</option>';
+// 					} else
+// 					{
+// 						echo '<option value="Desactiver">A Désactiver</option>';
+// 					};
+// 				} else 
+// 				{
+// 					if (htmlspecialchars($res_liste_service['Type_Action']) == "Activer")
+// 					{
+// 						echo '<option Selected="Selected" value="Activer">A Activer</option>';
+// 					} else
+// 					{
+// 						echo '<option value="Activer">A Activer</option>';
+// 					};
+// 				};
+// 				if (htmlspecialchars($res_liste_service['Type_Action']) == "Supprimer")
+// 				{
+// 					echo '<option Selected="Selected" value="Supprimer">A Supprimer</option>';
+// 				} else
+// 				{
+// 					echo '<option value="Supprimer">A Supprimer</option>';
+// 				};
+				if (htmlspecialchars($res_liste_service['Controle_Actif']) == "actif"){
+					if (htmlspecialchars($res_liste_service['Type_Action']) == "Creer"){
+						echo '<option Selected="Selected" value="Creer">A Créer</option>';
+					} else if (htmlspecialchars($res_liste_service['Type_Action']) == "Modifier"){
+						echo '<option Selected="Selected" value="Modifier">A Modifier</option>';
 						echo '<option value="Desactiver">A Désactiver</option>';
+						echo '<option value="Supprimer">A Supprimer</option>';
+					} else if (htmlspecialchars($res_liste_service['Type_Action']) == "Desactiver"){
+						echo '<option value="Modifier">A Modifier</option>';
+						echo '<option Selected="Selected" value="Desactiver">A Désactiver</option>';
+						echo '<option value="Supprimer">A Supprimer</option>';
+					} else if  (htmlspecialchars($res_liste_service['Type_Action']) == "Supprimer"){
+						echo '<option value="Modifier">A Modifier</option>';
+						echo '<option value="Desactiver">A Désactiver</option>';
+						echo '<option Selected="Selected" value="Supprimer">A Supprimer</option>';
 					};
 				} else 
 				{
-					if (htmlspecialchars($res_liste_service['Type_Action']) == "Activer")
-					{
-						echo '<option Selected="Selected" value="Activer">A Activer</option>';
-					} else
-					{
+					if (htmlspecialchars($res_liste_service['Type_Action']) == "Modifier"){
+						echo '<option Selected="Selected" value="Modifier">A Modifier (et activer)</option>';
 						echo '<option value="Activer">A Activer</option>';
+						echo '<option value="Supprimer">A Supprimer</option>';
+					} else if (htmlspecialchars($res_liste_service['Type_Action']) == "Activer"){
+						echo '<option value="Modifier">A Modifier (et activer)</option>';
+						echo '<option Selected="Selected" value="Activer">A Activer</option>';
+						echo '<option value="Supprimer">A Supprimer</option>';
+					} else if  (htmlspecialchars($res_liste_service['Type_Action']) == "Supprimer"){
+						echo '<option value="Modifier">A Modifier (et activer)</option>';
+						echo '<option value="Activer">A Activer</option>';
+						echo '<option Selected="Selected" value="Supprimer">A Supprimer</option>';
 					};
-				};
-				if (htmlspecialchars($res_liste_service['Type_Action']) == "Supprimer")
-				{
-					echo '<option Selected="Selected" value="Supprimer">A Supprimer</option>';
-				} else
-				{
-					echo '<option value="Supprimer">A Supprimer</option>';
 				};
 			echo '</select>';
 			echo '<br />';

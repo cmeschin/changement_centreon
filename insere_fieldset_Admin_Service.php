@@ -21,7 +21,7 @@ if (isset($ID_Service))
 	echo '<fieldset id="Admin_bouton_Service' . $NbFieldset_Service . '" class="Admin_bouton_Service">';
 	echo '<legend>Administration</legend>';
 	echo '<label for="Etat_Service' . $NbFieldset_Service . '">Etat:</label>';
-	echo '<select class="etat_dem_' . $etat_class . '" name="Etat_Service' . $NbFieldset_Service . '" id="Etat_Service' . $NbFieldset_Service . '" >';
+	echo '<select class="etat_dem_' . $etat_class . '" name="Etat_Service' . $NbFieldset_Service . '" id="Etat_Service' . $NbFieldset_Service . '">';
 	while ($res_etat = $req_etat->fetch())
 	{ 
 		if ( htmlspecialchars($res_etat['Etat_Dem']) != "Supprimer") // on ne peut pas supprimer un élément unitaire de la demande, donc il n'est pas ajouté à la liste.

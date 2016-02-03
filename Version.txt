@@ -9,14 +9,19 @@
 		- #18 Ajout d'un indicateur "Démarrage en production" ou "Mise à jour supervision"
 			- ajout liste déroulante dans infos générales sur nouvelle demande et reprise.
 			- ajout colonne Type_Demande dans les listes des demandes.
+		- #17 Désactivation ou Suppression: forcer les statuts des champs à OK
 		
 	Amélioration:
 		- Ajout de l'icône dans l'onglet du navigateur sur chaque page principale.
 		- remise en page des mails (uniformisation des polices et des titres, centrage des tableaux, etc...)
 		- gestion_BAM info bulle sur la liste des BA contenues dans la notification (sur survol de l'objet du mail).
+		- optimisation des sources javascript et CSS (utilisation des .min et suppression des inutiles)
+		- modification gestion listes des actions à effectuer sur remplissage_param_hote.php et remplissage_param_service.php
+		- #24 Mise à jour HTML2PDF v4.4.0
 		
 	Corrections:
 		- #2 gestion des variables $HOSTNAME$ et $SERVICEDESC$ dans les consignes directement depuis la vue.
+		- correction enregistrement_donnees.php suite réorganisation du formulaire hôte.
 		
 2016-01-24 8.13
 	Correction:

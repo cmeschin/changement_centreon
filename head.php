@@ -4,18 +4,20 @@
 <!--	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	-->
 <!--	<link href="CalendarControl.css"  rel="stylesheet" type="text/css"> -->
 	<title>DEV - Changement Centreon - Tessi Technologies</title>
-	<link href="css/tessi-theme/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" />
+<!-- 	<link href="css/tessi-theme/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" /> -->
+	<link href="css/tessi-theme/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
 	<link href="css/style.css" rel="stylesheet" type="text/css"/>
 	<link href="css/cleanslate.css" rel="Stylesheet" type="text/css"/>
  	<link href="css/jquery.weekLine.css" rel="Stylesheet" type="text/css"/>
 <!-- 	<link href="css/jquery.timepicker.css" rel="Stylesheet" type="text/css"/> -->
 	<link href="css/jquery.datetimepicker.css" rel="Stylesheet" type="text/css"/>
+	<link rel="icon" href="./images/favicon.ico" />
 	
 	<style>
 		.custom-combobox {
 		position: relative;
 		display: inline-block;
-		margin-right: 30px; // décale l icone de validation à droite
+		margin-right: 30px; /* décale l icone de validation à droite */
 		}
 		.custom-combobox-toggle {
 		position: absolute;

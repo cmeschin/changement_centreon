@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<link rel="icon" href="./images/favicon.ico" />
 <?php
 if (session_id()=='')
 {

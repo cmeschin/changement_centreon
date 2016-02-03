@@ -655,6 +655,7 @@ function Enregistrer_Brouillon(Bouton)
 						Gestion_caractere_speciaux(Valeur_Champ);
 						if ($(this).val() != "Autre" && $(this).val() != "Vide")
 						{
+							//alert($(this).attr("id") + "=" + Valeur_Champ);
 							liste_hote += "|" + Valeur_Champ;
 						};
 					});
@@ -662,6 +663,7 @@ function Enregistrer_Brouillon(Bouton)
 				});
 				liste_hote = liste_hote.substring(1,liste_hote.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
 				liste_hote = liste_hote.replace(/\$\$/g,"$"); // remplace les "$$" par un simple "$"
+				alert(liste_hote);
 				/**
 				 *  constitution de la chaine plage
 				 */

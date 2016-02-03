@@ -72,7 +72,7 @@ while ($res_liste_hote = $req_liste_hote->fetch())
  * Modification consigne obligatoire
  */
 //		echo '<label for="Consigne_Hote' . $NbFieldset . '">Lien vers consigne :</label>';
-//		echo '<input readonly type="text" id="Consigne_Hote' . $NbFieldset . '" name="Consigne_Hote' . $NbFieldset . '" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255"/> <br />';
+//		echo '<input style="visibility: hidden;" readonly type="text" id="Consigne_Hote' . $NbFieldset . '" name="Consigne_Hote' . $NbFieldset . '" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255"/> <br />';
 		echo '<span id="Consigne_Hote' . $NbFieldset . '" class="hote' . $NbFieldset . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_hote['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_hote['Consigne']) . '</a></span> <br />';
 		echo '<!-- Detail consigne -->';
 		echo '<label for="Consigne_Hote_Detail' . $NbFieldset . '">Description consigne:</label>';
