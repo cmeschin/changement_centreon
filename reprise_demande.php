@@ -236,5 +236,5 @@ addlog("chargement reprise demande.");
 		<?php
 			include('section_script_JS.php');
 		?>
-	</body>
+		</body>
 </html>
