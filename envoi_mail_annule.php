@@ -32,6 +32,7 @@ session_start();
 			 D.Etat_Demande as etat_demande,
 			 D.Commentaire as commentaire,
 			 D.email as email,
+			 D.motif_annulation as motif_annulation,
 			 D.ticket_susi as ticket_susi
 			FROM demande AS D 
 			WHERE D.Etat_Demande = :Etat_Demande
@@ -75,7 +76,7 @@ session_start();
 	//        $message_txt = "Type DEM = Autre\nTitulaires = Changement__bCentreon\nPrestation = INFRA_TT_{INT}\nClient Bénéficiaire = Tessi__bTechnologies\nService = TESSI-TECHNO__bDSI\nRéférentiel SLA = Convention__bSTD\nContrat = -\nTypeService = CENTREON\nListe de diffusion = " . htmlspecialchars($adresse_mail) . "\n\n------------------------------------------------------\nRéférence Demande: " . htmlspecialchars($res_mail[1]) . "\nDate de la demande: " . htmlspecialchars($res_mail[2]) . "\nDemandeur: " . htmlspecialchars($res_mail[3]) . "\nDate activation souhaitée: " . htmlspecialchars($res_mail[4]) . "\nPrestation concernée: " . htmlspecialchars($res_mail[5]) . "\nParamétrage à effectuer:\n    - " . htmlspecialchars($res_mail[6]) . " hôte(s)\n      - " . htmlspecialchars($res_mail[7]) . " service(s)\n   - " . htmlspecialchars($res_mail[8]) . " plage(s) horaire(s)\nCommentaire: " . htmlspecialchars($res_mail[10]) . "\n------------------------------------------------------";
 	//        $message_txt = "Type DEM = Autre\nTitulaires = Changement__bCentreon\nPrestation = INFRA_TT_{INT}\nClient Bénéficiaire = Tessi Technologies\nService = TESSI-TECHNO DSI\nRéférentiel SLA = Convention STD\nContrat = -\nTypeService = CENTREON\nListe de diffusion = " . htmlspecialchars($adresse_mail) . "\n\n------------------------------------------------------\nRéférence Demande: " . htmlspecialchars($res_mail[1]) . "\nDate de la demande: " . htmlspecialchars($res_mail[2]) . "\nDemandeur: " . htmlspecialchars($res_mail[3]) . "\nDate activation souhaitée: " . htmlspecialchars($res_mail[4]) . "\nPrestation concernée: " . htmlspecialchars($res_mail[5]) . "\nParamétrage à effectuer:\n    - " . htmlspecialchars($res_mail[6]) . " hôte(s)\n      - " . htmlspecialchars($res_mail[7]) . " service(s)\n   - " . htmlspecialchars($res_mail[8]) . " plage(s) horaire(s)\nCommentaire: " . htmlspecialchars($res_mail[10]) . "\n------------------------------------------------------";
 		//$lien_html = "http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?ID_Dem=" . $res_mail['id_demande'] . ""; 
-		$message_txt = "Statut = Clos\nRéférence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n\nLa demande de supervision a été annulée. Veuillez vous rapprocher de l'équipe Centreon pour de plus amples informations.";
+		$message_txt = "Statut = Clos\nRéférence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n\nLa demande de supervision a été annulée pour le motif suivant:" . htmlspecialchars($res_mail['motif_annulation']) . ".\nVeuillez vous rapprocher de l'équipe Centreon pour de plus amples informations.";
 	
 		//==========
 	}; 

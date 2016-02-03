@@ -1,31 +1,4 @@
 <?php
-/* Ajout champ ID_Hote le 05-11-14
-$req_liste_service = $bdd_supervision->prepare(
-	'SELECT DISTINCT(S.Nom_Service) AS Nom_Service,
-			S.Nom_Hote AS Nom_Hote,
-			HT.IP_Hote AS IP_Hote,
-			HT.ID_Localisation AS ID_Localisation,
-			S.Nom_Periode AS Nom_Periode,
-			S.Frequence AS Frequence,
-			S.Consigne AS Consigne,
-			S.Controle_Actif AS Controle_Actif,
-			MS.Modele_Service AS MS_Modele_Service,
-			MS.MS_Libelles AS MS_Libelles,
-			S.Parametres AS Parametres,
-			S.Detail_Consigne AS Detail_Consigne,
-			S.Type_Action AS Type_Action,
-			S.Etat_Parametrage AS Etat_Parametrage,
-			S.ID_Service AS ID_Service,
-			S.Commentaire AS Commentaire,
-			MS.MS_Description AS MS_Description,
-			MS.MS_Arguments AS MS_Arguments,
-			MS.MS_Macro AS MS_Macro,
-			MS.MS_EST_MACRO AS MS_EST_MACRO
-	FROM ((service AS S 
-		LEFT JOIN modele_service AS MS ON S.ID_Modele_Service=MS.ID_Modele_Service)
-		LEFT JOIN hote_temp AS HT ON S.Nom_Hote=HT.Nom_Hote)
-		WHERE S.ID_Demande= :ID_Demande ORDER BY HT.ID_Localisation, S.Nom_Hote, S.Nom_Service'); // Ajout tri par loc Nom hote et nom service le 28/10/2014
-*/
 $req_liste_service = $bdd_supervision->prepare(
 	'SELECT DISTINCT(S.Nom_Service) AS Nom_Service,
 			S.Nom_Hote AS Nom_Hote,
@@ -49,7 +22,8 @@ $req_liste_service = $bdd_supervision->prepare(
 			MS.MS_EST_MACRO AS MS_EST_MACRO,
 			H.ID_Hote AS ID_Hote,
 			S.ID_Hote_Centreon AS ID_Hote_Centreon,
-			S.ID_Service_Centreon AS ID_Service_Centreon
+			S.ID_Service_Centreon AS ID_Service_Centreon,
+		 	S.motif_annulation
 	FROM ((service AS S 
 		LEFT JOIN modele_service AS MS ON S.ID_Modele_Service=MS.ID_Modele_Service)
 		LEFT JOIN hote AS H ON S.ID_Hote=H.ID_Hote)

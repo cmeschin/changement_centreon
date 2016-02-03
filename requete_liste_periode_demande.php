@@ -11,7 +11,8 @@ $req_liste_plage = $bdd_supervision->prepare('SELECT
 		 Commentaire as commentaire,
 		 Type_Action as type_action,
 		 Etat_Parametrage as Etat_Parametrage,
-		 ID_Periode_Temporelle as id_periode_temporelle
+		 ID_Periode_Temporelle as id_periode_temporelle,
+		 motif_annulation
 	FROM periode_temporelle
 	 WHERE Type_Action <> "NC"
 		 AND ID_Demande = :ID_Demande

@@ -28,7 +28,6 @@ $SEL_tmp_service = $bdd_supervision->prepare ( 'SELECT
 $SEL_tmp_service->execute ( Array () ) or die ( print_r ( $SEL_tmp_service->errorInfo () ) );
 
 // Selection de tous les services de la demande
-//include ('requete_Remplissage_Service.php');
 // Detail de la requête
 // Nom_Service 0
 // Nom_Hote 1

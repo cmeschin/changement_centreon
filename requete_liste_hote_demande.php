@@ -20,7 +20,8 @@ $req_liste_hote = $bdd_supervision->prepare('SELECT
 		 Detail_Consigne,
 		 Type_Action,
 		 Etat_Parametrage,
-		 ID_Hote
+		 ID_Hote,
+		 motif_annulation
 	FROM hote
 	 WHERE Type_Action <> :Type_Action AND ID_Demande= :ID_Demande
 	 ORDER BY ID_Localisation, Nom_Hote');

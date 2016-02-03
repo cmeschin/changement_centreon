@@ -38,5 +38,9 @@ if (isset($ID_Service))
 	echo '</select>';
 	echo '';
 	echo '<button id="Enregistrer_Etat_Service' . $NbFieldset_Service . '" onclick="enregistre_Etat_Demande(this,' . $ID_Service . ')">Enregistrer</button>';
+	if ($res_liste_service['Etat_Parametrage'] == "Annulé" && $res_liste_service['motif_annulation'] != "")
+	{
+		echo '<p>Motif: ' . $res_liste_service['motif_annulation'] . '</p>';
+	};
 	echo '</fieldset>';
 };

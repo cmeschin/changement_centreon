@@ -842,8 +842,17 @@ function enregistre_Etat_Demande(champ,ID)
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_trai");
 	} else if (Etat_Param == "Annulé")
 	{
+		var motif_annulation="";
+//		affiche_motif_annul(motif_annulation);
+	    while ( motif_annulation == null || motif_annulation =="")
+	    {
+	    	motif_annulation=prompt("Motif de l'annulation:","doublon");
+//	    	alert("Motif annulation:"+motif_annulation);
+	    };
+//	    return motif_annulation;
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_annu");
+		//alert("Motif Annulation saisi:"+motif_annulation);
 	} else if (Etat_Param == "Supprimer")
 	{
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
@@ -891,10 +900,11 @@ function enregistre_Etat_Demande(champ,ID)
 	var eID_Service = encodeURIComponent(ID_Service);
 	var eID_Plage = encodeURIComponent(ID_Plage);
 	var eEtat_Param = encodeURIComponent(Etat_Param);
+	var eAnnulation = encodeURIComponent(motif_annulation);
 	
 	xhr.open("POST", "MAJ_Etat_Parametrage.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
-	xhr.send("ID_Demande="+eID_Demande+"&ID_Hote="+eID_Hote+"&ID_Service="+eID_Service+"&ID_Plage="+eID_Plage+"&Etat_Param="+eEtat_Param+""); 
+	xhr.send("ID_Demande="+eID_Demande+"&ID_Hote="+eID_Hote+"&ID_Service="+eID_Service+"&ID_Plage="+eID_Plage+"&Etat_Param="+eEtat_Param+"&Annulation="+eAnnulation+""); 
 
 };
 
@@ -905,7 +915,16 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 	 *   => Tous les hôtes, services et plages seront forcés dans l'état choisi ainsi que la demande.
 	 */
 	var Etat_Param = $("Select#Liste_"+champ.id).val();
-
+	if (Etat_Param == "Annulé")
+	{
+		var motif_annulation="";
+//		affiche_motif_annul(motif_annulation);
+		while ( motif_annulation == null || motif_annulation =="")
+	    {
+	    	motif_annulation=prompt("Motif de l'annulation:","doublon");
+//	    	alert("Motif annulation:"+motif_annulation);
+	    };
+	};
 	if (Etat_Param != "Supprimer")
 	{
 		var MessageConfirmation = "Vous allez forcer l'ensemble des sondes de la demande n°" + ID_Demande + " dans l'état [" + Etat_Param + "]. Etes-vous sûr?";
@@ -933,10 +952,11 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 
 		ID_Demande = encodeURIComponent(ID_Demande);
 		Etat_Param = encodeURIComponent(Etat_Param);
+		Annulation = encodeURIComponent(motif_annulation);
 		
 		xhr.open("POST", "MAJ_Etat_Parametrage_Demande.php", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
-		xhr.send("ID_Demande="+ID_Demande+"&Etat_Param="+Etat_Param+""); 
+		xhr.send("ID_Demande="+ID_Demande+"&Etat_Param="+Etat_Param+"&Annulation="+Annulation+""); 
 	};
 };
 
@@ -1337,6 +1357,14 @@ function timer_enregistrement()
 		};
 	}; 
 	recuperation_Timer(avertissement_Timer);
+};
+
+function affiche_motif_annul(motif_annulation)
+{
+    //var motif_annulation=prompt("Motif de l'annulation:","doublon");
+	//var motif_annulation="";
+//    if (answer!=null && answer!="")
+
 };
 
 function gestion_erreur(xhr)

@@ -18,7 +18,8 @@ include_once('connexion_sql_supervision.php');
 try {
 	
 	// Selection de tous les services de la demande
-	include('requete_Remplissage_Service.php');
+	//include('requete_Remplissage_Service.php');
+	include('requete_liste_service_demande.php');
 } catch (Exception $e) {
 	die('Erreur requete_Remplissage_service: ' . $e->getMessage());
 };

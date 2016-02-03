@@ -38,5 +38,9 @@ if (isset($ID_Hote))
 	echo '</select>';
 	echo '';
 	echo '<button id="Enregistrer_Etat_Hote' . $NbFieldset . '" onclick="enregistre_Etat_Demande(this,' . $ID_Hote . ')">Enregistrer</button>';
+	if ($res_liste_hote['Etat_Parametrage'] == "Annulé" && $res_liste_hote['motif_annulation'] != "")
+	{
+		echo '<p>Motif: ' . $res_liste_hote['motif_annulation'] . '</p>';
+	};
 	echo '</fieldset>';
 };

@@ -59,6 +59,7 @@ echo '<table id="T_Liste_Demande">';
 		if (htmlspecialchars($res_dem['Etat_Demande']) == "Annulé")
 		{
 			$couleur_etat="etat_dem_annu";
+			$title_annulation='title="Motif: '. htmlspecialchars($res_dem['motif_annulation']) . '"';
 		}; 
 		echo '<div id="Demande">';
 			echo '<tr>';
@@ -81,7 +82,7 @@ echo '<table id="T_Liste_Demande">';
 			echo '<td>' . htmlspecialchars($res_dem['NbHote']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbService']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbPlage']) . '</td>';
-			echo '<td class="' . $couleur_etat . '">' . htmlspecialchars($res_dem['Etat_Demande']) . '</td/>';
+			echo '<td class="' . $couleur_etat . '" ' . $title_annulation . '>' . htmlspecialchars($res_dem['Etat_Demande']) . '</td/>';
 			// le formatage est fait directement dans la requête d'extraction.
 			//echo '<td>' . htmlspecialchars(floor($res_dem['Temps']/60) . 'h' . ($res_dem['Temps']%60)) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['Temps']) . '</td>';

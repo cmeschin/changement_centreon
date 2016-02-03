@@ -10,43 +10,48 @@ addlog("Chargement MAJ_Etat_Parametrage.php");
 include_once('connexion_sql_supervision.php');
 try {
 	$bdd_supervision->beginTransaction();
-	$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"] : NULL;
-	$ID_Hote = (isset($_POST["ID_Hote"])) ? $_POST["ID_Hote"] : NULL;
-	$ID_Service = (isset($_POST["ID_Service"])) ? $_POST["ID_Service"] : NULL;
-	$ID_Plage = (isset($_POST["ID_Plage"])) ? $_POST["ID_Plage"] : NULL;
-	$Etat_Param = (isset($_POST["Etat_Param"])) ? $_POST["Etat_Param"] : NULL;
+	$ID_Demande = (isset($_POST["ID_Demande"])) ? htmlspecialchars($_POST["ID_Demande"]) : NULL;
+	$ID_Hote = (isset($_POST["ID_Hote"])) ? htmlspecialchars($_POST["ID_Hote"]) : NULL;
+	$ID_Service = (isset($_POST["ID_Service"])) ? htmlspecialchars($_POST["ID_Service"]) : NULL;
+	$ID_Plage = (isset($_POST["ID_Plage"])) ? htmlspecialchars($_POST["ID_Plage"]) : NULL;
+	$Etat_Param = (isset($_POST["Etat_Param"])) ? htmlspecialchars($_POST["Etat_Param"]) : NULL;
+	$Annulation = (isset($_POST["Annulation"])) ? htmlspecialchars($_POST["Annulation"]) : NULL;
+	
 	$MAJ_OK=False;
-	addlog("MAJ Paramétrage à effectuer: ID_Demande=[" . $ID_Demande . "], ID_Hote=[" . $ID_Hote . "], ID_Service=[" . $ID_Service . "], ID_Plage=[" . $ID_Plage . "], Etat_Param=[" . $Etat_Param . "]!");
+	addlog("MAJ Paramétrage à effectuer: ID_Demande=[" . $ID_Demande . "], ID_Hote=[" . $ID_Hote . "], ID_Service=[" . $ID_Service . "], ID_Plage=[" . $ID_Plage . "], Etat_Param=[" . $Etat_Param . "], Motif_Annulation=[" . $Annulation . "]!");
 	if ($ID_Hote != NULL) 
 	{
-		$MAJ_Hote = $bdd_supervision->prepare('UPDATE hote SET Etat_Parametrage= :Etat_Param WHERE ID_Hote = :ID_Hote AND ID_Demande= :ID_Demande;');
+		$MAJ_Hote = $bdd_supervision->prepare('UPDATE hote SET Etat_Parametrage= :Etat_Param, motif_annulation= :motif_annulation WHERE ID_Hote = :ID_Hote AND ID_Demande= :ID_Demande;');
 		$MAJ_Hote->execute(array(
-			'Etat_Param' => htmlspecialchars($Etat_Param),
-			'ID_Hote' => htmlspecialchars($ID_Hote),
-			'ID_Demande' => htmlspecialchars($ID_Demande),
+			'Etat_Param' => $Etat_Param,
+			'motif_annulation' => $Annulation,
+			'ID_Hote' => $ID_Hote,
+			'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Hote->errorInfo()));
 		$MAJ_OK=True;
 	} else if ($ID_Service != NULL) 
 	{
-		$MAJ_Service = $bdd_supervision->prepare('UPDATE service SET Etat_Parametrage= :Etat_Param WHERE ID_Service = :ID_Service AND ID_Demande= :ID_Demande;');
+		$MAJ_Service = $bdd_supervision->prepare('UPDATE service SET Etat_Parametrage= :Etat_Param, motif_annulation= :motif_annulation WHERE ID_Service = :ID_Service AND ID_Demande= :ID_Demande;');
 		$MAJ_Service->execute(array(
-			'Etat_Param' => htmlspecialchars($Etat_Param),
-			'ID_Service' => htmlspecialchars($ID_Service),
-			'ID_Demande' => htmlspecialchars($ID_Demande),
+			'Etat_Param' => $Etat_Param,
+			'motif_annulation' => $Annulation,
+			'ID_Service' => $ID_Service,
+			'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Service->errorInfo()));
 		$MAJ_OK=True;
 	} else if ($ID_Plage != NULL) 
 	{
-		$MAJ_Plage = $bdd_supervision->prepare('UPDATE periode_temporelle SET Etat_Parametrage= :Etat_Param WHERE ID_Periode_Temporelle = :ID_Plage AND ID_Demande= :ID_Demande;');
+		$MAJ_Plage = $bdd_supervision->prepare('UPDATE periode_temporelle SET Etat_Parametrage= :Etat_Param, motif_annulation= :motif_annulation WHERE ID_Periode_Temporelle = :ID_Plage AND ID_Demande= :ID_Demande;');
 		$MAJ_Plage->execute(array(
-			'Etat_Param' => htmlspecialchars($Etat_Param),
-			'ID_Plage' => htmlspecialchars($ID_Plage),
-			'ID_Demande' => htmlspecialchars($ID_Demande),
+			'Etat_Param' => $Etat_Param,
+			'motif_annulation' => $Annulation,
+			'ID_Plage' => $ID_Plage,
+			'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Plage->errorInfo()));
 		$MAJ_OK=True;
 	} else
 	{
-		echo "echec MAJ Paramétrage: ID_Demande=[" . $ID_Demande . "], ID_Hote=[" . $ID_Hote . "], ID_Service=[" . $ID_Service . "], ID_Plage=[" . $ID_Plage . "], Etat_Param=[" . $Etat_Param . "]!";
+		echo "echec MAJ Paramétrage: ID_Demande=[" . $ID_Demande . "], ID_Hote=[" . $ID_Hote . "], ID_Service=[" . $ID_Service . "], ID_Plage=[" . $ID_Plage . "], Etat_Param=[" . $Etat_Param . "], Motif_Annulation=[" . $Annulation . "]!";
 		$MAJ_OK=False;
 	};
 	
@@ -75,5 +80,6 @@ try {
 	$bdd_supervision->commit();
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();
+	http_response_code(500);
 	die('Erreur MAJ Etat parametrage: ' . $e->getMessage());
 };

@@ -38,5 +38,9 @@ if (isset($ID_Plage))
 	echo '</select>';
 	echo '';
 	echo '<button id="Enregistrer_Etat_Plage' . $NbFieldset_plage . '" onclick="enregistre_Etat_Demande(this,' . $ID_Plage . ')">Enregistrer</button>';
+	if ($res_liste_plage['Etat_Parametrage'] == "Annulé" && $res_liste_plage['motif_annulation'] != "")
+	{
+		echo '<p>Motif: ' . $res_liste_plage['motif_annulation'] . '</p>';
+	};
 	echo '</fieldset>';
 };

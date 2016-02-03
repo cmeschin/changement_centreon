@@ -1,4 +1,10 @@
 ﻿2016-02-x 9
+	Ajout champ motif_annulation dans les tables demande, hote, service et periode_temporelle
+	##### ALTER TABLE Demande ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
+	##### ALTER TABLE Hote ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
+	##### ALTER TABLE Service ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
+	##### ALTER TABLE Periode_Temporelle ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
+	
 	Nouveauté:
 		- #1 Ajout option activation/désactivation/suppression/forçage des Notifications BAM
 			- Ajout Fonction Activation/Désactivation OK
@@ -10,17 +16,23 @@
 			- ajout liste déroulante dans infos générales sur nouvelle demande et reprise.
 			- ajout colonne Type_Demande dans les listes des demandes.
 		- #17 Désactivation ou Suppression: forcer les statuts des champs à OK
+		- #8 Ajout saisie d'un motif d'annulation sur demande, hôte, service ou période.
+			- motif annulation enregistré en base
+			- motif annulation transmis dans le ticket si annulation globale de la demande.
+			- motif annulation affiché en popup dans les demandes traitées.
+			- ajout du motif par élément(hote, service, période) si saisi unitairement
 		
 	Amélioration:
-		- Ajout de l'icône dans l'onglet du navigateur sur chaque page principale.
+		- Ajout de l'icône Tessi dans l'onglet du navigateur.
 		- remise en page des mails (uniformisation des polices et des titres, centrage des tableaux, etc...)
-		- gestion_BAM info bulle sur la liste des BA contenues dans la notification (sur survol de l'objet du mail).
+		- [gestion_BAM] info bulle sur la liste des BA contenues dans la notification (sur survol de l'objet du mail).
 		- optimisation des sources javascript et CSS (utilisation des .min et suppression des inutiles)
 		- modification gestion listes des actions à effectuer sur remplissage_param_hote.php et remplissage_param_service.php
 		- #24 Mise à jour HTML2PDF v4.4.0
 		
 	Corrections:
 		- #2 gestion des variables $HOSTNAME$ et $SERVICEDESC$ dans les consignes directement depuis la vue.
+			##### replace(replace(`e_s_i`.`esi_notes_url`,'$HOSTNAME$',`h`.`host_name`),'$SERVICEDESC$',replace(`s`.`service_description`,'#S#','/')) AS `Consigne_Sonde`,
 		- correction enregistrement_donnees.php suite réorganisation du formulaire hôte.
 		
 2016-01-24 8.13

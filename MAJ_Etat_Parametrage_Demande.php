@@ -12,16 +12,18 @@ try {
 	$bdd_supervision->beginTransaction();
 	$ID_Demande = (isset($_POST["ID_Demande"])) ? htmlspecialchars($_POST["ID_Demande"]) : NULL;
 	$Etat_Param = (isset($_POST["Etat_Param"])) ? htmlspecialchars($_POST["Etat_Param"]) : NULL;
-	addlog("Etat_Param=".$Etat_Param);
+	$Annulation = (isset($_POST["Annulation"])) ? htmlspecialchars($_POST["Annulation"]) : NULL;
+	addlog("Etat_Param=".$Etat_Param . "\nMotif_Annulation=". $Annulation . "...");
 	
 	if (($ID_Demande != NULL) && ($Etat_Param != NULL) && ($Etat_Param != "Supprimer"))
 	{
 		if (($Etat_Param == "Traité") || ($Etat_Param == "Annulé"))
 		{
-			$MAJ_Demande = $bdd_supervision->prepare('UPDATE demande SET Etat_Demande= :Etat_Param, Date_Fin_Traitement = :Date_Fin_Traitement WHERE ID_Demande= :ID_Demande;');
+			$MAJ_Demande = $bdd_supervision->prepare('UPDATE demande SET Etat_Demande= :Etat_Param, Date_Fin_Traitement = :Date_Fin_Traitement, motif_annulation = :motif_annulation WHERE ID_Demande= :ID_Demande;');
 			$MAJ_Demande->execute(array(
 				'Etat_Param' => $Etat_Param,
 				'Date_Fin_Traitement' => date("Y-m-d H:i:s"),
+				'motif_annulation' => $Annulation,
 				'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Demande->errorInfo()));
 			
