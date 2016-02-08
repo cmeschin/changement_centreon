@@ -29,14 +29,14 @@
 		- optimisation des sources javascript et CSS (utilisation des .min et suppression des inutiles)
 		- modification gestion listes des actions à effectuer sur remplissage_param_hote.php et remplissage_param_service.php
 		- #24 Mise à jour HTML2PDF v4.4.0
-		- #25 Pb enregistrement et affichage sur création hôte et reprise brouillon (ajout controle si pré-enregistrement effectué avant sauvegarde)
-		- Ajout du controle de doublon sur le pré-enregistrement hôte.
 		
 	Corrections:
 		- #2 gestion des variables $HOSTNAME$ et $SERVICEDESC$ dans les consignes directement depuis la vue.
 			##### replace(replace(`e_s_i`.`esi_notes_url`,'$HOSTNAME$',`h`.`host_name`),'$SERVICEDESC$',replace(`s`.`service_description`,'#S#','/')) AS `Consigne_Sonde`,
 		- correction enregistrement_donnees.php suite réorganisation du formulaire hôte.
 		- #25 correction gestion controle actif sur création d'hôte.
+		- #25 Pb enregistrement et affichage sur création hôte et reprise brouillon (ajout controle si pré-enregistrement effectué avant sauvegarde)
+		- Ajout du controle de doublon sur le pré-enregistrement hôte.
 		
 2016-01-24 8.13
 	Correction:
