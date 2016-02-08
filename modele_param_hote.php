@@ -213,14 +213,14 @@ $_SESSION['R_ID_Demande'] = NULL;
 		name="Hote_<?php echo $NbFieldset;?>_Description_Consigne" onblur="verifChamp(this)" rows="3"
 		cols="50" class="hote<?php echo $NbFieldset;?>"></textarea>
 		<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Consigne_Hote_Detail<?php echo $NbFieldset;?>" ondblclick="deverouille_liste(this)"/>
-	<br />
+	<!-- <br /> -->
 
 	<!-- Controle_actif -->
 	<label for="Controle_Actif_Hote<?php echo $NbFieldset;?>"
-		style="visibility: hidden">Controle :</label> <input type="text"
+		sstyle="visibility: hidden">Controle :</label> <input type="text"
 		id="Controle_Actif_Hote<?php echo $NbFieldset;?>"
 		name="Controle_Actif<?php echo $NbFieldset;?>" readonly value="actif"
-		size="5" style="visibility: hidden"
+		size="5" sstyle="visibility: hidden"
 		class="hote<?php echo $NbFieldset;?>" /> <br />
 
 	<!-- Action à  effectuer -->

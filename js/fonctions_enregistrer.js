@@ -1,3 +1,9 @@
+/**
+ * Déclaration des variables globales
+ */
+var Doublon = "";
+var PreEnregistre= true;
+
 function onglet_suivant()
 {
 	var Verif_Info = true;
@@ -248,74 +254,79 @@ function enregistre_selection()
 function PreEnregistrer_fieldset_hote(champ)
 {
 	timer_enregistrement();
-	var parent=$(champ).parent().parent().attr("id"); // récupèrele fieldset parent hote
-	var hote_bouton_id = $(champ).attr("id"); // récupère l'id du bouton
-	var Nom_Hote = $("fieldset#"+parent+ " input[id*='Nom_Hote']").val();
-	var IP_Hote = $("fieldset#"+parent+ " input[id*='IP_Hote']").val();
-	var MessageConfirmation = "Vous allez pré-enregistrer l'hôte [" + Nom_Hote + "].\n Il sera alors disponible pour le paramétrage des services mais vous ne pourrez plus changer son nom.\n Etes-vous sûr?";
-	if (confirm(MessageConfirmation))
+	controle_doublon();
+	if (Doublon != "Oui")
 	{
-		var liste_hote = "";
-		/**
-		 *  enregistrer les infos saisies jusqu'à maintenant sans vérification pour l'instant
-		 */
-		$(".hote" + parent.substring(4) + "").each(function()
-		{
-			/**
-			 *  gestion des caractères spéciaux ! $ et | dans les champs.
-			 */
-			var Valeur_Champ =  $(this).val();
-			Gestion_caractere_speciaux(Valeur_Champ);
-			if ($(this).val() != "Autre" && $(this).val() != "Vide")
-			{
-				liste_hote += "|" + Valeur_Champ;
-			};
-		});
-		liste_hote += "$";
-		liste_hote = liste_hote.substring(1,liste_hote.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
-		/**
-		 *  transmettre les données au serveur pour MAJ des infos.
-		 */
 		
-		function PreEnregistre_Hote(callback)
+		var parent=$(champ).parent().parent().attr("id"); // récupèrele fieldset parent hote
+		var hote_bouton_id = $(champ).attr("id"); // récupère l'id du bouton
+		var Nom_Hote = $("fieldset#"+parent+ " input[id*='Nom_Hote']").val();
+		var IP_Hote = $("fieldset#"+parent+ " input[id*='IP_Hote']").val();
+		var MessageConfirmation = "Vous allez pré-enregistrer l'hôte [" + Nom_Hote + "].\n Il sera alors disponible pour le paramétrage des services mais vous ne pourrez plus changer son nom.\n Etes-vous sûr?";
+		if (confirm(MessageConfirmation))
 		{
-			var xhr = getXMLHttpRequest(); //création de l'instance XHR
-			var loading=false;
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-					$("#img_loading").remove();
-					$("#p_loading").remove();
-					callback(xhr.responseText); // C'est bon \o/
-				} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
-					$("#img_loading").remove();
-					$("#p_loading").remove();
-					$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
-					gestion_erreur(xhr);
-				} else if (loading == false){
-					loading=true;
-					$("fieldset#"+parent+ "").append('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant l\'enregistrement des informations..." sssssstyle="vertical-align:middle;isplay:inline;"/> ');
-					$("fieldset#"+parent+ "").append('<p id="p_loading">Veuillez patienter pendant l\'enregistrement des informations...</p>');
-				};
-			};
-			var sliste_hote = encodeURIComponent(liste_hote);
-			xhr.open("POST", "PreEnregistrement_Hote.php", true);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
-			xhr.send("liste_hote="+sliste_hote+""); 
-		};
-		function PreEnregistrement_termine(ID_Hote) //récupère la valeur retournée par le script php PreEnregistrement_Hote.php
-		{
-			$("select[id*='Hote_Service']").each(function()
+			var liste_hote = "";
+			/**
+			 *  enregistrer les infos saisies jusqu'à maintenant sans vérification pour l'instant
+			 */
+			$(".hote" + parent.substring(4) + "").each(function()
 			{
-				$(this).append('<option value="'+ ID_Hote +'">'+ Nom_Hote + ' - ' + IP_Hote + '</option>'); // on ajoute à la liste déroulante le nouvel hôte
+				/**
+				 *  gestion des caractères spéciaux ! $ et | dans les champs.
+				 */
+				var Valeur_Champ =  $(this).val();
+				Gestion_caractere_speciaux(Valeur_Champ);
+				if ($(this).val() != "Autre" && $(this).val() != "Vide")
+				{
+					liste_hote += "|" + Valeur_Champ;
+				};
 			});
-			var id_input_hote=hote_bouton_id.substring(14);
-			$("#Nom"+id_input_hote+"").attr("ReadOnly","ReadOnly"); // passe le champ Nom_Hote en lecture seule
-			$("#img_Nom"+id_input_hote+"").attr("src","images/img_ver.png"); // passe le champ im_Nom_Hote en Verrouillé
-			$("#"+hote_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
+			liste_hote += "$";
+			liste_hote = liste_hote.substring(1,liste_hote.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
+			/**
+			 *  transmettre les données au serveur pour MAJ des infos.
+			 */
 			
-			alert("Pré-enregistrement de l'hôte terminé!\nCet hôte est désormais disponible dans la configuration des services");
-		}; 
-		PreEnregistre_Hote(PreEnregistrement_termine);
+			function PreEnregistre_Hote(callback)
+			{
+				var xhr = getXMLHttpRequest(); //création de l'instance XHR
+				var loading=false;
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+						$("#img_loading").remove();
+						$("#p_loading").remove();
+						callback(xhr.responseText); // C'est bon \o/
+					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+						$("#img_loading").remove();
+						$("#p_loading").remove();
+						$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
+						gestion_erreur(xhr);
+					} else if (loading == false){
+						loading=true;
+						$("fieldset#"+parent+ "").append('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant l\'enregistrement des informations..." sssssstyle="vertical-align:middle;isplay:inline;"/> ');
+						$("fieldset#"+parent+ "").append('<p id="p_loading">Veuillez patienter pendant l\'enregistrement des informations...</p>');
+					};
+				};
+				var sliste_hote = encodeURIComponent(liste_hote);
+				xhr.open("POST", "PreEnregistrement_Hote.php", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+				xhr.send("liste_hote="+sliste_hote+""); 
+			};
+			function PreEnregistrement_termine(ID_Hote) //récupère la valeur retournée par le script php PreEnregistrement_Hote.php
+			{
+				$("select[id*='Hote_Service']").each(function()
+				{
+					$(this).append('<option value="'+ ID_Hote +'">'+ Nom_Hote + ' - ' + IP_Hote + '</option>'); // on ajoute à la liste déroulante le nouvel hôte
+				});
+				var id_input_hote=hote_bouton_id.substring(14);
+				$("#Nom"+id_input_hote+"").attr("ReadOnly","ReadOnly"); // passe le champ Nom_Hote en lecture seule
+				$("#img_Nom"+id_input_hote+"").attr("src","images/img_ver.png"); // passe le champ im_Nom_Hote en Verrouillé
+				$("#"+hote_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
+				
+				alert("Pré-enregistrement de l'hôte terminé!\nCet hôte est désormais disponible dans la configuration des services");
+			}; 
+			PreEnregistre_Hote(PreEnregistrement_termine);
+		};
 	};
 };
 
@@ -390,7 +401,6 @@ function PreEnregistrer_fieldset_plage(champ)
 };
 
 
-var Doublon = "";
 function Valider_Demande()
 {
 	/**
@@ -414,7 +424,16 @@ function Valider_Demande()
 		return false;
 	};
 	controle_doublon();
-	if (Doublon != "Oui")
+	/**
+	 * Controle des hôtes non pré-enregistrés
+	 * pour chaque fieldset hote on vérifie si un bouton "Préenregistré" est présent qu'il est désactivé
+	 * S'il ne l'est pas, on stop la procédure et on demande à l'utilisateur de préenregistrer les hôtes.
+	 */
+	//var PreEnregistre= "";
+	controle_preenregistrement_hote();
+	//alert("PreEnregistre="+PreEnregistre);
+	if ((Doublon != "Oui") && (PreEnregistre != false)) 
+	//	if (Doublon != "Oui")
 	{
 	
 		var MessageConfirmation = "Voulez-vous valider votre demande?\nUne fois la demande validée, vous ne pourrez plus la modifier.";
@@ -627,7 +646,15 @@ function Enregistrer_Brouillon(Bouton)
 	Modele_Vide=false;
 	
 	controle_doublon();
-	if (Doublon != "Oui")
+	/**
+	 * Controle des hôtes non pré-enregistrés
+	 * pour chaque fieldset hote on vérifie si un bouton "Préenregistré" est présent qu'il est désactivé
+	 * S'il ne l'est pas, on stop la procédure et on demande à l'utilisateur de préenregistrer les hôtes.
+	 */
+	//var PreEnregistre= "";
+	controle_preenregistrement_hote();
+	//alert("PreEnregistre="+PreEnregistre);
+	if ((Doublon != "Oui") && (PreEnregistre != false)) 
 	{
 		if ($("#lien_tabs3").css("Visibility") == "visible")
 		{
@@ -1074,6 +1101,7 @@ function Gestion_caractere_speciaux(str)
 	/**
 	 *  remplacement de tous les antislash par des slash
 	 */
+	//alert(str);
 	str = str.replace(/\\/g,"\/");
 	
 	var reg1=new RegExp("[|]","g");
@@ -1305,6 +1333,30 @@ function controle_doublon()
 	};
 	Doublon = "Non";
 	return Doublon;
+};
+
+function controle_preenregistrement_hote()
+{
+	/**
+	 *  Vérification des boutons pré-enregistrement d'hôte actif ou non
+	 */
+	/**
+	 *  constitution de la chaine hote
+	 */
+//	$("fieldset[class='hote']").each(function()
+	$("[id*='PreEnregistrer_Hote']").each(function()
+	{
+		//alert("Je suis ici:"+$(this).attr("id"));
+		if ($(this).attr("disabled")=="disabled")
+		{
+			PreEnregistre=true;
+		}else
+		{
+			PreEnregistre=false;
+			alert("Au moins un hôte créé n'a pas été pré-enregistré."+PreEnregistre);
+			return PreEnregistre;
+		};
+	});
 };
 
 function correction_seuils_disque(liste_service_Arg)
