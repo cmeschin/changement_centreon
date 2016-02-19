@@ -1,15 +1,15 @@
 ﻿2016-02-19 9.0.0
 	Ajout champ motif_annulation dans les tables demande, hote, service et periode_temporelle
-	##### ALTER TABLE Demande ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
-	##### ALTER TABLE Hote ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
-	##### ALTER TABLE Service ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
-	##### ALTER TABLE Periode_Temporelle ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
+	##### ALTER TABLE demande ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
+	##### ALTER TABLE hote ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
+	##### ALTER TABLE service ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
+	##### ALTER TABLE periode_temporelle ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
 	
 	Nouveauté:
 		- #1 Ajout option activation/désactivation/suppression/forçage des Notifications BAM
 			- Ajout Fonction Activation/Désactivation OK
 				Ajout du champ gb_actif dans la table gestion_bam_notification
-				#### ALTER TABLE gestion_bam_notification MODIFY gb_actif ENUM('0','1') '0' NOT NULL;
+				#### ALTER TABLE gestion_bam_notification ADD gb_actif ENUM('0','1') DEFAULT '0' NOT NULL;
 			- Ajout Fonction Suppression OK
 			- Ajout Fonction Forcer notification et Suppression bouton "Test envoi Mail" devenu inutile OK.
 		- #18 Ajout d'un indicateur "Démarrage en production" ou "Mise à jour supervision"
