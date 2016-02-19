@@ -249,9 +249,9 @@ try {
 			/**
 			 * Traitement des ' => remplacement par _SQUOTE_ dans le champ Parametre
 			 */
-				addlog("avant=" . $value_service);
+				//addlog("avant=" . $value_service);
 				$res_elements ['Parametres']=str_replace("'","_SQUOTE_",$res_elements ['Parametres']);
-				addlog("apres=" . $value_service);
+				//addlog("apres=" . $value_service);
 					
 			$value_service .= ",('" . $res_elements ['Nom_Service'] . "','" . $res_elements ['Frequence'] . "','" . $res_elements ['Nom_Periode'] . "','" . $res_elements ['Controle_Actif'] . "'," . $res_elements ['ID_Service_Centreon'] . "," . $res_elements ['ID_Hote_Centreon'] . "," . $ID_Modele_Service_Centreon . ",'" . $res_elements ['Consigne_Service'] . "','" . $Nom_Hote . "','" . substr($res_elements ['Parametres'],1) . "')";
 			

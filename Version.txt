@@ -1,4 +1,7 @@
-﻿2016-02-19 9.0.0
+﻿206-02-x 9.x.x
+	- Suppression de quelques log consommatrices d'espace disque
+	
+2016-02-19 9.0.0
 	Ajout champ motif_annulation dans les tables demande, hote, service et periode_temporelle
 	##### ALTER TABLE demande ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;
 	##### ALTER TABLE hote ADD motif_annulation TEXT COLLATE utf8_unicode_ci NULL;

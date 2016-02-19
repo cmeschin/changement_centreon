@@ -61,16 +61,16 @@
 		 * récupérer la position du premier $
 		 */
 		$ChaineBrute=$T_Chaine_Macro[$j];
-		addlog("chaineMacrobrute_avant=" . $ChaineBrute);
+		//addlog("chaineMacrobrute_avant=" . $ChaineBrute);
 		$ChaineBrute=preg_replace('/\${2,}/', '\$', $ChaineBrute); // Supprime les dollars multiples
-		addlog("chaineMacrobrute_apres=" . $ChaineBrute);
+		//addlog("chaineMacrobrute_apres=" . $ChaineBrute);
 		
 		$pos_premier_dollar=strpos($ChaineBrute,'$');
 		$pos_second_dollar=strpos($ChaineBrute,'$',$pos_premier_dollar+1);
 		$ChaineMacro=substr($ChaineBrute,$pos_premier_dollar,$pos_second_dollar-$pos_premier_dollar);
-		addlog("position premier dollar=".$pos_premier_dollar);
-		addlog("position second dollar=".$pos_second_dollar);
-		addlog("chaineMacro=".$ChaineMacro);
+		//addlog("position premier dollar=".$pos_premier_dollar);
+		//addlog("position second dollar=".$pos_second_dollar);
+		//addlog("chaineMacro=".$ChaineMacro);
 		
 		if (substr($ChaineMacro,0,9) == "\$_SERVICE")
 		{
@@ -106,14 +106,14 @@
 	// on charge l'ensemble des valeur de macro
 	$Macro = False; // indicateur
 	$NbMacro = count($Liste_Macro);
-	addlog("Nbligne_Macro=".$NbMacro);
+	//addlog("Nbligne_Macro=".$NbMacro);
 	$Val_Macro = Array();
 	while ($res_Liste_Modele = $req_Liste_Modele->fetch()) // pour chaque service_id trouvé
 	{// on recherche les valeurs de macro renseignée avec une boucle sur les 8 service_id
 		for ($k=0;$k<8;$k++)
 		{
 			$svc_svc_id = htmlspecialchars($res_Liste_Modele[$k]);
-			addlog("svc_svc_id=".$svc_svc_id);
+			//addlog("svc_svc_id=".$svc_svc_id);
 			if (($svc_svc_id != NULL) OR ($svc_svc_id != "")) // si le modèle n'est pas null, on traite
 			{
 				$req_Macro_Valeur = $bdd_centreon->prepare('SELECT SUBSTR(svc_macro_name, 10, CHAR_LENGTH(svc_macro_name) - 10),svc_macro_value FROM on_demand_macro_service WHERE svc_svc_id= :svc_svc_id');
@@ -130,7 +130,7 @@
 				{
 					foreach ($res_Macro_Valeur AS $Macro_Name) // on boucle sur les valeurs remontée par la requête
 					{
-						addlog("Liste_Macro=".$Liste_Macro[$j] . "\n" . "Macro_Name=".$Macro_Name[0] . "\n" . "Macro_value=".$Macro_Name[1]);
+						//addlog("Liste_Macro=".$Liste_Macro[$j] . "\n" . "Macro_Name=".$Macro_Name[0] . "\n" . "Macro_value=".$Macro_Name[1]);
 						if ((strcasecmp($Liste_Macro[$j], $Macro_Name[0]) == 0) AND ($Macro_Name[1] != "")) // Si Liste_Macro = Macro_Name et Macro_Valeur non vide, on stocke la valeur dans le tableau Val_Macro
 						// strcasecmp => comparaison insensible à la casse
 						{
