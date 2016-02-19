@@ -121,7 +121,7 @@ addlog("chargement reprise demande.");
 									echo '</select>';
 									//}; 
 								?>
-								<img src="images/img_ver.png" class="verif" alt="correct" id="img_client" />
+								<img src="images/img_ver.png" class="verif" alt="correct" id="img_client" /> <br />
 								<?php
 // 								if (substr(htmlspecialchars($res_Demande['Code_Client']),0,4) == "NEW_")
 // 								{
