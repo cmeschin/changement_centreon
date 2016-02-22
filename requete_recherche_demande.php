@@ -9,7 +9,8 @@ $req_dem = $bdd_supervision->prepare ( 'SELECT D.ID_Demande,
 		(SELECT count(ID_Demande) FROM service AS S WHERE S.ID_Demande=D.ID_Demande) AS NbService,
 		(SELECT count(ID_Demande) FROM periode_temporelle AS P WHERE P.Type_Action IN ("Modifier","Creer") AND P.ID_Demande=D.ID_Demande) AS NbPlage,
 		D.Etat_Demande,
-		D.temps_hote + D.temps_service AS Temps
+		D.temps_hote + D.temps_service AS Temps,
+		Type_Demande
 	FROM demande AS D
 	WHERE D.ID_Demande = :ID_Demande
 	GROUP BY D.ID_Demande

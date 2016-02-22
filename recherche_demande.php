@@ -28,6 +28,7 @@ try {
 	<th>Date Demande</th>
 	<th>Demandeur</th>
 	<th>Date de Supervision souhaitée</th>
+	<th>Type de la demande</th>
 	<th>Prestation</th>
 	<th>Nombre d'Hôtes</th>
 	<th>Nombre de Services</th>
@@ -56,6 +57,7 @@ try {
 		echo '<td>' . htmlspecialchars ( $res_dem ['Date_Demande'] ) . '</td>';
 		echo '<td>' . htmlspecialchars ( $res_dem ['Demandeur'] ) . '</td>';
 		echo '<td>' . htmlspecialchars ( $res_dem ['Date_Supervision_Demandee'] ) . '</td>';
+		echo '<td>' . htmlspecialchars($res_dem['Type_Demande']) . '</td>';
 		if (substr ( htmlspecialchars ( $res_dem ['Code_Client'] ), 0, 4 ) == "NEW_") {
 			echo '<td>' . substr ( htmlspecialchars ( $res_dem ['Code_Client'] ), 4 ) . '</td>';
 		} else {
@@ -84,6 +86,7 @@ try {
 			// echo '<label for="Liste_DEC_Enregistrer_Etat' . $ID_Demande . '">Etat:</label>';
 			echo '<select name="Liste_DEC_Enregistrer_Etat' . $ID_Demande . '" id="Liste_DEC_Enregistrer_Etat' . $ID_Demande . '">';
 			try {
+				$etat_dem = $res_dem['Etat_Demande'];
 				include ('requete_liste_Etat_Demande.php');
 			} catch (Exception $e) {
 				echo '</select>';
@@ -104,8 +107,15 @@ try {
 		}
 		;
 		echo '</tr>';
-		echo '<td colspan="12">';
-			echo '<div id="DEC_Detail' . $ID_Demande . '">';
+		// Ajuster la valeur au nombre de colonnes
+		if ( $_SESSION['Admin'] == True)
+		{
+			echo '<td colspan="13">'; // Si profil admin 13 colonnes 
+		} else 
+		{
+			echo '<td colspan="12">'; // sinon seulement 12
+		};
+				echo '<div id="DEC_Detail' . $ID_Demande . '">';
 				echo '<div id="DEC_infos' . $ID_Demande . '">';
 				include ('remplissage_DEC_infos.php');
 				echo '</div>';

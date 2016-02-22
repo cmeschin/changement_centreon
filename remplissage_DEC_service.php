@@ -3,7 +3,7 @@ if (session_id()=='')
 {
 session_start();
 };
-include('log.php'); // chargement de la fonction de log
+//include('log.php'); // chargement de la fonction de log
 if ($_SESSION['R_ID_Demande'] == NULL)
 {
 	$ID_Demande = (isset($_POST["ID_Dem"])) ? $_POST["ID_Dem"] : NULL;
@@ -11,7 +11,7 @@ if ($_SESSION['R_ID_Demande'] == NULL)
 {
 	$ID_Demande = $_SESSION['R_ID_Demande'];
 }
-addlog("ID_Demande=" . $ID_Demande);
+//addlog("ID_Demande=" . $ID_Demande);
 
 include_once('connexion_sql_supervision.php');
 
