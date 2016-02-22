@@ -1,6 +1,6 @@
 ﻿2016-02-22 9.0.1
 	- Suppression de quelques log consommatrices d'espace disque
-	- [8.13] Bug sur affichage détail demande depuis lien mail
+	- #26 [8.13] Bug sur affichage détail demande depuis lien mail
 
 2016-02-19 9.0.0
 	Ajout champ motif_annulation dans les tables demande, hote, service et periode_temporelle
