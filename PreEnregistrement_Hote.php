@@ -40,11 +40,11 @@ try {
 				'Architecture' => htmlspecialchars($liste_T_hote[6]),
 				'Langue' => htmlspecialchars($liste_T_hote[7]),
 				'Fonction' => htmlspecialchars($liste_T_hote[8]),
-				'Controle_Actif' => htmlspecialchars($liste_T_hote[12]),
-				'Commentaire' => htmlspecialchars($liste_T_hote[9]),
-				'Consigne' => htmlspecialchars($liste_T_hote[10]),
-				'Detail_Consigne' => htmlspecialchars($liste_T_hote[11]),
-				'Type_Action' => htmlspecialchars($liste_T_hote[13]),
+				'Controle_Actif' => htmlspecialchars($liste_T_hote[11]),
+				'Commentaire' => htmlspecialchars($liste_T_hote[13]),
+				'Consigne' => htmlspecialchars($liste_T_hote[9]),
+				'Detail_Consigne' => htmlspecialchars($liste_T_hote[10]),
+				'Type_Action' => htmlspecialchars($liste_T_hote[12]),
 				'selection' => "false"
 				)) or die(print_r($MAJ_hote->errorInfo()));
 			//addlog(print_r($MAJ_hote));

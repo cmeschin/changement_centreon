@@ -690,7 +690,7 @@ function Enregistrer_Brouillon(Bouton)
 				});
 				liste_hote = liste_hote.substring(1,liste_hote.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
 				liste_hote = liste_hote.replace(/\$\$/g,"$"); // remplace les "$$" par un simple "$"
-				alert(liste_hote);
+				//alert(liste_hote);
 				/**
 				 *  constitution de la chaine plage
 				 */

@@ -1,4 +1,8 @@
-﻿2016-02-22 9.0.1
+﻿2016-02-24 9.0.2
+	- Suppression d'un message de debug sur l'enregistrement du brouillon au niveau des hôtes
+	- #28 [9.0.1] Décalage de champ formulaire Hotes
+	
+2016-02-22 9.0.1
 	- Suppression de quelques log consommatrices d'espace disque
 	- #26 [8.13] Bug sur affichage détail demande depuis lien mail
 
