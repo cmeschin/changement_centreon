@@ -24,10 +24,10 @@ try {
 	$gb_id = (isset($_POST["gb_id"])) ? $_POST["gb_id"] : NULL;
 	if ($gb_id == NULL)
 	{
-		$forcer=False;
+		$forcer=false;
 	} else
 	{
-		$forcer=True;
+		$forcer=true;
 	};
 	
 	$heure_envoi = date("Y-m-d H:i:s");
@@ -343,10 +343,10 @@ try {
 				addlog("message constitué");
 				//=====Envoi de l'e-mail.
 				$mail_envoye = mail($adresse_mail,$sujet,$message,$header);
-				if ($mail_envoye == False && $forcer == True)
+				if ($mail_envoye == false && $forcer == True)
 				{
 					http_response_code(500);
-					return False;
+					return false;
 				};
 				//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
 				addlog("mail envoyé à " . $adresse_mail);
@@ -360,11 +360,11 @@ try {
 					'gb_nom' => htmlspecialchars($res_lst_notif['gb_nom'])
 				)) or die(print_r($maj_notif->errorInfo()));
 				
-				$mail_envoye=True;
+				$mail_envoye=true;
 				
 			};// fin condition heure atteinte
 		}; // fin condition jour OK
-		if (($forcer == True) && ($mail_envoye == True))
+		if (($forcer == true) && ($mail_envoye == true))
 		{// si forcage notif effectué on arrête la boucle
 			//echo '<p>Mail envoyé</p>';
 			break;

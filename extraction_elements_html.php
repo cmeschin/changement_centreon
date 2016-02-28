@@ -6,6 +6,7 @@ if (session_id () == '') {
 // header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 $prestation = (isset ( $_POST ["prestation"] )) ? $_POST ["prestation"] : NULL;
 
+$_SESSION['Extraction'] = true;
 $_SESSION['PDF'] = false;
 
 

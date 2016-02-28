@@ -5,7 +5,7 @@ session_start();
 };
 if ($monclient ) {
 	// récupérer la liste des plages sélectionnés dans la demande en cours avec l'ID demande
-	include_once('connexion_sql_supervision.php');
+	include('connexion_sql_supervision.php');
 	try {
 		$req_plage_Dem = $bdd_supervision-> prepare('SELECT
 			 ID_Periode_Temporelle,

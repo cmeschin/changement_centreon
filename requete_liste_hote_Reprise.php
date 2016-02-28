@@ -5,7 +5,7 @@ if (session_id()=='')
 session_start();
 };
 
-include_once('log.php');
+//include('log.php');
 if ($monclient)
 {
 	// récupérer la liste des hôtes sélectionnés dans la demande en cours avec l'ID demande et dont l'ID_Hote_Centreon n'est pas 0

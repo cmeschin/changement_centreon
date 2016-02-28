@@ -1,4 +1,12 @@
-﻿2016-02-24 9.0.2
+﻿2016-02-xx 9.1.x
+	- correction gestion page maintenance
+	- correction gestion extraction prestation sur les arguments MACRO (premier caractère tronqué)
+		- suppression variable SESSION R_ID_Demande
+	- Amélioration de la recherche d'une demande, possibilité de chercher:
+		- soit par l'id_demande interne (transmis dans le mail)
+		- soit par la référence demande (tout ou partie) en mettant le caractère % comme caractère générique
+	
+2016-02-24 9.0.2
 	- Suppression d'un message de debug sur l'enregistrement du brouillon au niveau des hôtes
 	- #28 [9.0.1] Décalage de champ formulaire Hotes
 	

@@ -1,15 +1,4 @@
 <?php
-/*
-if (session_id () == '') {
-	session_start ();
-}
-;
-if ($_SESSION ['R_ID_Demande'] == NULL) {
-	$ID_Demande = (isset ( $_POST ["ID_Dem"] )) ? $_POST ["ID_Dem"] : NULL;
-} else {
-	$ID_Demande = $_SESSION ['R_ID_Demande'];
-}
-*/
 //include_once ('connexion_sql_supervision.php');
 $SEL_tmp_service = $bdd_supervision->prepare ( 'SELECT
 		 Nom_Service,

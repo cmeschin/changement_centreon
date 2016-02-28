@@ -3,7 +3,8 @@ if (session_id () == '') {
 	session_start ();
 };
 $prestation = (isset ( $_POST ["prestation"] )) ? $_POST ["prestation"] : NULL;
-	$_SESSION['PDF'] = true;
+$_SESSION['Extraction'] = true;
+$_SESSION['PDF'] = true;
 
 /**
  * gestion PDF avec HTML2PDF

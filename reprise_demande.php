@@ -6,9 +6,10 @@ if (session_id()=='')
 };
 $ID_Demande = (isset($_GET["id_demande"])) ? $_GET["id_demande"] : NULL;
 $Demandeur = (isset($_GET["demandeur"])) ? $_GET["demandeur"] : NULL;
-$_SESSION['Reprise'] = true;
-$_SESSION['Nouveau'] = false;
-$_SESSION['PDF'] = false;
+$_SESSION['Nouveau'] = false; // Il ne s'agit pas d'une nouvelle demande
+$_SESSION['Reprise'] = true; // Il s'agit d'une reprise
+$_SESSION['Extraction'] = false; //Il ne s'agit pas d'une extraction
+$_SESSION['PDF'] = false; // Il ne s'agit pas d'une extraction PDF
 $date=date_create();
 $_SESSION['Timer']=date_timestamp_get($date);
 

@@ -12,9 +12,10 @@ $req_dem = $bdd_supervision->prepare ( 'SELECT D.ID_Demande,
 		D.temps_hote + D.temps_service AS Temps,
 		Type_Demande
 	FROM demande AS D
-	WHERE D.ID_Demande = :ID_Demande
+	WHERE D.ID_Demande = :ID_Demande OR D.Ref_Demande LIKE :Recherche
 	GROUP BY D.ID_Demande
 	ORDER BY D.Date_Demande, D.Date_Supervision_Demandee' );
 $req_dem->execute ( array (
-		'ID_Demande' => $ID_Demande
+		'ID_Demande' => $ID_Demande,
+		'Recherche' => ''. htmlspecialchars($Recherche) . ''
 ) ) or die ( print_r ( $req_dem->errorInfo () ) );

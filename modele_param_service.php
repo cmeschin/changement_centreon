@@ -6,12 +6,12 @@ session_start();
 if ($_SESSION['ID_dem'] == 0)
 {
 	echo '<p>Vous devez saisir les informations générales et valider votre sélection sur les onglets précédents avant de passer au paramétrage!</p>';
-	return False;
+	return false;
 };
 $ID_Demande = $_SESSION['ID_dem'];
 $NbFieldset_Service = (isset($_POST["NbFieldset_Service"])) ? $_POST["NbFieldset_Service"]+1 : 1;
 $_SESSION['PDF'] = false;
-$_SESSION['R_ID_Demande'] = NULL; // sur un ajout on force systématiquement à NULL
+$_SESSION['Extraction'] = false; // sur un ajout on force systématiquement à NULL
 
 ?>
 <fieldset id="Service<?php echo $NbFieldset_Service;?>" class="service">

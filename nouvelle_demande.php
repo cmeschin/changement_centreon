@@ -33,11 +33,12 @@ session_start();
 	addlog("ID_demande:".$_SESSION['ID_dem']."");
 	addlog("Date_demande:".$date_demande."");
 	addlog("Ref_demande:".$ref_demande."");
-	$_SESSION['Reprise'] = false; // Reprise demande
-	$_SESSION['Nouveau'] = true; // Nouvelle demande
-	$_SESSION['PDF'] = false;
-	$R_ID_Demande=NULL;
-	$_SESSION['R_ID_Demande'] =$R_ID_Demande; // Variable de session utilisée pour afficher directement une demande via le lien du ticket
+	$_SESSION['Reprise'] = false; // Il ne s'agit pas d'une reprise demande
+	$_SESSION['Nouveau'] = true; // Il s'agit d'une nouvelle demande
+	$_SESSION['Extraction'] = false; // Il ne s'agit pas d'une extraction PDF
+	$_SESSION['PDF'] = false; // Il ne s'agit pas d'une extraction PDF
+	$_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
+
 ?>	
 <div id="principal">
 	<header id="en-tete">

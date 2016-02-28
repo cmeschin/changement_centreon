@@ -3,12 +3,12 @@ if (session_id()=='')
 {
 session_start();
 };
-include_once('log.php');
+//include('log.php');
 
 if ($monclient ) 
 {
 	// récupérer la liste des services sélectionnés dans la demande en cours avec l'ID demande
-	include_once('connexion_sql_supervision.php');
+	include('connexion_sql_supervision.php');
 	try {
 /*		$req_service_Dem = $bdd_supervision-> prepare('SELECT
 			 S.Nom_Service as Nom_Service,

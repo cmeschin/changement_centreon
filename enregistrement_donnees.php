@@ -20,6 +20,9 @@ $liste_plage = explode("$",$sliste_plage); // découpe la chaine en tableau avec
 
 $ID_Demande = htmlspecialchars($_SESSION['ID_dem']);
 
+// si on enregistre des données c'est que ce n'est pas un PDF... => devrait régler une partie des problèmes lorsqu'un onglet extraction PDF est ouvert en parallèle
+$_SESSION['PDF'] = false;
+
 if ($info_gen[0] != "")  // S'il y a des données ce qui doit forcément être la cas
 {
 	addlog("Demandeur=".($info_gen[0]) . "\n

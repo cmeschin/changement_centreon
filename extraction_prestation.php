@@ -16,10 +16,11 @@
 	<?php
 	include ('menu.php');
 	$_SESSION['ref_tmp_extract'] = $_SESSION['user_changement_centreon'] . "_" . date( "ymdHis" );
-	$_SESSION['R_ID_Demande'] = "extraction"; // astuce pour gérer le verroullage des champs arguments de service sur une extraction
-	$_SESSION['Reprise'] = false;
-	$_SESSION['Nouveau'] = false;
-	$_SESSION['PDF'] = false;
+	$_SESSION['Nouveau'] = false; // Il n' s'agit pas d'une nouvelle demande
+	$_SESSION['Reprise'] = false; // Il ne s'agit pas d'une reprise
+	$_SESSION['Extraction'] = true; // Il s'agit d'une extraction
+	$_SESSION['PDF'] = false; // Il ne s'agit pas d'une extraction PDF
+	$_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 	
 	?>
 	</header>
