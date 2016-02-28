@@ -4,7 +4,7 @@ if (session_id()=='')
 session_start();
 };
 //include('log.php'); // chargement de la fonction de log
-if ($_SESSION['Extraction'] == False)
+if ($_SESSION['Extraction'] == false)
 {
 	$ID_Demande = (isset($_POST["ID_Dem"])) ? $_POST["ID_Dem"] : NULL;
 /**
