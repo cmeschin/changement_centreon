@@ -3,8 +3,6 @@ if (session_id()=='')
 {
 session_start();
 };
-// header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
-//echo '<fieldset id="Arg_Service_Modele' . $NbFieldset_Service . '">';
 
 if (!$_SESSION['Extraction']) // si la variable n'est pas initialisée on l'initialise à false
 {
@@ -41,7 +39,6 @@ for ( $i=0;$i<$nbLibelle;$i++)
 	include('gestion_caracteres_speciaux.php');
 	
 	$LongueurArg=  strlen(htmlspecialchars($Valeur_Champ)) + 5;
-//	echo '<div id="Service_Argument_Actif' . $NbFieldset_Service . '>';
 	if ($_SESSION['PDF'] == false)
 	{
 		echo '<label for="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '">' . htmlspecialchars($T_Libelle[$i]) . ':</label>';
@@ -98,6 +95,5 @@ for ( $i=0;$i<$nbLibelle;$i++)
 	{
 		echo '<br />';
 	};
-	//	echo '</div>';
 	$Num_Argument ++; // incrément Num Argument
 };

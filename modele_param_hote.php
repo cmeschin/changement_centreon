@@ -251,7 +251,7 @@ $_SESSION['Extraction'] = false;
 			onclick="supprime_fieldset_hote(this)">Retirer de la demande</button>
 		<button id="PreEnregistrer_Hote<?php echo $NbFieldset;?>"
 			onclick="PreEnregistrer_fieldset_hote(this)">Pré-Enregistrer cet
-			hôte</button> <!-- => permet d'enregistrer le nom de l'hôte dans la table Hote_Temp pour l'avoir dispo dans les services -->
+			hôte</button> <!-- => permet d'enregistrer le nom de l'hôte dans la table hote pour l'avoir dispo dans les services -->
 	</span>
 	<?php
 		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer

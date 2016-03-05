@@ -52,8 +52,10 @@ try {
 			'Etat_Param' => $Etat_Param,
 			'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Plage->errorInfo()));
-		// traitement pour envoi du mail en fonction du statut de la demande
-		// vérification si mail <en cours> est à envoyer
+		/**
+		 *  traitement pour envoi du mail en fonction du statut de la demande
+		 * 	vérification si mail <en cours> est à envoyer 
+		 */
 		
 		$req_demande = $bdd_supervision->prepare('SELECT mail_creation, mail_encours, mail_finalise, mail_traite, mail_annule FROM demande WHERE ID_Demande= :ID_Demande');
 		$req_demande->execute(Array(
@@ -64,57 +66,51 @@ try {
 			if ((htmlspecialchars($res_demande['mail_creation']) == False) && ($Etat_Param == "A Traiter"))
 			{ // si mail_creation n'est pas coché, on envoie le mail
 				addlog("MAJ_ETAT_PARAMETRAGE_DEM:" . $ID_Demande . " Envoi du mail creation.");
-				// A activer lorsque l'automate SUSI sera en place
-							include('envoi_mail.php');
+				include('envoi_mail.php');
 			}else if ((htmlspecialchars($res_demande['mail_encours']) == False) && ($Etat_Param == "En cours"))
 			{
 				addlog("MAJ_ETAT_PARAMETRAGE_DEM:" . $ID_Demande . " Envoi du mail encours.");
-				// A activer lorsque l'automate SUSI sera en place
-							include('envoi_mail_encours.php');
+				include('envoi_mail_encours.php');
 			}else if ((htmlspecialchars($res_demande['mail_finalise']) == False) && ($Etat_Param == "Validation"))
 			{
 				addlog("MAJ_ETAT_PARAMETRAGE_DEM:" . $ID_Demande . " Envoi du mail finalise.");
-				// A activer lorsque l'automate SUSI sera en place
-							include('envoi_mail_finalise.php');
+				include('envoi_mail_finalise.php');
 			}else if ((htmlspecialchars($res_demande['mail_traite']) == False) && ($Etat_Param == "Traité"))
 			{
 				addlog("MAJ_ETAT_PARAMETRAGE_DEM:" . $ID_Demande . " Envoi du mail traite.");
-				// A activer lorsque l'automate SUSI sera en place
-							include('envoi_mail_traite.php');
+				include('envoi_mail_traite.php');
 			}else if ((htmlspecialchars($res_demande['mail_annule']) == False) && ($Etat_Param == "Annulé"))
 			{
 				addlog("MAJ_ETAT_PARAMETRAGE_DEM:" . $ID_Demande . " Envoi du mail annule.");
-				// A activer lorsque l'automate SUSI sera en place
-							include('envoi_mail_annule.php');
+				include('envoi_mail_annule.php');
 			};
 		};
-		
 	} else if (($ID_Demande != NULL) && ($Etat_Param == "Supprimer"))
 	{
-			$DEL_Dem_Service = $bdd_supervision->prepare('DELETE FROM service WHERE ID_Demande= :ID_Demande;');
-			$DEL_Dem_Service->execute(array(
-					'ID_Demande' => $ID_Demande
-			)) or die(print_r($DEL_Dem_Service->errorInfo()));
-		
-			$DEL_Dem_Plage = $bdd_supervision->prepare('DELETE FROM periode_temporelle WHERE ID_Demande= :ID_Demande;');
-			$DEL_Dem_Plage->execute(array(
-					'ID_Demande' => $ID_Demande
-			)) or die(print_r($DEL_Dem_Plage->errorInfo()));
-		
-			$DEL_Dem_Hote = $bdd_supervision->prepare('DELETE FROM hote WHERE ID_Demande= :ID_Demande;');
-			$DEL_Dem_Hote->execute(array(
-					'ID_Demande' => $ID_Demande
-			)) or die(print_r($DEL_Dem_Hote->errorInfo()));
-		
-			$DEL_Dem_HoteTmp = $bdd_supervision->prepare('DELETE FROM hote_temp WHERE ID_Demande= :ID_Demande;');
-			$DEL_Dem_HoteTmp->execute(array(
-					'ID_Demande' => $ID_Demande
-			)) or die(print_r($DEL_Dem_HoteTmp->errorInfo()));
-		
-			$DEL_Demande = $bdd_supervision->prepare('DELETE FROM demande WHERE ID_Demande= :ID_Demande;');
-			$DEL_Demande->execute(array(
-					'ID_Demande' => $ID_Demande
-			)) or die(print_r($DEL_Demande->errorInfo()));
+		$DEL_Dem_Service = $bdd_supervision->prepare('DELETE FROM service WHERE ID_Demande= :ID_Demande;');
+		$DEL_Dem_Service->execute(array(
+			'ID_Demande' => $ID_Demande
+		)) or die(print_r($DEL_Dem_Service->errorInfo()));
+
+		$DEL_Dem_Plage = $bdd_supervision->prepare('DELETE FROM periode_temporelle WHERE ID_Demande= :ID_Demande;');
+		$DEL_Dem_Plage->execute(array(
+			'ID_Demande' => $ID_Demande
+		)) or die(print_r($DEL_Dem_Plage->errorInfo()));
+
+		$DEL_Dem_Hote = $bdd_supervision->prepare('DELETE FROM hote WHERE ID_Demande= :ID_Demande;');
+		$DEL_Dem_Hote->execute(array(
+			'ID_Demande' => $ID_Demande
+		)) or die(print_r($DEL_Dem_Hote->errorInfo()));
+
+		$DEL_Dem_HoteTmp = $bdd_supervision->prepare('DELETE FROM hote_temp WHERE ID_Demande= :ID_Demande;');
+		$DEL_Dem_HoteTmp->execute(array(
+			'ID_Demande' => $ID_Demande
+		)) or die(print_r($DEL_Dem_HoteTmp->errorInfo()));
+
+		$DEL_Demande = $bdd_supervision->prepare('DELETE FROM demande WHERE ID_Demande= :ID_Demande;');
+		$DEL_Demande->execute(array(
+			'ID_Demande' => $ID_Demande
+		)) or die(print_r($DEL_Demande->errorInfo()));
 	} else 
 	{
 		echo "echec MAJ Paramétrage demande: ID_Demande=[" . $ID_Demande . "], Etat_Param=[" . $Etat_Param . "]!";

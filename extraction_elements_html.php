@@ -3,9 +3,7 @@ if (session_id () == '') {
 	session_start ();
 };
 
-// header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 $prestation = (isset ( $_POST ["prestation"] )) ? $_POST ["prestation"] : NULL;
-
 $_SESSION['Extraction'] = true;
 $_SESSION['PDF'] = false;
 
@@ -18,10 +16,6 @@ echo '<h2> Prestation ' . $prestation . '</h2>';
 echo '<fieldset id=f_extraction_hote">';
 echo '<legend>Liste des hôtes</legend>';
 
-// 2016-01-24 gestion effectuée lors de l'extraction des elements ("requete_extraction_elements.php").
-// if ($Nb_Hote == 0) {
-// 	echo '<p>Aucun résultat trouvé.</p>';
-// } else {
 	echo '<table id="T_Liste_Hote" class="extraction_hote">';
 	echo '<tr>';
 	echo '<th>Hôte</th>';
@@ -59,21 +53,16 @@ echo '<legend>Liste des hôtes</legend>';
 		$i ++;
 	};
 	echo '</table>';
-//};
 echo '</fieldset>';
-// addlog("creation tableau hote... OK.");
 
 /**
  * affichage service
  */
-// addlog("creation tableau service...");
 echo '<fieldset id="f_extraction_service">';
 echo '<legend>Liste des services</legend>';
 
 foreach ( $r_service as $res_liste_service ) // on boucle sur les valeurs remontée par la requête
 {
-// while ( $res_liste_service = $r_service->fetch () )
-// {
 	if ($res_liste_service ['Controle_Actif'] == "actif")
 	{
 		echo '<fieldset id="Service' . $NbFieldset_Service . '" class="extraction_service">';
@@ -121,8 +110,6 @@ foreach ( $r_service as $res_liste_service ) // on boucle sur les valeurs remont
 		echo '<br />';
 		echo '<!-- Service Consigne -->';
 		$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Consigne'] ) ). 'em';
-//		echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
-//		echo '<input Readonly type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_Consigne' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Consigne'] ) . '" size="' . $LongueurArg . '" maxlength="255"/> <br />';
 		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_service['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_service['Consigne']) . '</a></span>	<br />';
 	};
 	echo '</fieldset>';
@@ -131,20 +118,14 @@ foreach ( $r_service as $res_liste_service ) // on boucle sur les valeurs remont
 };
 $Statut_Service = true;
 echo '</fieldset>';
-// addlog("creation tableau service... OK.");
 
 /**
  * affichage periode
  */
 
-// addlog("creation tableau periode...");
 echo '<fieldset id="f_extraction_periode">';
 echo '<legend>Liste des périodes temporelles</legend>';
 
-// if ($nb_plage == 0) {
-// 	echo '<p>Aucun résultat trouvé.</p>';
-// } else
-// {
 	echo '<table id="T_Liste_Plage" class="extraction_periode">';
 	echo '<tr>';
 	echo '<th>Plage Horaire</th>';
@@ -172,6 +153,4 @@ echo '<legend>Liste des périodes temporelles</legend>';
 		$i ++;
 	};
 	echo '</table>';
-//};
 echo '</fieldset>';
-	// addlog("creation tableau periode... OK.");

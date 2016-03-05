@@ -3,9 +3,7 @@ if (session_id()=='')
 {
 session_start();
 };
-// try {
 	include_once('connexion_sql_supervision.php');
-// 	$bdd_supervision->beginTransaction();
 	
 	addlog("Chargement envoi mail annule");
 	$mail = 'spoc_susi@tessi.fr'; // Déclaration de l'adresse de destination.
@@ -18,7 +16,9 @@ session_start();
 		$passage_ligne = "\n";
 	}
 	
-	// Récupération des informations pour la constitution du mail
+	/**
+	 *  Récupération des informations pour la constitution du mail
+	 */
 	$req_mail = $bdd_supervision->prepare('SELECT
 			 D.ID_Demande as id_demande, 
 			 D.Ref_Demande as ref_demande,
@@ -44,11 +44,11 @@ session_start();
 		'ID_Demande' => htmlspecialchars($ID_Demande)
 	)) or die(print_r($req_mail->errorInfo()));
 	
-	//$result_mail = $req_mail->fetchAll();
-	//$liste_mail = split(",",$mail);$nombre=sizeof($table2)
 	foreach ($req_mail as $res_mail)
 	{
-		//initialisation mail
+		/**
+		 * initialisation mail
+		 */
 		$adresse_mail = "";
 		$adresse_mail .= " " . htmlspecialchars($res_mail['email']);
 		$adresse_mail = str_replace(";", ", ", $adresse_mail); // converti les ; en , et ajoute un espace
@@ -56,7 +56,9 @@ session_start();
 	        $adresse_mail = str_replace(",", " ", $adresse_mail); // converti la virgule en espace
 		$adresse_mail = str_replace("  ", " ", $adresse_mail); // supprime les espaces en double.
 	
-		// récupération num ticket pour création ou mise à jour
+		/**
+		 *  récupération num ticket pour création ou mise à jour
+		 */
 		$num_ticket = htmlspecialchars($res_mail['ticket_susi']);
 		if ( $num_ticket == NULL)
 		{
@@ -65,7 +67,6 @@ session_start();
 		{
 			$issue = "ISSUE=" . $num_ticket;
 		};
-	//addlog("liste mail=" . htmlspecialchars($res_mail['email']));
 		//=====Définition du sujet.
 		$sujet = "CENTREON: Demande de changement ref: " . htmlspecialchars($res_mail['ref_demande']) . " - " . htmlspecialchars($res_mail['prestation']) . " PROJ=1 " . $issue . "";
                 addlog("Sujet=" . $sujet);
@@ -73,9 +74,6 @@ session_start();
 		 
 	
 		//=====Déclaration des messages au format texte et au format HTML.
-	//        $message_txt = "Type DEM = Autre\nTitulaires = Changement__bCentreon\nPrestation = INFRA_TT_{INT}\nClient Bénéficiaire = Tessi__bTechnologies\nService = TESSI-TECHNO__bDSI\nRéférentiel SLA = Convention__bSTD\nContrat = -\nTypeService = CENTREON\nListe de diffusion = " . htmlspecialchars($adresse_mail) . "\n\n------------------------------------------------------\nRéférence Demande: " . htmlspecialchars($res_mail[1]) . "\nDate de la demande: " . htmlspecialchars($res_mail[2]) . "\nDemandeur: " . htmlspecialchars($res_mail[3]) . "\nDate activation souhaitée: " . htmlspecialchars($res_mail[4]) . "\nPrestation concernée: " . htmlspecialchars($res_mail[5]) . "\nParamétrage à effectuer:\n    - " . htmlspecialchars($res_mail[6]) . " hôte(s)\n      - " . htmlspecialchars($res_mail[7]) . " service(s)\n   - " . htmlspecialchars($res_mail[8]) . " plage(s) horaire(s)\nCommentaire: " . htmlspecialchars($res_mail[10]) . "\n------------------------------------------------------";
-	//        $message_txt = "Type DEM = Autre\nTitulaires = Changement__bCentreon\nPrestation = INFRA_TT_{INT}\nClient Bénéficiaire = Tessi Technologies\nService = TESSI-TECHNO DSI\nRéférentiel SLA = Convention STD\nContrat = -\nTypeService = CENTREON\nListe de diffusion = " . htmlspecialchars($adresse_mail) . "\n\n------------------------------------------------------\nRéférence Demande: " . htmlspecialchars($res_mail[1]) . "\nDate de la demande: " . htmlspecialchars($res_mail[2]) . "\nDemandeur: " . htmlspecialchars($res_mail[3]) . "\nDate activation souhaitée: " . htmlspecialchars($res_mail[4]) . "\nPrestation concernée: " . htmlspecialchars($res_mail[5]) . "\nParamétrage à effectuer:\n    - " . htmlspecialchars($res_mail[6]) . " hôte(s)\n      - " . htmlspecialchars($res_mail[7]) . " service(s)\n   - " . htmlspecialchars($res_mail[8]) . " plage(s) horaire(s)\nCommentaire: " . htmlspecialchars($res_mail[10]) . "\n------------------------------------------------------";
-		//$lien_html = "http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?ID_Dem=" . $res_mail['id_demande'] . ""; 
 		$message_txt = "Statut = Clos\nRéférence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n\nLa demande de supervision a été annulée pour le motif suivant:" . htmlspecialchars($res_mail['motif_annulation']) . ".\nVeuillez vous rapprocher de l'équipe Centreon pour de plus amples informations.";
 	
 		//==========
@@ -95,15 +93,12 @@ session_start();
 	//=====Création du message.
 	$message = $passage_ligne."--".$boundary.$passage_ligne;
 	//=====Ajout du message au format texte.
-	//$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
 	$message.= "Content-Type: text/plain; charset=\"UTF-8\"".$passage_ligne;
 	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 	$message.= $passage_ligne.$message_txt.$passage_ligne;
 	//==========
 	$message.= $passage_ligne."--".$boundary.$passage_ligne;
 	//=====Ajout du message au format HTML
-	//$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
-	//$message.= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
 	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 	//$message.= $passage_ligne.$message_html.$passage_ligne;
 	//==========
@@ -124,8 +119,3 @@ session_start();
 			'Etat_Demande' => 'Annulé',
 			'ID_Demande' => htmlspecialchars($ID_Demande)
 	)) or die(print_r($maj_demande->errorInfo()));
-// 	$bdd_supervision->commit();
-// } catch (Exception $e) {
-// 	$bdd_supervision->rollBack();
-// 	die('Erreur traitement envoi mail annule:' . $e->getMessage());
-// };

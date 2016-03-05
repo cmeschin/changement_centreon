@@ -9,12 +9,10 @@ try {
 	$bdd_supervision->beginTransaction();
 
 	include('enregistrement_donnees.php');
-	// Mise à jour de l'état de la demande en "A traiter"
 	$MAJ_Demande = $bdd_supervision->prepare('UPDATE demande SET Etat_Demande= "A Traiter" WHERE ID_Demande= :ID_Demande;');
 	$MAJ_Demande->execute(array(
 		'ID_Demande' => $ID_Demande
 		)) or die(print_r($MAJ_Demande->errorInfo()));
-	//$MAJ_Hote = $bdd_supervision->prepare('UPDATE hote SET Etat_Parametrage= "A Traiter" WHERE ID_Demande= :ID_Demande;');
 	$MAJ_Hote = $bdd_supervision->prepare('UPDATE hote SET Etat_Parametrage= "A Traiter" WHERE Type_Action <> "NC" AND ID_Demande= :ID_Demande;');
 	$MAJ_Hote->execute(array(
 		'ID_Demande' => $ID_Demande
@@ -28,9 +26,9 @@ try {
 		'ID_Demande' => $ID_Demande
 		)) or die(print_r($MAJ_Plage->errorInfo()));
 	
-	///////////////////////////////////////////////////////
-	// Gestion du temps de traitement de la demande
-	///////////////////////////////////////////////////////
+	/**
+	 *  Gestion du temps de traitement de la demande
+	 */
 	$UPD_Dem_Hote = $bdd_supervision->prepare('UPDATE demande SET temps_hote=(SELECT SUM(Temps_Hote) FROM (SELECT CASE H.Type_Action WHEN "Creer" THEN count(H.ID_Hote) * 30 WHEN "Modifier" THEN count(H.ID_Hote) * 5 WHEN "Desactiver" THEN count(H.ID_Hote) * 2 WHEN "Supprimer" THEN count(H.ID_Hote) * 2 WHEN "" THEN count(H.ID_Hote) * 5 END AS Temps_Hote FROM demande AS D INNER JOIN hote AS H ON D.ID_Demande=H.ID_Demande WHERE D.ID_Demande= :ID_Demande1 GROUP BY D.ID_Demande, H.Type_Action ORDER BY D.ID_Demande ASC ) as Tps_Total) where ID_Demande= :ID_Demande2');
 	$UPD_Dem_Hote->execute(Array(
 			'ID_Demande1' => $ID_Demande,
@@ -55,15 +53,11 @@ try {
 	$bdd_supervision->commit();	
 	
 	addlog("Enregistrement Demande termine");
-	// envoie du mail à SUSI
+	/**
+	 *  envoie du mail à SUSI
+	 */
 	include('envoi_mail.php');
 	addlog("Mail envoyé");
-	/**
-	 * Mise à jour de la variable Timer
-	 * Désactivé puisque la validation de la demande renvoie à la page d'accueil.
-	$date=create_date();
-	$_SESSION['Timer']=date_timestamp_get($date);
-	 */
 
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();

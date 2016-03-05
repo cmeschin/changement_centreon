@@ -7,7 +7,6 @@ include_once('connexion_sql_supervision.php');
 try {
 	$bdd_supervision->beginTransaction();
 	include('enregistrement_donnees.php');
-	// Mise à jour de l'état de la demande en "Brouillon"
 	$MAJ_Demande = $bdd_supervision->prepare('UPDATE demande SET Etat_Demande= "Brouillon" WHERE ID_Demande= :ID_Demande;');
 	$MAJ_Demande->execute(array(
 		'ID_Demande' => $ID_Demande

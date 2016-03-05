@@ -26,11 +26,12 @@ echo '<div id="principal">';
 	include('menu.php');
 	echo '</header>';
 	echo '<section>';
-		// si Id_Demande transmis dans l'URL on charge simplement le contenu de la demande sinon on charge les deux onglets
+		/**
+		 *  si Id_Demande transmis dans l'URL on charge simplement le contenu de la demande sinon on charge les deux onglets
+		 */
 		if ((($ID_Demande != NULL ) AND (is_numeric($ID_Demande))) OR ($Recherche != NULL))
 		{
 			$_SESSION['Recherche'] = true; // Il s'agit d'une recherche
-			//echo '<p>ID_Demande=' . var_dump($ID_Demande) . '. Recherche=' . var_dump($Recherche) . '</p>';
 			echo '<div id="tabs_DEC">';
 				 echo '<ul>';
 					echo '<li><a href="#tabs_DEC-1">Demande recherchée</a></li>';

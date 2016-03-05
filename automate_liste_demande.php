@@ -24,24 +24,18 @@ else
 };
 
 try {
-	//include('log.php'); // chargement de la fonction de log
-// 	include_once('connexion_sql_centreon.php'); // connexion à la base centreon
 	include_once('connexion_sql_supervision.php'); // connexion à la base changement
 	$bdd_supervision->beginTransaction();
 	$heure_envoi = date("d/m/Y H:i");
 
-//	$date8J = new DateTime();
-//	date_add($date8J,"8 DAYS");
-//	$date8J->add(new DateInterval("P8M"));
-//	$date8J->add(new DateInterval('P8D'));
 	// Dates SQL
 	$dateM28J=date("Y-m-d", strtotime("-28 day"));
 	$dateM21J=date("Y-m-d", strtotime("-21 day"));
 	$dateM14J=date("Y-m-d", strtotime("-14 day"));
 	$dateM7J=date("Y-m-d", strtotime("-7 day"));
 	$dateJ = date("Y-m-d");
-	
 	$dateP7J=date("Y-m-d", strtotime("+7 day"));
+
 	// Date Mail
 	$date_mailM28J=date("d/m", strtotime("-28 day"));
 	$date_mailM21J=date("d/m", strtotime("-21 day"));
@@ -50,42 +44,6 @@ try {
 	$date_mailJ = date("d/m");
 	$date_mailP1J=date("d/m", strtotime("+1 day"));
 	$date_mailP7J=date("d/m", strtotime("+7 day"));
-	echo "dateM28J=".$dateM28J;
-	echo "\n";
-	echo "dateM21J=".$dateM21J;
-	echo "\n";
-	echo "dateM14J=".$dateM14J;
-		echo "\n";
-	echo "dateM7J=".$dateM7J;
-		echo "\n";
-	echo "dateJ=".$dateJ;
-		echo "\n";
-	echo "dateP7J=".$dateP7J;
-	echo "\n";
-	
-// 	$date_make = date("m,d,Y");
-// 	$jour_semaine = date("N");
-// 	//$heure = date("H:i");
-// 	$heure = time(); // heure actuelle au format timestamp
-// 	$lundi=false;
-// 	$mardi=false;
-// 	$mercredi=false;
-// 	$jeudi=false;
-// 	$vendredi=false;
-// 	$samedi=false;
-// 	$dimanche=false;
-	
-// 	addlog("jour_semaine=" . $jour_semaine);
-// 	switch ($jour_semaine){
-// 		case 1: $lundi = true; break;
-// 		case 2: $mardi = true; break;
-// 		case 3: $mercredi = true; break;
-// 		case 4: $jeudi = true; break;
-// 		case 5: $vendredi = true; break;
-// 		case 6: $samedi = true; break;
-// 		case 7: $dimanche = true; break;
-// 		default: echo 'Oups, nous ne sommes pas un jour de la semaine! jour_semaine=' . $jour_semaine;
-// 	};
 		
 /**
  * Récupération de la liste des demandes en cours
@@ -284,8 +242,6 @@ try {
 	
 	while ($res_J = $req_J->fetch())
 	{
-		echo "Etat_demandeJ=".$res_J['Etat_Demande']."\n";
-		echo "NbreJ=".$res_J['Nbre']."\n";
 		if ($res_J['Etat_Demande'] == 'A Traiter'){
 			$atraiterJ=htmlspecialchars($res_J['Nbre']);
 		}elseif ($res_J['Etat_Demande'] == 'En cours'){
@@ -298,8 +254,6 @@ try {
 	};
 	while ($res_7J = $req_7J->fetch())
 	{
-		echo "Etat_demande7J=".$res_7J['Etat_Demande']."\n";
-		echo "Nbre7J=".$res_7J['Nbre']."\n";
 		if ($res_7J['Etat_Demande'] == 'A Traiter'){
 			$atraiter7J=htmlspecialchars($res_7J['Nbre']);
 		}elseif ($res_7J['Etat_Demande'] == 'En cours'){
@@ -312,8 +266,6 @@ try {
 	};
 	while ($res_P7J = $req_P7J->fetch())
 	{
-		echo "Etat_demandeP7J=".$res_P7J['Etat_Demande']."\n";
-		echo "NbreP7J=".$res_P7J['Nbre']."\n";
 		if ($res_P7J['Etat_Demande'] == 'A Traiter'){
 			$atraiterP7J=htmlspecialchars($res_P7J['Nbre']);
 		}Elseif ($res_P7J['Etat_Demande'] == 'En cours'){
@@ -392,11 +344,6 @@ try {
 	{
 		$NbJP7_S0=htmlspecialchars($res_anticipJP7_S0['Nbre']);
 	};
-	
-	/**
-	 * Calcul du nombre de demande Total à J
-	 */
-	
 	
 	/**
 	 * Calcul des totaux et pourcentages
@@ -563,17 +510,7 @@ try {
 				//=====Définition de l'ogjet.
 				$sujet = "[CENTREON] Recapitulatif des demandes de changement en cours.";
 				//=========
-				//=====Déclaration des messages au format texte et au format HTML.
-// 				$message_txt = "Liste des demandes de changement à traiter ou en cours de traitement le " . $heure_envoi . "\n
-// 						\n
-// 						\n
-// 						" . $contenu_brut . "\n
-// 						Ce message est envoyé au(x) destinataire(s) suivant(s):" . str_replace(',',' ',$adresse_mail) . ".\n
-// 						\n
-// 						\n
-// 						\n
-// 						\n
-// 						";
+				//=====Déclaration des messages au format HTML.
 				$message_html = "
 					<!DOCTYPE html>
 					<html>
@@ -638,13 +575,6 @@ try {
 				//==========
 				
 				//=====Création du message.
-				//$message = $passage_ligne."--".$boundary.$passage_ligne; // Ouverture Boundary Text
-				//=====Ajout du message au format texte.
-				//$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
-// 				$message.= "Content-Type: text/plain; charset=\"UTF-8\"".$passage_ligne;
-// 				$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
-				//$message.= $passage_ligne.$message_txt.$passage_ligne;
-				//==========
  				$message.= $passage_ligne."--".$boundary.$passage_ligne; // Ouverture Boundary HTML
 				//=====Ajout du message au format HTML
 				//$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
@@ -652,30 +582,15 @@ try {
 				$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 				$message.= $passage_ligne.$message_html.$passage_ligne;
 				//==========
-				//$message.= $passage_ligne."--".$boundary."--".$passage_ligne; // Fermeture Boundary Text
 				$message.= $passage_ligne."--".$boundary."--".$passage_ligne; // Fermeture Boundary HTML
 				//==========
-				//addlog("message constitué");
 				//=====Envoi de l'e-mail.
 				mail($adresse_mail,$sujet,$message,$header);
 				//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
-				//addlog("mail envoyé à " . $adresse_mail);
 				//==========
-				// flag envoi mail
-// 				$maj_notif = $bdd_supervision->prepare('UPDATE gestion_bam_notification
-// 						 SET gb_date_notif= :heure_envoi
-// 						 WHERE gb_nom= :gb_nom');
-// 				$maj_notif->execute(Array(
-// 					'heure_envoi' => $heure_envoi,
-// 					'gb_nom' => htmlspecialchars($res_lst_notif['gb_nom'])
-// 				)) or die(print_r($maj_notif->errorInfo()));
-//			};// fin condition heure atteinte
-//		}; // fin condition jour OK
-//	};// finde la boucle des notifs
  
 	$bdd_supervision->commit();
 } catch (Exception $e) {
  	$bdd_supervision->rollBack();
- 	//addlog('Erreur traitement envoi mail'. $e->getMessage());
  	die('Erreur traitement envoi_mail: '. $e->getMessage());
 };

@@ -3,12 +3,12 @@ if (session_id()=='')
 {
 	session_start();
 };
-
-// header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 include_once('connexion_sql_supervision.php');
 $sID_Date = (isset($_POST["ID_Date"])) ? $_POST["ID_Date"] : NULL;
 
-// récupérer la liste de toutes les demandes à traiter et annulées
+/**
+ *  récupérer la liste de toutes les demandes à traiter et annulées
+ */
 try {
 	include_once('requete_liste_demande_traite_par_mois.php');
 } catch (Exception $e) {
@@ -69,29 +69,19 @@ echo '<table id="T_Liste_Demande">';
 			echo '<td>' . htmlspecialchars($res_dem['Demandeur']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['Date_Supervision_Demandee']) . '</td>';
 			echo '<td class="' . $couleur_type . '">' . htmlspecialchars($res_dem['Type_Demande']) . '</td>';
-			/**
-			 * déprécié depuis la désactivation de la possibilité de créer sa propre prestation
-			 */
-			//if (substr(htmlspecialchars($res_dem['Code_Client']),0,4) == "NEW_")
-			//{
-			//	echo '<td class="nouvelle_presta">' . substr(htmlspecialchars($res_dem['Code_Client']),4) . '</td>';
-			//} else
-			//{
 			echo '<td>' . htmlspecialchars($res_dem['Code_Client']) . '</td>';
-			//};
 			echo '<td>' . htmlspecialchars($res_dem['NbHote']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbService']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem['NbPlage']) . '</td>';
 			echo '<td class="' . $couleur_etat . '" ' . $title_annulation . '>' . htmlspecialchars($res_dem['Etat_Demande']) . '</td/>';
-			// le formatage est fait directement dans la requête d'extraction.
-			//echo '<td>' . htmlspecialchars(floor($res_dem['Temps']/60) . 'h' . ($res_dem['Temps']%60)) . '</td>';
+			/**
+			 *  le formatage du temps est fait directement dans la requête d'extraction.
+			 */
 			echo '<td>' . htmlspecialchars($res_dem['Temps']) . '</td>';
 			if ( $_SESSION['Admin'] == True)
 			{
 				echo '<td>';
 				echo 'ID_Dem=' .  htmlspecialchars($res_dem['ID_Demande']);
-//				echo htmlspecialchars($res_dem['Etat_Demande']) . '';
-//				echo '<label for="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '">Etat:</label>';
 				echo '<select onChange="set_focus_bouton('.htmlspecialchars($res_dem['ID_Demande']).');" name="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '" id="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '">';
 				try {
 					$etat_dem = $res_dem['Etat_Demande'];
@@ -102,10 +92,6 @@ echo '<table id="T_Liste_Demande">';
 				};
 				while ($res_etat = $req_etat->fetch())
 				{
-// 					if (htmlspecialchars($res_dem['Etat_Demande']) != htmlspecialchars($res_etat['Etat_Dem']))
-// 					{
-// 						echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-// 					};
 					if (htmlspecialchars($res_dem['Etat_Demande']) == htmlspecialchars($res_etat['Etat_Dem']))
 					{
 						echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';

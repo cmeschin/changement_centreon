@@ -46,8 +46,6 @@ try {
 	foreach ( $res_hote_os as $res_elements )
 	{
 		$value_hote .= ",('" . $res_elements['hc_name'] . "','" . $res_elements['hc_alias'] . "')";
-		//$i++;
-		//addlog($value_hote);
 	};
 	
 	$value_hote = substr($value_hote,1); // suppression de la première virgule
@@ -70,8 +68,6 @@ try {
 	foreach ( $res_site as $res_elements )
 	{
 		$value_site .= ",('" . $res_elements['site_abrege'] . "','" . $res_elements['site'] . "')";
-		//$i++;
-		//addlog($value_hote);
 	};
 	
 	$value_site = substr($value_site,1); // suppression de la première virgule
@@ -94,8 +90,6 @@ try {
 	foreach ( $res_hote_type as $res_elements )
 	{
 		$value_hote .= ",('" . $res_elements['hc_alias'] . "','" . $res_elements['hc_name'] . "')";
-		//$i++;
-		//addlog($value_hote);
 	};
 	
 	$value_hote = substr($value_hote,1); // suppression de la première virgule
@@ -118,8 +112,6 @@ try {
 	foreach ( $res_hote_fonction as $res_elements )
 	{
 		$value_hote .= ",('" . $res_elements['hc_name'] . "','" . $res_elements['hc_alias'] . "')";
-		//$i++;
-		//addlog($value_hote);
 	};
 	
 	$value_hote = substr($value_hote,1); // suppression de la première virgule
@@ -140,8 +132,6 @@ try {
 	foreach ( $res_lst_bam as $res_elements )
 	{
 		$value_bam .= ",('" . $res_elements['ba_id'] . "','" . $res_elements['ba_nom'] . "','" . $res_elements['ba_description'] . "')";
-		//$i++;
-		//addlog($value_bam);
 	};
 	
 	$value_bam = substr($value_bam,1); // suppression de la première virgule

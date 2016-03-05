@@ -63,7 +63,9 @@ try {
 			'Date_PEC' => htmlspecialchars(date("Y-m-d H:i:s")),
 			'ID_Demande' => htmlspecialchars($ID_Demande)
 			)) or die(print_r($MAJ_Demande->errorInfo()));
-		// vérification si mail <en cours> est à envoyer
+		/**
+		 *  vérification si mail <en cours> est à envoyer
+		 */
 		$req_demande = $bdd_supervision->prepare('SELECT mail_encours FROM demande WHERE ID_Demande= :ID_Demande');
 		$req_demande->execute(Array(
 			'ID_Demande' => htmlspecialchars($ID_Demande)

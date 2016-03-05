@@ -1,5 +1,4 @@
 <?php
-// header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 include_once('connexion_sql_supervision.php');
 
 try

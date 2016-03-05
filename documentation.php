@@ -5,7 +5,6 @@ if (session_id()=='')
 	session_start();
 };
 ?>
-
 <html>
 <head>
 	<?php
@@ -15,21 +14,9 @@ if (session_id()=='')
 </head>
 <body>
 <?php
-	//include('top.php');
 	include('log.php'); // chargement de la fonction de log
 	addlog("chargement documentation.");
 
-/*
-	// déclaration des constantes de la demande
-	$date_demande=date("Y-m-d H:i:s");
-	$ref_demande=date("ymdHi") . "-" . $_SESSION['user_changement_centreon'];
-	$_SESSION['ref_dem'] = $ref_demande;
-	$_SESSION['ID_dem'] = 0;
-	addlog("Initialisation des constantes:");
-	addlog("Date_demande:".$date_demande."");
-	addlog("Ref_demande:".$ref_demande."");
-	$_SESSION['Reprise'] = False;
-*/	
 ?>	
 <div id="principal">
 	<header id="en-tete">
@@ -418,6 +405,5 @@ if (session_id()=='')
 <?php
 	include('section_script_JS.php');
 ?>	
-
 </body>
 </html>
