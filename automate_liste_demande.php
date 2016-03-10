@@ -10,6 +10,7 @@
  * Jour de la semaine => pour la vérification sur la calendrier => De 1 (pour Lundi) à 7 (pour Dimanche)
  * Heure actuelle => pour la vérification sur l'heure de notification
  */
+$debug=false; // activation du mode debug
 //initialisation mail
 $adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
 //$adresse_mail = "c.meschin@free.fr";
@@ -27,6 +28,11 @@ try {
 	include_once('connexion_sql_supervision.php'); // connexion à la base changement
 	$bdd_supervision->beginTransaction();
 	$heure_envoi = date("d/m/Y H:i");
+	$jour_semaine = date("N");
+	$jour7=$jour_semaine+7;
+	$jour14=$jour_semaine+14;
+	$jour21=$jour_semaine+21;
+	
 
 	// Dates SQL
 	$dateM28J=date("Y-m-d", strtotime("-28 day"));
@@ -34,6 +40,10 @@ try {
 	$dateM14J=date("Y-m-d", strtotime("-14 day"));
 	$dateM7J=date("Y-m-d", strtotime("-7 day"));
 	$dateJ = date("Y-m-d");
+	$dim_S0 = date("Y-m-d", strtotime("-$jour_semaine day"));
+	$dim_S1 = date("Y-m-d", strtotime("-$jour7 day"));
+	$dim_S2 = date("Y-m-d", strtotime("-$jour14 day"));
+	$dim_S3 = date("Y-m-d", strtotime("-$jour21 day"));
 	$dateP7J=date("Y-m-d", strtotime("+7 day"));
 
 	// Date Mail
@@ -42,8 +52,31 @@ try {
 	$date_mailM14J=date("d/m", strtotime("-14 day"));
 	$date_mailM7J=date("d/m", strtotime("-7 day"));
 	$date_mailJ = date("d/m");
+	$dim_mailS0 = date("d/m", strtotime("-$jour_semaine day"));
+	$dim_mailS1 = date("d/m", strtotime("-$jour7 day"));
+	$dim_mailS2 = date("d/m", strtotime("-$jour14 day"));
+	$dim_mailS3 = date("d/m", strtotime("-$jour21 day"));
 	$date_mailP1J=date("d/m", strtotime("+1 day"));
 	$date_mailP7J=date("d/m", strtotime("+7 day"));
+
+	if ($debug==true)
+	{
+		echo "dateM28J=".$dateM28J."\n";
+		echo "dateM21J=".$dateM21J."\n";
+		echo "dateM14J=".$dateM14J."\n";
+		echo "dateM7J=".$dateM7J."\n";
+		echo "dateJ=".$dateJ."\n";
+		echo "dateP7J=".$dateP7J."\n";
+		echo "dim_S0=".$dim_S0."\n";
+		echo "dim_S1=".$dim_S1."\n";
+		echo "dim_S2=".$dim_S2."\n";
+		echo "dim_S3=".$dim_S3."\n";
+		echo "dim_mailS0=".$dim_mailS0."\n";
+		echo "dim_mailS1=".$dim_mailS1."\n";
+		echo "dim_mailS2=".$dim_mailS2."\n";
+		echo "dim_mailS3=".$dim_mailS3."\n";
+	};
+	
 		
 /**
  * Récupération de la liste des demandes en cours
@@ -74,25 +107,25 @@ try {
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Fin_Traitement>"' . $dateM28J . '" AND Date_Fin_Traitement<= "' . $dateM21J . '" AND Etat_Demande="Traité";');
+		WHERE Date_Fin_Traitement>"' . $dim_S3 . '" AND Date_Fin_Traitement<= "' . $dim_S2 . '" AND Etat_Demande="Traité";');
 	$req_S3->execute(array()) or die(print_r($req_S3->errorInfo()));
 	$req_S2 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Fin_Traitement>"' . $dateM21J . '" AND Date_Fin_Traitement<= "' . $dateM14J . '" AND Etat_Demande="Traité";');
+		WHERE Date_Fin_Traitement>"' . $dim_S2 . '" AND Date_Fin_Traitement<= "' . $dim_S1 . '" AND Etat_Demande="Traité";');
 	$req_S2->execute(array()) or die(print_r($req_S2->errorInfo()));
 	$req_S1 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Fin_Traitement>"' . $dateM14J . '" AND Date_Fin_Traitement<= "' . $dateM7J . '" AND Etat_Demande="Traité";');
+		WHERE Date_Fin_Traitement>"' . $dim_S1 . '" AND Date_Fin_Traitement<= "' . $dim_S0 . '" AND Etat_Demande="Traité";');
 	$req_S1->execute(array()) or die(print_r($req_S1->errorInfo()));
 	$req_S0 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Fin_Traitement>"' . $dateM7J . '" AND Date_Fin_Traitement<= "' . $dateJ . '" AND Etat_Demande="Traité";');
+		WHERE Date_Fin_Traitement>"' . $dim_S0 . '" AND Etat_Demande="Traité";');
 	$req_S0->execute(array()) or die(print_r($req_S0->errorInfo()));
 
 	/**
@@ -102,84 +135,84 @@ try {
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM28J . '" AND Date_Supervision_Demandee <= "' . $dateM21J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) = 0;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S3 . '" AND Date_Supervision_Demandee <= "' . $dim_S2 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) = 0;');
 	$req_anticipJ_S3->execute(array()) or die(print_r($req_anticipJ_S3->errorInfo()));
 
 	$req_anticipJ7_S3 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM28J . '" AND Date_Supervision_Demandee <= "' . $dateM21J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) between 1 AND 7;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S3 . '" AND Date_Supervision_Demandee <= "' . $dim_S2 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) between 1 AND 7;');
 	$req_anticipJ7_S3->execute(array()) or die(print_r($req_anticipJ7_S3->errorInfo()));
 	
 	$req_anticipJP7_S3 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM28J . '" AND Date_Supervision_Demandee <= "' . $dateM21J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) > 7;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S3 . '" AND Date_Supervision_Demandee <= "' . $dim_S2 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) > 7;');
 	$req_anticipJP7_S3->execute(array()) or die(print_r($req_anticipJP7_S3->errorInfo()));
 	
 	$req_anticipJ_S2 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM21J . '" AND Date_Supervision_Demandee <= "' . $dateM14J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) = 0;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S2 . '" AND Date_Supervision_Demandee <= "' . $dim_S1 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) = 0;');
 	$req_anticipJ_S2->execute(array()) or die(print_r($req_anticipJ_S2->errorInfo()));
 
 	$req_anticipJ7_S2 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM21J . '" AND Date_Supervision_Demandee <= "' . $dateM14J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) between 1 AND 7;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S2 . '" AND Date_Supervision_Demandee <= "' . $dim_S1 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) between 1 AND 7;');
 	$req_anticipJ7_S2->execute(array()) or die(print_r($req_anticipJ7_S2->errorInfo()));
 	
 	$req_anticipJP7_S2 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM21J . '" AND Date_Supervision_Demandee <= "' . $dateM14J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) > 7;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S2 . '" AND Date_Supervision_Demandee <= "' . $dim_S1 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) > 7;');
 	$req_anticipJP7_S2->execute(array()) or die(print_r($req_anticipJP7_S2->errorInfo()));
 								
 	$req_anticipJ_S1 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM14J . '" AND Date_Supervision_Demandee <= "' . $dateM7J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) = 0;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S1 . '" AND Date_Supervision_Demandee <= "' . $dim_S0 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) = 0;');
 	$req_anticipJ_S1->execute(array()) or die(print_r($req_anticipJ_S1->errorInfo()));
 	
 	$req_anticipJ7_S1 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM14J . '" AND Date_Supervision_Demandee <= "' . $dateM7J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) between 1 AND 7;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S1 . '" AND Date_Supervision_Demandee <= "' . $dim_S0 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) between 1 AND 7;');
 	$req_anticipJ7_S1->execute(array()) or die(print_r($req_anticipJ7_S1->errorInfo()));
 	
 	$req_anticipJP7_S1 = $bdd_supervision->prepare('
 			SELECT
 			count(Etat_demande) AS Nbre
 			FROM demande
-			WHERE Date_Supervision_Demandee > "' . $dateM14J . '" AND Date_Supervision_Demandee <= "' . $dateM7J . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) > 7;');
+			WHERE Date_Supervision_Demandee > "' . $dim_S1 . '" AND Date_Supervision_Demandee <= "' . $dim_S0 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) > 7;');
 	$req_anticipJP7_S1->execute(array()) or die(print_r($req_anticipJP7_S1->errorInfo()));
 	
 	$req_anticipJ_S0 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM7J . '" AND Date_Supervision_Demandee <= "' . $dateJ . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) = 0;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S0 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) = 0;');
 	$req_anticipJ_S0->execute(array()) or die(print_r($req_anticipJ_S0->errorInfo()));
 	
 	$req_anticipJ7_S0 = $bdd_supervision->prepare('
 		SELECT
 			count(Etat_demande) AS Nbre
 		FROM demande
-		WHERE Date_Supervision_Demandee > "' . $dateM7J . '" AND Date_Supervision_Demandee <= "' . $dateJ . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) between 1 AND 7;');
+		WHERE Date_Supervision_Demandee > "' . $dim_S0 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) between 1 AND 7;');
 	$req_anticipJ7_S0->execute(array()) or die(print_r($req_anticipJ7_S0->errorInfo()));
 	
 	$req_anticipJP7_S0 = $bdd_supervision->prepare('
 			SELECT
 			count(Etat_demande) AS Nbre
 			FROM demande
-			WHERE Date_Supervision_Demandee > "' . $dateM7J . '" AND Date_Supervision_Demandee <= "' . $dateJ . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) > 7;');
+			WHERE Date_Supervision_Demandee > "' . $dim_S0 . '" AND DATEDIFF(Date_Supervision_Demandee,Date_Demande) > 7;');
 	$req_anticipJP7_S0->execute(array()) or die(print_r($req_anticipJP7_S0->errorInfo()));
 				
 	$req_J = $bdd_supervision->prepare('

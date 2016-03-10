@@ -1,12 +1,14 @@
-﻿2016-02-xx 9.1.x
+﻿2016-02-xx 9.1.0
 	- correction gestion page maintenance
 	- correction gestion extraction prestation sur les arguments MACRO (premier caractère tronqué)
 		- suppression variable SESSION R_ID_Demande
-	- suppression du code commenté inutile => modele_param_hote.php
+	- suppression du code commenté inutile => fait jusqu'à modele_param_service.php
 	- reformatage des commentaires
 	- Amélioration de la recherche d'une demande, possibilité de chercher:
 		- soit par l'id_demande interne (transmis dans le mail)
 		- soit par la référence demande (tout ou partie) en mettant le caractère % comme caractère générique
+	- #31 Modification du calcul des stats: calcul du dimanche au dimanche
+		La semaine S0 comporte toutes les demandes de la semaine en cours à compter de lundi 0h
 	
 2016-02-24 9.0.2
 	- Suppression d'un message de debug sur l'enregistrement du brouillon au niveau des hôtes
