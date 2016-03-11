@@ -7,7 +7,10 @@ session_start();
 };
 ////////////////////////////////////////////////////////
 /////// Initialisation des variables pour la maison
-$_GET['etat'] = "";
+if	(file_exists('_variable_home1.php')==true)
+{
+	include("_variable_home1.php");
+}
 ////////////////////////////////////////////////////////
 
 if (isset($_GET['etat']) && ($_GET['etat'] == "disconnect")) {
@@ -15,12 +18,10 @@ if (isset($_GET['etat']) && ($_GET['etat'] == "disconnect")) {
 };
 ////////////////////////////////////////////////////////
 /////// Initialisation des variables pour la maison
-$_SESSION['auth_changement_centreon'] = "changement_centreon";
-$_SESSION['groupe_changement_centreon'] = "GG_DEMANDECENTREON_ADMIN";
-//$_SESSION['groupe_changement_centreon'] = "GG_DEMANDECENTREON_USER";
-$_SESSION['name_changement_centreon'] = "Cedric MESCHIN";
-$_SESSION['user_changement_centreon'] = "cmeschin";
-$_SESSION['email_changement_centreon'] = "cedric.meschin@tessi.fr";
+if	(file_exists('_variable_home2.php')==true)
+{
+	include("_variable_home2.php");
+}
 ////////////////////////////////////////////////////////
 
 

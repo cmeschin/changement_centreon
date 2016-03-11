@@ -3,8 +3,6 @@ if (session_id()=='')
 {
 session_start();
 };
-//$ID_Hote = (isset($_POST["IDH"])) ? $_POST["IDH"] : NULL;
-
 if (isset($ID_Hote))
 {
 	try {

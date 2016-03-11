@@ -24,16 +24,15 @@ try {
 	$gb_id = (isset($_POST["gb_id"])) ? $_POST["gb_id"] : NULL;
 	if ($gb_id == NULL)
 	{
-		$forcer=False;
+		$forcer=false;
 	} else
 	{
-		$forcer=True;
+		$forcer=true;
 	};
 	
 	$heure_envoi = date("Y-m-d H:i:s");
 	$date_make = date("m,d,Y");
 	$jour_semaine = date("N");
-	//$heure = date("H:i");
 	$heure = time(); // heure actuelle au format timestamp
 	$lundi=false;
 	$mardi=false;
@@ -105,13 +104,6 @@ try {
 					samedi=".$samedi . "\r\n
 					dimanche=".$dimanche . "\r\n"
 					);
-// 			addlog("lundi=".$lundi);
-// 			addlog("mardi=".$mardi);
-// 			addlog("mercredi=".$mercredi);
-// 			addlog("jeudi=".$jeudi);
-// 			addlog("vendredi=".$vendredi);
-// 			addlog("samedi=".$samedi);
-// 			addlog("dimanche=".$dimanche);
 			/**
 			 * Vérification si Heure atteinte et notif non encore envoyée (date_notif < heure d'envoi du jour)
 			 * si oui on continue, si non on passe à la notif suivante
@@ -159,10 +151,6 @@ try {
 				$adresse_mail .= " " . htmlspecialchars($res_lst_notif['gb_mail_liste']);
 				addlog("liste_mail initiale=" . $adresse_mail);
 				$adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
-// 				$adresse_mail = str_replace(",", ", ", $adresse_mail); // ajoute un espace après les virgules
-// 			    $adresse_mail = str_replace(",", " ", $adresse_mail); // converti la virgule en espace
-// 				$adresse_mail = str_replace("  ", " ", $adresse_mail); // supprime les espaces en double.
-				//$liste_adresse_mail = str_replace(",", " ", $adresse_mail); // converti la virgule en espace
 				addlog("liste_mail corrigee=" . $adresse_mail);
 				if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
 				{
@@ -209,11 +197,6 @@ try {
 						
 							$contenu_brut .= "        Taux de disponibilité de l'activité métier " . htmlspecialchars($element['BA_Nom']) . ": " . $BA_Statut . " (" . htmlspecialchars($element['BA_Niveau']) . "%)\n\n";
 						
-	// 						$contenu_html .= "
-	// 							<p class=\"P1\">
-	// 								<span class=\"T1\">        Taux de disponibilité de l'activité métier " . $element['BA_Nom'] . ": </span>
-	// 								<span class=\"" . $class_couleur . "\">" . $BA_Statut . " (" . $element['BA_Niveau'] . "%)</span>
-	// 							</p><p></p>";
 							$contenu_html .= "<tr>
 	 							<td class='Tableau1_A1'>" . htmlspecialchars($element['BA_Nom']) . "</td>
 	 							<td class='" . $class_couleur . "'>" . $BA_Statut . " (" . htmlspecialchars($element['BA_Niveau']) . "%)</td></tr>";
@@ -325,14 +308,12 @@ try {
 				//=====Création du message.
 				$message = $passage_ligne."--".$boundary.$passage_ligne;
 				//=====Ajout du message au format texte.
-				//$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
 				$message.= "Content-Type: text/plain; charset=\"UTF-8\"".$passage_ligne;
 				$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 				$message.= $passage_ligne.$message_txt.$passage_ligne;
 				//==========
 				$message.= $passage_ligne."--".$boundary.$passage_ligne;
 				//=====Ajout du message au format HTML
-				//$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
 				$message.= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
 				$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 				$message.= $passage_ligne.$message_html.$passage_ligne;
@@ -343,10 +324,10 @@ try {
 				addlog("message constitué");
 				//=====Envoi de l'e-mail.
 				$mail_envoye = mail($adresse_mail,$sujet,$message,$header);
-				if ($mail_envoye == False && $forcer == True)
+				if ($mail_envoye == false && $forcer == True)
 				{
 					http_response_code(500);
-					return False;
+					return false;
 				};
 				//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
 				addlog("mail envoyé à " . $adresse_mail);
@@ -360,11 +341,11 @@ try {
 					'gb_nom' => htmlspecialchars($res_lst_notif['gb_nom'])
 				)) or die(print_r($maj_notif->errorInfo()));
 				
-				$mail_envoye=True;
+				$mail_envoye=true;
 				
 			};// fin condition heure atteinte
 		}; // fin condition jour OK
-		if (($forcer == True) && ($mail_envoye == True))
+		if (($forcer == true) && ($mail_envoye == true))
 		{// si forcage notif effectué on arrête la boucle
 			//echo '<p>Mail envoyé</p>';
 			break;

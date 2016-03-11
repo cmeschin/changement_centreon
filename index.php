@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
-<head>
 <?php
+echo '<html>';
+echo '<head>';
 	if (session_id()=='')
 	{
 	session_start();
@@ -27,15 +27,14 @@
 echo '<body>';
 echo '<div id="principal">';
 	echo '<header id="en-tete">';
-	if (file_exists('maintenance.php')==False)
-	{
-		include_once('menu.php');
-	};
+	include_once('menu.php');
 	echo '</header>';
 	echo '<section>';
 		echo '<p>Bonjour ';
-		 if(isset($_SESSION['groupe_changement_centreon']))
-		{ echo $_SESSION['name_changement_centreon'];} else{ echo '';};
+		if(isset($_SESSION['groupe_changement_centreon']))
+		{
+			echo $_SESSION['name_changement_centreon'];} else{ echo '';
+		};
 		echo ',';
 		echo '<br />';
 		echo 'nous sommes le ' . $date_demande;
@@ -45,7 +44,7 @@ echo '<div id="principal">';
 			echo 'Merci de choisir un menu ci dessus!</p>';
 		} else 
 		{
-			include('index_maintenance.php');
+			include('maintenance.php');
 		};
 	echo '</section>';
 	echo '<footer>';

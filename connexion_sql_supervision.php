@@ -1,6 +1,4 @@
 <?php
-
-// Connexion à la base de données supervision
 try
 {
 	$bdd_supervision = new PDO('mysql:host=localhost;dbname=CHGT_Centreon', 'changement_RW', 'changement_RW', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));

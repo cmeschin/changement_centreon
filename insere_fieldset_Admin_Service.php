@@ -3,7 +3,6 @@ if (session_id()=='')
 {
 session_start();
 };
-//$ID_Service = (isset($_POST["IDS"])) ? $_POST["IDS"] : NULL;
 if (isset($ID_Service))
 {
 	try {

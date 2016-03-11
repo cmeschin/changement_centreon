@@ -1,37 +1,30 @@
 <!DOCTYPE html>
-<html>
-<head>
 <?php
-/*	if (session_id()=='')
-	{
-		session_start();
-	};*/
+echo '<html>';
+echo '<head>';
 	include ('top.php');
 	include ('head.php');
-?>
-</head>
-<body>
-	<div id="principal">
-		<header id="en-tete">
-	<?php
+echo '</head>';
+echo '<body>';
+	echo '<div id="principal">';
+		echo '<header id="en-tete">';
 	include ('menu.php');
 	$_SESSION['ref_tmp_extract'] = $_SESSION['user_changement_centreon'] . "_" . date( "ymdHis" );
-	$_SESSION['R_ID_Demande'] = "extraction"; // astuce pour gérer le verroullage des champs arguments de service sur une extraction
-	$_SESSION['Reprise'] = false;
-	$_SESSION['Nouveau'] = false;
-	$_SESSION['PDF'] = false;
+	$_SESSION['Nouveau'] = false; // Il n' s'agit pas d'une nouvelle demande
+	$_SESSION['Reprise'] = false; // Il ne s'agit pas d'une reprise
+	$_SESSION['Extraction'] = true; // Il s'agit d'une extraction
+	$_SESSION['PDF'] = false; // Il ne s'agit pas d'une extraction PDF
+	$_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 	
-	?>
-	</header>
-		<section>
-			<div id="tabs">
-				<ul>
-					<li><a href="#tabs-1">Extraction</a></li>
-				</ul>
-				<div id="tabs-1">
-					<h2>Extraire une prestation</h2>
-					<fieldset id="extraire" class="extraire_prestation">
-					<?php
+	echo '</header>';
+		echo '<section>';
+			echo '<div id="tabs">';
+				echo '<ul>';
+					echo '<li><a href="#tabs-1">Extraction</a></li>';
+				echo '</ul>';
+				echo '<div id="tabs-1">';
+					echo '<h2>Extraire une prestation</h2>';
+					echo '<fieldset id="extraire" class="extraire_prestation">';
 					echo '<label for="prestation" onclick="alert(\'Sélectionnez la prestation dont vous souhaitez faire une extraction\')">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
 					// echo '<select name="prestation" id="prestation" class="extraire_prestation" onblur="verifChamp(this)">';
 					echo '<select name="prestation" id="prestation" class="extraire_prestation">';
@@ -49,21 +42,17 @@
 					echo '</select>';
 					echo '<button id="valider_extraction" onclick="valider_extraction()">Extraire cette prestation</button>';
 					echo '<button id="valider_extraction_pdf" onclick="valider_extraction_pdf()">Extraire cette prestation en PDF</button>';
-					?>
-					</fieldset>
-					<!--  <fieldset style="visibility: hidden" id="extraction_elements" class="extraire_prestation"> -->
-					<fieldset id="extraction_elements" class="extraire_prestation">
-					</fieldset>
-				</div>
-			</div>
-		</section>
-		<footer>
-		<?php
+					echo '</fieldset>';
+					echo '<!--  <fieldset style="visibility: hidden" id="extraction_elements" class="extraire_prestation"> -->';
+					echo '<fieldset id="extraction_elements" class="extraire_prestation">';
+					echo '</fieldset>';
+				echo '</div>';
+			echo '</div>';
+		echo '</section>';
+		echo '<footer>';
 		include ('PiedDePage.php');
-		?>
-	</footer>
-	</div>
-<?php
+	echo '</footer>';
+	echo '</div>';
 include ('section_script_JS.php');
 ?>
 <script type="text/javascript">
@@ -196,7 +185,8 @@ $(function() {
 	//});
 	});
 });
-</script>
+<?php
+echo '</script>';
 
-</body>
-</html>
+echo '</body>';
+echo '</html>';

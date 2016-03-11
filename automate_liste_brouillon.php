@@ -10,7 +10,6 @@
  * Jour de la semaine => pour la vérification sur la calendrier => De 1 (pour Lundi) à 7 (pour Dimanche)
  * Heure actuelle => pour la vérification sur l'heure de notification
  */
-	//include('log.php'); // chargement de la fonction de log
 	include_once('connexion_sql_supervision.php'); // connexion à la base changement
 	$heure_envoi = date("Y-m-d H:i:s");
 		
@@ -62,7 +61,9 @@ while ($res_demandeur=$req_demandeur->fetch())
  				</tr>";
 	};
 	$contenu_html .= "</table><br />";
-	//initialisation mail
+	/**
+	 * initialisation mail
+	 */
 	$mail = explode(';',$res_demandeur['email']);
 	$adresse_mail = $mail[0];
 	//$adresse_mail = "cedric.meschin@tessi.fr";

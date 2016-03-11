@@ -1,12 +1,7 @@
 <?php
-// header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
-//session_start();
-//$ID_Modele = (isset($_POST["ID_Modele"])) ? $_POST["ID_Modele"] : NULL;
-//$sModele_Service = (isset($_POST["Modele_Service"])) ? $_POST["Modele_Service"] : NULL;
 
 include_once('connexion_sql_supervision.php');
 try {
-	//$req_liste_valeur = $bdd_supervision->prepare('SELECT MS.Modele_Service AS Modele_Service, MC.Service_Description AS Modele_Centreon, MC.Service_id AS ID_Centreon, MS.ID_Modele_Service AS ID_Modele_Service FROM ((Modele_Service AS MS INNER JOIN Relation_modeles AS RM ON MS.ID_Modele_Service=RM.ID_Modele_Service) LEFT JOIN modele_centreon AS MC ON RM.ID_Modele_Service_Centreon=MC.service_id) WHERE MS.Modele_Service= :Modele_Service');
 	$req_lst_am_associe = $bdd_supervision->prepare('SELECT
 			 mbc.mbc_ba_id AS ba_id,
 			 mbc.mbc_ba_nom AS ba_nom

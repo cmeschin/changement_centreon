@@ -9,7 +9,9 @@ try {
 	$sModele_valeur = (isset($_POST["Modele_valeur"])) ? $_POST["Modele_valeur"] : NULL;
 	$Modele_valeur = explode("$",$sModele_valeur); // découpe la chaine en tableau avec comme séparateur le $
 	
-	// Verification sur l'existence d'un nom identique
+	/**
+	 *  Verification sur l'existence d'un nom identique
+	 */
 	$select_Modele = $bdd_supervision->prepare('SELECT count(Modele_Service) FROM modele_service WHERE Modele_Service = :Modele_Service');
 	$select_Modele->execute(Array(
 		'Modele_Service' => htmlspecialchars($Modele_valeur[1])
@@ -37,7 +39,6 @@ try {
 			)) or die(print_r($insert_Modele_valeur->errorInfo()));
 			
 			echo "Le modèle de service " . htmlspecialchars($Modele_valeur[1]) . " a été correctement enregistré.";
-			//addlog(print_r($Modele_valeur)); // pollue le message de sortie
 			addlog("modèle " . htmlspecialchars($Modele_valeur[1]) . " enregistré OK");
 		}
 		else // il s'agit d'un modèle existant
@@ -55,7 +56,6 @@ try {
 			
 			echo "Le modèle de service [" . htmlspecialchars($Modele_valeur[1]) . "] ID=[" . htmlspecialchars($Modele_valeur[0]) . "] a été correctement mis à jour.";
 			addlog("Le modèle de service [" . htmlspecialchars($Modele_valeur[1]) . "] ID=[" . htmlspecialchars($Modele_valeur[0]) . "] a été correctement mis à jour.");
-			//addlog(print_r($Modele_valeur)); // pollue le message de sortie
 		};
 	};
 	$bdd_supervision->commit();

@@ -13,35 +13,26 @@ try {
 	
 	if ($liste_conf[0] != "") // si le gb_nom est renseigné on traite les données 
 	{
-// 		// Calcul du nombre d'hôte à mettre à jour
-// 		$Nbconf = count($liste_conf);
-// 		addlog("Nbconf=".$Nbconf);
-// 		for ($i = 0;$i<$Nbconf;$i++)
-// 		{
-// 			addlog("liste_conf=".($liste_conf[$i]));
-// 			$liste_T_conf = explode("|",$liste_conf[$i]);
-			addlog("gb_nom=".($liste_conf[0]));
-	
-			addlog("INSERT Table gestion_bam_notification");
-			$MAJ_conf = $bdd_supervision->prepare('INSERT IGNORE INTO gestion_bam_notification 
-				(gb_nom, gb_mail_objet, gb_mail_titre, gb_mail_liste, gb_lundi, gb_mardi, gb_mercredi, gb_jeudi, gb_vendredi, gb_samedi, gb_dimanche, gb_heure)
-				VALUES (:gb_nom, :gb_mail_objet, :gb_mail_titre, :gb_mail_liste, :gb_lundi, :gb_mardi, :gb_mercredi, :gb_jeudi, :gb_vendredi, :gb_samedi, :gb_dimanche, :gb_heure)');
-			$MAJ_conf->execute(array(
-				'gb_nom' => htmlspecialchars($liste_conf[0]),
-				'gb_mail_objet' => htmlspecialchars($liste_conf[1]),
-				'gb_mail_titre' => htmlspecialchars($liste_conf[2]),
-				'gb_mail_liste' => htmlspecialchars($liste_conf[3]),
-				'gb_lundi' => htmlspecialchars($liste_conf[4]),
-				'gb_mardi' => htmlspecialchars($liste_conf[5]),
-				'gb_mercredi' => htmlspecialchars($liste_conf[6]),
-				'gb_jeudi' => htmlspecialchars($liste_conf[7]),
-				'gb_vendredi' => htmlspecialchars($liste_conf[8]),
-				'gb_samedi' => htmlspecialchars($liste_conf[9]),
-				'gb_dimanche' => htmlspecialchars($liste_conf[10]),
-				'gb_heure' => htmlspecialchars($liste_conf[11])
-				)) or die(print_r($MAJ_conf->errorInfo()));
-			//addlog(print_r($MAJ_conf));
-// 		};
+		addlog("gb_nom=".($liste_conf[0]));
+
+		addlog("INSERT Table gestion_bam_notification");
+		$MAJ_conf = $bdd_supervision->prepare('INSERT IGNORE INTO gestion_bam_notification 
+			(gb_nom, gb_mail_objet, gb_mail_titre, gb_mail_liste, gb_lundi, gb_mardi, gb_mercredi, gb_jeudi, gb_vendredi, gb_samedi, gb_dimanche, gb_heure)
+			VALUES (:gb_nom, :gb_mail_objet, :gb_mail_titre, :gb_mail_liste, :gb_lundi, :gb_mardi, :gb_mercredi, :gb_jeudi, :gb_vendredi, :gb_samedi, :gb_dimanche, :gb_heure)');
+		$MAJ_conf->execute(array(
+			'gb_nom' => htmlspecialchars($liste_conf[0]),
+			'gb_mail_objet' => htmlspecialchars($liste_conf[1]),
+			'gb_mail_titre' => htmlspecialchars($liste_conf[2]),
+			'gb_mail_liste' => htmlspecialchars($liste_conf[3]),
+			'gb_lundi' => htmlspecialchars($liste_conf[4]),
+			'gb_mardi' => htmlspecialchars($liste_conf[5]),
+			'gb_mercredi' => htmlspecialchars($liste_conf[6]),
+			'gb_jeudi' => htmlspecialchars($liste_conf[7]),
+			'gb_vendredi' => htmlspecialchars($liste_conf[8]),
+			'gb_samedi' => htmlspecialchars($liste_conf[9]),
+			'gb_dimanche' => htmlspecialchars($liste_conf[10]),
+			'gb_heure' => htmlspecialchars($liste_conf[11])
+		)) or die(print_r($MAJ_conf->errorInfo()));
 	};
 
 /**
@@ -52,24 +43,12 @@ try {
 			'gb_nom' => htmlspecialchars($liste_conf[0])
 	)) or die(print_r($req_gb_id->errorInfo()));
 
-	// 	$MAJ_conf = $bdd_supervision->prepare('UPDATE hote SET Etat_Parametrage= "A Traiter" WHERE ID_Demande= :ID_Demande;');
-// 	$MAJ_Hote->execute(array(
-// 		'ID_Demande' => $ID_Demande
-// 		)) or die(print_r($MAJ_Hote->errorInfo()));
-	
-// 	$req_ID_Hote = $bdd_supervision->prepare('SELECT ID_Hote FROM hote WHERE Nom_Hote= :nom_hote AND IP_Hote= :ip_hote AND ID_Demande= :id_demande');
-// 	$req_ID_Hote->execute(array(
-// 			'nom_hote' => htmlspecialchars($liste_T_hote[0]),
-// 			'ip_hote' => htmlspecialchars($liste_T_hote[1]),
-// 			'id_demande' => htmlspecialchars($ID_Demande)
-// 	)) or die(print_r($req_ID_Hote->errorInfo()));
 	
   	$res_gb_id = $req_gb_id->fetchall();
  	foreach ($res_gb_id AS $valeur)
  	{ // on la valeur de la requête valeurs remontée par la requête 
  		$gb_id=$valeur[0];
  	};
- 	//echo $gb_id;
  	/**
  	 * On insère finalement les am sélectionnées dans la table de relation.
  	 */

@@ -3,12 +3,10 @@ if (session_id()=='')
 {
 session_start();
 };
-// header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
-//echo '<fieldset id="Arg_Service_Modele' . $NbFieldset_Service . '">';
 
-if (!$_SESSION['R_ID_Demande']) // si la variable n'est pas initialisée on l'initialise à NULL
+if (!$_SESSION['Extraction']) // si la variable n'est pas initialisée on l'initialise à false
 {
-	$_SESSION['R_ID_Demande']=NULL;
+	$_SESSION['Extraction'] = false;
 }
 if (($_SESSION['PDF'] == false) OR (!$_SESSION['PDF']))
 {
@@ -41,14 +39,13 @@ for ( $i=0;$i<$nbLibelle;$i++)
 	include('gestion_caracteres_speciaux.php');
 	
 	$LongueurArg=  strlen(htmlspecialchars($Valeur_Champ)) + 5;
-//	echo '<div id="Service_Argument_Actif' . $NbFieldset_Service . '>';
 	if ($_SESSION['PDF'] == false)
 	{
 		echo '<label for="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '">' . htmlspecialchars($T_Libelle[$i]) . ':</label>';
 	};
 	if ($T_Argument[$i] == "")
 	{
-		if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == false))
+		if (($_SESSION['Extraction'] == false) AND ($_SESSION['PDF'] == false))
 		{
 			if (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true))
  			{
@@ -68,33 +65,35 @@ for ( $i=0;$i<$nbLibelle;$i++)
 		};
 	} else
 	{
-		if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == false))
+		if (($_SESSION['Extraction'] == false) AND ($_SESSION['PDF'] == false)) // Si ce n'est pas la page extraction
 		{
-			if (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true)) 
+			if (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true)) //Si c'est une reprise ou une nouvelle demande
 			{
 				echo '<input type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" onblur="verifChamp(this)" class="Service_Argument' . $NbFieldset_Service . '"/>';
-			} else 
+			} else // c'est donc le listage des demandes
 			{
 				echo '<input type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
 			};
-		} else if ($_SESSION['PDF'] == false)
+		} else if (($_SESSION['PDF'] == false) AND ($_SESSION['Extraction'] == true)) // c'est une extraction simple
 		{
 			echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
-		} else
+		} else if (($_SESSION['PDF'] == true) AND ($_SESSION['Extraction'] == true))// c'est une extraction PDF
 		{
 			echo '<span id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" class="Service_Argument' . $NbFieldset_Service . '" style="text-decoration: underline">' . htmlspecialchars($T_Libelle[$i]) . ':</span>';
 			echo '<span id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" class="Service_Argument' . $NbFieldset_Service . '" style="font-weight: bold"> ' . htmlspecialchars(trim($Valeur_Champ)) . '</span>';
 			echo '<br />';
+		} else
+		{ 
+			echo '<p> Oups il y a un trou dans le code... :)</p>';
 		};
 	};
-	if (($_SESSION['R_ID_Demande'] == NULL) AND ($_SESSION['PDF'] == false))
+	if (($_SESSION['Extraction'] == false) AND ($_SESSION['PDF'] == false)) // Si ce n'est pas la page extraction
 	{
 		echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '"/>';
 	};
-	if ($_SESSION['PDF'] == false)
+	if ($_SESSION['PDF'] == false) // Si ce n'est pas la page extraction PDF
 	{
 		echo '<br />';
 	};
-	//	echo '</div>';
 	$Num_Argument ++; // incrément Num Argument
 };

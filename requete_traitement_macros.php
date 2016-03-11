@@ -60,17 +60,18 @@
 		/**
 		 * récupérer la position du premier $
 		 */
+		
 		$ChaineBrute=$T_Chaine_Macro[$j];
-		//addlog("chaineMacrobrute_avant=" . $ChaineBrute);
+		addlog("chaineMacrobrute_avant=" . $ChaineBrute);
 		$ChaineBrute=preg_replace('/\${2,}/', '\$', $ChaineBrute); // Supprime les dollars multiples
-		//addlog("chaineMacrobrute_apres=" . $ChaineBrute);
+		addlog("chaineMacrobrute_apres=" . $ChaineBrute);
 		
 		$pos_premier_dollar=strpos($ChaineBrute,'$');
 		$pos_second_dollar=strpos($ChaineBrute,'$',$pos_premier_dollar+1);
 		$ChaineMacro=substr($ChaineBrute,$pos_premier_dollar,$pos_second_dollar-$pos_premier_dollar);
-		//addlog("position premier dollar=".$pos_premier_dollar);
-		//addlog("position second dollar=".$pos_second_dollar);
-		//addlog("chaineMacro=".$ChaineMacro);
+		addlog("position premier dollar=".$pos_premier_dollar);
+		addlog("position second dollar=".$pos_second_dollar);
+		addlog("chaineMacro=".$ChaineMacro);
 		
 		if (substr($ChaineMacro,0,9) == "\$_SERVICE")
 		{

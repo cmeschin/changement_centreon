@@ -37,19 +37,18 @@ try {
 	{
 		if ($nbligne_info==8)
 		{
-	
-	/*
-	//Ordre des champs: ATTENTION EN CAS DE CHANGEMENT DES CHAMPS DU FORMULAIRE INFO GENERALE
-	 * Modifier également enregistrement_donnees.php
-		0 => demandeur
-		1=> Date_demande
-		2=> ref_demande
-		3=> Type Demande(Démarrage production ou Mise A Jour)
-		4=> Date_supervision
-		5=> Prestation
-		6=> email
-		7=> commentaire
-	*/
+			/**
+			 * Ordre des champs: ATTENTION EN CAS DE CHANGEMENT DES CHAMPS DU FORMULAIRE INFO GENERALE 
+			 * Modifier également enregistrement_donnees.php
+			 * 0 => demandeur
+			 * 1=> Date_demande
+			 * 2=> ref_demande
+			 * 3=> Type Demande(Démarrage production ou Mise A Jour)
+			 * 4=> Date_supervision
+			 * 5=> Prestation
+			 * 6=> email
+			 * 7=> commentaire
+			*/
 			$insert_info_gen = $bdd_supervision->prepare('INSERT INTO demande (Code_Client, Demandeur, Date_Demande, Ref_Demande, Date_Supervision_Demandee, Type_Demande, Commentaire, Etat_Demande, email) VALUES(:Code_Client, :Demandeur, :Date_Demande, :Ref_Demande, :Date_Supervision_Demandee, :Type_Demande, :Commentaire, :Etat_Demande, :email)');
 			$insert_info_gen->execute(array(
 				'Demandeur' => htmlspecialchars($info_gen[0]),
@@ -62,8 +61,9 @@ try {
 				'Etat_Demande' => "Brouillon",
 				'email' => htmlspecialchars(strtolower($info_gen[6])) // on force la chaine en minuscule pour garantir la compatibilité des adresses mails.
 				)) or die(print_r($insert_info_gen->errorInfo()));
-			
-			// récupération de l'ID_Demande nouvellement créé
+			/**
+			 *  récupération de l'ID_Demande nouvellement créé
+			 */
 			$req_ID_dem = $bdd_supervision->prepare('SELECT ID_Demande FROM demande WHERE Ref_Demande= :Ref_Demande');
 			$req_ID_dem->execute(array(
 				'Ref_Demande' => htmlspecialchars($info_gen[2])
@@ -72,98 +72,35 @@ try {
 			$_SESSION['ID_dem']=$res_ID_dem[0]; // affectation de l'ID_Demande 
 			$_SESSION['Code_Client']= htmlspecialchars($info_gen[5]);
 			addlog("Les données ont été correctement enregistrées pour la prestation [" . $_SESSION['Code_Client'] . "]. ID=" . $_SESSION['ID_dem'] . ".");
-	//		addlog(print_r($info_gen));
 			addlog("données générales OK");
 			addlog("email:".htmlspecialchars(strtolower($info_gen[6])));
 		}
 		else
 		{
-			//echo "echec insertion info générale!<br />";
 			addlog("ECHEC insertion données générales");
 			addlog("Nblignes=". $nbligne_info);
 			addlog(print_r($info_gen));
 		};
 	};
-	
-	
-	// récupération de la ref demande
+	/**
+	 *  récupération de la ref demande
+	 */
 	$ID_Demande= $_SESSION['ID_dem'];
-	////////////////////////////////
-	// insertion enregistrement hôte
-	////////////////////////////////
-	
-	/* déprécié le 03-11-2014
-	////////////////////////////////
-	// Insertion hôtes sélectionnés
-	////////////////////////////////
-	
-	$nbligne_hote=count($hote_selec);
-		echo "nbligne_hote=" . $nbligne_hote . "<br />";
-		echo '<pre>';
-		print_r($hote_selec);
-		echo '</pre>';
-	if ($nbligne_hote>0 AND $hote_selec[0] != NULL) // le tableau contient au moins une ligne non null
-	{
-		for ( $i=0;$i<$nbligne_hote;$i++){
-		//	echo "ligne " . $i . ":" . $hote_selec[$i] . "<br />";
-			$t_hote_selec = explode(",",$hote_selec[$i]);// redécoupage de chaque ligne 
-			$nbchamp_hote=count($t_hote_selec);
-	//		print_r($t_hote_selec)."<br />";
-	
-			if ($nbchamp_hote==5)
-			{
-				$insert_hote_selec = $bdd_supervision->prepare('INSERT INTO hote (ID_Demande, ID_Hote_Centreon, Nom_Hote, Description, IP_Hote, Controle_Actif) VALUES(:ID_Demande, :ID_Hote_Centreon, :Nom_Hote, :Description, :IP_Hote, :Controle_Actif)');
-				$insert_hote_selec->execute(array(
-					'ID_Demande' => htmlspecialchars($ID_Demande),
-					'ID_Hote_Centreon' => htmlspecialchars($t_hote_selec[4]),
-					'Nom_Hote' => htmlspecialchars($t_hote_selec[0]),
-					'Description' => htmlspecialchars($t_hote_selec[1]),
-					'IP_Hote' => htmlspecialchars($t_hote_selec[2]),
-					'Controle_Actif' => htmlspecialchars($t_hote_selec[3])
-				)) or die(print_r($insert_hote_selec->errorInfo()));
-			}
-			else
-			{
-				echo "echec insertion hôte [" . $t_hote_selec[0] . "]!" . "<br />";
-				addlog("ECHEC insertion hôte");
-			};
-		};
-		echo "Les hôtes ont été correctement enregistrées.<br />";
-				addlog("insertion hôtes OK");
-	} else
-	{
-		echo "Aucun hôte à insérer!";
-				addlog("aucun hôte à insérer");
-	};
-	*/
-	
-	////////////////////////////////
-	// Insertion liste hôtes
-	////////////////////////////////
-	
-	// déprécié le 03-11-2014 on utilise désormais uniquement la table hote
-	////Purge de la table Hote_Temp pour les hôtes dont la demande est traitée ou annulée
-	//include('Delete_hote_temp.php');
-	
+	/**
+	 *  insertion enregistrement hôte
+	 */
 	$nbligne_hote_liste=count($hote_liste);
 		addlog('nbligne_hote_liste=' . $nbligne_hote_liste) ;
-/*		echo '<pre>';
-		print_r($hote_liste);
-		echo '</pre>';
-*/
 	if ($nbligne_hote_liste>0 AND $hote_liste[0] != NULL) // le tableau contient au moins une ligne non null
 	{
 		for ( $i=0;$i<$nbligne_hote_liste;$i++){
 			addlog('ligne ' . $i . ':' . $hote_liste[$i]);
 			$t_hote_liste = explode(",",$hote_liste[$i]);// redécoupage de chaque ligne 
 			$nbchamp_hote=count($t_hote_liste);
-//			print_r($t_hote_liste)."<br />";
 	
 			if ($nbchamp_hote==6)
 			{
 				addLog("INSERTION hôte:".htmlspecialchars($t_hote_liste[0]));
-	//			$insert_hote_liste = $bdd_supervision->prepare('INSERT IGNORE INTO hote_temp (ID_Hote_Centreon, Nom_Hote, IP_Hote, ID_Demande) VALUES(:ID_Hote_Centreon, :Nom_Hote, :IP_Hote, :ID_Demande)');
-	//			$insert_hote_liste = $bdd_supervision->prepare('INSERT IGNORE INTO hote (ID_Hote_Centreon, Nom_Hote, IP_Hote, selection, ID_Demande) VALUES(:ID_Hote_Centreon, :Nom_Hote, :IP_Hote, :selection, :ID_Demande)');
 				$insert_hote_liste = $bdd_supervision->prepare('INSERT INTO hote
 							 (Nom_Hote,
 							 Description,
@@ -212,24 +149,17 @@ try {
 				die( "echec insertion liste hôte [" . $t_hote_liste[0] . "]!" . "<br />");
 			};
 		};
-		//include('gestion_doublon_hote_temp.php'); // devenue inutile avec l'index et la syntaxe INSERT IGNORE
-		//echo "La liste des hôtes a été correctement enregistrée.<br />";
 		addlog("INSERTION_SELECTION: Insertion liste hôtes OK.");
 	} else
 	{
-		//echo "Aucune liste d'hôte à insérer!";
 		addlog("aucune liste d'hôte à insérer");
 	};
 	
-	////////////////////////////////
-	// insertion enregistrement service
-	////////////////////////////////
+	/**
+	 *  insertion enregistrement service
+	 */
 	$nbligne_service=count($service_selec);
 		addlog('nbligne_service=' . $nbligne_service);
-/*		echo '<pre>';
-		print_r($service_selec);
-		echo '</pre>';
-*/
 	if ($nbligne_service>0 AND $service_selec[0] != NULL) // le tableau contient au moins une ligne non null
 	{
 		for ( $i=0;$i<$nbligne_service;$i++)
@@ -237,11 +167,9 @@ try {
 			addlog('ligne ' . $i . ':' . $service_selec[$i]);
 			$t_service_selec = explode(",",$service_selec[$i]);// redécoupage de chaque ligne 
 			$nbchamp_service=count($t_service_selec);
-	//		print_r($t_service_selec)."<br />";
 	
 			if ($nbchamp_service==7)
 			{
-	//			$insert_service_selec = $bdd_supervision->prepare('INSERT IGNORE INTO service (ID_Demande, Nom_Service, Frequence, Nom_Periode, Controle_Actif, ID_Service_Centreon, ID_Hote_Centreon) VALUES(:ID_Demande, :Nom_Service, :Frequence, :Nom_Periode, :Controle_Actif, :ID_Service_Centreon, :ID_Hote_Centreon)');
 				$insert_service_selec = $bdd_supervision->prepare('INSERT INTO service
 						 (ID_Demande,
 						 Nom_Service,
@@ -297,36 +225,27 @@ try {
 				die("echec insertion service [" . $t_service_selec[0] . "]!");
 			};
 		};
-		//echo "Les services ont été correctement enregistrés.";
 		addlog("insertion service OK");
 	} else
 	{
-		//echo "Aucun service à insérer!";
 		addlog("aucun service à insérer");
 	};
 	
-	////////////////////////////////
-	// Insertion liste plages
-	////////////////////////////////
-	
+	/**
+	 *  Insertion liste plages
+	 */
 	$nbligne_plage=count($plage_liste);
 		addlog('nbligne_plage=' . $nbligne_plage);
-/*		echo '<pre>';
-		print_r($plage_liste);
-		echo '</pre>';
-*/
 	if ($nbligne_plage>0 AND $plage_liste[0] != NULL) // le tableau contient au moins une ligne non null
 	{
 	        for ( $i=0;$i<$nbligne_plage;$i++){
 					addlog('ligne ' . $i . ':' . $plage_liste[$i]);
 	                $t_plage_liste = explode(";",$plage_liste[$i]);// redécoupage de chaque ligne
 	                $nbchamp_plage=count($t_plage_liste);
-	//              print_r($t_plage_liste)."<br />";
 					addlog("nbchamp_plage=".$nbchamp_plage);
 	                if ($nbchamp_plage==9)
 	                {
 						addlog("insertion liste plage [" . $t_plage_liste[0] . "] en cours...");
-//						$insert_plage_liste = $bdd_supervision->prepare('INSERT IGNORE INTO periode_temporelle (ID_Demande, Nom_Periode, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, Dimanche, Type_Action) VALUES(:ID_Demande, :Nom_Periode, :Lundi, :Mardi, :Mercredi, :Jeudi, :Vendredi, :Samedi, :Dimanche, :Type_Action)');
 						$insert_plage_liste = $bdd_supervision->prepare('INSERT INTO periode_temporelle
 									 (ID_Demande,
 									 Nom_Periode,
@@ -387,61 +306,11 @@ try {
 	                        die("echec insertion liste plage [" . $t_plage_liste[0] . "]!" . "<br />");
 	                };
 	        };
-	        //include('gestion_doublon_periode_temporelle.php'); // devenue inutile avec l'index et la syntaxe INSERT IGNORE
-	        //echo "La liste des plages a été correctement enregistrée.<br />";
 	                        addlog("insertion liste plages OK");
 	} else
 	{
-	        //echo "Aucune liste de plage à insérer!";
 	                        addlog("aucune liste de plage à insérer");
 	};
-/*
- * Déprécié le 02/12/14
-	////////////////////////////////
-	// MAJ enregistrement plage
-	////////////////////////////////
-	$nbligne_plage=count($plage_selec);
-	//echo "nbligne_plage=" . $nbligne_plage . "<br />";
-	//	print_r($plage_selec) . "<br />";
-	if ($nbligne_plage>0 AND $plage_selec[0] != NULL) // le tableau contient au moins une ligne non null
-	{
-		for ( $i=0;$i<$nbligne_plage;$i++)
-		{
-	//		echo "ligne " . $i . ":" . $plage_selec[$i] . "<br />";
-			$t_plage_selec = explode(",",$plage_selec[$i]);// redécoupage de chaque ligne 
-			$nbchamp_plage=count($t_plage_selec);
-	//		print_r($t_plage_selec)."<br />";
-	
-			if ($nbchamp_plage==8)
-			{
-				$update_plage_selec = $bdd_supervision->prepare('UPDATE periode_temporelle SET Type_Action = "Modifier" WHERE ID_Demande = :ID_Demande AND Nom_Periode = :Nom_Periode');
-				$update_plage_selec->execute(array(
-					'ID_Demande' => htmlspecialchars($ID_Demande),
-					'Nom_Periode' => htmlspecialchars($t_plage_selec[0]),
-	//				'Lundi' => htmlspecialchars($t_plage_selec[1]),
-	//				'Mardi' => htmlspecialchars($t_plage_selec[2]),
-	//				'Mercredi' => htmlspecialchars($t_plage_selec[3]),
-	//				'Jeudi' => htmlspecialchars($t_plage_selec[4]),
-	//				'Vendredi' => htmlspecialchars($t_plage_selec[5]),
-	//				'Samedi' => htmlspecialchars($t_plage_selec[6]),
-	//				'Dimanche' => htmlspecialchars($t_plage_selec[7])
-				)) or die(print_r($update_plage_selec->errorInfo()));
-			}
-			else
-			{
-				echo "echec MAJ plage [" . $t_plage_selec[0] . "]!";
-				addlog("ECHEC MAJ plage");
-			};
-		};
-		echo "Les plages ont été correctement mises à jour.";
-				addlog("MAJ plage OK");
-	} else
-	{
-		echo "Aucune plage à modifier!";
-				addlog("aucune plage à modifier");
-	};
-*/
-	
 	$bdd_supervision->commit();
 } catch (Exception $e) {
 	$bdd_supervision->rollBack();
@@ -449,6 +318,8 @@ try {
 	die('Erreur insertion Selection: '. $e->getMessage());
 	
 };
-// Mise à jour des tables dans Supervision
+/**
+ *  Mise à jour des tables dans Supervision
+ */
 addlog("appel page complete_table.php");
 include_once('complete_table.php');

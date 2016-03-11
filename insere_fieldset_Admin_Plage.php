@@ -3,7 +3,6 @@ if (session_id()=='')
 {
 session_start();
 };
-//$ID_Plage = (isset($_POST["IDP"])) ? $_POST["IDP"] : NULL;
 if (isset($ID_Plage))
 {
 	try {
