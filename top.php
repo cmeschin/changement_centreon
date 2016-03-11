@@ -39,7 +39,7 @@ echo '<div style="padding: 5px;background: #fff;border: 1px solid #D1C8C8;border
 }
 
         echo '<div style="float: right; width: 48%">';
-echo "<div style='text-align:right;background-color:#fff;width:100%;height:3px;'><a href='http://heb.tessi-techno.fr'><img border='0' src='images/Tessi_DS_Mail.gif'></a></div>";
+echo "<div style='text-align:right;background-color:#fff;width:100%;height:3px;'><a href='http://heb.tessi-techno.fr'><img border='0' style='width:30%' src='images/Tessi_Logo_Transparent.png'></a></div>";
 echo "</div>";
 echo "</div>";
 echo "<div style='clear: both;'></div><br>";

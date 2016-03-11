@@ -1,4 +1,7 @@
-﻿2016-02-24 9.0.2
+﻿2016-02-xx 9.x.x
+	- modification du logo avec un logo vectoriel
+	
+2016-02-26 9.0.2
 	- Suppression d'un message de debug sur l'enregistrement du brouillon au niveau des hôtes
 	- #28 [9.0.1] Décalage de champ formulaire Hotes
 	
