@@ -1,4 +1,5 @@
 ﻿2016-03-16 9.1.0
+	- modification icone et logo
 	- correction gestion page maintenance
 	- correction gestion extraction prestation sur les arguments MACRO (premier caractère tronqué)
 		- suppression variable SESSION R_ID_Demande
