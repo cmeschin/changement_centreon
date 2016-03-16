@@ -9,6 +9,7 @@
 		- soit par la référence demande (tout ou partie) en mettant le caractère % comme caractère générique
 	- #31 Modification du calcul des stats: calcul du dimanche au dimanche
 		La semaine S0 comporte toutes les demandes de la semaine en cours à compter de lundi 0h
+	- modification du logo avec un logo vectoriel
 	
 2016-02-24 9.0.2
 	- Suppression d'un message de debug sur l'enregistrement du brouillon au niveau des hôtes
