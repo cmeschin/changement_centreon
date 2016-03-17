@@ -87,11 +87,14 @@ while ($res_liste_plage = $req_liste_plage->fetch())
 			echo '<label for="Commentaire_Demande' . $NbFieldset_plage . '">Commentaire :</label>';
 			echo '<textarea readonly id="Commentaire_Demande' . $NbFieldset_plage . '" name="Commentaire_Demande' . $NbFieldset_plage . '" rows="3" cols="50"> </textarea> <br />';
 		echo '</div>';
-		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
-		{
+// 		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
+// 		{
 			$ID_Plage = htmlspecialchars($res_liste_plage['id_periode_temporelle']);
 			include('insere_fieldset_Admin_Plage.php');
-		};
+// 		} else 
+// 		{
+// 			include('insere_fieldset_Standard_Plage.php');
+// 		};
 	echo '</fieldset>';
 
 	/**
