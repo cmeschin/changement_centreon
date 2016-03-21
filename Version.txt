@@ -3,6 +3,7 @@
 	- suppression de toutes les références à la table hote_temp qui ne sert plus
 	- Fix #27 [9.0.0] motif d'annulation d'un élément non visible
 	- corrections orthographiques diverses
+	- Fix #30 [9.0.2] consigne du modèle non recupérée
 	
 2016-03-16 9.1.0
 	- modification icone et logo
