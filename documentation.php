@@ -67,7 +67,7 @@ if (session_id()=='')
 					<p><b>Hôte</b>: équipement interrogeable via le réseau IP. Tout équipement ayant une adresse IP peut sur le principe être supervisé au travers de différents agents (SNMP et NRPE pour les principaux).</p>
 					<p><b>Service</b>: Il s'agit d'un point de contrôle rattaché à l'hôte; également appelé indicateur ou sonde. Tout élément d'un équipement pouvant être "mesuré" par quelque moyen que ce soit au travers des agents ci-dessus peut être un indicateur.</p>
 					<p><b>Période temporelle</b>: également appelé plage horaire. c'est la période durant laquelle un service va être contrôlé. Les disques, par exemple, sont contrôlés 24h sur 24 7j/7.</p>
-					<p><b>Fréquence</b>: c'est l'intervalle de temps entre deux contrôles au sein de la période temporelle.<br> Il faut distinguer deux fréquences. La fréquence normale qui correspond à l'intervalle de temps entre les contrôles lorsque le service est dans un statut OK; la fréquence non régulière (ou de re-essai) qui correspond aux contrôles complémentaires permettant de valider l'état d'anomalie (dégradé critique ou inconnu) d'un service.<br>
+					<p><b>Fréquence</b>: c'est l'intervalle de temps entre deux contrôles au sein de la période temporelle.<br> Il faut distinguer deux fréquences:<br> <b>La fréquence normale</b> qui correspond à l'intervalle de temps entre les contrôles lorsque le service est dans un statut OK;<br> et <b>la fréquence non régulière</b> (ou de re-essai) qui correspond aux contrôles complémentaires permettant de valider l'état d'anomalie (dégradé critique ou inconnu) d'un service.<br>
 					En règle générale deux contrôles sont paramétrés par service avec un délai plus ou moins important selon la fréquence principale; le second permettant d'éviter les faux positifs (time-out lors du premier contrôle par exemple).</p>
 					<p><b>Controle actif ou inactif</b>: Il s'agit ici d'indiquer si l'hôte ou le service paramétré dans CENTREON est actuellement supervisé ou non.<br> Un contrôle actif permettra de collecter les informations sur cet indicateur pour ensuite générer les graphes de performance (traffic réseau, occupation disque, etc...) ou produire les indicateurs de disponibilité (ping, etc...).</p>
 					<p><b>Seuil</b>: Valeur permettant de déclencher le changement de statut d'un service donc les alertes. Ces seuils permettent de gérer les statuts dégradé (WARNING) et critique (CRITIQUE).<br>
@@ -91,7 +91,7 @@ if (session_id()=='')
 					<p>Cette interface est developpée en HTML / PHP et utilise Javascript. Les messages de confirmation utilisent exclusivement des boîtes de dialogue que les navigateurs ont tendance à vouloir masquer.<br>
 					 Rassurez vous il n'y en a pas énorménent. Ne cochez pas la case suivante sinon vous serez bloqués dans la rédaction de votre demande.</p>
 					<img alt="popup_message" src="images/popup_message.png" width=400 border="1">
-					<p>Pas de panique, si vous avez cocher la case pas habitude, il vous suffira de recharger la page pour que les messages réapparaissent. Toutefois, selon où vous en êtes dans la rédaction de votre demande, certaines informations pourraient être perdues, il vous faudra les ressaisir.</p>
+					<p>Pas de panique, si vous avez cocher la case par habitude, il vous suffira de recharger la page pour que les messages réapparaissent. Toutefois, selon où vous en êtes dans la rédaction de votre demande, certaines informations pourraient être perdues, il vous faudra les ressaisir.</p>
 				</div>
 			</div>		
 		</div>
