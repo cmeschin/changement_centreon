@@ -49,13 +49,13 @@ echo '<table id="T_Liste_Demande">';
 	$i = 1;
 	while ($res_dem = $req_dem->fetch())
 	{ 
+		$title_annulation="";
+		$couleur_etat="";
 		$couleur_type = "type_MiseAJour";
 		if (htmlspecialchars($res_dem['Type_Demande']) == "Demarrage")
 		{
 			$couleur_type = "type_Demarrage";
 		};
-		
-		$couleur_etat="";
 		if (htmlspecialchars($res_dem['Etat_Demande']) == "Annulé")
 		{
 			$couleur_etat="etat_dem_annu";

@@ -102,11 +102,6 @@ try {
 			'ID_Demande' => $ID_Demande
 		)) or die(print_r($DEL_Dem_Hote->errorInfo()));
 
-		$DEL_Dem_HoteTmp = $bdd_supervision->prepare('DELETE FROM hote_temp WHERE ID_Demande= :ID_Demande;');
-		$DEL_Dem_HoteTmp->execute(array(
-			'ID_Demande' => $ID_Demande
-		)) or die(print_r($DEL_Dem_HoteTmp->errorInfo()));
-
 		$DEL_Demande = $bdd_supervision->prepare('DELETE FROM demande WHERE ID_Demande= :ID_Demande;');
 		$DEL_Demande->execute(array(
 			'ID_Demande' => $ID_Demande

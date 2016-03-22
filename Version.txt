@@ -1,4 +1,12 @@
-﻿2016-03-16 9.1.0
+﻿2016-03-xx 9.1.1
+
+	- suppression de toutes les références à la table hote_temp qui ne sert plus
+	- Fix #27 [9.0.0] motif d'annulation d'un élément non visible
+	- corrections orthographiques diverses
+	- Fix #30 [9.0.2] consigne du modèle non recupérée
+	
+2016-03-16 9.1.0
+	- modification icone et logo
 	- correction gestion page maintenance
 	- correction gestion extraction prestation sur les arguments MACRO (premier caractère tronqué)
 		- suppression variable SESSION R_ID_Demande

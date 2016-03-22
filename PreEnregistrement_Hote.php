@@ -50,18 +50,6 @@ try {
 			//addlog(print_r($MAJ_hote));
 			addlog("Nom_Hote=" . htmlspecialchars($liste_T_hote[0]));
 			addlog("IP_Hote=" . htmlspecialchars($liste_T_hote[1]));
-	
-	/* déprécié le 04-11-14
-			$INS_Hote_Temp = $bdd_supervision->prepare('INSERT IGNORE INTO hote_temp
-				(Nom_Hote, IP_Hote, ID_Demande, ID_Localisation)
-				VALUES (:Nom_Hote, :IP_Hote, :ID_Demande, :ID_Localisation)');
-			$INS_Hote_Temp->execute(array(
-				'Nom_Hote' => htmlspecialchars($liste_T_hote[0]),
-				'IP_Hote' => htmlspecialchars($liste_T_hote[1]),
-				'ID_Demande' => htmlspecialchars($ID_Demande),
-				'ID_Localisation' => htmlspecialchars($liste_T_hote[3])
-				)) or die(print_r($INS_Hote_Temp->errorInfo()));
-	*/
 		};
 	};
 	

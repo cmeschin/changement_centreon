@@ -1,14 +1,18 @@
 <meta charset="utf-8" />
 <meta http-equiv="cache-control" content="max-age=3600" /> <!-- conserve le cache pendant une heure maximum-->
 <!-- <META HTTP-EQUIV="refresh" CONTENT="60"> <!-- rafraichit automatiquement la page toutes les X secondes -->
-<title>DEV - Changement Centreon - Tessi Technologies</title>
+<title>Changement Centreon - Tessi Technologies</title>
 <link href="css/tessi-theme/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css"/>
 <link href="css/cleanslate.css" rel="Stylesheet" type="text/css"/>
 <link href="css/jquery.weekLine.css" rel="Stylesheet" type="text/css"/>
 <link href="css/jquery.datetimepicker.css" rel="Stylesheet" type="text/css"/>
 <link rel="icon" href="./images/Tessi_Icone.png" />
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> a0b7cc2bea313e9abce774409d2a09650c70c54c
 <style>
 	.custom-combobox {
 	position: relative;

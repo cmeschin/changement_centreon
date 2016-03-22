@@ -597,9 +597,6 @@ function supprime_fieldset_hote(champ)
 			$("#"+s_id_hote+" option[value='"+ID_Hote+"']").remove(); // on supprime de chaque liste déroulante l'hôte
 		});
 
-		// on supprime de la table hote_temp pour ne plus l'ajouter sur les nouveaux services
-		//alert("Nom_Hote="+Nom_Hote);
-		supprime_hote_temp(Nom_Hote);
 */		
 		$("#"+parent).remove(); // suppression effective du fieldset.
 		//alert("remove");

@@ -140,11 +140,14 @@ while ($res_liste_service = $req_liste_service->fetch())
 		echo '<label for="Service_Commentaire' . $NbFieldset_Service . '" onclick="alert(\'Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s\\\'il doit être changé.\')">Commentaire  <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
 		echo '<textarea id="Service_Commentaire' . $NbFieldset_Service . '" name="Service_Commentaire' . $NbFieldset_Service . '" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars($res_liste_service['Commentaire']) . '</textarea> <br />';
 
-		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
-		{
+// 		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
+// 		{
 			$ID_Service = htmlspecialchars($res_liste_service['ID_Service']);
 			include('insere_fieldset_Admin_Service.php');
-		};
+// 		} else 
+// 		{
+// 			include('insere_fieldset_Standard_Service.php');
+// 		};
 	echo '</fieldset>';
 
 	/**
