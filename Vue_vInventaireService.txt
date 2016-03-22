@@ -2,84 +2,76 @@
 # Vue Inventaire de la configuration Centreon #
 ###############################################
 
-CREATE OR REPLACE VIEW vInventaireService AS 
-select 
-	`sg`.`sg_name` AS `Code_Client`,
-	concat(`h`.`host_name`,' ',`h`.`host_address`) AS `Hote`,
-	`h`.`host_name` AS `Nom_Hote`,
-	`h`.`host_address` AS `IP_Hote`,
-	`h`.`host_alias` AS `Hote_Description`,
-	replace(`s`.`service_description`,'#S#','/') AS `Sonde`,
-	if((`h`.`host_activate` = '1'),if((`s`.`service_activate` = '1'),'actif','inactif'),'inactif') AS `Controle`,
-	if((`h`.`host_activate` = '1'),'actif','inactif') AS `Controle_Hote`,
-	replace(`t`.`service_description`,'#S#','/') AS `Modele`,
-	`p_t`.`service_description` AS `parent_template`,
-	concat(
-		coalesce(
-			`s`.`service_normal_check_interval`,
-			`t`.`service_normal_check_interval`,
-			`p_t`.`service_normal_check_interval`,
-			`g_p_t`.`service_normal_check_interval`,
-			`g_g_p_t`.`service_normal_check_interval`,'?'),
-		' min / ',
-		coalesce(
-			`s`.`service_retry_check_interval`,
-			`t`.`service_retry_check_interval`,
-			`p_t`.`service_retry_check_interval`,
-			`g_p_t`.`service_normal_check_interval`,
-			`g_g_p_t`.`service_normal_check_interval`,
-			'?'),
-		' min') AS `Frequence`,
-	`tp`.`tp_alias` AS `Plage_Horaire`,
-	`c`.`command_name` AS `Methode`,
-	replace(coalesce(if((`s`.`command_command_id_arg` = ''),NULL,`s`.`command_command_id_arg`),
-		if((`t`.`command_command_id_arg` = ''),NULL,`t`.`command_command_id_arg`),
-		concat('InterfaceID: ',coalesce(if((`viid`.`svc_macro_value` = ''),NULL,`viid`.`svc_macro_value`),
-		if((`t_viid`.`svc_macro_value` = ''),NULL,`t_viid`.`svc_macro_value`)),
-		' - ','Interface: ',coalesce(if((`vi`.`svc_macro_value` = ''),NULL,`vi`.`svc_macro_value`),
-		if((`t_vi`.`svc_macro_value` = ''),NULL,`t_vi`.`svc_macro_value`)),
-		' - ','Vitesse: ',coalesce(if((`vv`.`svc_macro_value` = ''),NULL,`vv`.`svc_macro_value`),
-		if((`t_vv`.`svc_macro_value` = ''),NULL,`t_vv`.`svc_macro_value`)),
-		' - ','Warning: ',coalesce(if((`vw`.`svc_macro_value` = ''),NULL,`vw`.`svc_macro_value`),
-		if((`t_vw`.`svc_macro_value` = ''),NULL,`t_vw`.`svc_macro_value`)),
-		' - ','Critical: ',coalesce(if((`vc`.`svc_macro_value` = ''),NULL,`vc`.`svc_macro_value`),
-		if((`t_vc`.`svc_macro_value` = ''),NULL,`t_vc`.`svc_macro_value`))),'?'),'#S#','/') AS `Argument`,
-	GROUP_CONCAT(coalesce(
-		replace(replace(`e_s_i`.`esi_notes_url`,'$HOSTNAME$',`h`.`host_name`),'$SERVICEDESC$',
-		replace(`s`.`service_description`,'#S#','/')))) AS `Consigne_Sonde`,
-	replace(`e_h_i`.`ehi_notes_url`,'$HOSTNAME$',`h`.`host_name`) AS `Consigne_Hote`,
-	`tp`.`tp_sunday` AS `dimanche`,
-	`tp`.`tp_monday` AS `lundi`,
-	`tp`.`tp_tuesday` AS `mardi`,
-	`tp`.`tp_wednesday` AS `mercredi`,
-	`tp`.`tp_thursday` AS `jeudi`,
-	`tp`.`tp_friday` AS `vendredi`,
-	`tp`.`tp_saturday` AS `samedi`,
-	`s`.`service_id` AS `service_id`,
-	`h`.`host_id` AS `host_id`,
-	`s`.`service_template_model_stm_id` AS `service_modele_id`,
-	`hc`.`hc_name` AS `categorie_hote`
- from ((((((((((((((((((((((((`service` `s` left join `service` `t` on((`s`.`service_template_model_stm_id` = `t`.`service_id`)))
-  left join `service` `p_t` on((`t`.`service_template_model_stm_id` = `p_t`.`service_id`)))
-  left join `service` `g_p_t` on((`p_t`.`service_template_model_stm_id` = `g_p_t`.`service_id`)))
-  left join `service` `g_g_p_t` on((`g_p_t`.`service_template_model_stm_id` = `g_g_p_t`.`service_id`))) 
-  left join `vinterfaceid` `viid` on((`s`.`service_id` = `viid`.`svc_svc_id`))) 
-  left join `vinterfaceid` `t_viid` on((`s`.`service_template_model_stm_id` = `t_viid`.`svc_svc_id`))) 
-  left join `vinterface` `vi` on((`s`.`service_id` = `vi`.`svc_svc_id`))) 
-  left join `vinterface` `t_vi` on((`s`.`service_template_model_stm_id` = `t_vi`.`svc_svc_id`))) 
-  left join `vvitesse` `vv` on((`s`.`service_id` = `vv`.`svc_svc_id`))) 
-  left join `vvitesse` `t_vv` on((`s`.`service_template_model_stm_id` = `t_vv`.`svc_svc_id`))) 
-  left join `vwarning` `vw` on((`s`.`service_id` = `vw`.`svc_svc_id`))) 
-  left join `vwarning` `t_vw` on((`s`.`service_template_model_stm_id` = `t_vw`.`svc_svc_id`))) 
-  left join `vcritical` `vc` on((`s`.`service_id` = `vc`.`svc_svc_id`))) 
-  left join `vcritical` `t_vc` on((`s`.`service_template_model_stm_id` = `t_vc`.`svc_svc_id`))) 
-  left join `timeperiod` `tp` on((`tp`.`tp_id` = coalesce(`s`.`timeperiod_tp_id`,`t`.`timeperiod_tp_id`,`p_t`.`timeperiod_tp_id`,`g_p_t`.`timeperiod_tp_id`,`g_g_p_t`.`timeperiod_tp_id`)))) 
-  left join `command` `c` on((`c`.`command_id` = coalesce(`s`.`command_command_id`,`t`.`command_command_id`,`p_t`.`command_command_id`)))) 
-  left join `servicegroup_relation` `sg_r` on((`sg_r`.`service_service_id` = `s`.`service_id`))) 
-  left join `servicegroup` `sg` on((`sg`.`sg_id` = `sg_r`.`servicegroup_sg_id`))) 
-  left join `host_service_relation` `h_s_r` on((`h_s_r`.`service_service_id` = `s`.`service_id`))) 
-  left join `host` `h` on((`h`.`host_id` = `h_s_r`.`host_host_id`))) 
-  left join `extended_service_information` `e_s_i` on((`e_s_i`.`service_service_id` IN (`s`.`service_id`,`t`.`service_id`,`p_t`.`service_id`,`g_p_t`.`service_id`,`g_g_p_t`.`service_id`)))) 
-  left join `extended_host_information` `e_h_i` on((`e_h_i`.`host_host_id` = `h`.`host_id`))) 
-  left join `hostcategories_relation` `hc_r` on((`hc_r`.`host_host_id` = `h`.`host_id`))) 
-  left join `hostcategories` `hc` on((`hc`.`hc_id` = `hc_r`.`hostcategories_hc_id`)))
+CREATE OR REPLACE VIEW vInventaireServices AS select
+  sg.sg_name AS Prestation,
+  sg.sg_name AS Code_Client,
+  concat(h.host_name,' ',h.host_address) AS Hote,
+  h.host_name AS Nom_Hote,
+  h.host_address AS IP_Hote,
+  h.host_alias AS Hote_Description,
+  replace(s.service_description,'#S#','/') AS Service,
+  replace(s.service_description,'#S#','/') AS Sonde,
+  if((h.host_activate = '1'),if((s.service_activate =
+'1'),'actif','inactif'),'inactif') AS Controle,
+  if((h.host_activate = '1'),'actif','inactif') AS Controle_Hote,
+  replace(t.service_description,'#S#','/') AS Modele,
+  p_t.service_description AS parent_template,
+  concat(
+     coalesce(
+         s.service_normal_check_interval,
+         t.service_normal_check_interval,
+         p_t.service_normal_check_interval,
+         g_p_t.service_normal_check_interval,
+         g_g_p_t.service_normal_check_interval,
+         '?'),
+     ' min / ',
+     coalesce(
+         s.service_retry_check_interval,
+         t.service_retry_check_interval,
+         p_t.service_retry_check_interval,
+         g_p_t.service_normal_check_interval,
+         g_g_p_t.service_normal_check_interval,
+         '?'),
+     ' min') AS Frequence,
+  tp.tp_alias AS Plage_Horaire,
+  c.command_name AS Methode,
+  replace(
+     coalesce(
+         if((s.command_command_id_arg = ''),NULL,s.command_command_id_arg),
+         if((t.command_command_id_arg = ''),NULL,t.command_command_id_arg),
+         '?'),'#S#','/') AS Argument,
+  coalesce(replace(replace(coalesce(e_s_i.esi_notes_url,pesi.esi_notes_url,ppesi.esi_notes_url,pppesi.esi_notes_url,ppppesi.esi_notes_url),'$HOSTNAME$',h.host_name),'$SERVICEDESC$',replace(s.service_description,'#S#','/'))) AS Consigne_Sonde,
+  replace(e_h_i.ehi_notes_url,'$HOSTNAME$',h.host_name) AS Consigne_Hote,
+  tp.tp_sunday AS dimanche,
+  tp.tp_monday AS lundi,
+  tp.tp_tuesday AS mardi,
+  tp.tp_wednesday AS mercredi,
+  tp.tp_thursday AS jeudi,
+  tp.tp_friday AS vendredi,
+  tp.tp_saturday AS samedi,
+  s.service_id AS service_id,
+  h.host_id AS host_id,
+  s.service_template_model_stm_id AS service_modele_id,
+  hc.hc_name AS categorie_hote
+  from service s
+  left join service t on s.service_template_model_stm_id = t.service_id
+  left join service p_t on t.service_template_model_stm_id = p_t.service_id
+  left join service g_p_t on p_t.service_template_model_stm_id = g_p_t.service_id
+  left join service g_g_p_t on g_p_t.service_template_model_stm_id=
+g_g_p_t.service_id
+  left join timeperiod tp on tp.tp_id =
+coalesce(s.timeperiod_tp_id,t.timeperiod_tp_id,p_t.timeperiod_tp_id,g_p_t.timeperiod_tp_id,g_g_p_t.timeperiod_tp_id)
+  left join command c on c.command_id =
+coalesce(s.command_command_id,t.command_command_id,p_t.command_command_id)
+  left join servicegroup_relation sg_r on sg_r.service_service_id = s.service_id
+  left join servicegroup sg on sg.sg_id = sg_r.servicegroup_sg_id
+  left join host_service_relation h_s_r on h_s_r.service_service_id = s.service_id
+  left join host h on h.host_id = h_s_r.host_host_id
+  left join extended_service_information e_s_i on e_s_i.service_service_id = s.service_id
+  left join extended_service_information pesi on pesi.service_service_id = t.service_id
+  left join extended_service_information ppesi on ppesi.service_service_id = p_t.service_id
+  left join extended_service_information pppesi on pppesi.service_service_id = g_p_t.service_id
+  left join extended_service_information ppppesi on ppppesi.service_service_id = g_g_p_t.service_id
+  left join extended_host_information e_h_i on e_h_i.host_host_id = h.host_id
+  left join hostcategories_relation hc_r on hc_r.host_host_id = h.host_id
+  left join hostcategories hc on hc.hc_id = hc_r.hostcategories_hc_id;
