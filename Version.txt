@@ -1,4 +1,9 @@
-﻿2016-03-22 9.1.1
+﻿2016-03-25 9.2.0
+
+	- Ajout d'une statistique de traitement des demandes par semaine
+	- suppression d'une balise <div> de fermeture en surplus sur la page BAM_config_notifications.php
+	
+2016-03-22 9.1.1
 
 	- suppression de toutes les références à la table hote_temp qui ne sert plus
 	- Fix #27 [9.0.0] motif d'annulation d'un élément non visible

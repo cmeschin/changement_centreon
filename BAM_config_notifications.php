@@ -19,14 +19,14 @@ echo '<input type="text" id="gb_mail_liste" name="gb_mail_liste" onblur="verifCh
 echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_gb_mail_liste" /> <br />';
 
 echo '<div class="div_jour">';
-echo '<p id="liste_jour">Cochez les jours de notifications :<br />';
-	echo '<input type="checkbox" name="lundi" id="lundi" class="gb_jour gb_config"/> <label for="lundi">Lundi</label><br />';
-	echo '<input type="checkbox" name="mardi" id="mardi" class="gb_jour gb_config"/> <label for="mardi">Mardi</label><br />';
-	echo '<input type="checkbox" name="mercredi" id="mercredi" class="gb_jour gb_config"/> <label for="mercredi">Mercredi</label><br />';
-	echo '<input type="checkbox" name="jeudi" id="jeudi" class="gb_jour gb_config"/> <label for="jeudi">Jeudi</label><br />';
-	echo '<input type="checkbox" name="vendredi" id="vendredi" class="gb_jour gb_config"/> <label for="vendredi">Vendredi</label><br />';
-	echo '<input type="checkbox" name="samedi" id="samedi" class="gb_jour gb_config"/> <label for="samedi">Samedi</label><br />';
-	echo '<input type="checkbox" name="dimanche" id="dimanche" class="gb_jour gb_config"/> <label for="dimanche">Dimanche</label><br />';
+	echo '<p id="liste_jour">Cochez les jours de notifications :<br />';
+		echo '<input type="checkbox" name="lundi" id="lundi" class="gb_jour gb_config"/> <label for="lundi">Lundi</label><br />';
+		echo '<input type="checkbox" name="mardi" id="mardi" class="gb_jour gb_config"/> <label for="mardi">Mardi</label><br />';
+		echo '<input type="checkbox" name="mercredi" id="mercredi" class="gb_jour gb_config"/> <label for="mercredi">Mercredi</label><br />';
+		echo '<input type="checkbox" name="jeudi" id="jeudi" class="gb_jour gb_config"/> <label for="jeudi">Jeudi</label><br />';
+		echo '<input type="checkbox" name="vendredi" id="vendredi" class="gb_jour gb_config"/> <label for="vendredi">Vendredi</label><br />';
+		echo '<input type="checkbox" name="samedi" id="samedi" class="gb_jour gb_config"/> <label for="samedi">Samedi</label><br />';
+		echo '<input type="checkbox" name="dimanche" id="dimanche" class="gb_jour gb_config"/> <label for="dimanche">Dimanche</label><br />';
 	echo '</p>';
 echo '</div>';
 	echo '<div id="heure">';
@@ -38,4 +38,3 @@ echo '<div id="charger_liste_am">';
 	include('BAM_charge_liste_am.php');
 echo '</div>';
 echo '<button id="Enregistre_Notif_BAM" onclick="Enregistre_Notif_BAM();">Enregistrer notif BAM</button> <br />';
-echo '</div>';

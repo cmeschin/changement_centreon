@@ -8,11 +8,7 @@
 <link href="css/jquery.weekLine.css" rel="Stylesheet" type="text/css"/>
 <link href="css/jquery.datetimepicker.css" rel="Stylesheet" type="text/css"/>
 <link rel="icon" href="./images/Tessi_Icone.png" />
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> a0b7cc2bea313e9abce774409d2a09650c70c54c
 <style>
 	.custom-combobox {
 	position: relative;

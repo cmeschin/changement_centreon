@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <?php
-session_start();
+//session_start();
 
 echo '<html>';
 echo '<head>';
 		include_once('top.php');
-		include('head.php');
+		include_once('head.php');
 		include('log.php'); // chargement de la fonction de log
 		addlog("chargement page administration.");
 	echo '<title>Administration changement - Tessi Technologies</title>';
@@ -22,6 +22,7 @@ echo '<div id="principal">';
 				echo '<li><a href="#tabs-1">Gestion des modèles de service</a></li>';
 				echo '<li><a href="#tabs-2">Association des modèles</a></li>';
  				echo '<li><a href="#tabs-3">Gestion des notifications BAM</a></li>';
+ 				echo '<li><a href="#tabs-4">Statistiques de traitement</a></li>';
 			echo '</ul>';
 			echo '<div id="tabs-1">';
 				echo '<fieldset id="Admin_Modele_Service" class="Admin_Modele_Service">';
@@ -124,11 +125,24 @@ echo '<div id="principal">';
 					echo '<h3>Configuration des notifications BAM</h3>';
 					echo '<div id="config_notifications_bam">';
 						echo '<!-- Bouton Ajout notification -->';
- 					echo '<button id="config_notification" onclick="config_notification();">Configurer nouvelle notification</button>';
-
+ 						echo '<button id="config_notification" onclick="config_notification();">Configurer nouvelle notification</button>';
 						echo '<fieldset id="field_config_notification" class="config_notification_bam">';
   							include_once('BAM_config_notifications.php');
 						echo '</fieldset>';
+					echo '</div>';
+				echo '</div>';
+			echo '</div>';
+			echo '<div id="tabs-4">';
+ 				echo '<h2>Statistiques de traitement des demandes</h2>';
+ 				include_once('statistiques_traitement.php');
+				echo '<div id="accordion_charge_temps">';
+					echo '<h3>Charge horaire estimée par semaine</h3>';
+					echo '<div id="charge_horaire">';
+						echo '<img border="0" sstyle="width:30%" src="charge_temps.png">';														
+					echo '</div>';
+					echo '<h3>Charge volumétrique par semaine</h3>';
+					echo '<div id="charge_volumetrique">';
+						echo '<img border="0" sstyle="width:30%" src="charge_nombre.png">';
 					echo '</div>';
 				echo '</div>';
 			echo '</div>';
