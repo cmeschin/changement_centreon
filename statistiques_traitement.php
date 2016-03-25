@@ -1,6 +1,4 @@
 <?php
-//ob_start();
-//session_start();
 /**
  * Lancement
  */
@@ -11,23 +9,23 @@
  * Jour de la semaine => pour la vérification sur la calendrier => De 1 (pour Lundi) à 7 (pour Dimanche)
  * Heure actuelle => pour la vérification sur l'heure de notification
  */
-$debug=false; // activation du mode debug
-//initialisation mail
-$adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
-//$adresse_mail = "c.meschin@free.fr";
-$adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
-if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
-{
-	$passage_ligne = "\r\n";
-}
-else
-{
-	$passage_ligne = "\n";
-};
+// $debug=false; // activation du mode debug
+// //initialisation mail
+// $adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
+// //$adresse_mail = "c.meschin@free.fr";
+// $adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
+// if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
+// {
+// 	$passage_ligne = "\r\n";
+// }
+// else
+// {
+// 	$passage_ligne = "\n";
+// };
 
 // try {
 // 	include_once('connexion_sql_supervision.php'); // connexion à la base changement
-	$bdd_supervision->beginTransaction();
+//	$bdd_supervision->beginTransaction();
 // 	$heure_envoi = date("d/m/Y H:i");
 // 	$jour_semaine = date("N");
 // 	$jour7=$jour_semaine+7;
@@ -120,9 +118,9 @@ else
  $MyData = new pData();
  	$MyData2 = new pData();
  $MyData->addPoints($Temps_Traite,"Demandes traitées");
- $MyData->addPoints($Temps_A_Traiter,"Demandes effectuées");
+ $MyData->addPoints($Temps_A_Traiter,"Demandes rédigées");
  	$MyData2->addPoints($Nbre_Traite,"Demandes traitées");
- 	$MyData2->addPoints($Nbre_A_Traiter,"Demandes effectuées");
+ 	$MyData2->addPoints($Nbre_A_Traiter,"Demandes rédigées");
  $MyData->setSerieWeight("charge semaine",2);
 	$MyData2->setSerieWeight("charge semaine",2);
 // $MyData->setSerieTicks("Probe 2",4);
