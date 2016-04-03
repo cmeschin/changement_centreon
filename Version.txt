@@ -1,7 +1,7 @@
 ﻿2016-04-xx 9.3.0
 
 	- lors d'une reprise de brouillon mise à jour de la date de supervision à J+7 si date dépassée
-	
+	- #34 Automate_mail: ajout temps estimé pour les demandes traitées.
 2016-03-25 9.2.0
 
 	- Ajout d'une statistique de traitement des demandes par semaine
