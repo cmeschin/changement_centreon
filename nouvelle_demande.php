@@ -4,40 +4,36 @@ if (session_id()=='')
 {
 session_start();
 };
-?>
 
-<html>
-<head>
-	<?php
-		include('top.php');
-		include('head.php');
-	?>
-</head>
-<body>
-<?php
-	//include('top.php');
-	include('log.php'); // chargement de la fonction de log
-	include_once('connexion_sql_centreon.php');
-	addlog("chargement nouvelle demande.");
+echo '<html>';
+echo '<head>';
+include('top.php');
+include('head.php');
 
-	// déclaration des constantes de la demande
-	$date_demande=date("Y-m-d H:i:s");
-	
-	$date=date_create();
-	date_add($date,date_interval_create_from_date_string('7 days'));
-	$date_defaut=date_format($date,"Y-m-d");
-	$ref_demande=date("ymdHi") . "-" . $_SESSION['user_changement_centreon'];
-	$_SESSION['ref_dem'] = $ref_demande;
-	$_SESSION['ID_dem'] = 0;
-	addlog("Initialisation des constantes:");
-	addlog("ID_demande:".$_SESSION['ID_dem']."");
-	addlog("Date_demande:".$date_demande."");
-	addlog("Ref_demande:".$ref_demande."");
-	$_SESSION['Reprise'] = false; // Il ne s'agit pas d'une reprise demande
-	$_SESSION['Nouveau'] = true; // Il s'agit d'une nouvelle demande
-	$_SESSION['Extraction'] = false; // Il ne s'agit pas d'une extraction PDF
-	$_SESSION['PDF'] = false; // Il ne s'agit pas d'une extraction PDF
-	$_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
+echo '</head>';
+echo '<body>';
+include('log.php'); // chargement de la fonction de log
+include_once('connexion_sql_centreon.php');
+addlog("chargement nouvelle demande.");
+
+// déclaration des constantes de la demande
+$date_demande=date("Y-m-d H:i:s");
+
+$date=date_create();
+date_add($date,date_interval_create_from_date_string('7 days'));
+$date_defaut=date_format($date,"Y-m-d");
+$ref_demande=date("ymdHi") . "-" . $_SESSION['user_changement_centreon'];
+$_SESSION['ref_dem'] = $ref_demande;
+$_SESSION['ID_dem'] = 0;
+addlog("Initialisation des constantes:");
+addlog("ID_demande:".$_SESSION['ID_dem']."");
+addlog("Date_demande:".$date_demande."");
+addlog("Ref_demande:".$ref_demande."");
+$_SESSION['Reprise'] = false; // Il ne s'agit pas d'une reprise demande
+$_SESSION['Nouveau'] = true; // Il s'agit d'une nouvelle demande
+$_SESSION['Extraction'] = false; // Il ne s'agit pas d'une extraction PDF
+$_SESSION['PDF'] = false; // Il ne s'agit pas d'une extraction PDF
+$_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 
 ?>	
 <div id="principal">

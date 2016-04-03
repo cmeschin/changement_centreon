@@ -12,8 +12,8 @@
  */
 $debug=false; // activation du mode debug
 //initialisation mail
-$adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
-//$adresse_mail = "c.meschin@free.fr";
+//$adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
+$adresse_mail = "cedric.meschin@tessi.fr";
 $adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
 if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
 {
@@ -105,24 +105,28 @@ try {
 	
 	$req_S3 = $bdd_supervision->prepare('
 		SELECT
+			CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global,
 			count(Etat_demande) AS Nbre
 		FROM demande
 		WHERE Date_Fin_Traitement>"' . $dim_S3 . '" AND Date_Fin_Traitement<= "' . $dim_S2 . '" AND Etat_Demande="Traité";');
 	$req_S3->execute(array()) or die(print_r($req_S3->errorInfo()));
 	$req_S2 = $bdd_supervision->prepare('
 		SELECT
+			CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global,
 			count(Etat_demande) AS Nbre
 		FROM demande
 		WHERE Date_Fin_Traitement>"' . $dim_S2 . '" AND Date_Fin_Traitement<= "' . $dim_S1 . '" AND Etat_Demande="Traité";');
 	$req_S2->execute(array()) or die(print_r($req_S2->errorInfo()));
 	$req_S1 = $bdd_supervision->prepare('
 		SELECT
+			CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global,
 			count(Etat_demande) AS Nbre
 		FROM demande
 		WHERE Date_Fin_Traitement>"' . $dim_S1 . '" AND Date_Fin_Traitement<= "' . $dim_S0 . '" AND Etat_Demande="Traité";');
 	$req_S1->execute(array()) or die(print_r($req_S1->errorInfo()));
 	$req_S0 = $bdd_supervision->prepare('
 		SELECT
+			CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global,
 			count(Etat_demande) AS Nbre
 		FROM demande
 		WHERE Date_Fin_Traitement>"' . $dim_S0 . '" AND Etat_Demande="Traité";');
@@ -313,18 +317,22 @@ try {
 	while ($res_S3 = $req_S3->fetch())
 	{
 		$Nb_S3=htmlspecialchars($res_S3['Nbre']);
+		$Tps_S3=htmlspecialchars($res_S3['Temps_Global']);
 	};
 	while ($res_S2 = $req_S2->fetch())
 	{
 		$Nb_S2=htmlspecialchars($res_S2['Nbre']);
+		$Tps_S2=htmlspecialchars($res_S2['Temps_Global']);
 	};
 	while ($res_S1 = $req_S1->fetch())
 	{
 		$Nb_S1=htmlspecialchars($res_S1['Nbre']);
+		$Tps_S1=htmlspecialchars($res_S1['Temps_Global']);
 	};
 	while ($res_S0 = $req_S0->fetch())
 	{
 		$Nb_S0=htmlspecialchars($res_S0['Nbre']);
+		$Tps_S0=htmlspecialchars($res_S0['Temps_Global']);
 	};
 
 	while ($res_anticipJ_S3 = $req_anticipJ_S3->fetch())
@@ -469,10 +477,10 @@ try {
                                    <th class='Tableau1_A1'>semaine S0</th>
                                    </tr>";
 	$contenu_html .= "<tr>
-	 				<td class='Tableau1_A1'>" . $Nb_S3 . "</td>
-	 				<td class='Tableau1_A1'>" . $Nb_S2 . "</td>
-	 				<td class='Tableau1_A1'>" . $Nb_S1 . "</td>
-	 				<td class='Tableau1_A1'>" . $Nb_S0 . "</td>
+	 				<td class='Tableau1_A1'>" . $Nb_S3 . "(" . $Tps_S3 . ")</td>
+	 				<td class='Tableau1_A1'>" . $Nb_S2 . "(" . $Tps_S2 . ")</td>
+	 				<td class='Tableau1_A1'>" . $Nb_S1 . "(" . $Tps_S1 . ")</td>
+	 				<td class='Tableau1_A1'>" . $Nb_S0 . "(" . $Tps_S0 . ")</td>
 	 			</tr>";
 	$contenu_html .= "</table><br />";
 
@@ -608,7 +616,7 @@ try {
 				//==========
 				
 				//=====Création du message.
- 				$message.= $passage_ligne."--".$boundary.$passage_ligne; // Ouverture Boundary HTML
+ 				$message= $passage_ligne."--".$boundary.$passage_ligne; // Ouverture Boundary HTML
 				//=====Ajout du message au format HTML
 				//$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
 				$message.= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
