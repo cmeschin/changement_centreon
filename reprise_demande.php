@@ -36,8 +36,8 @@ addlog("chargement reprise demande.");
 			{
 				//addlog("##### ATTENTION tentative d'usurpation d'identité par " . $_SESSION['user_changement_centreon'] . "pour éditer la demande " . $ID_Demande . " de " . $Demandeur . ".");
 				echo '<h3>Bonjour, ' . $_SESSION['name_changement_centreon'] . ' vous n\'êtes pas autorisé à éditer cette demande car vous n\'êtes ni administrateur ni l\'auteur de celle-ci!</h3>';
-				$date_demande=date("d-m-Y H:i:s");
-				echo '<p>nous sommes le ' . $date_demande . '</p>';
+				$aujourdhui=date("d-m-Y H:i:s");
+				echo '<p>nous sommes le ' . $aujourdhui . '</p>';
 				echo '<p>Merci de choisir un menu ci dessus!</p>';
 			} else // user= demandeur ou administrateur
 			{
@@ -54,6 +54,13 @@ addlog("chargement reprise demande.");
 					// déclaration des constantes de la demande
 					$date_demande = htmlspecialchars($res_Demande['Date_Demande']);
 					$ref_demande = htmlspecialchars($res_Demande['Ref_Demande']);
+					$date_livraison = htmlspecialchars($res_Demande['Date_Supervision_Demandee']);
+					if ($date_livraison < date("Y-m-d"))
+					{
+						$nouvelle_date=date_create();
+						date_add($nouvelle_date,date_interval_create_from_date_string('7 days'));
+						$date_livraison=date_format($nouvelle_date,"Y-m-d");
+					}
 					$_SESSION['ref_dem'] = htmlspecialchars($res_Demande['Ref_Demande']);
 					$_SESSION['ID_dem'] = htmlspecialchars($res_Demande['ID_Demande']);
 					$_SESSION['Code_Client'] = htmlspecialchars($res_Demande['Code_Client']);
@@ -103,8 +110,8 @@ addlog("chargement reprise demande.");
 			 						?>
 									<img src="images/img_ok.png" class="verif" alt="correct" id="img_type_demande" ondblclick="deverouille_liste(this)" />
 									<label for="date_livraison_demandee" onclick="alert('Indiquez la date à laquelle vous souhaiteriez que la supervision soit en place, idéalement la date de démarrage en production.\nCliquez sur le calendrier pour choisir une date.')" title="Cliquez pour plus d'informations.">Date de supervision souhaitée <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
-									<input readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo htmlspecialchars($res_Demande['Date_Supervision_Demandee']);?>" size="10"/>
-									<img src="images/img_ok.png" class="verif" alt="correct" id="img_date_livraison_demandee" />
+									<input readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" value="<?php echo $date_livraison;?>" size="10"/>
+									<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_date_livraison_demandee" />
 								</span> <br />									
 									
 								<label for="client" onclick="alert('Une fois que la demande est initialisée, il n\'est plus possible de changer la prestation.')" title="Cliquez pour plus d'informations.">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
