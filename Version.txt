@@ -1,4 +1,4 @@
-﻿2016-04-xx 9.3.0
+﻿2016-04-05 9.3.0
 
 	- lors d'une reprise de brouillon mise à jour de la date de supervision à J+7 si date dépassée
 	- #34 Automate_mail: ajout temps estimé pour les demandes traitées.
