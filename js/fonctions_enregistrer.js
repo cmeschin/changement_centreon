@@ -1159,10 +1159,15 @@ function Gestion_caractere_speciaux(str)
 	{
 		str = str.replace(/\[/g,"_CO_");
 	};
-	var reg1=new RegExp("[\]]","g");
+	var reg1=new RegExp("[\\]]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\]/g,"_CF_");
+	};
+	var reg1=new RegExp("[%5D]","g");
+	if (str.match(reg1))
+	{
+		str = str.replace(/%5D/g,"_CF_");
 	};
 	var reg1=new RegExp("[\{]","g");
 	if (str.match(reg1))

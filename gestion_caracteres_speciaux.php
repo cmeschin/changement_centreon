@@ -57,6 +57,10 @@ if ($_SESSION['Admin']==False)
 	{
 		$Valeur_Champ = str_replace("_CF_","]",$Valeur_Champ);
 	};
+	if (preg_match("#%5D#",$Valeur_Champ)) // Crochet fermant encodé
+	{
+		$Valeur_Champ = str_replace("%5D","]",$Valeur_Champ);
+	};
 	if (preg_match("#_AO_#",$Valeur_Champ))
 	{
 		$Valeur_Champ = str_replace("_AO_","{",$Valeur_Champ);
