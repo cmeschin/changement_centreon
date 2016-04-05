@@ -49,6 +49,22 @@ if ($_SESSION['Admin']==False)
 	{
 		$Valeur_Champ = str_replace("_ETOIL_","*",$Valeur_Champ);
 	};
+	if (preg_match("#_CO_#",$Valeur_Champ))
+	{
+		$Valeur_Champ = str_replace("_CO_","[",$Valeur_Champ);
+	};
+	if (preg_match("#_CF_#",$Valeur_Champ))
+	{
+		$Valeur_Champ = str_replace("_CF_","]",$Valeur_Champ);
+	};
+	if (preg_match("#_AO_#",$Valeur_Champ))
+	{
+		$Valeur_Champ = str_replace("_AO_","{",$Valeur_Champ);
+	};
+	if (preg_match("#_AF_#",$Valeur_Champ))
+	{
+		$Valeur_Champ = str_replace("_AF_","}",$Valeur_Champ);
+	};
 };
 /**
  * Ces substitutions sont systématiques car en dehors des scripts TESSI
