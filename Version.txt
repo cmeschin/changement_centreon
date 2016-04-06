@@ -1,7 +1,13 @@
-﻿2016-04-06 9.3.1
+﻿2016-04-xx 9.4.0
+	- remplacement de certaines popup par des messages de confirmation inclus dans la page
+	- #29 pb arguments service en lecture seule
+		* désactivation des liens du menu si demande en cours (nouvelle ou reprise)
+		* ajout bouton de retour à l'accueil après enregistrement de brouillon permettant de
+			 réinitialiser les deux variables de session Nouveau et Reprise afin de libérer le menu
+	
+2016-04-06 9.3.1
 	- #4 pb affichage d'une demande suite à ouverture par le lien du mail
 	- Suppression du popup de confirmation d'enregistrement sur diverses actions
-	- remplacement de certaines popup par des messages de confirmation inclus dans la page
 	- déplacement de la demande de motif sur Annulation de la demande complète après la confirmation de l'annulation
 	
 2016-04-05 9.3.0
