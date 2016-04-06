@@ -43,10 +43,10 @@ echo '<div id="principal">';
 			echo '</div>';
 		} else 
 		{
-		if (($ID_Demande != NULL ) AND (is_numeric($ID_Demande) == false))
-		{
-			echo '<p>La référence tranmise n\'est pas un entier (' . $ID_Demande . '). Affichage de toutes les demandes en cours.</p>'; 
-		}
+			if (($ID_Demande != NULL ) AND (is_numeric($ID_Demande) == false))
+			{
+				echo '<p>La référence tranmise n\'est pas un entier (' . $ID_Demande . '). Affichage de toutes les demandes en cours.</p>'; 
+			};
 			echo '<div id="tabs_DEC">';
 				 echo '<ul>';
 					echo '<li><a href="#tabs_DEC-1">Liste des demandes en cours</a></li>';

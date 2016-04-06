@@ -323,7 +323,8 @@ function PreEnregistrer_fieldset_hote(champ)
 				$("#img_Nom"+id_input_hote+"").attr("src","images/img_ver.png"); // passe le champ im_Nom_Hote en Verrouillé
 				$("#"+hote_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
 				
-				alert("Pré-enregistrement de l'hôte terminé!\nCet hôte est désormais disponible dans la configuration des services");
+				// v9.3.1
+				//alert("Pré-enregistrement de l'hôte terminé!\nCet hôte est désormais disponible dans la configuration des services");
 			}; 
 			PreEnregistre_Hote(PreEnregistrement_termine);
 		};
@@ -394,7 +395,8 @@ function PreEnregistrer_fieldset_plage(champ)
 				$(this).append('<option value="'+ Nom_Plage +'">'+ Nom_Plage +'</option>');
 			});
 			$("#"+plage_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
-			alert("Pré-enregistrement de la plage terminé!\nCette plage est désormais disponible dans la configuration des services");
+			// v9.3.1
+			//alert("Pré-enregistrement de la plage terminé!\nCette plage est désormais disponible dans la configuration des services");
 		}; 
 		PreEnregistre_Plage(PreEnregistrement_plage_termine);
 	};
@@ -820,7 +822,8 @@ function Enregistrer_Brouillon(Bouton)
 					return false;
 				};
 				function enregistrement_brouillon(resultat){
-					alert("Enregistrement du brouillon terminé!");
+					// v9.3.1
+					//alert("Enregistrement du brouillon terminé!");
 					$("#Enregistrer_Brouillon").removeAttr("Disabled");
 					$("#Valider_Demande").removeAttr("Disabled");
 				}; 
@@ -870,16 +873,13 @@ function enregistre_Etat_Demande(champ,ID)
 	} else if (Etat_Param == "Annulé")
 	{
 		var motif_annulation="";
-//		affiche_motif_annul(motif_annulation);
 	    while ( motif_annulation == null || motif_annulation =="")
 	    {
 	    	motif_annulation=prompt("Motif de l'annulation:","doublon");
-//	    	alert("Motif annulation:"+motif_annulation);
 	    };
 //	    return motif_annulation;
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_annu");
-		//alert("Motif Annulation saisi:"+motif_annulation);
 	} else if (Etat_Param == "Supprimer")
 	{
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
@@ -913,7 +913,8 @@ function enregistre_Etat_Demande(champ,ID)
 				window.location.reload(); // rechargement de la page pour afficher le statut "en cours"
 			};
 			
-			alert("Mise à jour Etat paramétrage OK!");
+			// v9.3.1
+			//alert("Mise à jour Etat paramétrage OK!");
 		} else if(xhr.readyState == 4 && xhr.status != 200) 
 		{ 
 			gestion_erreur(xhr);
@@ -942,16 +943,6 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 	 *   => Tous les hôtes, services et plages seront forcés dans l'état choisi ainsi que la demande.
 	 */
 	var Etat_Param = $("Select#Liste_"+champ.id).val();
-	if (Etat_Param == "Annulé")
-	{
-		var motif_annulation="";
-//		affiche_motif_annul(motif_annulation);
-		while ( motif_annulation == null || motif_annulation =="")
-	    {
-	    	motif_annulation=prompt("Motif de l'annulation:","doublon");
-//	    	alert("Motif annulation:"+motif_annulation);
-	    };
-	};
 	if (Etat_Param != "Supprimer")
 	{
 		var MessageConfirmation = "Vous allez forcer l'ensemble des sondes de la demande n°" + ID_Demande + " dans l'état [" + Etat_Param + "]. Etes-vous sûr?";
@@ -961,6 +952,15 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 	};
 	if (confirm(MessageConfirmation)) 
 	{
+		if (Etat_Param == "Annulé")
+		{
+			var motif_annulation="";
+			while ( motif_annulation == null || motif_annulation =="") // tant que le motif n'est pas saisi on boucle
+		    {
+		    	motif_annulation=prompt("Motif de l'annulation:","doublon");
+		    };
+		};
+
 		var xhr = getXMLHttpRequest(); //création de l'instance XHR
 		xhr.onreadystatechange = function() 
 		{
@@ -1054,7 +1054,8 @@ function Enregistre_Notif_BAM()
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			$("#img_loading").remove();
 			$("#p_loading").remove();
-			alert("enregistrement terminé.");
+			// v9.3.1
+			//alert("enregistrement terminé.");
 			window.location.replace("./administration.php#tabs-3");
 			window.location.reload();
 		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
@@ -1378,7 +1379,7 @@ function controle_preenregistrement_hote()
 		}else
 		{
 			PreEnregistre=false;
-			alert("Au moins un hôte créé n'a pas été pré-enregistré."+PreEnregistre);
+			alert("Attention, au moins un hôte créé n'a pas été pré-enregistré."+PreEnregistre);
 			return PreEnregistre;
 		};
 	});
@@ -1434,14 +1435,6 @@ function timer_enregistrement()
 		};
 	}; 
 	recuperation_Timer(avertissement_Timer);
-};
-
-function affiche_motif_annul(motif_annulation)
-{
-    //var motif_annulation=prompt("Motif de l'annulation:","doublon");
-	//var motif_annulation="";
-//    if (answer!=null && answer!="")
-
 };
 
 function gestion_erreur(xhr)

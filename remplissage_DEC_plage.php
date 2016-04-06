@@ -3,9 +3,9 @@ if (session_id()=='')
 {
 session_start();
 };
-if ($_SESSION['Extraction'] == false)
+if (($_SESSION['Extraction'] == False) AND ($ID_Demande == NULL))
 {
-	$ID_Demande = (isset($_POST["ID_Dem"])) ? $_POST["ID_Dem"] : NULL;
+	$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"] : NULL;
 /**
  * Aucune utilité de l'ID_Demande "erroné pour une extraction
 	} else 

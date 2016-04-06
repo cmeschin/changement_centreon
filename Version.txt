@@ -1,4 +1,9 @@
-﻿2016-04-05 9.3.0
+﻿2016-04-06 9.3.1
+	- # pb affichage d'une demande suite à ouverture par le lien du mail
+	- Suppression du popup de confirmation d'enregistrement sur diverses actions
+	- déplacement de la demande de motif sur Annulation de la demande complète après la confirmation de l'annulation
+	
+2016-04-05 9.3.0
 
 	- lors d'une reprise de brouillon mise à jour de la date de supervision à J+7 si date dépassée
 	- #34 Automate_mail: ajout temps estimé pour les demandes traitées.

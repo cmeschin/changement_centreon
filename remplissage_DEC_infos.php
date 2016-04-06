@@ -3,10 +3,11 @@ if (session_id()=='')
 {
 session_start();
 };
-//include('log.php'); // chargement de la fonction de log
-if ($_SESSION['Extraction'] == False)
+include('log.php'); // chargement de la fonction de log
+addlog("ID_Demande_avant=" . $ID_Demande);
+if (($_SESSION['Extraction'] == False) AND ($ID_Demande == NULL))
 {
-	$ID_Demande = (isset($_POST["ID_Dem"])) ? $_POST["ID_Dem"] : NULL;
+	$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"] : NULL;
 /**
  * Aucune utilité de l'ID_Demande "erroné pour une extraction
 	} else 
@@ -14,7 +15,7 @@ if ($_SESSION['Extraction'] == False)
 		$ID_Demande = $_SESSION['Extraction'];
 */
 };
-//addlog("ID_Demande=" . $ID_Demande);
+addlog("ID_Demande=" . $ID_Demande);
 
 include_once('connexion_sql_supervision.php');
 
