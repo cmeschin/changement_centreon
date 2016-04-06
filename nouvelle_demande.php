@@ -127,6 +127,7 @@ $_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 					<div id="liste_plage"></div>
 				</div> 
 				<button id="Valider_Selection" name="" onclick="enregistre_selection()">Valider votre sélection</button><br />
+				<div id="messageValidation"></div>
 			</div>
 			<div id="tabs-3">
 				<div id="accordionParam">
@@ -152,6 +153,7 @@ $_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 					<span>
 						<button id="Enregistrer_Brouillon" onclick="Enregistrer_Brouillon(true)">Enregistrer comme brouillon</button>
 						<button id="Valider_Demande" onclick="Valider_Demande()">Valider votre demande</button>
+						<div id="bip"></div>
 					</span><br/>
 					<!-- <input type="submit" value="Valider votre demande." id="Valider_demande"/> -->
 			</div>
