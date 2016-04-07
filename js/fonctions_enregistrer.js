@@ -41,6 +41,7 @@ function enregistre_selection()
 	$("#Rechercher").attr("Disabled","Disabled");
 	$("#Ajouter_Selection_Hote").attr("Disabled","Disabled");
 	$("#Valider_Selection").attr("Disabled","Disabled");
+	$("#messageValidationOK").remove();
 
 	/**
 	 *  Traitement de l'onglet Info Généralres
@@ -246,7 +247,8 @@ function enregistre_selection()
 		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
 		$("#Valider_Selection").removeAttr("Disabled");
 		$('html,body').animate({scrollTop:0},'slow'); // retourne en haut de la page après l'enregistrement
-		alert("Chargement terminé! Vous pouvez passer au paramétrage des hôtes et services sur l'onglet paramétrage.");
+		//alert("Chargement terminé! Vous pouvez passer au paramétrage des hôtes et services sur l'onglet paramétrage.");
+		$("#messageValidation").append('<p id="messageValidationOK" style="background-color:green">Chargement terminé!<br>Vous pouvez passer au paramétrage des hôtes et services sur l\'onglet paramétrage.</p>');
 		$("#lien_tabs3").effect("pulsate");
 	}; 
 }; 
@@ -824,6 +826,25 @@ function Enregistrer_Brouillon(Bouton)
 				function enregistrement_brouillon(resultat){
 					// v9.3.1
 					//alert("Enregistrement du brouillon terminé!");
+					var counter = 10;
+					var intervalId = null;
+					function action()
+					{
+					  clearInterval(intervalId);
+					  $("#bip_retour").remove();
+					};
+					function bip()
+					{
+					  counter--;
+					};
+					function start()
+					{
+					  intervalId = setInterval(bip, 1000);
+					  setTimeout(action, counter * 1000);
+					};	
+
+					$("#bip").append('<p id="bip_retour">Brouillon enregistré!<br> <button onclick="goToMenu()">Cliquez sur ce bouton</button> pour laisser votre demande en l\'état et revenir immédiatement à l\'accueil sinon continuer de tavailler normalement.<br>Ce message disparaitra automatiquement dans 10 secondes.</p>');
+					start();
 					$("#Enregistrer_Brouillon").removeAttr("Disabled");
 					$("#Valider_Demande").removeAttr("Disabled");
 				}; 

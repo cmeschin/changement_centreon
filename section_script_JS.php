@@ -14,6 +14,11 @@
 <!-- <script src="js/jquery.timepicker.min.js"></script> -->
 <script src="js/jquery.datetimepicker.js"></script>
 <script type="text/javascript">
+function goToMenu()
+{
+	window.location.replace('index.php'); // recharge la page d'accueil
+};
+
 $(function() {
 	$( document ).tooltip();
 	$("#accordionListe").accordion({ heightStyle: "content", collapsible: true, active: 2 }); // affiche l'onglet Liste Service par défaut

@@ -225,6 +225,7 @@ addlog("chargement reprise demande.");
 								<span>
 									<button id="Enregistrer_Brouillon" onclick="Enregistrer_Brouillon(true)">Enregistrer comme brouillon</button>
 									<button id="Valider_Demande" onclick="Valider_Demande()">Valider votre demande</button>
+									<div id="bip"></div>
 								</span>
 								<!-- <input type="submit" value="Valider votre demande." id="Valider_demande"/> -->
 						</div>
