@@ -4,16 +4,16 @@ if (session_id()=='')
 session_start();
 };
 //include('log.php'); // chargement de la fonction de log
-if (($_SESSION['Extraction'] == False) AND ($ID_Demande == NULL))
-{
-	$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"] : NULL;
-/**
- * Aucune utilité de l'ID_Demande "erroné pour une extraction
-	} else 
-	{
-		$ID_Demande = $_SESSION['Extraction'];
-*/
-};
+// if (($_SESSION['Extraction'] == False) AND ($ID_Demande == NULL))
+// {
+	$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"]: $ID_Demande;
+// /**
+//  * Aucune utilité de l'ID_Demande "erroné pour une extraction
+// 	} else 
+// 	{
+// 		$ID_Demande = $_SESSION['Extraction'];
+// */
+// };
 //addlog("ID_Demande=" . $ID_Demande);
 
 include_once('connexion_sql_supervision.php');

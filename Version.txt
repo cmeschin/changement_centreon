@@ -1,5 +1,5 @@
 ﻿2016-04-06 9.3.1
-	- # pb affichage d'une demande suite à ouverture par le lien du mail
+	- #4 pb affichage d'une demande suite à ouverture par le lien du mail
 	- Suppression du popup de confirmation d'enregistrement sur diverses actions
 	- déplacement de la demande de motif sur Annulation de la demande complète après la confirmation de l'annulation
 	

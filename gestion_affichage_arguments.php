@@ -43,14 +43,18 @@ for ( $i=0;$i<$nbLibelle;$i++)
 	{
 		echo '<label for="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '">' . htmlspecialchars($T_Libelle[$i]) . ':</label>';
 	};
+// 	var_dump($_SESSION['Extraction']);
+// 	var_dump($_SESSION['PDF']);
+// 	var_dump($_SESSION['Reprise']);
+// 	var_dump($_SESSION['Nouveau']);
 	if ($T_Argument[$i] == "")
 	{
 		if (($_SESSION['Extraction'] == false) AND ($_SESSION['PDF'] == false) AND (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true)))
 		{
 			echo '<input type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="" Placeholder="' . htmlspecialchars(trim($Valeur_Champ)) . '" size="'. $LongueurArg . '" onblur="verifChamp(this)" class="Service_Argument' . $NbFieldset_Service . '"/>';
-		} else if (($_SESSION['PDF'] == false) AND ($_SESSION['Extraction'] == true) AND ($_SESSION['Reprise'] == false) AND ($_SESSION['Nouveau'] == false))
-		{
-			echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="" Placeholder="' . htmlspecialchars(trim($Valeur_Champ)) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
+// 		} else if (($_SESSION['PDF'] == false) AND ($_SESSION['Extraction'] == true) AND ($_SESSION['Reprise'] == false) AND ($_SESSION['Nouveau'] == false))
+// 		{
+// 			echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="" Placeholder="' . htmlspecialchars(trim($Valeur_Champ)) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
 		} else if (($_SESSION['PDF'] == true) AND ($_SESSION['Extraction'] == true))// c'est une extraction PDF
 		{
 			echo '<span id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" class="Service_Argument' . $NbFieldset_Service . '" style="text-decoration: underline">' . htmlspecialchars($T_Libelle[$i]) . ':</span>';
@@ -58,16 +62,17 @@ for ( $i=0;$i<$nbLibelle;$i++)
 			echo '<br />';
 		} else
 		{ 
-			echo '<p> Oups il y a un trou dans le code... :)</p>';
+ 			echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="" Placeholder="' . htmlspecialchars(trim($Valeur_Champ)) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
+// 			echo '<p> Oups il y a un trou dans le code... :)</p>';
 		};
 	} else
 	{
 		if (($_SESSION['Extraction'] == false) AND ($_SESSION['PDF'] == false) AND (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true))) 
 		{ // Si ce n'est pas la page extraction ou une reprise ou une nouvelle demande
 			echo '<input type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" onblur="verifChamp(this)" class="Service_Argument' . $NbFieldset_Service . '"/>';
-		} else if (($_SESSION['PDF'] == false) AND ($_SESSION['Extraction'] == true) AND ($_SESSION['Reprise'] == false) AND ($_SESSION['Nouveau'] == false))
-		{ // c'est une extraction simple ou un listage des demandes
-			echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
+// 		} else if (($_SESSION['PDF'] == false) AND ($_SESSION['Extraction'] == true) AND ($_SESSION['Reprise'] == false) AND ($_SESSION['Nouveau'] == false))
+// 		{ // c'est une extraction simple ou un listage des demandes
+// 			echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
 		} else if (($_SESSION['PDF'] == true) AND ($_SESSION['Extraction'] == true))// c'est une extraction PDF
 		{
 			echo '<span id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" class="Service_Argument' . $NbFieldset_Service . '" style="text-decoration: underline">' . htmlspecialchars($T_Libelle[$i]) . ':</span>';
@@ -75,7 +80,8 @@ for ( $i=0;$i<$nbLibelle;$i++)
 			echo '<br />';
 		} else
 		{ 
-			echo '<p> Oups il y a un trou dans le code... :)</p>';
+			echo '<input Readonly="Readonly" type="text" id="Service_Argument' . $NbFieldset_Service . '_' . $Num_Argument . '" name="Service_' . $NbFieldset_Service . '_Argument_' . $Num_Argument . '" value="' . htmlspecialchars(trim($Valeur_Champ)) . '" placeholder="' . htmlspecialchars(trim($T_Argument_Mod[$i])) . '" size="'. $LongueurArg . '" class="Service_Argument' . $NbFieldset_Service . '"/>';
+//			echo '<p> Oups il y a un trou dans le code... :)</p>';
 		};
 	};
 	if (($_SESSION['Extraction'] == false) AND ($_SESSION['PDF'] == false) AND (($_SESSION['Reprise'] == true) OR ($_SESSION['Nouveau'] == true))) // Si ce n'est pas la page extraction
