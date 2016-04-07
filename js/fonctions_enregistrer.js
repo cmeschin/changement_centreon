@@ -227,7 +227,7 @@ function enregistre_selection()
 				gestion_erreur(xhr);
 			} else if (loading == false){
 				loading=true;
-				$("#tabs-2").append('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant le chargement des données..." sssstyle="vertical-align:middle;isplay:inline;"/> ');
+				$("#tabs-2").append('<img id="img_loading" src="images/chargement.gif" alt="chargement des données..."/> ');
 				$("#tabs-2").append('<p id="p_loading">Veuillez patienter pendant le chargement des données...</p>');
 			};
 		};
@@ -826,25 +826,11 @@ function Enregistrer_Brouillon(Bouton)
 				function enregistrement_brouillon(resultat){
 					// v9.3.1
 					//alert("Enregistrement du brouillon terminé!");
-					var counter = 10;
-					var intervalId = null;
-					function action()
-					{
-					  clearInterval(intervalId);
-					  $("#bip_retour").remove();
-					};
-					function bip()
-					{
-					  counter--;
-					};
-					function start()
-					{
-					  intervalId = setInterval(bip, 1000);
-					  setTimeout(action, counter * 1000);
-					};	
+					//var counter = 10;
+					//var intervalId = null;
 
 					$("#bip").append('<p id="bip_retour">Brouillon enregistré!<br> <button onclick="goToMenu()">Cliquez sur ce bouton</button> pour laisser votre demande en l\'état et revenir immédiatement à l\'accueil sinon continuer de tavailler normalement.<br>Ce message disparaitra automatiquement dans 10 secondes.</p>');
-					start();
+					afficheMessage(10,"bip_retour");
 					$("#Enregistrer_Brouillon").removeAttr("Disabled");
 					$("#Valider_Demande").removeAttr("Disabled");
 				}; 
@@ -859,6 +845,39 @@ function Enregistrer_Brouillon(Bouton)
 	};
 };
 
+function afficheMessage(delai,maDiv)
+{
+	/**
+	 * Fonctions de gestion des messages intégrés
+	 * 	start lance le compteur
+	 *	decompte.... décompte le temps
+	 *	action supprime le message une fois le délai passé
+	 */
+
+	var counter = delai;
+	var intervalId = null;
+	var maDiv = maDiv;
+	//alert("counter=" + counter + "; intrvalId=" + intervalId + "; maDiv=" + maDiv);
+	function action()
+	{
+		clearInterval(intervalId);
+		$("#" + maDiv + "").remove();
+	};
+	function decompte()
+	{
+		counter--;
+		//alert(counter);
+	};
+	function start()
+	{
+		var counter=delai
+		intervalId = setInterval(decompte, 1000);
+		setTimeout(action, counter * 1000);
+	};
+	start();
+};
+
+
 function enregistre_Etat_Demande(champ,ID)
 { // 
 	/**
@@ -867,6 +886,7 @@ function enregistre_Etat_Demande(champ,ID)
 	 * ID correspond à l'ID_Hote, l'ID_Service ou l'ID_periode selon le cas
 	 */
 	var parent=$(champ).parent().parent().parent().attr("id"); // récupèrele fieldset parent DEC_hote contenant l'ID_Demande
+	var fieldset_parent=$(champ).parent().attr("id");
 	var ID_Hote = "";
 	var ID_Service = "";
 	var ID_Plage = "";
@@ -936,6 +956,10 @@ function enregistre_Etat_Demande(champ,ID)
 			
 			// v9.3.1
 			//alert("Mise à jour Etat paramétrage OK!");
+			var bip_id=fieldset_parent + "bip_enregistre";
+			$("#" + fieldset_parent + "").append('<span id="' + bip_id + '">etat enregistré!</span>');
+			afficheMessage(3,bip_id);
+
 		} else if(xhr.readyState == 4 && xhr.status != 200) 
 		{ 
 			gestion_erreur(xhr);

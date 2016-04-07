@@ -107,7 +107,7 @@ $_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 					<label for="commentaire" onclick="alert('Saisissez ici toute information complémentaire susceptible d\'être utile au paramétrage de la supervision')">Commentaires <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label> <br/>
 					<textarea id="commentaire" name="commentaire" class="info_generale" rows="5" cols="100"> </textarea>
 				</fieldset>
-				<button class="info_suivant" id="info_suivant" onclick="onglet_suivant()">Suivant</button>
+				<button disabled="Disabled" class="info_suivant" id="info_suivant" onclick="onglet_suivant()">Suivant</button>
 			</div>
 			<div id="tabs-2">
 				<h2>Liste des hôtes et services</h2>
@@ -289,8 +289,16 @@ $(function() {
 					this.input.tooltip( "close" ).attr( "title", "" );
 					}, 2500 );
 				this.input.data( "ui-autocomplete" ).term = "";
+				$("#liste_hote").empty(); // purge la liste à chaque nouvelle sélection de prestation
+		        $("#liste_hote").append('<table id="T_Liste_Hote"><tr><th>Sélection</th><th>Hôte</th><th>Description</th><th>Adresse IP</th><th>Controle</th><th hidden>host_id</th></tr></table>');// Hôte
+				$("#liste_service").empty(); // purge la liste à chaque nouvelle sélection de prestation
+		        $("#liste_service").append('<table id="T_Liste_Service"><tr><th>Selection</th><th>Hôte</th><th>Service</th><th>Fréquence</th><th>Plage Horaire</th><th>Controle</th></tr></table>');
+		        $("#liste_plage").empty(); // purge la liste à chaque nouvelle sélection de prestation
+		        $("#liste_plage").append('<table id="T_Liste_Plage"><tr><th>Sélection</th><th>Plage Horaire</th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th><th>Dimanche</th></tr></table>');
 				$("#img_client").attr("alt","incorrect");
 				$("#img_client").attr("src","images/img_ko.png");
+				$("#p_loading").remove();
+				$("#img_loading").remove();
 			},
 			_destroy: function() {
 				this.wrapper.remove();
