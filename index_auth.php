@@ -109,8 +109,8 @@ $error_auth="<br><div style='color:red; font-size:11px;margin-left:20px'>$error_
                     </div>
                   </dd></dl>
                   </fieldset>
+				<?php echo $error_auth; ?>
                 </form>
-		<? echo $error_auth; ?>
                 <div id="left-retour-login" class="login-confirm" style="display:none; margin-left:5px;">
 					<span class="orange">&lt;</span> 
                 </div>
