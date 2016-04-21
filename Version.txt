@@ -1,9 +1,10 @@
-2016-04-07 9.4.0
+2016-XX-XX 9.4.0
 	- remplacement de certaines popup par des messages de confirmation inclus dans la page
 	- #29 pb arguments service en lecture seule
 		* désactivation des liens du menu si demande en cours (nouvelle ou reprise)
 		* ajout bouton de retour à l'accueil après enregistrement de brouillon permettant de
 			 réinitialiser les deux variables de session Nouveau et Reprise afin de libérer le menu
+	- correction balise invalide pour affichage erreur de login
 	
 2016-04-06 9.3.1
 	- #4 pb affichage d'une demande suite à ouverture par le lien du mail
