@@ -187,9 +187,17 @@ label
 	vertical-align: middle; /* aligné au milieu */
 }
 
+.ok
+{
+	background-color:#04B404; /* vert */
+}
 .attention
 {
-	background-color:#E70739;
+	background-color:#FFBF00; /* orange */
+}
+.critique
+{
+	background-color:#E70739; /* rouge */
 }
 
 .dateJ

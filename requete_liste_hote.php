@@ -55,9 +55,10 @@ if ($monclient )
 	
 	echo '<p>Si un hôte n\'apparait pas dans la liste ci-dessous, c\'est qu\'il n\'est pas identifié pour la prestation actuelle.</p>';
 	echo '<p>Utilisez la fonction de recherche ci-dessus pour vérifier son existence dans Centreon.</p>';
-	echo '<p class="attention">Sélectionnez uniquement les hôtes dont vous souhaitez modifier les caractéristiques (Adresse IP, fonction, etc...) ou l\'état de la supervision (activation, désactivation, suppression).<br/>
+	echo '<p class="critique">Sélectionnez uniquement les hôtes dont vous souhaitez modifier les caractéristiques (Adresse IP, fonction, etc...) ou l\'état de la supervision (activation, désactivation, suppression).<br/>
 			La désactivation ou la suppression d\'un hôte dans centreon implique la désactivation ou la suppression automatique des services qui lui sont associés.<br/>
 			En revanche, l\'activation d\'un hôte réactivera automatiquement ses services <b>à l\'exception des services désactivés unitairement</b>. Il conviendra d\'être vigilant sur ce point.</p>';
+	echo '<p>Inutile de sélectionner un hôte pour lequel vous souhaitez modifier un service; sélectionnez simplement le service correspondant dans la "Liste des services" ci-dessous.</p>';
 	echo '<table id="T_Liste_Hote">';
 		echo '<tr>';
 		echo '<th>Sélection</th>';
@@ -98,7 +99,6 @@ if ($monclient )
 			$i ++;
 		};
 	echo '</table>';
-	echo '<p>Inutile de sélectionner un hôte pour lequel vous souhaitez modifier un service; sélectionnez simplement le service correspondant dans l\'onglet "Liste des services" ci-dessous.</p>';
 } else 
 {
     echo "ERREUR: Code_Client=[" . $monclient . "].";
