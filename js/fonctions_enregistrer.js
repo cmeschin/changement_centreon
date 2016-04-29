@@ -434,9 +434,7 @@ function Valider_Demande()
 	 * pour chaque fieldset hote on vérifie si un bouton "Préenregistré" est présent qu'il est désactivé
 	 * S'il ne l'est pas, on stop la procédure et on demande à l'utilisateur de préenregistrer les hôtes.
 	 */
-	//var PreEnregistre= "";
 	controle_preenregistrement_hote();
-	//alert("PreEnregistre="+PreEnregistre);
 	if ((Doublon != "Oui") && (PreEnregistre != false)) 
 	{
 	
@@ -493,7 +491,6 @@ function Valider_Demande()
 			});
 			liste_hote = liste_hote.substring(1,liste_hote.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
 			liste_hote = liste_hote.replace(/\$\$/g,"$"); // remplace les "$$" par un simple "$"
-			//alert(liste_hote);
 			/**
 			 *  constitution de la chaine plage
 			 */
@@ -661,6 +658,8 @@ function Enregistrer_Brouillon(Bouton)
 	/**
 	 *  Fonction Enregistre Brouillon
 	 */
+	if ($("#lien_tabs3").css("Visibility") == "visible")
+	{
 
 	Service_Vide=false;
 	Hote_Vide=false;
@@ -672,16 +671,15 @@ function Enregistrer_Brouillon(Bouton)
 	controle_doublon();
 	/**
 	 * Controle des hôtes non pré-enregistrés
-	 * pour chaque fieldset hote on vérifie si un bouton "Préenregistré" est présent qu'il est désactivé
+	 * pour chaque fieldset hote on vérifie, si un bouton "Préenregistré" est présent, qu'il est désactivé
 	 * S'il ne l'est pas, on stop la procédure et on demande à l'utilisateur de préenregistrer les hôtes.
 	 */
 	//var PreEnregistre= "";
 	controle_preenregistrement_hote();
-	//alert("PreEnregistre="+PreEnregistre);
 	if ((Doublon != "Oui") && (PreEnregistre != false)) 
 	{
-		if ($("#lien_tabs3").css("Visibility") == "visible")
-		{
+//		if ($("#lien_tabs3").css("Visibility") == "visible")
+//		{
 			function Traitement_Enregistre()
 			{
 				var Liste = "";
@@ -878,7 +876,9 @@ function Enregistrer_Brouillon(Bouton)
 				$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 				Traitement_Enregistre(); // on enregistre les données
 			};
-		};
+			Traitement_Enregistre(); // on enregistre les données
+//		};
+	};
 	};
 };
 

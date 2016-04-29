@@ -1,3 +1,5 @@
+2016-04-29 9.4.1
+	- correction verrouilage bouton sur enregistrement brouillon
 2016-04-29 9.4.0
 	- remplacement de certaines popup par des messages de confirmation inclus dans la page
 	- #29 pb arguments service en lecture seule
