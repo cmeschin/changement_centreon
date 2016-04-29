@@ -875,8 +875,11 @@ function Enregistrer_Brouillon(Bouton)
 				$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 				$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 				Traitement_Enregistre(); // on enregistre les données
+			}else
+			{
+				Traitement_Enregistre(); // on enregistre les données	
 			};
-			Traitement_Enregistre(); // on enregistre les données
+			
 //		};
 	};
 	};
