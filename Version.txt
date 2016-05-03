@@ -1,6 +1,10 @@
+2016-05-03 9.4.2
+	- correction statut "Closed" sur les mails de notification d'annulation
+
 2016-04-29 9.4.1
 	- correction verrouillage bouton sur enregistrement brouillon
 	- correction double enregistrement du brouillon
+	
 2016-04-29 9.4.0
 	- remplacement de certaines popup par des messages de confirmation inclus dans la page
 	- #29 pb arguments service en lecture seule

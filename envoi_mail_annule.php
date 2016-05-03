@@ -74,7 +74,7 @@ session_start();
 		 
 	
 		//=====Déclaration des messages au format texte et au format HTML.
-		$message_txt = "Statut = Clos\nRéférence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n\nLa demande de supervision a été annulée pour le motif suivant:" . htmlspecialchars($res_mail['motif_annulation']) . ".\nVeuillez vous rapprocher de l'équipe Centreon pour de plus amples informations.";
+		$message_txt = "Statut = Closed\nRéférence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n\nLa demande de supervision a été annulée pour le motif suivant:" . htmlspecialchars($res_mail['motif_annulation']) . ".\nVeuillez vous rapprocher de l'équipe Centreon pour de plus amples informations.";
 	
 		//==========
 	}; 
