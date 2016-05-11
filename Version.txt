@@ -1,5 +1,5 @@
 2016-05-11 9.4.3
-	- correction gestion reprise sur demande inexistante ou plus en brouillon
+	- #36 correction gestion reprise sur demande inexistante ou plus en brouillon
 	- correction gestion vaiable de session dans _variable_home2.php
 	
 2016-05-03 9.4.2
