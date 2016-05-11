@@ -1,4 +1,8 @@
 <?php 
+if (session_id()=='')
+{
+	session_start();
+};
 $_SESSION['auth_changement_centreon'] = "changement_centreon";
 $_SESSION['groupe_changement_centreon'] = "GG_DEMANDECENTREON_ADMIN";
 //$_SESSION['groupe_changement_centreon'] = "GG_DEMANDECENTREON_USER";
