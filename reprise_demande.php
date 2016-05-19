@@ -61,7 +61,7 @@ addlog("chargement reprise demande.");
 						$date_demande = htmlspecialchars($res_Demande['Date_Demande']);
 						$ref_demande = htmlspecialchars($res_Demande['Ref_Demande']);
 						$etat_demande = htmlspecialchars($res_Demande['Etat_Demande']);
-						If ($etat_Demande != "Brouillon")
+						If ($etat_demande != "Brouillon")
 						{
 							echo '<p class="attention">La demande ' . $ref_demande . ' du ' . $date_demande . ' n\'est plus un brouillon (statut actuel: ' . $etat_demande . '), vous ne pouvez plus travailler dessus.</p>';
 							echo '<p class="attention">Veuillez vérifier votre requête ou contacter l\'administrateur.</p>';
