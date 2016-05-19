@@ -1,6 +1,6 @@
 2016-05-19 9.4.4
 	- correction reprise brouillon (nom variable $etat_demande erroné)
-	
+
 2016-05-11 9.4.3
 	- #36 correction gestion reprise sur demande inexistante ou plus en brouillon
 	- correction gestion vaiable de session dans _variable_home2.php
