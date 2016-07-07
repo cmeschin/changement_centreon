@@ -41,7 +41,11 @@ echo '<div id="principal">';
 		echo '<br />';
 		if	(file_exists('maintenance.php')==False)
 		{ 
-			echo 'Merci de choisir un menu ci dessus!</p>';
+			if (file_exists('information.php')==True)
+			{
+				include('information.php');
+			};
+			echo 'Veuillez choisir un menu ci dessus!</p>';
 		} else 
 		{
 			include('maintenance.php');

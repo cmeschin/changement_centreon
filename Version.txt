@@ -1,3 +1,6 @@
+2016-07-07 9.5.0
+	- Ajout d'un message d'information optionnel (_information.php à renommer en information.php pour qu'il soit visible)
+	
 2016-05-19 9.4.4
 	- correction reprise brouillon (nom variable $etat_demande erroné)
 
