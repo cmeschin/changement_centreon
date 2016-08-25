@@ -1,9 +1,8 @@
 <?php
 if (session_id()=='')
 {
-session_start();
-};// récupération de la ref demande
-//$Code_Client= $_SESSION['Code_Client'];
+	session_start();
+};
 $ID_Demande= $_SESSION['ID_dem'];
 
 $req_Service_Plage = $bdd_supervision->prepare('SELECT

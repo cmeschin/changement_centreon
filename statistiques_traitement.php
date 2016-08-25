@@ -9,30 +9,6 @@
  * Jour de la semaine => pour la vérification sur la calendrier => De 1 (pour Lundi) à 7 (pour Dimanche)
  * Heure actuelle => pour la vérification sur l'heure de notification
  */
-// $debug=false; // activation du mode debug
-// //initialisation mail
-// $adresse_mail = "jean-marc.raud@tessi.fr;nicolas.schmitt@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
-// //$adresse_mail = "c.meschin@free.fr";
-// $adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
-// if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
-// {
-// 	$passage_ligne = "\r\n";
-// }
-// else
-// {
-// 	$passage_ligne = "\n";
-// };
-
-// try {
-// 	include_once('connexion_sql_supervision.php'); // connexion à la base changement
-//	$bdd_supervision->beginTransaction();
-// 	$heure_envoi = date("d/m/Y H:i");
-// 	$jour_semaine = date("N");
-// 	$jour7=$jour_semaine+7;
-// 	$jour14=$jour_semaine+14;
-// 	$jour21=$jour_semaine+21;
-	
-
 		
 /**
  * Récupération de la liste des demandes effectuées
@@ -59,8 +35,6 @@
 /**
  * Constitution des chaines pour les séries
  */
-	//$res_lst_trt = $req_lst_trt->fetchAll();
-	//$res_lst_dde = $req_lst_dde->fetchAll();
 	$Semaine="";
 	$Temps_A_Traiter="";
 	$Nbre_A_Traiter="";
@@ -79,19 +53,6 @@
 	  $Temps_Traite[] = $res_lst_trt["Temps_Global"];
 	  $Nbre_Traite[]= $res_lst_trt["Nbre"];
 	};
-	 // 	$Semaine=$Semaine;
-// 	$Temps_A_Traiter=$Temps_A_Traiter;
-// 	$Nbre_A_Traiter=$Nbre_A_Traiter;
-// 	$Temps_Traite=$Temps_Traite;
-// 	$Nbre_Traite=$Nbre_Traite;
-	
-// 	echo "Semaine\n";
-// 	var_dump($Semaine);
-//  	echo "Tps_A_Traiter\n";
-// 	var_dump($Temps_A_Traiter);
-// 	echo "Nbre_A_Traiter=" . var_dump($Nbre_A_Traiter) . "\n";
-// 	echo "Tps_Traite=" . var_dump($Temps_Traite) . "\n";
-// 	echo "Nbre_Traite=" . var_dump($Nbre_Traite) . "\n";
 /**
  * Construction du graphe
  * basé sur pChart
@@ -205,8 +166,3 @@
   $myPicture->Render("charge_temps.png");
   	$myPicture2->Render("charge_nombre.png");
  	
-// 	$bdd_supervision->commit();
-// } catch (Exception $e) {
-//  	$bdd_supervision->rollBack();
-//  	die('Erreur traitement envoi_mail: '. $e->getMessage());
-// };

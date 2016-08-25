@@ -4,35 +4,15 @@ if (session_id () == '') {
 };
 header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 
-//include('log.php'); // chargement de la fonction de log
 $monclient = (isset($_POST["monclient"])) ? $_POST["monclient"] : NULL;
 if ($monclient ) 
 {
-	// récupérer la liste des services et générer le tableau
+	/**
+	 *  récupérer la liste des services et générer le tableau
+	 */
 	include_once('connexion_sql_centreon.php');
-	try {
-// correction le 11/01/15 suite à modification vue inventaire 
-// 		$req_service = $bdd_centreon->prepare('SELECT
-// 			 Distinct(host_name),
-// 			 host_address,
-// 			 Controle,
-// 			 Sonde,
-// 			 Frequence,
-// 			 Plage_Horaire,
-// 			 H.host_id,
-// 			 service_id
-// 		FROM vInventaireServices AS vIS
-// 			INNER JOIN host AS H ON vIS.host_id=H.host_id
-// 		WHERE Code_Client= :prestation
-// 		ORDER BY H.host_name,Sonde');
-
-//////////////////////////////////////////////
-// 11/01/15 Clause WHERE à reporter dans la requête ci-dessous lorsque la modif pour les presta INFRA sera active
-// 		WHERE (Code_Client= :prestation OR Code_Client LIKE "%INFRA%") AND host_id IN (' . htmlspecialchars($_SESSION['lst_id_hote']) . ')
-//	Clause Where avant modif:
-//		WHERE Code_Client= :prestation
-//////////////////////////////////////////////
-
+	try 
+	{
 		/**
 		 * Si liste id_host vide on la force à 0 pour ne pas avoir un message d'erreur.
 		 */
@@ -61,7 +41,6 @@ if ($monclient )
 	};
 	$nom_hote = "";
 	
-	//echo '<!--<div> -->';
 	echo '<table id="T_Liste_Service">';
 		echo '<tr>';
 		echo '<th>Selection</th>';
@@ -83,11 +62,6 @@ if ($monclient )
 				$j = 1;
 				$nom_hote = $nom_hote_actuel; // enlève la localisation et la fonction et les deux -
 				$hote_localisation = stristr($res_service['Nom_Hote'],'-',1); // conserve la chaine avant le premier tiret
-				// décomposé ça donne ça:
-				// $nom_hote= stristr($res_hote['host_name'],'-'); // enlève la localisation
-				// $nom_hote= substr($nom_hote,1); // enlève le premier -
-				// $nom_hote= stristr($nom_hote,'-'); // enlève la fonction
-				// $nom_hote= substr($nom_hote,1); // enlève le deuxième tiret restant
 			};
 			if (htmlspecialchars($res_service['Controle']) == "inactif") // mise en couleur pour les controles inactifs
 			{
@@ -106,14 +80,7 @@ if ($monclient )
 			echo '<td>' . htmlspecialchars($res_service['Sonde']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_service['Frequence']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_service['Plage_Horaire']) . '</td>';
-			//if (htmlspecialchars($res_service['Controle']) == "inactif") // mise en couleur pour les controles inactifs
-			//{
-				//echo '<td>' . htmlspecialchars($res_service['Controle']) . '</td>';				
-			//} else
-			//{
-				echo '<td>' . htmlspecialchars($res_service['Controle']) . '</td>';
-			//};				
-			
+			echo '<td>' . htmlspecialchars($res_service['Controle']) . '</td>';
 			echo '<td hidden>s' . htmlspecialchars($res_service['service_id']) . '</td>';
 			echo '<td hidden>h' . htmlspecialchars($res_service['host_id']) . '</td>';
 			echo '</tr>';
@@ -121,7 +88,6 @@ if ($monclient )
 			$j++;
 		};
 	echo '</table>';
-	//echo '<!--</div> -->';
 } else 
 {
     echo "ERREUR: Code_Client=[" . $monclient . "].";

@@ -1,6 +1,4 @@
 <?php
-//include_once('connexion_sql_supervision.php');
-
 $req_modele_nonassocies = $bdd_supervision->prepare('SELECT 
 		 service_id,
 		 service_description

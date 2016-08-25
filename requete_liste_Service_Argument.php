@@ -3,14 +3,18 @@
 include_once('connexion_sql_supervision.php');
 $Modele = (isset($_POST["sModele"])) ? $_POST["sModele"] : NULL;
 $Modele_id = (isset($_POST["sModele_id"])) ? $_POST["sModele_id"] : NULL;
-//echo "Modele=" . $Modele;
-// extraction numéro service pour class
+/**
+ *  extraction numéro service pour class
+ */
 $NbFieldset_Service = substr($Modele_id,14); // récupère le chiffre après Modele
 $T_Argument[0]="";
 if (($Modele) && ($Modele_id)) // Si un modèle est transmis
 {
-    // récupérer la liste des libelles et des arguments et générer le formulaire
-	try {
+    /**
+     *  récupérer la liste des libelles et des arguments et générer le formulaire
+     */
+	try 
+	{
 		$req_Service_Arg = $bdd_supervision->prepare('SELECT
 				 MS_Libelles,
 				 MS_Arguments,
@@ -21,30 +25,30 @@ if (($Modele) && ($Modele_id)) // Si un modèle est transmis
 				'Modele' => htmlspecialchars($Modele)
 		)) or die(print_r($req_Service_Arg->errorInfo()));
 		
-	} catch (Exception $e) {
+	} catch (Exception $e) 
+	{
 		die('Erreur requete_liste_Service_Argument: ' . $e->getMessage());
 	};
 	
-	// découpage
 	while ($res_Service_Arg = $req_Service_Arg->fetch())
 	{
 		$T_Libelle = explode('!',$res_Service_Arg[0]);
 		$T_Argument_Mod = explode('!',$res_Service_Arg[1]);
 		$Description = $res_Service_Arg[2];
 	};
-	// on compte le nb enregistrement
+	/**
+	 *  on compte le nb enregistrement
+	 *  et on génère un tableau vide
+	 */
 	$nbLibelle=count($T_Libelle); // vérifier la nécessité
-	// on génère un tableau $T_Argument vide
 	for ( $i=0;$i<$nbLibelle;$i++)
 	{
 		$T_Argument[$i]="";
 	};
-	//$Num_Argument = 1; // vérifier la pertinence
 	
 	include('gestion_affichage_arguments.php');
 } else // Si aucun modèle n'est transmis
 {
 	$T_Libelle[0] = "Libellé 1";
 	$T_Argument_Mod[0] = "Exemple argument";
-	//$Num_Argument = 1; // vérifier la pertinence
 };

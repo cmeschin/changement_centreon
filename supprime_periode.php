@@ -5,14 +5,13 @@ if (session_id()=='')
 };
 include('log.php'); // chargement de la fonction de log
 
-// récupération de la ref demande
 $ID_Demande= $_SESSION['ID_dem'];
-//$ID_Demande= 7;
 $nom_periode = (isset($_POST["nom_periode"])) ? $_POST["nom_periode"] : NULL;
 
 addlog("Suppression periode: " . $nom_periode . "");
 include_once('connexion_sql_supervision.php');
-try {
+try 
+{
 	$del_periode = $bdd_supervision->prepare('DELETE
 		 FROM periode_temporelle
 		 WHERE Nom_Periode= :nom_periode
@@ -23,6 +22,7 @@ try {
 	)) or die(print_r($del_periode->errorInfo()));
 
 	addlog("Suppression periode: " . $nom_periode . " OK.");	
-} catch (Exception $e) {
+} catch (Exception $e) 
+{
 	die('Erreur supprime_periode: ' . $e->getMessage());
 };

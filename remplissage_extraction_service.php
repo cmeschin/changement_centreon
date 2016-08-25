@@ -1,5 +1,4 @@
 <?php
-//include_once ('connexion_sql_supervision.php');
 $SEL_tmp_service = $bdd_supervision->prepare ( 'SELECT
 		 Nom_Service,
 		 Nom_Hote,
@@ -46,7 +45,6 @@ while ( $res_liste_service = $SEL_tmp_service->fetch () ) {
 	echo '<fieldset id="Service' . $NbFieldset_Service . '" class="service">';
 	echo '<legend>Service n°' . $NbFieldset_Service . '</legend>';
 	echo '<!-- Nom service -->';
-	// $LongueurArg= strlen(htmlspecialchars($res_liste_service['Nom_Service'])) + 20*strlen(htmlspecialchars($res_liste_service['Nom_Service']))/100;
 	$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Nom_Service'] ) ) + 10;
 	echo '<label for="Nom_Service' . $NbFieldset_Service . '">Nom de la sonde:</label>';
 	echo '<input Readonly type="text" id="Nom_Service' . $NbFieldset_Service . '" name="Nom_Service' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Nom_Service'] ) . '" size="' . $LongueurArg . '" maxlength="100"/>';
@@ -73,20 +71,10 @@ while ( $res_liste_service = $SEL_tmp_service->fetch () ) {
 	echo ' ';
 	echo '<!-- Arguments -->';
 	echo '<fieldset id="Arg_Service_Modele' . $NbFieldset_Service . '">';
-	// echo '<legend>Arguments du service</legend>';
-	// gestion des arguments
 	include ('gestion_arguments.php');
 	echo '</fieldset> <br /> ';
-	/*
-	 * echo '<fieldset id="Inactif_Arg_Service_Modele' . $NbFieldset_Service . '">';
-	 * echo '<legend>Arguments du service initial</legend>';
-	 * //gestion des arguments
-	 * include('gestion_arguments.php');
-	 * echo '</fieldset>';
-	 */
 	echo '<br />';
 	echo '<!-- Service Consigne -->';
-	// $LongueurArg= strlen(htmlspecialchars($res_liste_service['Consigne'])) + 20*strlen(htmlspecialchars($res_liste_service['Consigne']))/100;
 	$LongueurArg = strlen ( htmlspecialchars ( $res_liste_service ['Consigne'] ) );
 	echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
 	echo '<input Readonly type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_Consigne' . $NbFieldset_Service . '" value="' . htmlspecialchars ( $res_liste_service ['Consigne'] ) . '" size="' . $LongueurArg . '" maxlength="255"/> <br />';
@@ -95,32 +83,33 @@ while ( $res_liste_service = $SEL_tmp_service->fetch () ) {
 	echo '<textarea Readonly id="Consigne_Service_Detail' . $NbFieldset_Service . '" name="Consigne_Service_Detail' . $NbFieldset_Service . '" rows="3" cols="50">' . htmlspecialchars ( $res_liste_service ['Detail_Consigne'] ) . '</textarea> <br />';
 	echo '<!-- Action à effectuer -->';
 	echo '<label>Action à effectuer</label>';
-	if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Creer") {
+	if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Creer") 
+	{
 		echo '<input readonly name="Service_action' . $NbFieldset_Service . '" id="Service_action' . $NbFieldset_Service . '" value="Créer"/>';
-	} else if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Modifier") {
+	} else if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Modifier") 
+	{
 		echo '<input readonly name="Service_action' . $NbFieldset_Service . '" id="Service_action' . $NbFieldset_Service . '" value="Modifier"/>';
-	} else if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Desactiver") {
+	} else if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Desactiver") 
+	{
 		echo '<input readonly name="Service_action' . $NbFieldset_Service . '" id="Service_action' . $NbFieldset_Service . '" value="Désactiver"/>';
-	} else if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Supprimer") {
+	} else if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Supprimer") 
+	{
 		echo '<input readonly name="Service_action' . $NbFieldset_Service . '" id="Service_action' . $NbFieldset_Service . '" value="Supprimer"/>';
-	} else if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Activer") {
+	} else if (htmlspecialchars ( $res_liste_service ['Type_Action'] ) == "Activer") 
+	{
 		echo '<input readonly name="Service_action' . $NbFieldset_Service . '" id="Service_action' . $NbFieldset_Service . '" value="Activer"/>';
-	}
-	;
+	};
 	echo '<br />';
 	echo '<!-- Service Commentaire -->';
 	echo '<label for="Service_Commentaire' . $NbFieldset_Service . '">Commentaire :</label>';
 	echo '<textarea id="Service_Commentaire' . $NbFieldset_Service . '" name="Service_Commentaire' . $NbFieldset_Service . '" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars ( $res_liste_service ['Commentaire'] ) . '</textarea> <br />';
 	
 	if ($_SESSION ['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
-{
+	{
 		$ID_Service = htmlspecialchars ( $res_liste_service ['ID_Service'] );
 		include ('insere_fieldset_Admin_Service.php');
-	}
-	;
+	};
 	echo '</fieldset>';
-	
 	$NbFieldset_Service ++;
-}
-;
+};
 $Statut_Service = true;

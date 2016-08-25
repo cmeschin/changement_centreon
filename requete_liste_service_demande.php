@@ -33,29 +33,32 @@ $req_liste_service->execute(Array(
 	'ID_Demande' => $ID_Demande
 	)) or die(print_r($req_liste_service->errorInfo()));
 
-// toute modification des champs de la requête impacte les pages php suivantes: gestion_arguments.php, remplissage_DEC_service.php, remplissage_param_service.php et insere_fieldset_Admin_Service.php
-// => normalement la modif n'a plus d'impact à condition d'utiliser le nom de champs.
-// Detail de la requête
-// Nom_Service			0
-// Nom_Hote				1
-// IP_Hote				2
-// ID_Localisation		3
-// Nom_Periode			4
-// Frequence			5
-// Consigne				6
-// Controle_Actif		7
-// MS_Modele_Service	8
-// MS_Libelles			9
-// Parametres			10
-// Detail_Consigne		11
-// Type_Action			12
-// Etat_Parametrage		13
-// ID_Service			14
-// Commentaire			15
-// MS_Description		16
-// MS_Arguments			17
-// MS_Macro				18
-// MS_EST_MACRO			19
-// ID_Hote				20
-// ID_Hote_Centreon		21
-// ID_Service_Centreon	22
+/**
+ *  toute modification des champs de la requête impacte les pages php suivantes: gestion_arguments.php, remplissage_DEC_service.php, remplissage_param_service.php et insere_fieldset_Admin_Service.php
+ *		=> normalement la modif n'a plus d'impact à condition d'utiliser le nom de champs.
+	Detail de la requête
+	Nom_Service			0
+	Nom_Hote				1
+	IP_Hote				2
+	ID_Localisation		3
+	Nom_Periode			4
+	Frequence			5
+	Consigne				6
+	Controle_Actif		7
+	MS_Modele_Service	8
+	MS_Libelles			9
+	Parametres			10
+	Detail_Consigne		11
+	Type_Action			12
+	Etat_Parametrage		13
+	ID_Service			14
+	Commentaire			15
+	MS_Description		16
+	MS_Arguments			17
+	MS_Macro				18
+	MS_EST_MACRO			19
+	ID_Hote				20
+	ID_Hote_Centreon		21
+	ID_Service_Centreon	22
+  
+ */

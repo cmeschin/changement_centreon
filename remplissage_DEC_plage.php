@@ -1,25 +1,15 @@
 <?php
 if (session_id()=='')
 {
-session_start();
+	session_start();
 };
-// if (($_SESSION['Extraction'] == False) AND ($ID_Demande == NULL))
-// {
-	$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"] : $ID_Demande;
-// /**
-//  * Aucune utilité de l'ID_Demande "erroné pour une extraction
-// 	} else 
-// 	{
-// 		$ID_Demande = $_SESSION['Extraction'];
-// */
-// };
-
+$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"] : $ID_Demande;
 include_once('connexion_sql_supervision.php');
 
-try {
-	
+try 
+{
 // Selection de toutes les plages de la demande
-include_once('requete_liste_periode_demande.php');
+	include_once('requete_liste_periode_demande.php');
 } catch (Exception $e) {
 	die ('Erreur requete_liste_periode_demande: ' . $e->getMessage());
 };
@@ -87,14 +77,8 @@ while ($res_liste_plage = $req_liste_plage->fetch())
 			echo '<label for="Commentaire_Demande' . $NbFieldset_plage . '">Commentaire :</label>';
 			echo '<textarea readonly id="Commentaire_Demande' . $NbFieldset_plage . '" name="Commentaire_Demande' . $NbFieldset_plage . '" rows="3" cols="50"> </textarea> <br />';
 		echo '</div>';
-// 		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
-// 		{
 			$ID_Plage = htmlspecialchars($res_liste_plage['id_periode_temporelle']);
 			include('insere_fieldset_Admin_Plage.php');
-// 		} else 
-// 		{
-// 			include('insere_fieldset_Standard_Plage.php');
-// 		};
 	echo '</fieldset>';
 
 	/**

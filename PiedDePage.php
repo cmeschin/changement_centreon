@@ -1,6 +1,5 @@
-<p>Tessi Technologies - Interface développée par C Meschin - <?php
+<?php
 // récupère la première ligne du fichier Version.txt
-$o = fopen("Version.txt","r");
-$l = fgets($o);
-echo $l;
-?></p>
+$line = fopen("Version.txt","r");
+$version = fgets($line);
+echo '<p>Tessi Technologies - Interface développée par C Meschin - ' . $version . '</p>';

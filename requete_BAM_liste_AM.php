@@ -10,10 +10,4 @@ $req_lst_bam = $bdd_centreon->prepare(
 		last_state_change as ba_dernier_changement,
 		current_status as ba_statut
 	FROM mod_bam;');
-// $req_lst_bam = $bdd_supervision->prepare(
-// 	'SELECT
-// 		mbc_ba_id,
-// 		mbc_ba_nom,
-// 		mbc_ba_description
-// 		FROM mod_bam_centreon;');
 $req_lst_bam->execute(array()) or die(print_r($req_lst_bam->errorInfo()));

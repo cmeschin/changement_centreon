@@ -1,26 +1,13 @@
 <?php
 if (session_id()=='')
 {
-session_start();
+	session_start();
 };
-//include('log.php'); // chargement de la fonction de log
-// if (($_SESSION['Extraction'] == False) AND ($ID_Demande == NULL))
-// {
-	$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"] : $ID_Demande;
-// /**
-//  * Aucune utilité de l'ID_Demande "erroné pour une extraction
- 
-// 	} else 
-// 	{
-// 		$ID_Demande = $_SESSION['Extraction'];
-// */
-// };
-	
+$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"] : $ID_Demande;
 
-//addlog("ID_Demande=" . $ID_Demande);
 include_once('connexion_sql_supervision.php');
-
-try {
+try 
+{
 	include_once('requete_liste_hote_demande.php');
 } catch (Exception $e) {
 	die('Erreur requete liste hote_demande: ' . $e->getMessage());
@@ -77,8 +64,6 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 /**
  * Modification consigne obligatoire
  */
-//		echo '<label for="Consigne_Hote' . $NbFieldset . '">Lien vers consigne :</label>';
-//		echo '<input style="visibility: hidden;" readonly type="text" id="Consigne_Hote' . $NbFieldset . '" name="Consigne_Hote' . $NbFieldset . '" value="' . htmlspecialchars($res_liste_hote['Consigne']) . '" size="90" maxlength="255"/> <br />';
 		echo '<span id="Consigne_Hote' . $NbFieldset . '" class="hote' . $NbFieldset . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_hote['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_hote['Consigne']) . '</a></span> <br />';
 		echo '<!-- Detail consigne -->';
 		echo '<label for="Consigne_Hote_Detail' . $NbFieldset . '">Description consigne:</label>';
@@ -105,14 +90,8 @@ while ($res_liste_hote = $req_liste_hote->fetch())
 		echo '<!-- Commentaire -->';
 		echo '<label for="Hote_Commentaire' . $NbFieldset . '">Commentaire :</label>';
 		echo '<textarea readonly id="Hote_Commentaire' . $NbFieldset . '" name="Hote_Commentaire' . $NbFieldset . '" rows="2" cols="50">' . htmlspecialchars($res_liste_hote['Commentaire']) . '</textarea> <br />';
-// 		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
-// 		{
-			$ID_Hote = htmlspecialchars($res_liste_hote['ID_Hote']);
-			include('insere_fieldset_Admin_Hote.php');
-// 		} else 
-// 		{
-// 			include('insere_fieldset_Standard_Hote.php');
-// 		};
+		$ID_Hote = htmlspecialchars($res_liste_hote['ID_Hote']);
+		include('insere_fieldset_Admin_Hote.php');
 	echo '</fieldset>';
 
 	/**

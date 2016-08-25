@@ -43,9 +43,6 @@ $_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 		?>
 	</header>
 	<section>
-<!--	<fieldset class="liste_service_client">
-		<legend>Liste des hôtes et services du client</legend> -->
-<!--		<h2 class="demoHeaders">Accordion</h2> -->
 		<div id="tabs">
 			 <ul>
 				<li id="lien_tabs1"><a href="#tabs-1">Info générales</a></li>
@@ -67,7 +64,6 @@ $_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 					</span> <br />
 					<span>
 						<label for="type_demande">Type de la demande :</label>
-<!-- 					<input readonly="readonly" type="text" id="type_demande" class="info_generale" name="type_demande" value="Brouillon" size="10"/> -->
  						<select name="type_demande" id="type_demande" class="info_generale" onblur="verifChamp(this)">
  							<option value="" selected="selected">...</option> <!-- Valeur par défaut -->
  							<option value="MiseAJour">Mise à jour</option>
@@ -155,16 +151,8 @@ $_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 						<button id="Enregistrer_Brouillon" onclick="Enregistrer_Brouillon(true)">Enregistrer comme brouillon</button>
 						<button id="Valider_Demande" onclick="Valider_Demande()">Valider votre demande</button>
 					</span><br/>
-					<!-- <input type="submit" value="Valider votre demande." id="Valider_demande"/> -->
 			</div>
 		</div>
-
-				<!-- Autocomplete -->
-<!--				<h2 class="demoHeaders">Autocomplete</h2>
-				<div>
-					<input id="autocomplete" title="tapez votre recherche...">
-				</div> -->
-<!--		</fieldset> -->
 	</section>
 	<footer>
 		<?php
@@ -308,10 +296,6 @@ $(function() {
 	})( jQuery );
 	$(function() {
 	$( "#clientsup" ).combobox();
-	//$( "#toggle" ).click(function() {
-		//$( "#clientsup" ).toggle();
-		//$( "#client" ).attr("style","visibility: hidden");
-	//});
 	});
 });
 </script>

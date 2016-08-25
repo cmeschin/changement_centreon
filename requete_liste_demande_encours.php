@@ -16,5 +16,4 @@ $req_dem = $bdd_supervision->prepare(
 	WHERE D.Etat_Demande NOT IN ("Traité", "Annulé")
 	GROUP BY D.ID_Demande
 	ORDER BY D.Date_Supervision_Demandee, D.Date_Demande');
-//$req_dem->execute(array()) or die(print_r($req_dem->errorInfo()));
 $req_dem->execute(array());

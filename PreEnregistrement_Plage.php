@@ -41,7 +41,7 @@ try {
 				'Type_Action' => htmlspecialchars($liste_T_plage[8]),
 				'ID_Demande' => htmlspecialchars($ID_Demande)
 				)) or die(print_r($MAJ_plage->errorInfo()));
-			addlog(print_r($MAJ_plage));
+			addlog("Nom_Periode=" . htmlspecialchars($liste_T_plage[0]));
 		};
 	};
 	

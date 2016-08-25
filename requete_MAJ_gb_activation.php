@@ -7,7 +7,8 @@ header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier l
 include('log.php'); // chargement de la fonction de log
 addlog("Mise à jour du flag gb_activation.php");
 
-try {
+try 
+{
 	include_once('connexion_sql_supervision.php');
 	$bdd_supervision->beginTransaction();
 	$gb_id = (isset($_POST["gb_id"])) ? $_POST["gb_id"] : NULL;
@@ -25,7 +26,8 @@ try {
 		
 	};
 	$bdd_supervision->commit();
-} catch (Exception $e) {
+} catch (Exception $e) 
+{
 	$bdd_supervision->rollBack();
 	http_response_code(500);
 	die('Erreur insertion Selection: '. $e->getMessage());

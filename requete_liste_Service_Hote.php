@@ -1,9 +1,8 @@
 <?php
 if (session_id()=='')
 {
-session_start();
+	session_start();
 };
-// récupération de la ref demande
 $ID_Demande= $_SESSION['ID_dem'];
 
 $req_Service_Hote = $bdd_supervision->prepare('SELECT
@@ -17,4 +16,4 @@ $req_Service_Hote = $bdd_supervision->prepare('SELECT
 		 ORDER BY Nom_Hote');
 $req_Service_Hote -> execute(Array(
 	'ID_Demande' => htmlspecialchars($ID_Demande)
-	)) or die(print_r($req_Service_Hote->errorInfo()));
+)) or die(print_r($req_Service_Hote->errorInfo()));

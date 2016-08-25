@@ -34,7 +34,6 @@ addlog("chargement reprise demande.");
 			<?php
 			if (($Demandeur != $_SESSION['user_changement_centreon']) && ($_SESSION['Admin'] == false)) // tentative d'usurpation d'identité ;)
 			{
-				//addlog("##### ATTENTION tentative d'usurpation d'identité par " . $_SESSION['user_changement_centreon'] . "pour éditer la demande " . $ID_Demande . " de " . $Demandeur . ".");
 				echo '<h3>Bonjour, ' . $_SESSION['name_changement_centreon'] . ' vous n\'êtes pas autorisé à éditer cette demande car vous n\'êtes ni administrateur ni l\'auteur de celle-ci!</h3>';
 				$aujourdhui=date("d-m-Y H:i:s");
 				echo '<p>nous sommes le ' . $aujourdhui . '</p>';
@@ -43,9 +42,11 @@ addlog("chargement reprise demande.");
 			{
 				// récupération des informations liées à la demande
 				include_once('connexion_sql_supervision.php');
-				try {
+				try 
+				{
 					include_once('requete_reprise_demande.php');
-				} catch (Exception $e) {
+				} catch (Exception $e) 
+				{
 					die('Erreur requete_reprise_demande: ' . $e->getMessage());
 				};
 				$res_SelectDemande = $Select_Demande->fetchAll();
@@ -55,7 +56,6 @@ addlog("chargement reprise demande.");
 					echo '<p class="attention">Veuillez consulter la liste des demandes en cours ou contacter l\'administrateur.</p>';
 				}else 
 				{
-	//				while ($res_Demande = $Select_Demande->fetch())
 					foreach($res_SelectDemande as $res_Demande)
 					{
 						$date_demande = htmlspecialchars($res_Demande['Date_Demande']);
@@ -127,37 +127,12 @@ addlog("chargement reprise demande.");
 										</span> <br />									
 											
 										<label for="client" onclick="alert('Une fois que la demande est initialisée, il n\'est plus possible de changer la prestation.')" title="Cliquez pour plus d'informations.">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
+										<select Disabled="Disabled" name="client" id="clientsup" class="info_generale">  <!-- Liste Client -->
 										<?php
-		// désactivé le 12/09/15
-		// 									if (substr(htmlspecialchars($res_Demande['Code_Client']),0,4) == "NEW_")
-		// 									{
-		// 										echo '<select Disabled="Disabled" name="client" id="clientsup">  <!-- Liste Client -->';
-		// 										echo '<option Selected="Selected" value="Nouveau">Nouveau</option>';
-		// 									} else
-		// 									{
-											echo '<select Disabled="Disabled" name="client" id="clientsup" class="info_generale">  <!-- Liste Client -->';
 											echo '<option Selected="Selected" value="' . htmlspecialchars($res_Demande['Code_Client']) . '">' . htmlspecialchars($res_Demande['Code_Client']) . '</option>';
-		//									};
-											echo '</select>';
-											//}; 
 										?>
+										</select>
 										<img src="images/img_ver.png" class="verif" alt="correct" id="img_client" /> <br />
-										<?php
-		// 								if (substr(htmlspecialchars($res_Demande['Code_Client']),0,4) == "NEW_")
-		// 								{
-		// 									echo '<span id="sclient_new" style="visibility: visible;">';
-		// 										echo '<input readonly="readonly" onblur="verifChamp(this)" type="text" name="client_new" id="client_new" class="info_generale" value="' . substr(htmlspecialchars($res_Demande['Code_Client']),4) . '" placeholder="saisir le nom de la prestation..." size="50" maxlength="40" title="Saisissez le nom qui a été définit pour cette prestation lors du projet. Si vous ne le connaissez pas rapprochez vous du service qualité qui saura vous renseigner."/>';
-		// 										echo '<img src="images/img_ver.png" class="verif" alt="correct" id="img_client_new" />';
-		// 									echo '</span> <br />';
-		// 								} else // cela ne doit pas arriver!
-		// 								{
-		// 									echo '<span id="sclient_new" style="visibility: hidden;">';
-		// 										echo '<input onblur="verifChamp(this)" type="text" name="client_new" id="client_new" value="" placeholder="saisir le nom de la prestation..." size="50" maxlength="40" title="Saisissez le nom qui a été définit pour cette prestation lors du projet. Si vous ne le connaissez pas rapprochez vous du service qualité qui saura vous renseigner."/>';
-		// 										echo '<img src="images/img_ok.png" class="verif" alt="correct" id="img_client_new" />';
-		// 									echo '</span> <br />';
-		// 								};
-		//								?>
-										
 										<label for="email" onclick="alert('Saisissez ici les emails des personnes qui devront être notifiées de la demande, centreon_tt est automatiquement notifié de la demande.\nSéparez les adresses par un point-virgule.')" title="Cliquez pour plus d'informations.">Liste des personnes à notifier <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
 										<input type="text" id="email" class="info_generale" name="email" value="<?php echo htmlspecialchars($res_Demande['email']) ;?>" onblur="verifChampMail(this)" placeholder="séparer les adresses par un point-virgule" size="100"/>
 										<img src="images/img_ok.png" class="verif" alt="correct" id="img_email" /> <br/>
@@ -206,33 +181,6 @@ addlog("chargement reprise demande.");
 										<?php
 		 									include_once('remplissage_param_global.php');
 		 								?>
-		<!-- 								<h3>Paramétrage des plages horaires</h3> -->
-		<!-- 								<div> -->
-		<!-- 									<div id="param_plage_horaire"> -->
-												<?php
-		// 											include_once('remplissage_param_plage.php');
-		// 										?>
-		<!-- 									</div> -->
-		<!-- 									<span><button id="Ajouter_Plage">Ajouter une plage horaire</button></span> -->
-		<!-- 								</div> -->
-		<!-- 								<h3>Paramétrage des hôtes</h3> -->
-		<!-- 								<div> -->
-		<!-- 									<div id="param_hote"> -->
-												<?php
-		// 											include_once('remplissage_param_hote.php');
-		// 										?>
-		<!-- 									</div> -->
-		<!-- 									<span><button id="Ajouter_Hote">Ajouter un hôte</button></span> -->
-		<!-- 								</div> -->
-		<!-- 								<h3>Paramétrage des services</h3> -->
-		<!-- 								<div> -->
-		<!-- 									<div id="param_service"> -->
-												<?php
-		// 											include_once('remplissage_param_service.php');
-		// 										?>
-		<!-- 									</div> -->
-		<!-- 									<span><button id="Ajouter_Service">Ajouter un service</button></span> -->
-		<!-- 								</div> -->
 									</div> 
 										<span>
 											<div id="bip"></div>

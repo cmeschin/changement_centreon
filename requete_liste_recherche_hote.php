@@ -1,25 +1,16 @@
 <?php
  header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 include_once('connexion_sql_centreon.php');
- /* echo $_POST['monclient']; */
 $Hote = (isset($_POST["sSearch_Hote"])) ? $_POST["sSearch_Hote"] : NULL;
 $Prestation = (isset($_POST["sClient"])) ? $_POST["sClient"] : NULL;
  
-if (($Hote ) && ($Prestation)) {
-    // récupérer la liste des hôtes de Centreon et générer le tableau
-	try {
-// 		$req_recherche_hote = $bdd_centreon->prepare('SELECT
-// 				 Distinct(host_name),
-// 				 H.host_id,
-// 				 host_alias,
-// 				 host_address,
-// 				 if(host_activate="1","actif","inactif") AS Controle,
-// 				 Hote
-// 			FROM vInventaireServices AS vIS
-// 			INNER JOIN host AS H ON vIS.host_id=H.host_id
-// 			WHERE Code_Client <> :Code_Client
-// 				 AND (host_name LIKE :Nom_Hote OR host_address LIKE :IP_Hote)
-// 			ORDER BY host_name LIMIT 15');
+if (($Hote ) && ($Prestation)) 
+{
+    /**
+     *  récupérer la liste des hôtes de Centreon et générer le tableau
+     */
+	try 
+	{
 		$req_recherche_hote = $bdd_centreon->prepare('SELECT
 				 Distinct(Nom_Hote),
 				 host_id,

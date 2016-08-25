@@ -1,11 +1,12 @@
 <?php
- header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
+header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
 include_once('connexion_sql_supervision.php');
 $ID_Modele = (isset($_POST["ID_Modele"])) ? $_POST["ID_Modele"] : NULL;
  
 if ($ID_Modele )
 {
-	try {
+	try 
+	{
 		$req_modele = $bdd_supervision->prepare('SELECT
 				 ID_Modele_Service,
 				 Modele_Service,
@@ -27,12 +28,11 @@ if ($ID_Modele )
 		{
 			$liste_lib = explode("!",$res_modele['MS_Libelles']);
 			$liste_arg = explode("!",$res_modele['MS_Arguments']);
-// Argument 
 			echo '<label for="Libelle'. $i . '">Argument '. $i .':</label>';
 			echo '<input type="text" id="Libelle'. $i .'" name="Libelle'. $i .'" onblur="verifChamp(this)" value="" placeholder="' . $liste_lib[$i] . '" size="30"/>';
 			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Libelle'. $i .'" /> <br />';
 			echo '<input type="text" id="Argument'. $i .'" name="Argument'. $i .'" onblur="verifChamp(this)" value="" placeholder="' . $liste_lib[$i] . '" size="30"/>';
 			echo '<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_Argument'. $i .'" /> <br />';
-		}
-	}
-}
+		};
+	};
+};

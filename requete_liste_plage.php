@@ -6,7 +6,9 @@ header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier l
 
 $monclient = (isset($_POST["monclient"])) ? $_POST["monclient"] : NULL;
 if ($monclient ) {
-    // récupérer la liste des hôtes et générer le tableau
+    /**
+     *  récupérer la liste des hôtes et générer le tableau
+     */
 	include_once('connexion_sql_centreon.php');
 	try {
 		/**
@@ -35,23 +37,21 @@ if ($monclient ) {
 	} catch (Exception $e) {
 		die('Erreur requete_liste_plage: ' . $e->getMessage());
 	};
-	?>
-	<p>Sélectionner les plages qui doivent être modifiées.</p>
-	<p>Il convient toutefois de faire attention aux modifications sur les plages horaires car elles peuvent être utlisées par plusieurs services.</p>
-	<p>Leur modification peut entrainer la génération d'alertes sur d'autres services qui les utiliserai.</p>
-	<table id="T_Liste_Plage">
-		<tr>
-		<th>Sélection</th>
-		<th>Plage Horaire</th>
-		<th>Lundi</th>
-		<th>Mardi</th>
-		<th>Mercredi</th>
-		<th>Jeudi</th>
-		<th>Vendredi</th>
-		<th>Samedi</th>
-		<th>Dimanche</th>
-		</tr> 
-		<?php
+	echo '<p>Sélectionner les plages qui doivent être modifiées.</p>';
+	echo '<p>Il convient toutefois de faire attention aux modifications sur les plages horaires car elles peuvent être utlisées par plusieurs services.</p>';
+	echo '<p>Leur modification peut entrainer la génération d'alertes sur d'autres services qui les utiliserai.</p>';
+	echo '<table id="T_Liste_Plage">';
+		echo '<tr>';
+		echo '<th>Sélection</th>';
+		echo '<th>Plage Horaire</th>';
+		echo '<th>Lundi</th>';
+		echo '<th>Mardi</th>';
+		echo '<th>Mercredi</th>';
+		echo '<th>Jeudi</th>';
+		echo '<th>Vendredi</th>';
+		echo '<th>Samedi</th>';
+		echo '<th>Dimanche</th>';
+		echo '</tr> ';
 		$i = 1;
 		while ($res_plage = $req_plage->fetch())
 		{ 
@@ -68,9 +68,7 @@ if ($monclient ) {
 			echo '</tr>';
 			$i ++;
 		};
-		?>
-	</table>
-<?php
+	echo '</table>';
 } else 
 {
     echo "ERREUR: Code_Client=[" . $monclient . "].";

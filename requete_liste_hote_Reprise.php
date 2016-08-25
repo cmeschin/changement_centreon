@@ -1,38 +1,17 @@
 <?php
-//session_start();
 if (session_id()=='')
 {
-session_start();
+	session_start();
 };
 
-//include('log.php');
 if ($monclient)
 {
-	// récupérer la liste des hôtes sélectionnés dans la demande en cours avec l'ID demande et dont l'ID_Hote_Centreon n'est pas 0
-	// 30/60/15 suppression de la restriction ID_Hote_Centreon<>0 puisque champ selection disponible
+	/**
+	 *  récupérer la liste des hôtes sélectionnés dans la demande en cours avec l'ID demande et dont l'ID_Hote_Centreon n'est pas 0
+	 * 30/60/15 suppression de la restriction ID_Hote_Centreon<>0 puisque champ selection disponible 
+	 */
 	include_once('connexion_sql_supervision.php');
 	try {
-// 		$req_hote_Dem = $bdd_supervision-> prepare('SELECT
-// 				 ID_Hote,
-// 				 ID_Demande,
-// 				 ID_Hote_Centreon,
-// 				 Nom_Hote,
-// 				 Description,
-// 				 IP_Hote,
-// 				 Type_Hote,
-// 				 ID_Localisation,
-// 				 OS,
-// 				 Architecture,
-// 				 Langue,
-// 				 Fonction,
-// 				 Controle_Actif,
-// 				 Commentaire,
-// 				 Consigne,
-// 				 Detail_Consigne,
-// 				 Type_Action,
-// 				 Etat_Parametrage,
-// 				 selection
-// 			FROM hote WHERE ID_Hote_Centreon <> 0 AND ID_Demande = :ID_Demande;');
 		$req_hote_Dem = $bdd_supervision-> prepare('SELECT
 				 ID_Hote,
 				 ID_Demande,
@@ -105,20 +84,13 @@ if ($monclient)
 			{
 				echo '<tr>';
 			};
-//			if ((htmlspecialchars($lst_hote['Nom_Hote']).htmlspecialchars($lst_hote['IP_Hote']) == $nom_hote.$ip_hote) && (htmlspecialchars($lst_hote['selection']) == true))// si l'hote+IP fait parti de la demande en cours on le désactive et on le coche
 			if (htmlspecialchars($lst_hote['selection']) == "true")// si l'hote fait parti de la demande en cours on le désactive
 			{
-//						echo '<td><input disabled="disabled" type="checkbox" name="selection_hote" id="' . $i . '"/></td>';
-// on le le coche pas pour éviter un rajout en double
-//						echo '<td><input checked="checked" disabled="disabled" type="checkbox" name="selection_hote" id="' . $i . '"/></td>';
 				echo '<td><input disabled="disabled" type="checkbox" name="selection_hote" id="' . $i . '"/>OK</td>';
-						//$ajout_OK = True;
-//					} else if (htmlspecialchars($lst_hote['Nom_Hote']).htmlspecialchars($lst_hote['IP_Hote']) == $nom_hote.$ip_hote)//sinon on ajoute simplement la case 
 			} else //sinon on ajoute simplement la case 
 			{
 				echo '<td><input type="checkbox" name="selection_hote" id="' . $i . '"/></td>';
 			};
-		//};
 			echo '<td>' . htmlspecialchars($lst_hote['ID_Localisation']) . '</td>';
 			echo '<td>' . htmlspecialchars($lst_hote['Type_Hote']) . '</td>';
 			echo '<td>' . htmlspecialchars($lst_hote['Nom_Hote']) . '</td>';

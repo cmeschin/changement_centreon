@@ -47,7 +47,6 @@ try {
 				'Type_Action' => htmlspecialchars($liste_T_hote[12]),
 				'selection' => "false"
 				)) or die(print_r($MAJ_hote->errorInfo()));
-			//addlog(print_r($MAJ_hote));
 			addlog("Nom_Hote=" . htmlspecialchars($liste_T_hote[0]));
 			addlog("IP_Hote=" . htmlspecialchars($liste_T_hote[1]));
 		};

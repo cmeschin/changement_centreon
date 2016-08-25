@@ -1,5 +1,6 @@
 <?php
-if (session_id () == '') {
+if (session_id () == '') 
+{
 	session_start ();
 };
 header("Content-Type: text/plain"); // Utilisation d'un header pour spécifier le type de contenu de la page. Ici, il s'agit juste de texte brut (text/plain).
@@ -9,20 +10,11 @@ include_once('log.php');
 
 if ($monclient )
 {
-    // récupérer la liste des hôtes de centreon et générer le tableau
+    /**
+     *  récupérer la liste des hôtes de centreon et générer le tableau
+     */
 	include_once('connexion_sql_centreon.php');
 	try {
-// correction le 11/01/15 suite à modification vue inventaire 
-// 		$req_hote = $bdd_centreon->prepare('SELECT Distinct(host_name),
-// 			 H.host_id,
-// 			 host_alias,
-// 			 host_address,
-// 			 if(host_activate="1","actif","inactif") AS Controle,
-// 			 Hote
-// 			FROM vInventaireServices AS vIS
-// 			INNER JOIN host AS H ON vIS.host_id=H.host_id
-// 			WHERE Code_Client= :Code_Client
-// 			ORDER BY H.host_name');
 		$req_hote = $bdd_centreon->prepare('SELECT Distinct(Nom_Hote),
 			 host_id,
 			 Hote_Description,
@@ -45,7 +37,6 @@ if ($monclient )
 	$res_elements_hote = $req_hote->fetchAll ();
 	$_SESSION['lst_id_hote'] = "";
 	addlog("Liste id_hote" . $_SESSION['lst_id_hote']);
-	//while ($res_elements_hote = $req_elements_hote->fetch())
 	foreach ( $res_elements_hote as $val_hote )
 	{
 		$_SESSION['lst_id_hote'] .= "," .$val_hote['host_id'];
@@ -73,8 +64,6 @@ if ($monclient )
 		$i = 1;
 		foreach ( $res_elements_hote as $res_hote )
 		{
-//		while ($res_hote = $req_hote->fetch())
-//		{ 
 			$localisation = stristr($res_hote['Nom_Hote'],'-',1); // conserve la chaine avant le premier tiret
 			$hote_type = stristr(substr(stristr($res_hote['Nom_Hote'],'-'),1),'-',1); // conserve la chaine entre les deux tirets
 			$nom_hote = substr(stristr(substr(stristr($res_hote['Nom_Hote'],'-'),1),'-'),1); // enlève la localisation et la fonction et les deux -
@@ -92,7 +81,6 @@ if ($monclient )
 			echo '<td>' . htmlspecialchars($nom_hote) . '</td>';
 			echo '<td>' . htmlspecialchars($res_hote['Hote_Description']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_hote['IP_Hote']) . '</td>';
-			//echo '<td>' . htmlspecialchars($res_hote['Controle']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_hote['Controle_Hote']) . '</td>';
 			echo '<td hidden>h' . htmlspecialchars($res_hote['host_id']) . '</td>';
 			echo '</tr>';

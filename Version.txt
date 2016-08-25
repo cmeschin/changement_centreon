@@ -1,3 +1,6 @@
+2016-08-22 9.6.0
+	- suppression du code commenté inutile => fait jusqu'à requete_liste_recherche_service.php
+
 2016-07-07 9.5.0
 	- Ajout d'un message d'information optionnel (_information.php à renommer en information.php pour qu'il soit visible)
 	

@@ -1,27 +1,14 @@
 <?php
 if (session_id()=='')
 {
-session_start();
+	session_start();
 };
-//include('log.php'); // chargement de la fonction de log
-// if (($_SESSION['Extraction'] == False) AND ($ID_Demande == NULL))
-// {
-	$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"]: $ID_Demande;
-// /**
-//  * Aucune utilité de l'ID_Demande "erroné pour une extraction
-// 	} else 
-// 	{
-// 		$ID_Demande = $_SESSION['Extraction'];
-// */
-// };
-//addlog("ID_Demande=" . $ID_Demande);
-
+$ID_Demande = (isset($_POST["ID_Demande"])) ? $_POST["ID_Demande"]: $ID_Demande;
 include_once('connexion_sql_supervision.php');
 
-try {
-	
+try 
+{
 	// Selection de tous les services de la demande
-	//include('requete_Remplissage_Service.php');
 	include('requete_liste_service_demande.php');
 } catch (Exception $e) {
 	die('Erreur requete_Remplissage_service: ' . $e->getMessage());
@@ -69,7 +56,6 @@ while ($res_liste_service = $req_liste_service->fetch())
 	echo '<fieldset id="Service' . $NbFieldset_Service . '" class="service">';
 		echo '<legend>Service n°' . $NumFieldset . '</legend>';
 		echo '<!-- Nom service -->';
-		//$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Nom_Service'])) + 20*strlen(htmlspecialchars($res_liste_service['Nom_Service']))/100;
 		$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Nom_Service'])) + 10;
 		echo '<label for="Nom_Service' . $NbFieldset_Service . '">Nom de la sonde:</label>';
 		echo '<input Readonly type="text" id="Nom_Service' . $NbFieldset_Service . '" name="Nom_Service' . $NbFieldset_Service . '" value="' . htmlspecialchars($res_liste_service['Nom_Service']) . '" size="'. $LongueurArg . '" maxlength="100"/>';
@@ -96,24 +82,14 @@ while ($res_liste_service = $req_liste_service->fetch())
 		echo ' ';
 		echo '<!-- Arguments -->';
 		echo '<fieldset id="Arg_Service_Modele' . $NbFieldset_Service . '">';
-//			echo '<legend>Arguments du service</legend>';
-                        //gestion des arguments
-                        include('gestion_arguments.php');
+			include('gestion_arguments.php');
 		echo '</fieldset> <br /> ';
-/*                echo '<fieldset id="Inactif_Arg_Service_Modele' . $NbFieldset_Service . '">';
-                        echo '<legend>Arguments du service initial</legend>';
-                        //gestion des arguments
-                        include('gestion_arguments.php');
-                echo '</fieldset>';*/
 		echo '<br />';
 		echo '<!-- Service Consigne -->';
-//		$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Consigne'])) + 20*strlen(htmlspecialchars($res_liste_service['Consigne']))/100;
 		$LongueurArg=  strlen(htmlspecialchars($res_liste_service['Consigne']));
 /**
  * Modification consigne obligatoire
  */
-//		echo '<label for="Service_Consigne' . $NbFieldset_Service . '">Lien vers la consigne :</label>';
-//		echo '<input Readonly type="text" id="Service_Consigne' . $NbFieldset_Service . '" name="Service_Consigne' . $NbFieldset_Service . '" value="' . htmlspecialchars($res_liste_service['Consigne']) . '" size="'. $LongueurArg . '" maxlength="255"/> <br />';
 		echo '<span id="Service_Consigne' . $NbFieldset_Service . '" class="service' . $NbFieldset_Service . '">Lien vers la consigne :<a href="' . htmlspecialchars($res_liste_service['Consigne']) . '" target="_blank">' . htmlspecialchars($res_liste_service['Consigne']) . '</a></span>	<br />';		echo '<!-- Service Consigne Description-->';
 		echo '<label for="Consigne_Service_Detail' . $NbFieldset_Service . '" onclick="alert(\'Décrivez ici les opérations à effectuer par les équipes EPI et/ou CDS si un évènement se produit sur l\\\'équipement (relancer un process, envoyer un mail, etc...).\\nLes consignes doivent être claires et précises afin qu\\\'elles puissent être appliquées rapidement et sans ambiguïté par les équipes de support.\\nLes adresses mails doivent être indiquées en toute lettre soit par ex: envoyer un mail à support_bmd@tessi.fr et pas simplement envoyer un mail support bmd.\\nCette consigne sera ensuite retranscrite dans le wiki tessi-techno et un lien sera rattaché à l\\\'hôte; le lien apparaitra par la suite dans le champ ci-dessus.\')">Description consigne <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
 		echo '<textarea Readonly id="Consigne_Service_Detail' . $NbFieldset_Service . '" name="Consigne_Service_Detail' . $NbFieldset_Service . '" rows="3" cols="50">' . htmlspecialchars($res_liste_service['Detail_Consigne']) . '</textarea> <br />';
@@ -140,14 +116,8 @@ while ($res_liste_service = $req_liste_service->fetch())
 		echo '<label for="Service_Commentaire' . $NbFieldset_Service . '" onclick="alert(\'Indiquez ici toute information complémentaire utile au paramétrage; Dans cette zone vous pouvez également indiquer le nouveau nom du service s\\\'il doit être changé.\')">Commentaire  <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>';
 		echo '<textarea id="Service_Commentaire' . $NbFieldset_Service . '" name="Service_Commentaire' . $NbFieldset_Service . '" rows="3" cols="50" class="service' . $NbFieldset_Service . '">' . htmlspecialchars($res_liste_service['Commentaire']) . '</textarea> <br />';
 
-// 		if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
-// 		{
-			$ID_Service = htmlspecialchars($res_liste_service['ID_Service']);
-			include('insere_fieldset_Admin_Service.php');
-// 		} else 
-// 		{
-// 			include('insere_fieldset_Standard_Service.php');
-// 		};
+		$ID_Service = htmlspecialchars($res_liste_service['ID_Service']);
+		include('insere_fieldset_Admin_Service.php');
 	echo '</fieldset>';
 
 	/**
