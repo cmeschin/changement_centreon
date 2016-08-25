@@ -1,5 +1,9 @@
 2016-08-22 9.6.0
-	- suppression du code commenté inutile => fait jusqu'à requete_liste_recherche_service.php
+	- suppression du code commenté inutile ok.
+	### ALTER TABLE Demande ADD COLUMN date_validation DATETIME NULL AFTER Date_PEC;
+	- ajout date_validation au moment du passage de la demande en statut validation ce qui permettra d'analyser les temps de traitement estimé et effectif
+		 ainsi que les délai de finalisation des demandes par rapport au temps de paramétrage
+	- Inversion des couleurs de courbe (rédigées en rouge et traitées en vert)  
 
 2016-07-07 9.5.0
 	- Ajout d'un message d'information optionnel (_information.php à renommer en information.php pour qu'il soit visible)

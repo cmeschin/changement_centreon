@@ -78,10 +78,22 @@
  /* Create and populate the pData object */
  $MyData = new pData();
  	$MyData2 = new pData();
- $MyData->addPoints($Temps_Traite,"Demandes traitées");
  $MyData->addPoints($Temps_A_Traiter,"Demandes rédigées");
- 	$MyData2->addPoints($Nbre_Traite,"Demandes traitées");
- 	$MyData2->addPoints($Nbre_A_Traiter,"Demandes rédigées");
+ $serieSettings = array('R'=>254, 'G'=>9, 'B'=>58, 'Alpha'=>60); // rouge #FE093A
+ $MyData->setPalette("Demandes rédigées", $serieSettings);
+
+ $MyData->addPoints($Temps_Traite,"Demandes traitées");
+ $serieSettings = array("R"=>181,"G"=>239,"B"=>57,"Alpha"=>80); // vert #B5EF39
+ $MyData->setPalette("Demandes traitées", $serieSettings);
+
+ $MyData2->addPoints($Nbre_A_Traiter,"Demandes rédigées");
+ $serieSettings = array('R'=>254, 'G'=>9, 'B'=>58, 'Alpha'=>60); // rouge #FE093A
+ $MyData2->setPalette("Demandes rédigées", $serieSettings);
+
+ $MyData2->addPoints($Nbre_Traite,"Demandes traitées");
+ $serieSettings = array("R"=>181,"G"=>239,"B"=>57,"Alpha"=>80); // vert #B5EF39
+ $MyData2->setPalette("Demandes traitées", $serieSettings);
+
  $MyData->setSerieWeight("charge semaine",2);
 	$MyData2->setSerieWeight("charge semaine",2);
 // $MyData->setSerieTicks("Probe 2",4);
@@ -124,9 +136,9 @@
  
  /* Write the chart title */ 
  $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/Forgotte.ttf","FontSize"=>8,"R"=>255,"G"=>255,"B"=>255));
- $myPicture->drawText(10,16,"Charge par semaine",array("FontSize"=>11,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
+ $myPicture->drawText(10,16,"Charge par semaine (en heure)",array("FontSize"=>11,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
  	$myPicture2->setFontProperties(array("FontName"=>"pChart/fonts/Forgotte.ttf","FontSize"=>8,"R"=>255,"G"=>255,"B"=>255));
- 	$myPicture2->drawText(10,16,"Charge par semaine",array("FontSize"=>11,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
+ 	$myPicture2->drawText(10,16,"Charge par semaine (en nombre de demande)",array("FontSize"=>11,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
  
  /* Set the default font */
  $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/pf_arma_five.ttf","FontSize"=>6,"R"=>0,"G"=>0,"B"=>0));

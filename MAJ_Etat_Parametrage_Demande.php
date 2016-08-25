@@ -27,6 +27,14 @@ try {
 				'ID_Demande' => $ID_Demande
 			)) or die(print_r($MAJ_Demande->errorInfo()));
 			
+		} else if ($Etat_Param == "Validation")
+		{
+			$MAJ_Demande = $bdd_supervision->prepare('UPDATE demande SET Etat_Demande= :Etat_Param, date_validation = :date_validation WHERE ID_Demande= :ID_Demande;');
+			$MAJ_Demande->execute(array(
+					'Etat_Param' => $Etat_Param,
+					'date_validation' => date("Y-m-d H:i:s"),
+					'ID_Demande' => $ID_Demande
+			)) or die(print_r($MAJ_Demande->errorInfo()));
 		} else
 		{
 			$MAJ_Demande = $bdd_supervision->prepare('UPDATE demande SET Etat_Demande= :Etat_Param WHERE ID_Demande= :ID_Demande;');
