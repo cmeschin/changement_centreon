@@ -1,3 +1,11 @@
+2016-08-30 9.7.0
+	- modification gestion pages information et maintenance
+		possibilité de choisir les balises et class avec les valeurs idoines pour les deux pages.
+		page information affichée en permanence (il suffit d'activer la variable message pour qu'il s'affiche)
+	- Ajout bouton "Supprimer" pour les demandes en brouillon de l'utilisateur (Suppression définitive).
+	- Suppression second popup de confirmation d'ajout de service (inclut en trop dans la fonction afficher_argument)
+	- Epuration code en commentaire dans les fonctions (non terminé).
+		
 2016-08-29 9.6.1
 	- suppression du code commenté inutile ok.
 	### ALTER TABLE demande ADD COLUMN date_validation DATETIME NULL AFTER Date_PEC;

@@ -36,8 +36,8 @@ function enregistre_selection()
 {
 	/**
 	 * Fonction d'enregistrement du tout premier brouillon avec la sélection actuelle (Bouton "Valider votre sélection")
+	 * désactivation des boutons pour ne pas cliquer deux fois dessus
 	 */
-	// désactivation des boutons pour ne pas cliquer deux fois dessus
 	$("#Rechercher").attr("Disabled","Disabled");
 	$("#Ajouter_Selection_Hote").attr("Disabled","Disabled");
 	$("#Valider_Selection").attr("Disabled","Disabled");
@@ -63,14 +63,14 @@ function enregistre_selection()
 		return false;
 	};
 
-	//appel de la fonction de récupération des infos générales
+	/**
+	 * appel de la fonction de récupération des infos générales
+	 */
 	var info_gen = info_generale();
 	
 	/**
 	 *  Traitement de l'onglet Liste des hôtes et services
-	 */
-
-	/**
+	 *  
 	 *  boucler sur les hôtes sélectionnés afin de générer une liste
 	 */
 
@@ -247,7 +247,6 @@ function enregistre_selection()
 		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
 		$("#Valider_Selection").removeAttr("Disabled");
 		$('html,body').animate({scrollTop:0},'slow'); // retourne en haut de la page après l'enregistrement
-		//alert("Chargement terminé! Vous pouvez passer au paramétrage des hôtes et services sur l'onglet paramétrage.");
 		$("#messageValidation").append('<p id="messageValidationOK" style="background-color:green">Chargement terminé!<br>Vous pouvez passer au paramétrage des hôtes et services sur l\'onglet paramétrage.</p>');
 		$("#lien_tabs3").effect("pulsate");
 	}; 
@@ -324,9 +323,6 @@ function PreEnregistrer_fieldset_hote(champ)
 				$("#Nom"+id_input_hote+"").attr("ReadOnly","ReadOnly"); // passe le champ Nom_Hote en lecture seule
 				$("#img_Nom"+id_input_hote+"").attr("src","images/img_ver.png"); // passe le champ im_Nom_Hote en Verrouillé
 				$("#"+hote_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
-				
-				// v9.3.1
-				//alert("Pré-enregistrement de l'hôte terminé!\nCet hôte est désormais disponible dans la configuration des services");
 			}; 
 			PreEnregistre_Hote(PreEnregistrement_termine);
 		};
@@ -397,8 +393,6 @@ function PreEnregistrer_fieldset_plage(champ)
 				$(this).append('<option value="'+ Nom_Plage +'">'+ Nom_Plage +'</option>');
 			});
 			$("#"+plage_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
-			// v9.3.1
-			//alert("Pré-enregistrement de la plage terminé!\nCette plage est désormais disponible dans la configuration des services");
 		}; 
 		PreEnregistre_Plage(PreEnregistrement_plage_termine);
 	};
@@ -528,7 +522,6 @@ function Valider_Demande()
 				{
 					if (($(this).attr("id") == "Nom_Service" + class_service.substring(7)) && ($(this).val() == ""))
 					{
-						//alert("Veuillez sélectionner un hôte pour le service " + class_service.substring(7) +" avant de continuer.");
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez donner un nom pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Service_Vide=true;
@@ -536,7 +529,6 @@ function Valider_Demande()
 					};
 					if (($(this).attr("id") == "Hote_Service" + class_service.substring(7)) && ($(this).val() == ""))
 					{
-						//alert("Veuillez sélectionner un hôte pour le service " + class_service.substring(7) +" avant de continuer.");
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner un hôte pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Hote_Vide=true;
@@ -544,7 +536,6 @@ function Valider_Demande()
 					};
 					if (($(this).attr("id") == "Service_Plage" + class_service.substring(7)) && ($(this).val() == ""))
 					{
-						//alert("Veuillez sélectionner une plage de contrôle pour le service " + class_service.substring(7) +" avant de continuer.");
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner une plage de contrôle pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Plage_Vide=true;
@@ -552,7 +543,6 @@ function Valider_Demande()
 					};
 					if (($(this).attr("id") == "Service_Modele" + class_service.substring(7)) && ($(this).val() == ""))
 					{
-						//alert("Veuillez sélectionner un modèle pour le service " + class_service.substring(7) +" avant de continuer.");
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner un modèle pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Modele_Vide=true;
@@ -674,12 +664,9 @@ function Enregistrer_Brouillon(Bouton)
 	 * pour chaque fieldset hote on vérifie, si un bouton "Préenregistré" est présent, qu'il est désactivé
 	 * S'il ne l'est pas, on stop la procédure et on demande à l'utilisateur de préenregistrer les hôtes.
 	 */
-	//var PreEnregistre= "";
 	controle_preenregistrement_hote();
 	if ((Doublon != "Oui") && (PreEnregistre != false)) 
 	{
-//		if ($("#lien_tabs3").css("Visibility") == "visible")
-//		{
 			function Traitement_Enregistre()
 			{
 				var Liste = "";
@@ -711,7 +698,6 @@ function Enregistrer_Brouillon(Bouton)
 				});
 				liste_hote = liste_hote.substring(1,liste_hote.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
 				liste_hote = liste_hote.replace(/\$\$/g,"$"); // remplace les "$$" par un simple "$"
-				//alert(liste_hote);
 				/**
 				 *  constitution de la chaine plage
 				 */
@@ -749,7 +735,6 @@ function Enregistrer_Brouillon(Bouton)
 					{
 						if (($(this).attr("id") == "Nom_Service" + class_service.substring(7)) && ($(this).val() == ""))
 						{
-							//alert("Veuillez sélectionner un hôte pour le service " + class_service.substring(7) +" avant de continuer.");
 							$("#bip").append('<p class="attention" id="bip_retour">Veuillez donner un nom pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 							afficheMessage(15,"bip_retour");
 							Service_Vide=true;
@@ -757,7 +742,6 @@ function Enregistrer_Brouillon(Bouton)
 						};
 						if (($(this).attr("id") == "Hote_Service" + class_service.substring(7)) && ($(this).val() == ""))
 						{
-							//alert("Veuillez sélectionner un hôte pour le service " + class_service.substring(7) +" avant de continuer.");
 							$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner un hôte pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 							afficheMessage(15,"bip_retour");
 							Hote_Vide=true;
@@ -765,7 +749,6 @@ function Enregistrer_Brouillon(Bouton)
 						};
 						if (($(this).attr("id") == "Service_Plage" + class_service.substring(7)) && ($(this).val() == ""))
 						{
-							//alert("Veuillez sélectionner une plage de contrôle pour le service " + class_service.substring(7) +" avant de continuer.");
 							$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner une plage de contrôle pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 							afficheMessage(15,"bip_retour");
 							Plage_Vide=true;
@@ -773,7 +756,6 @@ function Enregistrer_Brouillon(Bouton)
 						};
 						if (($(this).attr("id") == "Service_Modele" + class_service.substring(7)) && ($(this).val() == ""))
 						{
-							//alert("Veuillez sélectionner un modèle pour le service " + class_service.substring(7) +" avant de continuer.");
 							$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner un modèle pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 							afficheMessage(15,"bip_retour");
 							Modele_Vide=true;
@@ -850,11 +832,6 @@ function Enregistrer_Brouillon(Bouton)
 				};
 				function enregistrement_brouillon(resultat)
 				{
-					// v9.3.1
-					//alert("Enregistrement du brouillon terminé!");
-					//var counter = 10;
-					//var intervalId = null;
-
 					$("#bip").append('<p id="bip_retour">Brouillon enregistré!<br> <button onclick="goToMenu()">Cliquez sur ce bouton</button> pour laisser votre demande en l\'état et revenir immédiatement à l\'accueil sinon continuer de tavailler normalement.<br>Ce message disparaitra automatiquement dans 10 secondes.</p>');
 					afficheMessage(10,"bip_retour");
 					$("#Enregistrer_Brouillon").removeAttr("Disabled");
@@ -879,8 +856,6 @@ function Enregistrer_Brouillon(Bouton)
 			{
 				Traitement_Enregistre(); // on enregistre les données	
 			};
-			
-//		};
 	};
 	};
 };
@@ -897,7 +872,6 @@ function afficheMessage(delai,maDiv)
 	var counter = delai;
 	var intervalId = null;
 	var maDiv = maDiv;
-	//alert("counter=" + counter + "; intrvalId=" + intervalId + "; maDiv=" + maDiv);
 	function action()
 	{
 		clearInterval(intervalId);
@@ -906,7 +880,6 @@ function afficheMessage(delai,maDiv)
 	function decompte()
 	{
 		counter--;
-		//alert(counter);
 	};
 	function start()
 	{
@@ -958,7 +931,6 @@ function enregistre_Etat_Demande(champ,ID)
 	    {
 	    	motif_annulation=prompt("Motif de l'annulation:","doublon");
 	    };
-//	    return motif_annulation;
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_annu");
 	} else if (Etat_Param == "Supprimer")
@@ -994,8 +966,6 @@ function enregistre_Etat_Demande(champ,ID)
 				window.location.reload(); // rechargement de la page pour afficher le statut "en cours"
 			};
 			
-			// v9.3.1
-			//alert("Mise à jour Etat paramétrage OK!");
 			var bip_id=fieldset_parent + "bip_enregistre";
 			$("#" + fieldset_parent + "").append('<span id="' + bip_id + '">etat enregistré!</span>');
 			afficheMessage(3,bip_id);
@@ -1072,6 +1042,40 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 	};
 };
 
+function DEC_Supprimer_Demande(ID_Demande)
+{ 
+	/**
+	 *  fonction spécifique de suppression de demande par l'utilisateur
+	 *   => Tous les hôtes, services et plages seront supprimés ainsi que la demande.
+	 */
+	var Etat_Param = "Supprimer";
+	var MessageConfirmation = "Vous allez définitivement supprimer la demande n°" + ID_Demande + " ainsi que tous les hôtes, plages et services associés. Etes-vous sûr?";
+	if (confirm(MessageConfirmation)) 
+	{
+		var xhr = getXMLHttpRequest(); //création de l'instance XHR
+		xhr.onreadystatechange = function() 
+		{
+			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+			{
+				/**
+				 * Désactivation demande rechargement => rechargement obligatoire avec l'activation des mails auto.
+				 */
+				window.location.reload();
+			} else if(xhr.readyState == 4 && xhr.status != 200) 
+			{ 
+				gestion_erreur(xhr);
+			};
+		};
+
+		ID_Demande = encodeURIComponent(ID_Demande);
+		Etat_Param = encodeURIComponent(Etat_Param);
+		
+		xhr.open("POST", "MAJ_Etat_Parametrage_Demande.php", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+		xhr.send("ID_Demande="+ID_Demande+"&Etat_Param="+Etat_Param+""); 
+	};
+};
+
 function Enregistre_Notif_BAM()
 {
 	/**
@@ -1139,8 +1143,6 @@ function Enregistre_Notif_BAM()
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			$("#img_loading").remove();
 			$("#p_loading").remove();
-			// v9.3.1
-			//alert("enregistrement terminé.");
 			window.location.replace("./administration.php#tabs-3");
 			window.location.reload();
 		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
@@ -1187,7 +1189,6 @@ function Gestion_caractere_speciaux(str)
 	/**
 	 *  remplacement de tous les antislash par des slash
 	 */
-	//alert(str);
 	str = str.replace(/\\/g,"\/");
 	
 	var reg1=new RegExp("[|]","g");
@@ -1452,10 +1453,8 @@ function controle_preenregistrement_hote()
 	/**
 	 *  constitution de la chaine hote
 	 */
-//	$("fieldset[class='hote']").each(function()
 	$("[id*='PreEnregistrer_Hote']").each(function()
 	{
-		//alert("Je suis ici:"+$(this).attr("id"));
 		if ($(this).attr("disabled")=="disabled")
 		{
 			PreEnregistre=true;

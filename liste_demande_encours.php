@@ -86,11 +86,15 @@ echo '<table id="T_Liste_Demande">';
 			echo '<td>' . htmlspecialchars($res_dem['NbPlage']) . '</td>';
 			if ((htmlspecialchars($res_dem['Etat_Demande']) == "Brouillon") && ($_SESSION['user_changement_centreon'] == htmlspecialchars($res_dem['Demandeur']))) // si brouillon et user=demandeur => lien édition
 			{ // on charge la page reprise_demande sur le modèle d'une nouvelle demande
-				echo '<td><ul class="Etat_Demande">
-						<li>
-						<a href="reprise_demande.php?demandeur=' . htmlspecialchars($res_dem['Demandeur']) . '&amp;id_demande=' . htmlspecialchars($res_dem['ID_Demande']) . '">' . htmlspecialchars($res_dem['Etat_Demande']) .'</a>
-						</li>
-					</ul></td>';
+				echo "<td>";
+				echo "<ul class='Etat_Demande'>";
+						echo "<li>";
+						echo "<a href='reprise_demande.php?demandeur=" . htmlspecialchars($res_dem['Demandeur']) . "&amp;id_demande=" . htmlspecialchars($res_dem['ID_Demande']) . "'>" . htmlspecialchars($res_dem['Etat_Demande']) ."</a>";
+						echo "</li>";
+					echo "</ul>";
+				// Ajout du bouton Supprimer pour le propriétaire de la demande
+					echo "<button id='DEC_Supprimer_dem" . htmlspecialchars($res_dem['ID_Demande']) . "' onclick='DEC_Supprimer_Demande(" . htmlspecialchars($res_dem['ID_Demande']) . ")'>Supprimer</button>";
+				echo "</td>";
 			} else // pas de lien cliquable pour tous les autres
 			{
 				echo '<td>' . htmlspecialchars($res_dem['Etat_Demande']) .'</td>';

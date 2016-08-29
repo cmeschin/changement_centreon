@@ -39,12 +39,12 @@ echo '<div id="principal">';
 		echo '<br />';
 		echo 'nous sommes le ' . $date_demande;
 		echo '<br />';
+// 			if (file_exists('information.php')==True)
+// 			{
+				include('information.php');
+// 			};
 		if	(file_exists('maintenance.php')==False)
 		{ 
-			if (file_exists('information.php')==True)
-			{
-				include('information.php');
-			};
 			echo 'Veuillez choisir un menu ci dessus!</p>';
 		} else 
 		{
