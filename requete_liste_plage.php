@@ -37,38 +37,38 @@ if ($monclient ) {
 	} catch (Exception $e) {
 		die('Erreur requete_liste_plage: ' . $e->getMessage());
 	};
-	echo '<p>Sélectionner les plages qui doivent être modifiées.</p>';
-	echo '<p>Il convient toutefois de faire attention aux modifications sur les plages horaires car elles peuvent être utlisées par plusieurs services.</p>';
-	echo '<p>Leur modification peut entrainer la génération d'alertes sur d'autres services qui les utiliserai.</p>';
-	echo '<table id="T_Liste_Plage">';
-		echo '<tr>';
-		echo '<th>Sélection</th>';
-		echo '<th>Plage Horaire</th>';
-		echo '<th>Lundi</th>';
-		echo '<th>Mardi</th>';
-		echo '<th>Mercredi</th>';
-		echo '<th>Jeudi</th>';
-		echo '<th>Vendredi</th>';
-		echo '<th>Samedi</th>';
-		echo '<th>Dimanche</th>';
-		echo '</tr> ';
+	echo "<p>Sélectionner les plages qui doivent être modifiées.</p>";
+	echo "<p>Il convient toutefois de faire attention aux modifications sur les plages horaires car elles peuvent être utlisées par plusieurs services.</p>";
+	echo "<p>Leur modification peut entrainer la génération d'alertes sur d'autres services qui les utiliserai.</p>";
+	echo "<table id='T_Liste_Plage'>";
+		echo "<tr>";
+		echo "<th>Sélection</th>";
+		echo "<th>Plage Horaire</th>";
+		echo "<th>Lundi</th>";
+		echo "<th>Mardi</th>";
+		echo "<th>Mercredi</th>";
+		echo "<th>Jeudi</th>";
+		echo "<th>Vendredi</th>";
+		echo "<th>Samedi</th>";
+		echo "<th>Dimanche</th>";
+		echo "</tr>";
 		$i = 1;
 		while ($res_plage = $req_plage->fetch())
 		{ 
-			echo '<tr>';
-			echo '<td><input type="checkbox" name="selection_plage" id="p' . $i . '"/></td>';
-			echo '<td >' . $res_plage['Nom_Plage'] . '</td>';
-			echo '<td>' . $res_plage['lundi'] . '</td>';
-			echo '<td>' . $res_plage['mardi'] . '</td>';
-			echo '<td>' . $res_plage['mercredi'] . '</td>';
-			echo '<td>' . $res_plage['jeudi'] . '</td>';
-			echo '<td>' . $res_plage['vendredi'] . '</td>';
-			echo '<td>' . $res_plage['samedi'] . '</td>';
-			echo '<td>' . $res_plage['dimanche'] . '</td>';
-			echo '</tr>';
+			echo "<tr>";
+			echo "<td><input type='checkbox' name='selection_plage' id='p" . $i . "'/></td>";
+			echo "<td >" . $res_plage['Nom_Plage'] . "</td>";
+			echo "<td >" . $res_plage['lundi'] . "</td>";
+			echo "<td >" . $res_plage['mardi'] . "</td>";
+			echo "<td >" . $res_plage['mercredi'] . "</td>";
+			echo "<td >" . $res_plage['jeudi'] . "</td>";
+			echo "<td >" . $res_plage['vendredi'] . "</td>";
+			echo "<td >" . $res_plage['samedi'] . "</td>";
+			echo "<td >" . $res_plage['dimanche'] . "</td>";
+			echo "</tr>";
 			$i ++;
 		};
-	echo '</table>';
+	echo "</table>";
 } else 
 {
     echo "ERREUR: Code_Client=[" . $monclient . "].";

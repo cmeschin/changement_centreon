@@ -1,10 +1,14 @@
-2016-08-22 9.6.0
+2016-08-29 9.6.1
 	- suppression du code commenté inutile ok.
-	### ALTER TABLE Demande ADD COLUMN date_validation DATETIME NULL AFTER Date_PEC;
+	### ALTER TABLE demande ADD COLUMN date_validation DATETIME NULL AFTER Date_PEC;
 	- ajout date_validation au moment du passage de la demande en statut validation ce qui permettra d'analyser les temps de traitement estimé et effectif
 		 ainsi que les délai de finalisation des demandes par rapport au temps de paramétrage
 	- Inversion des couleurs de courbe (rédigées en rouge et traitées en vert)  
-
+	- Ajout:
+		 suppression automatique des brouillons au delà de 3 mois (à compter du 3 Octobre 2016)
+		 Liste des suppressions dans le mail hebdomadaire d'information
+	- correction syntaxe sur requete_liste_plage.php
+	
 2016-07-07 9.5.0
 	- Ajout d'un message d'information optionnel (_information.php à renommer en information.php pour qu'il soit visible)
 	

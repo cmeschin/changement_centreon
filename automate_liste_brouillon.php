@@ -6,12 +6,15 @@
 
 /**
  * Initialisation des constantes
+ * information à 15 jours
+ * Suppression à 90 jours
  * Date du jour => pour le stockage de l'heure d'envoi du mail
  * Jour de la semaine => pour la vérification sur la calendrier => De 1 (pour Lundi) à 7 (pour Dimanche)
  * Heure actuelle => pour la vérification sur l'heure de notification
  */
 	include_once('connexion_sql_supervision.php'); // connexion à la base changement
 	$heure_envoi = date("Y-m-d H:i:s");
+	$dateJ = date("Y-m-d");
 		
 /**
  * Récupération de la liste des demandeur dont au moins une demande est en brouillon
@@ -37,11 +40,26 @@ while ($res_demandeur=$req_demandeur->fetch())
 		Date_Demande,
 		Type_Demande
 	 FROM demande
-	 WHERE Etat_Demande="Brouillon" AND Demandeur="'. $res_demandeur['Demandeur'] .'" AND Date_Demande < DATE_ADD(curdate(), INTERVAL -15 DAY) 
+	 WHERE Etat_Demande="Brouillon" AND Demandeur="'. $res_demandeur['Demandeur'] .'" AND Date_Demande >= DATE_ADD(curdate(), INTERVAL -90 DAY) AND Date_Demande < DATE_ADD(curdate(), INTERVAL -15 DAY) 
 	 ORDER BY demandeur;');
 	$req_lst->execute(array()) or die(print_r($req_lst->errorInfo()));
+
+	$req_suppr = $bdd_supervision->prepare('
+	SELECT
+		Ref_Demande,
+		Code_Client As Prestation,
+		id_demande,
+		Date_Supervision_Demandee,
+		Date_Demande,
+		Type_Demande
+	 FROM demande
+	 WHERE Etat_Demande="Brouillon" AND Demandeur="'. $res_demandeur['Demandeur'] .'" AND Date_Demande < DATE_ADD(curdate(), INTERVAL -90 DAY)
+	 ORDER BY demandeur;');
+	$req_suppr->execute(array()) or die(print_r($req_suppr->errorInfo()));
 	
 	$contenu_html="";
+	
+	$contenu_html .= "<p class='P5'>Liste des brouillons supérieurs à quinze jours</p><br />";
 	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
 						<tr><th class='Tableau1_A1'>Type de demande</th>
 							<th class='Tableau1_A1'>Prestation</th>
@@ -61,6 +79,54 @@ while ($res_demandeur=$req_demandeur->fetch())
  				</tr>";
 	};
 	$contenu_html .= "</table><br />";
+	
+	/**
+	 * Si des demandes sont à supprimer afficher le tableau.
+	 */
+	if (count($req_suppr) >= 1)
+	{
+		$contenu_html .= "<p class='P5'>Liste des brouillons supérieurs à trois mois et automatiquement supprimées (à compter du 3 Octobre 2016)</p><br />";
+		$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
+						<tr><th class='Tableau1_A1'>Type de demande</th>
+							<th class='Tableau1_A1'>Prestation</th>
+							<th class='Tableau1_A1'>Date de supervision souhaitée</th>
+							<th class='Tableau1_A1'>Date de dernière modification</th>
+							<th class='Tableau1_A1'>Référence de la demande</th>
+						</tr>";
+		while($res_suppr=$req_suppr->fetch())
+		{
+			//echo $res_lst['Ref_Demande'] . "\n";
+			$contenu_html .= "<tr>
+ 				<td class='Tableau1_A1'>" . $res_suppr['Type_Demande'] . "</td>
+				<td class='Tableau1_A1'>" . $res_suppr['Prestation'] . "</td>
+ 				<td class='Tableau1_A1'>" . $res_suppr['Date_Supervision_Demandee'] . "</td>
+ 				<td class='Tableau1_A1'>" . $res_suppr['Date_Demande'] . "</td>
+ 				<td class='Tableau1_A1'>" . $res_suppr['Ref_Demande'] . "</td>
+ 				</tr>";
+			$id_demande=$res_suppr['id_demande'];
+			//echo $id_demande . "\n";
+			if ( $dateJ >= "2016-10-03")
+			{
+				$req_del_time = $bdd_supervision->prepare('DELETE FROM Periode_temporelle WHERE ID_Demande= :id_demande;');
+				$req_del_time->execute(array(
+						'id_demande' => $id_demande
+				)) or die(print_r($req_del_time->errorInfo()));
+				$req_del_service = $bdd_supervision->prepare('DELETE FROM Service WHERE ID_Demande= :id_demande;');
+				$req_del_service->execute(array(
+						'id_demande' => $id_demande
+				)) or die(print_r($req_del_service->errorInfo()));
+				$req_del_hote = $bdd_supervision->prepare('DELETE FROM Hote WHERE ID_Demande= :id_demande;');
+				$req_del_hote->execute(array(
+						'id_demande' => $id_demande
+				)) or die(print_r($req_del_hote->errorInfo()));
+				$req_del_dem = $bdd_supervision->prepare('DELETE FROM Demande WHERE ID_Demande= :id_demande;');
+				$req_del_dem->execute(array(
+						'id_demande' => $id_demande
+				)) or die(print_r($req_del_dem->errorInfo()));
+			};
+		};
+		$contenu_html .= "</table><br />";
+	}
 	/**
 	 * initialisation mail
 	 */
