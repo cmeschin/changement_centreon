@@ -183,7 +183,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 						<section>
 							<div>
 							<p>Bonjour, voici la liste des demandes que vous avez initialisées il y a plus de 15 jours et qui sont toujours à l'état de brouillon aujourd'hui.<br />
-							Merci de nous faire savoir,en répondant à ce mail, si ces demandes peuvent être supprimées ou si vous compter les finaliser prochainement.<br />
+							Vous avez désormais la possibilité de supprimer vous-même ces demandes directement depuis l'interface.<br />
 							<i><b>Attention, <u>à compter du 3 Octobre 2016</u> les brouillons supérieurs à 3 mois seront automatiquement supprimés.<b></i></p><br />
 							" . $contenu_html . "
 							<br />
