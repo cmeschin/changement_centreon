@@ -27,7 +27,7 @@ if ($monclient ) {
 				 Jeudi,
 				 Vendredi,
 				 Samedi,
-				 Dimanche
+				 Dimanche				  
 				 FROM vInventaireServices
 				 WHERE (Code_Client = :prestation OR Code_Client LIKE "%INFRA%") AND host_id IN (' . htmlspecialchars($_SESSION['lst_id_hote']) . ')
 				 ORDER BY Nom_Plage');
@@ -51,10 +51,19 @@ if ($monclient ) {
 		echo "<th>Vendredi</th>";
 		echo "<th>Samedi</th>";
 		echo "<th>Dimanche</th>";
+		echo "<th>Utilisé par</th>";
 		echo "</tr>";
 		$i = 1;
 		while ($res_plage = $req_plage->fetch())
 		{ 
+			$req_nombre = $bdd_centreon->prepare('SELECT
+					count(service_id) as Nbre
+					 FROM service INNER JOIN timeperiod on timeperiod_tp_id=tp_id
+					 WHERE tp_name= :tp_name GROUP BY tp_name');
+			$req_nombre->execute(array(
+					'tp_name' => $res_plage['Nom_Plage']
+			)) or die(print_r($req_nombre->errorInfo()));
+			$res_nombre = $req_nombre->fetch();
 			echo "<tr>";
 			echo "<td><input type='checkbox' name='selection_plage' id='p" . $i . "'/></td>";
 			echo "<td >" . $res_plage['Nom_Plage'] . "</td>";
@@ -65,6 +74,7 @@ if ($monclient ) {
 			echo "<td >" . $res_plage['vendredi'] . "</td>";
 			echo "<td >" . $res_plage['samedi'] . "</td>";
 			echo "<td >" . $res_plage['dimanche'] . "</td>";
+			echo "<td >" . $res_nombre[0] . "</td>";
 			echo "</tr>";
 			$i ++;
 		};

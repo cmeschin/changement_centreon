@@ -1,3 +1,6 @@
+2016-09-06 9.8.0
+	- #12 Ajout nombre de service par periode
+	
 2016-08-30 9.7.0
 	- modification gestion pages information et maintenance
 		possibilité de choisir les balises et class avec les valeurs idoines pour les deux pages.
