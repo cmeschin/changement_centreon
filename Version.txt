@@ -1,7 +1,28 @@
 2016-09-xx 9.8.0
 	- #12 Ajout nombre de service par periode
-	### CREATE TABLE extraction_configuration (ec_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, ec_host_id int(11) NOT NULL, red_etat_parent_id int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;	
 	- Ajout d'une page d'extraction globale de la configuration
+
+	### CREATE TABLE extraction_configuration (
+	ec_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	ec_host_id int(11) NOT NULL,
+	ec_host_name VARCHAR(50) NOT NULL,
+	ec_host_address VARCHAR(50) NOT NULL,
+	ec_host_template_id INT(11),
+	ec_host_template_name VARCHAR(255),
+	ec_host_group_type VARCHAR(255),
+	ec_host_group_site VARCHAR(255),
+	ec_host_group_all VARCHAR(255),
+	ec_host_categorie_all VARCHAR(255),
+	ec_host_categorie_architecture VARCHAR(255),
+	ec_host_categorie_fonction VARCHAR(255),
+	ec_host_categorie_langue VARCHAR(255),
+	ec_host_categorie_os VARCHAR(255),
+	ec_host_categorie_type VARCHAR(255),
+	ec_service_id INT(11),
+	ec_service_description VARCHAR(255),
+	ec_service_template_id INT(11),
+	ec_service_template_name VARCHAR(255)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;	
 	
 2016-08-30 9.7.0
 	- modification gestion pages information et maintenance
