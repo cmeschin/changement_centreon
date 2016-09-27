@@ -458,6 +458,37 @@ function config_notification()
 	xhr.send(); 
 };
 
+function extract_config()
+{
+	$("#extraction_configuration").empty(); // vide le fieldset de configuration
+	var xhr = getXMLHttpRequest(); //création de l'instance XHR
+	var loading=false;
+	xhr.onreadystatechange = function() 
+	{
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			$("#img_loading").remove();
+			$("#p_loading").remove();
+//				callback(xhr.responseText); // C'est bon \o/
+			$("#extraction_configuration").append(xhr.responseText);
+//				//alert("MAJ effectuée");
+//				//window.location.reload();
+		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+			$("#img_loading").remove();
+			$("#p_loading").remove();
+//				$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
+			gestion_erreur(xhr);
+		} else if (loading == false){
+			loading=true;
+			$("#extraction_configuration").prepend('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant le chargement des données..."/> ');
+			$("#extraction_configuration").prepend('<p id="p_loading">Veuillez patienter pendant le chargement des données...</p>');
+		};
+	};
+	
+	xhr.open("POST", "extraction_configuration.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+	xhr.send(); 
+};
+
 function Envoie_Mail_BAM()
 {
 	var xhr = getXMLHttpRequest(); //création de l'instance XHR

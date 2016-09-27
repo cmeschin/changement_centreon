@@ -149,7 +149,11 @@ echo '<div id="principal">';
 			echo '</div>';
 			echo '<div id="tabs-5">';
  				echo '<h2>extraction configuration</h2>';
- 				include_once('extraction_configuration.php');
+ 				echo '<button id="extraction_config" onclick="extract_config();">Extraire la configuration</button>';
+ 				echo '<div id="extraction_configuration">';
+ 				echo '</div>';
+ 					
+ 				//include_once('extraction_configuration.php');
 			echo '</div>';
 			echo '</div>';
 	echo '</section>';
