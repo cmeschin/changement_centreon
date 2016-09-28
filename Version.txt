@@ -1,3 +1,6 @@
+2016-09-27 9.8.1
+	- Extraction_configuration: Correction requête et format csv
+	
 2016-09-27 9.8.0
 	- #12 Ajout nombre de service par periode
 	- Ajout d'une page d'extraction globale de la configuration au format csv

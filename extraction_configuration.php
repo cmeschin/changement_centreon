@@ -238,12 +238,14 @@ try
 	 * 	Hote, Grp_Type, Grp_Site, Grp_Solution, Modele_Hote, Cat_Hote_All, Cat_Hote_Architecture, Cat_Hote_Fonction, Cat_Hote_Langue, Cat_Hote_Os, Cat_Hote_Type, Service, Modele_Service, Categorie_Service, SousCategorie_Service
 	 */
 	$req_select = $bdd_supervision->prepare("
-			SELECT CONCAT(ec_host_name,';',ec_host_group_type,';',ec_host_group_site,';',
-			 ec_host_group_solution,';',ec_host_template_name,';',ec_host_categorie_all,';',
-			 ec_host_categorie_architecture,';',ec_host_categorie_fonction,';',
-			 ec_host_categorie_langue,';',ec_host_categorie_os,';',ec_host_categorie_type,';',
-			 ec_service_description,';',ec_service_template_name,';',ec_service_categorie_type,';',
-			 ec_service_categorie_soustype)
+			SELECT
+			 CONCAT(IFNULL(ec_host_name,''),';',IFNULL(ec_host_group_type,''),';',IFNULL(ec_host_group_site,''),';',
+			IFNULL(ec_host_group_solution,''),';',IFNULL(ec_host_template_name,''),';',
+			IFNULL(ec_host_categorie_all,''),';',IFNULL(ec_host_categorie_architecture,''),';',
+			IFNULL(ec_host_categorie_fonction,''),';',IFNULL(ec_host_categorie_langue,''),';',
+			IFNULL(ec_host_categorie_os,''),';',IFNULL(ec_host_categorie_type,''),';',
+			IFNULL(ec_service_description,''),';',IFNULL(ec_service_template_name,''),';',
+			IFNULL(ec_service_categorie_type,''),';',IFNULL(ec_service_categorie_soustype,''))
 			 FROM extraction_configuration
 			 ORDER BY ec_host_name,ec_service_description;
 			");
