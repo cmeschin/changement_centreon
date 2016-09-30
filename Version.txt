@@ -1,4 +1,4 @@
-2016-09-27 9.8.1
+2016-09-30 9.8.1
 	- Extraction_configuration: Correction requête et format csv
 	
 2016-09-27 9.8.0
