@@ -1,3 +1,6 @@
+2016-10-04 9.8.2
+	- Correction automate purge brouillon
+
 2016-09-30 9.8.1
 	- Extraction_configuration: Correction requête et format csv
 	

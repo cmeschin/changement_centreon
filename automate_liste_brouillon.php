@@ -44,6 +44,8 @@ while ($res_demandeur=$req_demandeur->fetch())
 	 ORDER BY demandeur;');
 	$req_lst->execute(array()) or die(print_r($req_lst->errorInfo()));
 
+	$res_lst = $req_lst->fetchAll ();
+	
 	$req_suppr = $bdd_supervision->prepare('
 	SELECT
 		Ref_Demande,
@@ -57,33 +59,38 @@ while ($res_demandeur=$req_demandeur->fetch())
 	 ORDER BY demandeur;');
 	$req_suppr->execute(array()) or die(print_r($req_suppr->errorInfo()));
 	
+	$res_suppr = $req_suppr->fetchAll ();
+	
 	$contenu_html="";
-	
-	$contenu_html .= "<p class='P5'>Liste des brouillons supérieurs à quinze jours</p><br />";
-	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
-						<tr><th class='Tableau1_A1'>Type de demande</th>
-							<th class='Tableau1_A1'>Prestation</th>
-							<th class='Tableau1_A1'>Date de supervision souhaitée</th>
-							<th class='Tableau1_A1'>Date de dernière modification</th>
-							<th class='Tableau1_A1'>Référence de la demande</th>
-						</tr>";
-	while($res_lst=$req_lst->fetch())
+
+	if (count($res_lst) >= 1)
 	{
-		echo $res_lst['Ref_Demande'] . "\n";
-		$contenu_html .= "<tr>
- 				<td class='Tableau1_A1'>" . $res_lst['Type_Demande'] . "</td>
-				<td class='Tableau1_A1'>" . $res_lst['Prestation'] . "</td>
- 				<td class='Tableau1_A1'>" . $res_lst['Date_Supervision_Demandee'] . "</td>
- 				<td class='Tableau1_A1'>" . $res_lst['Date_Demande'] . "</td>
- 				<td class='Tableau1_A1'><a href='http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_lst['id_demande'] . "'>" . $res_lst['Ref_Demande'] . "</a></td>
- 				</tr>";
+		$contenu_html .= "<p class='P5'>Liste des brouillons supérieurs à quinze jours</p><br />";
+		$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
+							<tr><th class='Tableau1_A1'>Type de demande</th>
+								<th class='Tableau1_A1'>Prestation</th>
+								<th class='Tableau1_A1'>Date de supervision souhaitée</th>
+								<th class='Tableau1_A1'>Date de dernière modification</th>
+								<th class='Tableau1_A1'>Référence de la demande</th>
+							</tr>";
+		//while($res_lst=$req_lst->fetch())
+		foreach ( $res_lst as $elements )
+		{
+			echo $elements['Ref_Demande'] . "\n";
+			$contenu_html .= "<tr>
+	 				<td class='Tableau1_A1'>" . $elements['Type_Demande'] . "</td>
+					<td class='Tableau1_A1'>" . $elements['Prestation'] . "</td>
+	 				<td class='Tableau1_A1'>" . $elements['Date_Supervision_Demandee'] . "</td>
+	 				<td class='Tableau1_A1'>" . $elements['Date_Demande'] . "</td>
+	 				<td class='Tableau1_A1'><a href='http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $elements['id_demande'] . "'>" . $elements['Ref_Demande'] . "</a></td>
+	 				</tr>";
+		};
+		$contenu_html .= "</table><br />";
 	};
-	$contenu_html .= "</table><br />";
-	
 	/**
 	 * Si des demandes sont à supprimer afficher le tableau.
 	 */
-	if (count($req_suppr) >= 1)
+	if (count($res_suppr) >= 1)
 	{
 		$contenu_html .= "<p class='P5'>Liste des brouillons supérieurs à trois mois et automatiquement supprimées (à compter du 3 Octobre 2016)</p><br />";
 		$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
@@ -93,19 +100,20 @@ while ($res_demandeur=$req_demandeur->fetch())
 							<th class='Tableau1_A1'>Date de dernière modification</th>
 							<th class='Tableau1_A1'>Référence de la demande</th>
 						</tr>";
-		while($res_suppr=$req_suppr->fetch())
+		//while($res_suppr=$req_suppr->fetch())
+		foreach ( $res_suppr as $elements )
 		{
 			//echo $res_lst['Ref_Demande'] . "\n";
 			$contenu_html .= "<tr>
- 				<td class='Tableau1_A1'>" . $res_suppr['Type_Demande'] . "</td>
-				<td class='Tableau1_A1'>" . $res_suppr['Prestation'] . "</td>
- 				<td class='Tableau1_A1'>" . $res_suppr['Date_Supervision_Demandee'] . "</td>
- 				<td class='Tableau1_A1'>" . $res_suppr['Date_Demande'] . "</td>
- 				<td class='Tableau1_A1'>" . $res_suppr['Ref_Demande'] . "</td>
+ 				<td class='Tableau1_A1'>" . $elements['Type_Demande'] . "</td>
+				<td class='Tableau1_A1'>" . $elements['Prestation'] . "</td>
+ 				<td class='Tableau1_A1'>" . $elements['Date_Supervision_Demandee'] . "</td>
+ 				<td class='Tableau1_A1'>" . $elements['Date_Demande'] . "</td>
+ 				<td class='Tableau1_A1'>" . $elements['Ref_Demande'] . "</td>
  				</tr>";
-			$id_demande=$res_suppr['id_demande'];
+			$id_demande=$elements['id_demande'];
 			//echo $id_demande . "\n";
-			if ( $dateJ >= "2016-10-03")
+			if ( "$dateJ" >= "2016-10-03")
 			{
 				$req_del_time = $bdd_supervision->prepare('DELETE FROM Periode_temporelle WHERE ID_Demande= :id_demande;');
 				$req_del_time->execute(array(
@@ -126,7 +134,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 			};
 		};
 		$contenu_html .= "</table><br />";
-	}
+	};
 	/**
 	 * initialisation mail
 	 */
