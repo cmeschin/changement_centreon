@@ -115,19 +115,20 @@ while ($res_demandeur=$req_demandeur->fetch())
 			//echo $id_demande . "\n";
 			if ( "$dateJ" >= "2016-10-03")
 			{
-				$req_del_time = $bdd_supervision->prepare('DELETE FROM Periode_temporelle WHERE ID_Demande= :id_demande;');
+				echo "Suppression ID_Demande=" . $id_demande . "\n";
+				$req_del_time = $bdd_supervision->prepare('DELETE FROM periode_temporelle WHERE ID_Demande= :id_demande;');
 				$req_del_time->execute(array(
 						'id_demande' => $id_demande
 				)) or die(print_r($req_del_time->errorInfo()));
-				$req_del_service = $bdd_supervision->prepare('DELETE FROM Service WHERE ID_Demande= :id_demande;');
+				$req_del_service = $bdd_supervision->prepare('DELETE FROM service WHERE ID_Demande= :id_demande;');
 				$req_del_service->execute(array(
 						'id_demande' => $id_demande
 				)) or die(print_r($req_del_service->errorInfo()));
-				$req_del_hote = $bdd_supervision->prepare('DELETE FROM Hote WHERE ID_Demande= :id_demande;');
+				$req_del_hote = $bdd_supervision->prepare('DELETE FROM hote WHERE ID_Demande= :id_demande;');
 				$req_del_hote->execute(array(
 						'id_demande' => $id_demande
 				)) or die(print_r($req_del_hote->errorInfo()));
-				$req_del_dem = $bdd_supervision->prepare('DELETE FROM Demande WHERE ID_Demande= :id_demande;');
+				$req_del_dem = $bdd_supervision->prepare('DELETE FROM demande WHERE ID_Demande= :id_demande;');
 				$req_del_dem->execute(array(
 						'id_demande' => $id_demande
 				)) or die(print_r($req_del_dem->errorInfo()));
