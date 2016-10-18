@@ -1,4 +1,4 @@
-2016-10-x 9.8.3
+﻿2016-10-18 9.8.3
 	- Correction automate purge brouillon (pb majuscule sur les tables à purger)
 	- Correction désactivation des boutons brouillon et validation
 	
