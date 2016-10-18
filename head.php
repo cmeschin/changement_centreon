@@ -1,5 +1,6 @@
 <meta charset="utf-8" />
-<meta http-equiv="cache-control" content="max-age=3600" /> <!-- conserve le cache pendant une heure maximum-->
+<meta http-equiv="cache-control" content="max-age=3600"> <!-- conserve le cache pendant une heure maximum-->
+
 <!-- <META HTTP-EQUIV="refresh" CONTENT="60"> <!-- rafraichit automatiquement la page toutes les X secondes -->
 <title>Changement Centreon - Tessi Technologies</title>
 <link href="css/tessi-theme/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />

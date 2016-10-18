@@ -12,7 +12,7 @@
  */
 $debug=false; // activation du mode debug
 //initialisation mail
-$adresse_mail = "jean-marc.raud@tessi.fr;stephane.boulanger@tessi.fr;lilian.nayagom@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
+$adresse_mail = "jean-marc.raud@tessi.fr;stephane.boulanger@tessi.fr;sophie.pourtau@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
 //$adresse_mail = "cedric.meschin@tessi.fr";
 $adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
 if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
