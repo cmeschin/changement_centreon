@@ -595,6 +595,8 @@ function Valider_Demande()
 					if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
+						$("#Enregistrer_Brouillon").removeAttr("Disabled");
+						$("#Valider_Demande").removeAttr("Disabled");
 						callback(xhr.responseText); // C'est bon \o/
 					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 						$("#msg_loading").remove();
