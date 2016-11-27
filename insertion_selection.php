@@ -95,7 +95,7 @@ try {
 	{
 		for ( $i=0;$i<$nbligne_hote_liste;$i++){
 			addlog('ligne ' . $i . ':' . $hote_liste[$i]);
-			$t_hote_liste = explode(",",$hote_liste[$i]);// redécoupage de chaque ligne 
+			$t_hote_liste = explode(";",$hote_liste[$i]);// redécoupage de chaque ligne 
 			$nbchamp_hote=count($t_hote_liste);
 	
 			if ($nbchamp_hote==6)
@@ -165,7 +165,7 @@ try {
 		for ( $i=0;$i<$nbligne_service;$i++)
 		{
 			addlog('ligne ' . $i . ':' . $service_selec[$i]);
-			$t_service_selec = explode(",",$service_selec[$i]);// redécoupage de chaque ligne 
+			$t_service_selec = explode(";",$service_selec[$i]);// redécoupage de chaque ligne 
 			$nbchamp_service=count($t_service_selec);
 	
 			if ($nbchamp_service==7)

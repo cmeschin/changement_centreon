@@ -83,11 +83,11 @@ function enregistre_selection()
 	for (var i=1;i<NbLigne_Hote;i++)
 	{
 		var tableau_hote_liste_col = tableau_hote_lig[i].cells; // charge les cellules de chaque ligne dans un tableau
-		hote_liste[kh] = tableau_hote_liste_col[3].innerHTML + ',';					// Hôte
-		hote_liste[kh] += tableau_hote_liste_col[4].innerHTML + ',';				// Description => ajout le 04-11-14
-		hote_liste[kh] += tableau_hote_liste_col[5].innerHTML + ',';				// Adresse IP
-		hote_liste[kh] += tableau_hote_liste_col[6].innerHTML + ',';				// Controle Atif ou inactif => ajout le 04-11-14
-		hote_liste[kh] += tableau_hote_liste_col[7].innerHTML.substring(1) + ',';	// ID_Hote Centreon dépréfixé du h
+		hote_liste[kh] = tableau_hote_liste_col[3].innerHTML + ';';					// Hôte
+		hote_liste[kh] += tableau_hote_liste_col[4].innerHTML + ';';				// Description => ajout le 04-11-14
+		hote_liste[kh] += tableau_hote_liste_col[5].innerHTML + ';';				// Adresse IP
+		hote_liste[kh] += tableau_hote_liste_col[6].innerHTML + ';';				// Controle Atif ou inactif => ajout le 04-11-14
+		hote_liste[kh] += tableau_hote_liste_col[7].innerHTML.substring(1) + ';';	// ID_Hote Centreon dépréfixé du h
 		hote_liste[kh] += document.getElementById(i).checked;						// Checked true ou false
 		if (document.getElementById(i).checked ==true)
 		{
@@ -114,12 +114,12 @@ function enregistre_selection()
 			$('input:checked[id=s' + i +']').each(function() // on boucle sur chaque objet sélectionné
 			{
 				var tableau_service_col = tableau_service_lig[i].cells;
-				service_selec[js] = tableau_service_col[2].innerHTML + ',';					// Nom du service
-				service_selec[js] += tableau_service_col[3].innerHTML + ',';				// Fréquence de controle
-				service_selec[js] += tableau_service_col[4].innerHTML + ',';				// Plage Horaire
-				service_selec[js] += tableau_service_col[5].innerHTML + ',';				// Controle actif ou inactif
-				service_selec[js] += tableau_service_col[6].innerHTML.substring(1) + ',';	// ID_Service Centreon (dépréfixé du s)
-				service_selec[js] += tableau_service_col[7].innerHTML.substring(1) + ',';	// ID_Host Centreon (dépréfixé du h)
+				service_selec[js] = tableau_service_col[2].innerHTML + ';';					// Nom du service
+				service_selec[js] += tableau_service_col[3].innerHTML + ';';				// Fréquence de controle
+				service_selec[js] += tableau_service_col[4].innerHTML + ';';				// Plage Horaire
+				service_selec[js] += tableau_service_col[5].innerHTML + ';';				// Controle actif ou inactif
+				service_selec[js] += tableau_service_col[6].innerHTML.substring(1) + ';';	// ID_Service Centreon (dépréfixé du s)
+				service_selec[js] += tableau_service_col[7].innerHTML.substring(1) + ';';	// ID_Host Centreon (dépréfixé du h)
 				service_selec[js] += document.getElementById('s'+i).checked;						// Checked true ou false
 				$(this).removeAttr("checked"); // décoche le service inséré pour éviter un ajout en double.
 				$(this).attr("disabled","disabled"); // verrouille le service inséré pour éviter un ajout en double

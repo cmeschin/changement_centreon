@@ -1,8 +1,11 @@
-﻿2016-10-18 9.8.3
+﻿2016-11-x 9.8.4
+	- Correction plantage extraction plage_horaire contenant une virgule dans le nom (chaine construite avec un ; au lieu de ,)
+	
+2016-10-18 9.8.3
 
 	- Correction automate purge brouillon (pb majuscule sur les tables à purger)
 	- Correction désactivation des boutons brouillon et validation
-	
+		
 2016-10-04 9.8.2
 	- Correction automate purge brouillon
 
