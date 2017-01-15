@@ -97,10 +97,12 @@ try {
 
 	/**
 	 *  mise à jour du type d'action à effecuer pour filtrer l'affichage sur l'onglet paramétrage
-	 *  => si selection=true => si controle_actif=actif => Modifier sinon Activer
-	 *  => si selection=false => NC
+	 *  => si selection=true et si controle_actif=actif => Modifier sinon Activer
+	 *  => si selection=false et si type_action est vide => NC sinon pas de changement
 	 */
-	$MAJ_Hote2 = $bdd_supervision->prepare('UPDATE hote SET type_action=if(selection="true",if(Controle_Actif="actif","Modifier","Activer"),"NC"), etat_parametrage="Brouillon" WHERE ID_Demande= :id_demande');
+// 15/01/2017: probable bug hôtes non affichés sur reprise
+//	$MAJ_Hote2 = $bdd_supervision->prepare('UPDATE hote SET type_action=if(selection="true",if(Controle_Actif="actif","Modifier","Activer"),"NC"), etat_parametrage="Brouillon" WHERE ID_Demande= :id_demande');
+	$MAJ_Hote2 = $bdd_supervision->prepare('UPDATE hote SET type_action=if(selection="true",if(Controle_Actif="actif","Modifier","Activer"),if(type_action="","NC",type_action), etat_parametrage="Brouillon" WHERE ID_Demande= :id_demande');
 	$MAJ_Hote2->execute(Array(
 			'id_demande' => $ID_Demande
 	)) or die(print_r($MAJ_Hote2->errorInfo()));
