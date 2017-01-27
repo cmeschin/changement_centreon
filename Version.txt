@@ -1,5 +1,6 @@
 ﻿2017-01-x 9.8.5
 	- Meilleure gestion hôte type_action non vide (complete_table.php)
+	- Meilleure gestion des modeles centreon, on ne récupère que ceux qui ne sont pas verrouillés (Modèles PluginsPack)
 
 2016-11-27 9.8.4
 	- Correction plantage extraction plage_horaire contenant une virgule dans le nom (chaine construite avec un ; au lieu de ,)

@@ -14,7 +14,7 @@ try {
 	 */
 	$Del_Modele_centreon = $bdd_supervision->query('TRUNCATE table modele_centreon') or die(print_r($Del_Modele_centreon->errorInfo()));
 	
-	$req_mod_centreon = $bdd_centreon->query('SELECT DISTINCT(service_description),service_alias,service_id FROM service WHERE service_id IN (SELECT service_template_model_stm_id FROM service) ORDER BY service_description') or die(print_r($req_mod_centreon->errorInfo()));
+	$req_mod_centreon = $bdd_centreon->query('SELECT DISTINCT(service_description),service_alias,service_id FROM service WHERE service_id IN (SELECT service_template_model_stm_id FROM service) AND service_locked=0 ORDER BY service_description') or die(print_r($req_mod_centreon->errorInfo()));
 	
 	while($res_mod_centreon = $req_mod_centreon->fetch())
 	{
