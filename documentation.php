@@ -398,6 +398,9 @@ if (session_id()=='')
 	<footer>
 		<?php
 			include('PiedDePage.php');
+			echo '<a href="http://www.phptherightway.com">
+    				<img src="http://www.phptherightway.com/images/banners/btn1-120x90.png" alt="PHP: The Right Way"/><br/>PHP: The Right Way
+				</a>';
 		?>
 	</footer>
 </div>
