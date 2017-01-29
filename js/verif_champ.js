@@ -181,3 +181,36 @@ function verifChampDate_date_livraison_demandee(champ,date_test)
 //	surligne (document.getElementById("img_date_livraison_demandee"), false);
 //	return true;
 }
+
+function verif_exist(prestation)
+{
+	$("#extraction_elements").empty();
+	function urlExists(url, callback)
+	{
+		/**
+		 * Fontion de test de l'existence du pdf correspondant à la prestation choisie
+		 * Affiche le lien de téléchargement direct si le fichier existe déjà, sinon rien.
+		 */
+		  $.ajax({
+		    type: 'HEAD',
+		    url: url,
+		    success: function(){
+		      $("#extraction_elements").append('<p>Une extraction a déjà été effectuée. Vous pouvez <a href="' + url + '" target="_blank">télécharger le fichier existant</a> ou le regénérer s\'il est trop vieux.</p>');
+		    	callback(true);
+		    }
+		  });
+	}
+	function getAbsolutePath() 
+	{
+		/**
+		 * Fonction d'extraction du chemin absolu http://127.0.0.1/changement_centreon/
+		 */
+	    var loc = window.location;
+	    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+	    return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+	}
+	var url=getAbsolutePath()+ "extraction_pdf/"+ prestation.value + ".pdf";
+	
+	urlExists(url);
+	
+}

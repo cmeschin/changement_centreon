@@ -74,8 +74,8 @@ $(function() {
 				this.input = $( "<input>" )
 				.appendTo( this.wrapper )
 				.val( value )
-				.attr("size","45")
-				//.attr("onblur","verifChamp(this);chargerlistes()")
+				.attr("size","50")
+				.attr("onblur","verif_exist(this)")
 				//.attr("onChange","chargerlistes()")
 				.attr("id","prestation")
 				.attr( "title", "" )
@@ -185,8 +185,7 @@ $(function() {
 	//});
 	});
 });
+</script>
 <?php
-echo '</script>';
-
 echo '</body>';
 echo '</html>';

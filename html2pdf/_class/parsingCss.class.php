@@ -94,8 +94,7 @@ class HTML2PDF_parsingCss
     protected function _init()
     {
         // get the Web Colors from TCPDF
-        require(K_PATH_MAIN.'htmlcolors.php');
-        $this->_htmlColor = $webcolor;
+        $this->_htmlColor = TCPDF_COLORS::$webcolor;
 
         // init the Style
         $this->table = array();
@@ -612,7 +611,7 @@ class HTML2PDF_parsingCss
                 case 'font-family':
                     $val = explode(',', $val);
                     $val = trim($val[0]);
-                    if ($val) $this->value['font-family'] = $val;
+                    if ($val && $val != 'inherit') $this->value['font-family'] = $val;
                     break;
 
                 case 'font-weight':
@@ -671,8 +670,12 @@ class HTML2PDF_parsingCss
                     $noWidth = false;
                     break;
 
-                case 'height':
-                    $this->value['height'] = $this->convertToMM($val, $this->getLastHeight());
+                case 'max-width':
+                    $this->value[$nom] = $this->convertToMM($val, $this->getLastWidth());
+                    break;
+
+                case 'height': case 'max-height':
+                    $this->value[$nom] = $this->convertToMM($val, $this->getLastHeight());
                     break;
 
                 case 'line-height':
@@ -1294,8 +1297,11 @@ class HTML2PDF_parsingCss
         $css = explode(' ', $css);
         foreach ($css as $k => $v) {
             $v = trim($v);
-            if ($v) $css[$k] = $v;
-            else    unset($css[$k]);
+            if ($v !== '') {
+                $css[$k] = $v;
+            } else {
+                unset($css[$k]);
+            }
         }
         $css = array_values($css);
 

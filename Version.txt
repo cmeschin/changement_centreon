@@ -1,6 +1,8 @@
 ﻿2017-01-x 9.9
 	- Meilleure gestion hôte type_action non vide (complete_table.php)
 	- Meilleure gestion des modeles centreon, on ne récupère que ceux qui ne sont pas verrouillés (Modèles PluginsPack)
+	- HTML2PDF passage en version 4.5.0
+	- Extraction prestation: Ajout test existence pdf correspondant à la prestation choisie, affiche un lien de téléchargement si présent.
 
 2016-11-27 9.8.4
 	- Correction plantage extraction plage_horaire contenant une virgule dans le nom (chaine construite avec un ; au lieu de ,)
