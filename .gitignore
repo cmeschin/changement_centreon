@@ -52,3 +52,4 @@ extraction_pdf/*
 /.settings/
 /.buildpath
 /top.php
+_html2pdf/
