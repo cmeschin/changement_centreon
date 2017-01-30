@@ -1,4 +1,7 @@
-﻿2017-01-x 9.9
+﻿2017-01-30 9.9.1
+	- Correction bug enregistrement brouillon ou validation (bouton grisé sur erreur: T_T_liste_Arg[j] undefined)
+
+2017-01-29 9.9.0
 	- Meilleure gestion hôte type_action non vide (complete_table.php)
 	- Meilleure gestion des modeles centreon, on ne récupère que ceux qui ne sont pas verrouillés (Modèles PluginsPack)
 	- HTML2PDF passage en version 4.5.0

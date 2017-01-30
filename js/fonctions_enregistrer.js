@@ -574,7 +574,13 @@ function Valider_Demande()
 				/**
 				 *  correction des seuils disque en occupé si controle via SNMP (Disque!warning!critique)
 				 */
-				correction_seuils_disque(liste_service_Arg);
+				var modele=$("#Service_Modele" + class_service.substring(7) + " option:selected").text();
+				
+				if (modele.indexOf(": Disque Linux") >=0)
+				{
+					//alert("c'est un disque");
+					correction_seuils_disque(liste_service_Arg);
+				};
 				
 				liste_service += "|" + liste_service_Arg.substring(1) + "$"; // on enlève le premier | des arguments et on ajoute un $ à la fin
 			});
@@ -789,7 +795,13 @@ function Enregistrer_Brouillon(Bouton)
 					/**
 					 *  correction des seuils disque en occupé si controle via SNMP (Disque!warning!critique)
 					 */
-					correction_seuils_disque(liste_service_Arg);
+					var modele=$("#Service_Modele" + class_service.substring(7) + " option:selected").text();
+					
+					if (modele.indexOf(": Disque Linux") >=0)
+					{
+						//alert("c'est un disque");
+						correction_seuils_disque(liste_service_Arg);
+					};
 					
 					liste_service += "|" + liste_service_Arg.substring(1) + "$"; // on enlève le premier | des arguments et on ajoute un $ à la fin
 				});
