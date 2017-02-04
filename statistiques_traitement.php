@@ -60,10 +60,10 @@
 	
  /* CAT:Line chart */
 
- /* pChart library inclusions */
- include("pChart/class/pData.class.php");
- include("pChart/class/pDraw.class.php");
- include("pChart/class/pImage.class.php");
+//  /* pChart library inclusions */
+//  include("pChart/class/pData.class.php");
+//  include("pChart/class/pDraw.class.php");
+//  include("pChart/class/pImage.class.php");
 
  function YAxisFormat($Value) {
  	$heures=round($Value/3600,0);

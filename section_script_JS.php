@@ -25,7 +25,8 @@ $(function() {
 	$("#accordionDoc_reprise").accordion({ heightStyle: "content", collapsible: true, active: false});
 	$("#accordionDoc_liste").accordion({ heightStyle: "content", collapsible: true, active: false});
 	$("#accordionDoc_truc").accordion({ heightStyle: "content", collapsible: true, active: false});	
-	$("#accordion_bam_notifications").accordion({ heightStyle: "content", collapsible: true, active: 0});	
+	$("#accordion_bam_notifications").accordion({ heightStyle: "content", collapsible: true, active: 0});
+	$("#accordion_stats").accordion({ heightStyle: "content", collapsible: true, active: false});
 	/**
 	 * Days to be disabled as an array
 	 */

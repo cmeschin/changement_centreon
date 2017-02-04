@@ -45,6 +45,7 @@ Temporary Items
 # fichiers de traitement
 *.pdf
 charge*.png
+suivi*.png
 *.log
 doc/*
 log/*

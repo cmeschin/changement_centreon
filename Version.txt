@@ -1,4 +1,21 @@
-﻿2017-01-30 9.9.1
+﻿2017-02-04 9.10.0
+	### CREATE TABLE `suivi_consigne` (
+  			`sc_id` int(11) NOT NULL AUTO_INCREMENT,
+  			`sc_date` datetime NOT NULL,
+  			`sc_direct` int(11) NOT NULL,
+  			`sc_model` int(11) NOT NULL,
+  			`sc_indirect` int(11) NOT NULL,
+  			`sc_total` int(11) NOT NULL,
+  			PRIMARY KEY (`sc_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+	
+	- Administration: renommage menu statistiques
+	- Administration: Ajout statistique suivi consigne
+	- création automate de récupération des infos de suivi des consignes
+		- a exécuter tous les jours
+		- conservation des données sur 365 jours
+	
+2017-01-30 9.9.1
 	- Correction bug enregistrement brouillon ou validation (bouton grisé sur erreur: T_T_liste_Arg[j] undefined)
 
 2017-01-29 9.9.0
