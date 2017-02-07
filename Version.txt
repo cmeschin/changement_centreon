@@ -1,4 +1,8 @@
-﻿2017-02-04 9.10.0
+﻿2017-02-07 9.10.1
+	- correction syntaxique dans une requête suite correctif du 29/01/2017
+	- correction syntaxique automate_suivi_consigne
+	
+2017-02-04 9.10.0
 	### CREATE TABLE `suivi_consigne` (
   			`sc_id` int(11) NOT NULL AUTO_INCREMENT,
   			`sc_date` datetime NOT NULL,

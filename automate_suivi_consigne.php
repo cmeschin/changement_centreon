@@ -33,7 +33,7 @@ $reqConsigne->execute(array()) or die(print_r($reqConsigne->errorInfo()));
 
 $purge = $bdd_supervision->prepare('
 		DELETE FROM suivi_consigne
-		WHERE sc_date >= DATE_ADD(Now(),INTERVAL -365 DAYS);')
+		WHERE sc_date >= DATE_ADD(Now(),INTERVAL -365 DAYS);');
 $purge->execute(array()) or die(print_r($purge->errorInfo()));
 
 /**
