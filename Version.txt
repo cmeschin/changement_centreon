@@ -1,4 +1,7 @@
-﻿2017-02-07 9.10.1
+﻿2017-02-07 9.10.2
+	- correctionbug enregistrement validation si hote non préenregistré, nouveau cas identifié (bouton grisé sur erreur: T_T_liste_Arg[j] undefined)
+
+2017-02-07 9.10.1
 	- correction syntaxique dans une requête suite correctif du 29/01/2017
 	- correction syntaxique automate_suivi_consigne
 	
