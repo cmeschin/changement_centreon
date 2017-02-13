@@ -9,7 +9,7 @@
 
 	$reqConsigne = $bdd_supervision->prepare('
 		SELECT 
-			sc_date,
+			DATE_FORMAT(sc_date,"%Y-%m-%d") as sc_date,
 			sc_direct,
 			sc_model,
 			sc_indirect,
@@ -45,7 +45,7 @@
 	
  /* CAT:Line chart */
 
-//  /* pChart library inclusions */
+  /* pChart library inclusions */
 //  include("pChart/class/pData.class.php");
 //  include("pChart/class/pDraw.class.php");
 //  include("pChart/class/pImage.class.php");
@@ -65,6 +65,7 @@
   
  /* Create and populate the pData object */
  $MyData = new pData();
+ /* Will append the "autumn" palette to the current one */
  $MyData->addPoints($direct,"consignes directes");
  $MyData->addPoints($indirect,"consignes indirectes");
  $MyData->addPoints($vide,"sans consignes");
@@ -73,26 +74,34 @@
  $MyData->setSerieDescription("Labels","Dates");
  $MyData->setAbscissa("Labels");
 
+ $serieSettings = array("R"=>55,"G"=>91,"B"=>127,"Alpha"=>80);
+ $MyData->setPalette("consignes directes",$serieSettings);
+ $serieSettings = array("R"=>97,"G"=>193,"B"=>203,"Alpha"=>80);
+ $MyData->setPalette("consignes indirectes",$serieSettings);
+ $serieSettings = array("R"=>238,"G"=>209,"B"=>122,"Alpha"=>50);
+ $MyData->setPalette("sans consignes",$serieSettings);
  /* Normalize the data series to 100% */
  $MyData->normalize(100,"%");
  /* Create the pChart object */
  $myPicture = new pImage(1100,450,$MyData);
  /* Overlay with a gradient - dégradé de couleur de fond*/ 
- $myPicture->drawGradientArea(0,0,1100,450,DIRECTION_VERTICAL,array("StartR"=>219, "StartG"=>231, "StartB"=>139, "EndR"=>1, "EndG"=>138, "EndB"=>68, "Alpha"=>50));
+ $myPicture->drawGradientArea(0,0,1100,450,DIRECTION_VERTICAL,array("StartR"=>0, "StartG"=>0, "StartB"=>0, "EndR"=>0, "EndG"=>0, "EndB"=>0, "Alpha"=>0));
+ //$myPicture->drawGradientArea(0,0,1100,450,DIRECTION_VERTICAL,array("StartR"=>219, "StartG"=>231, "StartB"=>139, "EndR"=>1, "EndG"=>138, "EndB"=>68, "Alpha"=>50));
  //$myPicture->drawGradientArea(0,0,1100,20,DIRECTION_VERTICAL,array("StartR"=>0,"StartG"=>0,"StartB"=>0,"EndR"=>50,"EndG"=>50,"EndB"=>50,"Alpha"=>80));
   
  /* Set the default font properties */
- $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/pf_arma_five.ttf","FontSize"=>6,"R"=>0,"G"=>0,"B"=>0));
+ $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/verdana.ttf","FontSize"=>8,"R"=>0,"G"=>0,"B"=>0));
  
  /* Define the chart area */
  $myPicture->setGraphArea(60,40,1050,370);
 
  /* Draw the scale */
- $scaleSettings = array("XMargin"=>10,"YMargin"=>10,"Floating"=>TRUE,"LabelRotation"=>45,"GridR"=>200,"GridG"=>200,"GridB"=>200,"DrawSubTicks"=>TRUE,"CycleBackground"=>TRUE,"Mode"=>SCALE_MODE_ADDALL_START0);
+ $AxisBoundaries = array(0=>array("Min"=>0,"Max"=>100));
+ $scaleSettings = array("XMargin"=>0,"YMargin"=>0,"Floating"=>TRUE,"LabelRotation"=>45,"GridR"=>200,"GridG"=>200,"GridB"=>200,"DrawSubTicks"=>false,"CycleBackground"=>False,"Mode"=>SCALE_MODE_MANUAL,"ManualScale"=>$AxisBoundaries);
  $myPicture->drawScale($scaleSettings);
 // $myPicture->drawScale(array("XMargin"=>10,"YMargin"=>10,"Floating"=>TRUE,"DrawSubTicks"=>TRUE,"Mode"=>SCALE_MODE_ADDALL_START0));
- $myPicture->drawStackedAreaChart(array("DrawPlot"=>TRUE,"DrawLine"=>TRUE,"LineSurrounding"=>-20));
- $myPicture->drawPlotChart(array("DisplayValues"=>TRUE,"DisplayColor"=>255,255,255));
+ $myPicture->drawStackedAreaChart(array("DrawPlot"=>false,"DrawLine"=>TRUE,"LineSurrounding"=>-20));
+ //$myPicture->drawPlotChart(array("DisplayValues"=>False,"DisplayColor"=>255,255,255));
  /* Enable shadow computing */
  $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>0,"G"=>0,"B"=>0,"Alpha"=>10));
 
@@ -116,6 +125,13 @@
  $MyData2->setSerieDescription("Labels","Dates");
  $MyData2->setAbscissa("Labels");
  
+ $serieSettings = array("R"=>55,"G"=>91,"B"=>127);
+ $MyData2->setPalette("consignes directes",$serieSettings);
+ $serieSettings = array("R"=>97,"G"=>193,"B"=>203);
+ $MyData2->setPalette("consignes indirectes",$serieSettings);
+ $serieSettings = array("R"=>238,"G"=>209,"B"=>122);
+ $MyData2->setPalette("sans consignes",$serieSettings);
+ 
 //  /* Normalize the data series to 100% */
 //  $MyData->normalize(100,"%");
  /* Create the pChart object */
@@ -125,7 +141,7 @@
  //$myPicture->drawGradientArea(0,0,1100,20,DIRECTION_VERTICAL,array("StartR"=>0,"StartG"=>0,"StartB"=>0,"EndR"=>50,"EndG"=>50,"EndB"=>50,"Alpha"=>80));
  
  /* Set the default font properties */
- $myPicture2->setFontProperties(array("FontName"=>"pChart/fonts/pf_arma_five.ttf","FontSize"=>6,"R"=>0,"G"=>0,"B"=>0));
+ $myPicture2->setFontProperties(array("FontName"=>"pChart/fonts/calibri.ttf","FontSize"=>8,"R"=>0,"G"=>0,"B"=>0));
  
  /* Define the chart area */
  $myPicture2->setGraphArea(60,40,1050,370);
