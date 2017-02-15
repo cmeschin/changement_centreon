@@ -9,7 +9,7 @@
 
 	$reqConsigne = $bdd_supervision->prepare('
 		SELECT 
-			sc_date,
+			DATE_FORMAT(sc_date,"%Y-%m-%d") as sc_date,
 			sc_direct,
 			sc_model,
 			sc_indirect,
@@ -82,7 +82,7 @@
  //$myPicture->drawGradientArea(0,0,1100,20,DIRECTION_VERTICAL,array("StartR"=>0,"StartG"=>0,"StartB"=>0,"EndR"=>50,"EndG"=>50,"EndB"=>50,"Alpha"=>80));
   
  /* Set the default font properties */
- $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/pf_arma_five.ttf","FontSize"=>6,"R"=>0,"G"=>0,"B"=>0));
+ $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/pf_arma_five.ttf","FontSize"=>8,"R"=>0,"G"=>0,"B"=>0));
  
  /* Define the chart area */
  $myPicture->setGraphArea(60,40,1050,370);

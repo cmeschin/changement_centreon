@@ -21,10 +21,10 @@
  */
 $reqConsigne = $bdd_centreon->prepare('
 	SELECT
- (SELECT count(1) FROM service AS s RIGHT JOIN extended_service_information AS esi ON s.service_id=esi.service_service_id WHERE esi.esi_notes_url IS NOT NULL AND s.service_register="1") AS nbDirect,
- (SELECT count(1) FROM service AS s RIGHT JOIN extended_service_information AS esi ON s.service_id=esi.service_service_id WHERE esi.esi_notes_url IS NOT NULL AND s.service_register="0") AS nbModel,
- (SELECT count(1) FROM service WHERE service_id NOT IN (SELECT service_id FROM service AS s RIGHT JOIN extended_service_information AS esi ON s.service_id=esi.service_service_id WHERE esi.esi_notes_url IS NOT NULL AND s.service_register="1") AND service_template_model_stm_id IN (SELECT service_id FROM service AS s RIGHT JOIN extended_service_information AS esi ON s.service_id=esi.service_service_id WHERE esi.esi_notes_url IS NOT NULL AND s.service_register="0")) AS nbIndirect,
- (SELECT count(1) FROM service WHERE service_register="1") AS nbTotal;');
+		 (SELECT count(1) FROM service AS s RIGHT JOIN extended_service_information AS esi ON s.service_id=esi.service_service_id LEFT JOIN host_service_relation AS hsr ON s.service_id=hsr.service_service_id LEFT JOIN host AS h ON hsr.host_host_id=h.host_id WHERE esi.esi_notes_url IS NOT NULL AND s.service_register="1" AND s.service_activate="1" AND h.host_activate="1") AS nbDirect,
+		 (SELECT count(1) FROM service AS s RIGHT JOIN extended_service_information AS esi ON s.service_id=esi.service_service_id WHERE esi.esi_notes_url IS NOT NULL AND s.service_register="0" AND s.service_activate="1" AND s.service_locked="0") AS nbModel,
+		 (SELECT count(1) FROM service AS s WHERE s.service_id NOT IN ( SELECT s1.service_id FROM service AS s1 RIGHT JOIN extended_service_information AS esi ON s1.service_id=esi.service_service_id LEFT JOIN host_service_relation AS hsr ON s1.service_id=hsr.service_service_id LEFT JOIN host AS h ON hsr.host_host_id=h.host_id WHERE esi.esi_notes_url IS NOT NULL AND s1.service_register="1" AND s1.service_activate="1" AND s1.service_locked="0") AND s.service_template_model_stm_id IN (SELECT s2.service_id FROM service AS s2 RIGHT JOIN extended_service_information AS esi ON s2.service_id=esi.service_service_id WHERE esi.esi_notes_url IS NOT NULL AND s2.service_register="0" AND s2.service_activate="1")) AS nbIndirect,
+		 (SELECT count(1) FROM service AS s LEFT JOIN host_service_relation AS hsr ON s.service_id=hsr.service_service_id LEFT JOIN host AS h ON hsr.host_host_id=h.host_id WHERE service_register="1" AND service_activate="1" AND h.host_activate="1") AS nbTotal;');
 $reqConsigne->execute(array()) or die(print_r($reqConsigne->errorInfo()));
 
 /**
