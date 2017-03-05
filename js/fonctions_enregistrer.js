@@ -3,6 +3,7 @@
  */
 var Doublon = "";
 var PreEnregistre= true;
+var listeBouton="";
 
 function onglet_suivant()
 {
@@ -17,9 +18,11 @@ function onglet_suivant()
 	{
 		var message="STOP! Tous les champs de l'onglet Info Générales ne sont pas valides!";
 		alert(message);
-		$("#Rechercher").removeAttr("Disabled");
-		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
-		$("#Valider_Selection").removeAttr("Disabled");
+		listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
+		activeBouton(listeBouton);
+//		$("#Rechercher").removeAttr("Disabled");
+//		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
+//		$("#Valider_Selection").removeAttr("Disabled");
 		$("#lien_tabs2").attr("style","visibility: hidden");
 		$("#lien_tabs3").attr("style","visibility: hidden");
 		$('html,body').animate({scrollTop:0}, 'slow'); // retourne en haut de la page
@@ -38,9 +41,11 @@ function enregistre_selection()
 	 * Fonction d'enregistrement du tout premier brouillon avec la sélection actuelle (Bouton "Valider votre sélection")
 	 * désactivation des boutons pour ne pas cliquer deux fois dessus
 	 */
-	$("#Rechercher").attr("Disabled","Disabled");
-	$("#Ajouter_Selection_Hote").attr("Disabled","Disabled");
-	$("#Valider_Selection").attr("Disabled","Disabled");
+	listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
+	desactiveBouton(listeBouton);
+//	$("#Rechercher").attr("Disabled","Disabled");
+//	$("#Ajouter_Selection_Hote").attr("Disabled","Disabled");
+//	$("#Valider_Selection").attr("Disabled","Disabled");
 	$("#messageValidationOK").remove();
 
 	/**
@@ -57,9 +62,11 @@ function enregistre_selection()
 	{
 		var message="STOP! Tous les champs de l'onglet Info Générales ne sont pas valides!";
 		alert(message);
-		$("#Rechercher").removeAttr("Disabled");
-		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
-		$("#Valider_Selection").removeAttr("Disabled");
+//		listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
+		activeBouton(listeBouton);
+//		$("#Rechercher").removeAttr("Disabled");
+//		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
+//		$("#Valider_Selection").removeAttr("Disabled");
 		return false;
 	};
 
@@ -189,13 +196,17 @@ function enregistre_selection()
 				collecte_liste_service(); // fonction de remplissage de liste Param Service => fonction_remplissage.js
 				$("#img_loading").remove();
 				$("#p_loading").remove();
+//				listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
+				activeBouton(listeBouton);
 				callback(xhr.responseText); // C'est bon \o/
 			} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 				$("#img_loading").remove();
 				$("#p_loading").remove();
-				$("#Rechercher").removeAttr("Disabled");
-				$("#Ajouter_Selection_Hote").removeAttr("Disabled");
-				$("#Valider_Selection").removeAttr("Disabled");
+//				listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
+				activeBouton(listeBouton);
+//				$("#Rechercher").removeAttr("Disabled");
+//				$("#Ajouter_Selection_Hote").removeAttr("Disabled");
+//				$("#Valider_Selection").removeAttr("Disabled");
 				// pour chaque input disabled on réactive
 				var tableau_service_lig = document.getElementById("T_Liste_Service").rows; //charge les lignes du tableau
 				var NbLigne_Service = tableau_service_lig.length; // récupération du nombre d'enregistrement
@@ -243,9 +254,11 @@ function enregistre_selection()
 	};
 	function affiche_resultat(resultat){
 		$("#lien_tabs3").removeAttr("style");
-		$("#Rechercher").removeAttr("Disabled");
-		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
-		$("#Valider_Selection").removeAttr("Disabled");
+//		listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
+		activeBouton(listeBouton);
+//		$("#Rechercher").removeAttr("Disabled");
+//		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
+//		$("#Valider_Selection").removeAttr("Disabled");
 		$('html,body').animate({scrollTop:0},'slow'); // retourne en haut de la page après l'enregistrement
 		$("#messageValidation").append('<p id="messageValidationOK" style="background-color:green">Chargement terminé!<br>Vous pouvez passer au paramétrage des hôtes et services sur l\'onglet paramétrage.</p>');
 		$("#lien_tabs3").effect("pulsate");
@@ -296,11 +309,15 @@ function PreEnregistrer_fieldset_hote(champ)
 					if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 						$("#img_loading").remove();
 						$("#p_loading").remove();
+						listeBouton="Enregistrer_Brouillon;Valider_Demande";
+						activeBouton(listeBouton);
 						callback(xhr.responseText); // C'est bon \o/
 					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 						$("#img_loading").remove();
 						$("#p_loading").remove();
-						$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
+//						$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
+						listeBouton="Enregistrer_Brouillon;Valider_Demande;" + hote_bouton_id;
+						activeBouton(listeBouton);
 						gestion_erreur(xhr);
 					} else if (loading == false){
 						loading=true;
@@ -322,7 +339,9 @@ function PreEnregistrer_fieldset_hote(champ)
 				var id_input_hote=hote_bouton_id.substring(14);
 				$("#Nom"+id_input_hote+"").attr("ReadOnly","ReadOnly"); // passe le champ Nom_Hote en lecture seule
 				$("#img_Nom"+id_input_hote+"").attr("src","images/img_ver.png"); // passe le champ im_Nom_Hote en Verrouillé
-				$("#"+hote_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
+//				$("#"+hote_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
+				listeBouton=hote_bouton_id;
+				desactiveBouton(listeBouton);
 			}; 
 			PreEnregistre_Hote(PreEnregistrement_termine);
 		};
@@ -372,7 +391,9 @@ function PreEnregistrer_fieldset_plage(champ)
 					callback(xhr.responseText); // C'est bon \o/
 				} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 					$("#img_loading").remove();
-					$("#"+plage_bouton_id+"").removeAttr("Disabled"); // ré-active le bouton
+//					$("#"+plage_bouton_id+"").removeAttr("Disabled"); // ré-active le bouton
+					listeBouton=plage_bouton_id;
+					activeBouton(listeBouton);
 					gestion_erreur(xhr);
 				} else if (loading == false){
 					loading=true;
@@ -392,7 +413,9 @@ function PreEnregistrer_fieldset_plage(champ)
 			{
 				$(this).append('<option value="'+ Nom_Plage +'">'+ Nom_Plage +'</option>');
 			});
-			$("#"+plage_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
+//			$("#"+plage_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
+			listeBouton=plage_bouton_id;
+			desactiveBouton(listeBouton);
 		}; 
 		PreEnregistre_Plage(PreEnregistrement_plage_termine);
 	};
@@ -410,16 +433,20 @@ function Valider_Demande()
 	Plage_Vide=false;
 	Modele_Vide=false;
 
-	$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
-	$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
+	listeBouton="Enregistrer_Brouillon;Valider_Demande";
+	desactiveBouton(listeBouton);
+//	$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
+//	$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 
 	var NbFieldset_hote = $("fieldset.hote").length;
 	var NbFieldset_service = $("fieldset.service").length;
 	var NbFieldset_plage = $("fieldset.plage").length;
 	if (NbFieldset_hote == 0 && NbFieldset_service == 0 && NbFieldset_plage == 0){
 		alert("Votre demande ne comporte aucun hôte ni service ni période temporelle à traiter. L'enregistrement est arrêté.\nVous devez renseigner au moins un hôte, un service ou une plage horaire pour que la demande soit valide.");
-		$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
-		$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
+//		listeBouton="Enregistrer_Brouillon;Valider_Demande";
+		activeBouton(listeBouton);
+//		$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
+//		$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 		return false;
 	};
 	controle_doublon();
@@ -452,8 +479,10 @@ function Valider_Demande()
 			{
 				var message="STOP! Tous les champs de l'onglet Paramétrage ne sont pas validés!\nVeuillez vérifier les champs suivants:\n";
 				alert(message+Liste);
-				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
-				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				activeBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
+//				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 				return false;
 			};
 
@@ -601,14 +630,18 @@ function Valider_Demande()
 					if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
-						$("#Enregistrer_Brouillon").removeAttr("Disabled");
-						$("#Valider_Demande").removeAttr("Disabled");
+//						listeBouton="Enregistrer_Brouillon;Valider_Demande";
+						activeBouton(listeBouton);
+//						$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//						$("#Valider_Demande").removeAttr("Disabled");
 						callback(xhr.responseText); // C'est bon \o/
 					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
-						$("#Enregistrer_Brouillon").removeAttr("Disabled");
-						$("#Valider_Demande").removeAttr("Disabled");
+//						listeBouton="Enregistrer_Brouillon;Valider_Demande";
+						activeBouton(listeBouton);
+//						$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//						$("#Valider_Demande").removeAttr("Disabled");
 						gestion_erreur(xhr);
 					} else if (loading == false){
 						loading=true;
@@ -629,8 +662,10 @@ function Valider_Demande()
 			{
 				var ref_demande = $("#ref_demande").val();
 				alert("Enregistrement de la demande [" + ref_demande + "] terminé!\nVous pouvez consulter l'état des demandes via le menu <Lister les demandes>.\nVous recevrez une confirmation d'enregistrement d'ici quelques minutes par l\'intermédiaire de SUSI avec le numéro de ticket correspondant.");
-				$("#Enregistrer_Brouillon").removeAttr("Disabled");
-				$("#Valider_Demande").removeAttr("Disabled");
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				activeBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//				$("#Valider_Demande").removeAttr("Disabled");
 				window.location.replace('index.php'); // recharge la page d'accueil
 			}; 
 			if ((Hote_Vide == false) && (Plage_Vide == false) && (Modele_Vide == false)) //si hote, plage et modele sont rempli on met à jour
@@ -638,14 +673,18 @@ function Valider_Demande()
 				MAJ_infos_Sondes(enregistrement_termine);
 			} else
 			{
-				$("#Enregistrer_Brouillon").removeAttr("Disabled");
-				$("#Valider_Demande").removeAttr("Disabled");
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				activeBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//				$("#Valider_Demande").removeAttr("Disabled");
 				return false;
 			};
 		} else
 		{
-			$("#Enregistrer_Brouillon").removeAttr("Disabled");
-			$("#Valider_Demande").removeAttr("Disabled");
+//			listeBouton="Enregistrer_Brouillon;Valider_Demande";
+			activeBouton(listeBouton);
+//			$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//			$("#Valider_Demande").removeAttr("Disabled");
 		};
 	};
 };
@@ -664,8 +703,10 @@ function Enregistrer_Brouillon(Bouton)
 	Plage_Vide=false;
 	Modele_Vide=false;
 
-	$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
-	$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
+	listeBouton="Enregistrer_Brouillon;Valider_Demande";
+	desactiveBouton(listeBouton);
+//	$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
+//	$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 	controle_doublon();
 	/**
 	 * Controle des hôtes non pré-enregistrés
@@ -821,14 +862,18 @@ function Enregistrer_Brouillon(Bouton)
 					{
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
-						$("#Enregistrer_Brouillon").removeAttr("Disabled");
-						$("#Valider_Demande").removeAttr("Disabled");
+//						listeBouton="Enregistrer_Brouillon;Valider_Demande";
+						activeBouton(listeBouton);
+//						$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//						$("#Valider_Demande").removeAttr("Disabled");
 						callback(xhr.responseText); // C'est bon \o/
 					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
-						$("#Enregistrer_Brouillon").removeAttr("Disabled");
-						$("#Valider_Demande").removeAttr("Disabled");
+//						listeBouton="Enregistrer_Brouillon;Valider_Demande";
+						activeBouton(listeBouton);
+//						$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//						$("#Valider_Demande").removeAttr("Disabled");
 						gestion_erreur(xhr);
 					} else if (loading == false)
 					{
@@ -850,23 +895,29 @@ function Enregistrer_Brouillon(Bouton)
 			{
 				$("#bip").append('<p id="bip_retour">Brouillon enregistré!<br> <button onclick="goToMenu()">Cliquez sur ce bouton</button> pour laisser votre demande en l\'état et revenir immédiatement à l\'accueil sinon continuer de tavailler normalement.<br>Ce message disparaitra automatiquement dans 10 secondes.</p>');
 				afficheMessage(10,"bip_retour");
-				$("#Enregistrer_Brouillon").removeAttr("Disabled");
-				$("#Valider_Demande").removeAttr("Disabled");
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				activeBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//				$("#Valider_Demande").removeAttr("Disabled");
 			}; 
 			if ((Hote_Vide == false) && (Plage_Vide == false) && (Modele_Vide == false)) //si hote, plage et modele sont rempli on met à jour
 			{
 				MAJ_Brouillon(enregistrement_brouillon);
 			} else
 			{
-				$("#Enregistrer_Brouillon").removeAttr("Disabled");
-				$("#Valider_Demande").removeAttr("Disabled");
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				activeBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//				$("#Valider_Demande").removeAttr("Disabled");
 				return false;
 			};
 			};
 			if (Bouton == true)
 			{
-				$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
-				$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				desactiveBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
+//				$("#Valider_Demande").attr("Disabled","Disabled"); // Désactivation du bouton Valider Votre Demande pour éviter tout double clic...
 				Traitement_Enregistre(); // on enregistre les données
 			}else
 			{
@@ -875,8 +926,10 @@ function Enregistrer_Brouillon(Bouton)
 		};
 	} else
 	{
-		$("#Enregistrer_Brouillon").removeAttr("Disabled");
-		$("#Valider_Demande").removeAttr("Disabled");
+//		listeBouton="Enregistrer_Brouillon;Valider_Demande";
+		activeBouton(listeBouton);
+//		$("#Enregistrer_Brouillon").removeAttr("Disabled");
+//		$("#Valider_Demande").removeAttr("Disabled");
 		return false;
 	};
 };
@@ -1102,7 +1155,9 @@ function Enregistre_Notif_BAM()
 	/**
 	 * Fonction d'enregistrement de la configuration des notifications BAM
 	 */
-	$("#Enregistre_Notif_BAM").attr("Disabled","Disabled");
+	listeBouton="Enregistre_Notif_BAM";
+	desactiveBouton(listeBouton);
+//	$("#Enregistre_Notif_BAM").attr("Disabled","Disabled");
 	var Verif_Info = true;
 	$("#field_config_notification .verif").each(function(){
 		if ($(this).attr("alt") != "correct"){
@@ -1113,7 +1168,9 @@ function Enregistre_Notif_BAM()
 	if (Verif_Info != true) // l'onglet info générale doit contenir 7 valeurs impérativement
 	{
 		var message="STOP! Tous les champs ne sont pas valides!";
-		$("#Enregistre_Notif_BAM").removeAttr("Disabled"); // réactive le bouton
+//		listeBouton="Enregistre_Notif_BAM";
+		activeBouton(listeBouton);
+//		$("#Enregistre_Notif_BAM").removeAttr("Disabled"); // réactive le bouton
 		alert(message);
 		return false;
 	};
@@ -1164,11 +1221,16 @@ function Enregistre_Notif_BAM()
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			$("#img_loading").remove();
 			$("#p_loading").remove();
+//			listeBouton="Enregistre_Notif_BAM";
+			activeBouton(listeBouton);
+			
 			window.location.replace("./administration.php#tabs-3");
 			window.location.reload();
 		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 			$("#img_loading").remove();
 			$("#p_loading").remove();
+//			listeBouton="Enregistre_Notif_BAM";
+			activeBouton(listeBouton);
 			
 			gestion_erreur(xhr);
 		} else if (loading == false){
@@ -1331,6 +1393,7 @@ function info_generale()
 
 function controle_doublon()
 {
+	listeBouton="Enregistrer_Brouillon;Valider_Demande";
 	/**
 	 *  Vérification des doublons d'hôtes et services et plages
 	 */
@@ -1372,8 +1435,10 @@ function controle_doublon()
 			{
 				alert("ATTENTION: L'hôte ["+T_liste_nom_hote[i]+"] existe au moins deux fois dans la liste! L'enregistrement est arrêté.\nNotez son nom et corrigez pour enlever les doublons.")
 				Doublon="Oui";
-				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
-				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				activeBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
+//				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 				return Doublon; // on arrête l'enregistrement du brouillon.
 			};
 		};
@@ -1413,8 +1478,11 @@ function controle_doublon()
 			{
 				alert("ATTENTION: La plage ["+T_liste_nom_plage[i]+"] existe au moins deux fois dans la liste! L'enregistrement est arrêté.\nNotez son nom et corrigez pour enlever les doublons.")
 				Doublon = "Oui";
-				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
-				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
+
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				activeBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
+//				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 				return Doublon; // on arrête l'enregistrement du brouillon.
 			};
 		};
@@ -1456,8 +1524,11 @@ function controle_doublon()
 			{
 				alert("ATTENTION: Le service ["+T_liste_nom_service[i]+"] existe au moins deux fois dans la liste! L'enregistrement est arrêté.\nNotez son nom et corrigez pour enlever les doublons.")
 				Doublon = "Oui";
-				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
-				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
+//				listeBouton="Enregistrer_Brouillon;Valider_Demande";
+				activeBouton(listeBouton);
+//				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
+//				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
+
 				return Doublon; // on arrête l'enregistrement du brouillon.
 			};
 		};
@@ -1483,8 +1554,10 @@ function controle_preenregistrement_hote()
 		{
 			PreEnregistre=false;
 			alert("Attention, au moins un hôte créé n'a pas été pré-enregistré."+PreEnregistre);
-			$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
-			$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
+			listeBouton="Enregistrer_Brouillon;Valider_Demande";
+			activeBouton(listeBouton);
+//			$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
+//			$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 			return PreEnregistre;
 		};
 	});
@@ -1537,9 +1610,49 @@ function timer_enregistrement()
 		if (Delai_Timer > 900)
 		{
 			alert("Cela fait plus de 15 minutes que rien n'a été enregistré en base.\nJe vous conseille vivement d'enregistrer votre brouillon maintenant.");
+			listeBouton="Enregistrer_Brouillon;Valider_Demande";
+			activeBouton(listeBouton);
 		};
 	}; 
 	recuperation_Timer(avertissement_Timer);
+};
+
+/**
+ * Fonction d'activation des boutons
+ * 
+ * @listeBouton liste des id des boutons séparés par un point-virgule
+ */
+
+function activeBouton(listeBouton)
+{
+	var T_listeBouton = listeBouton.split(";");
+	for (var i=0;i<T_listeBouton.length;i++)
+	{
+		$("#" + T_listeBouton[i] + "").removeAttr("Disabled"); // réactivation buton.
+	}
+//	équivalent des lignes ci-dessous
+//	$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
+//	$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
+
+};
+
+/**
+ * Fonction de désactivation des boutons
+ * 
+ * @listeBouton liste des id des boutons séparés par un point-virgule
+ */
+
+function desactiveBouton(listeBouton)
+{
+	var T_listeBouton = listeBouton.split(";");
+	for (var i=0;i<T_listeBouton.length;i++)
+	{
+		$("#" + T_listeBouton[i] + "").attr("Disabled","Disabled"); // réactivation buton.
+	}
+//	équivalent des lignes ci-dessous
+//	$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // désactivation bouton.
+//	$("#Valider_Demande").attr("Disabled","Disabled"); // désactivation bouton.
+
 };
 
 function gestion_erreur(xhr)
