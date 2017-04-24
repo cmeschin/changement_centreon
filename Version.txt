@@ -1,4 +1,7 @@
-﻿2017-03-16 9.10.3
+﻿2017-04-x 9.11
+	- Ajout du taux de consigne au dessus des graphes pour une meilleure lecture
+	
+2017-03-16 9.10.3
 	- correction requêtes suivi_consigne pour exclure les sondes des hôtes désactivés.
 	- meilleure gestion des activations et désactivations des boutons
 

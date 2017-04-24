@@ -37,6 +37,9 @@
  	  $model[]= $resConsigne["sc_model"];
  	  $total[]= $resConsigne["sc_total"];
  	  $vide[]= $resConsigne["sc_vide"];
+ 	  $tx_global = ($resConsigne["sc_direct"]+$resConsigne["sc_indirect"])*100/$resConsigne["sc_total"] . "%";
+ 	  $tx_direct = ($resConsigne["sc_direct"])*100/$resConsigne["sc_total"] . "%";
+ 	  $tx_indirect = ($resConsigne["sc_indirect"])*100/$resConsigne["sc_total"] . "%";
  	}
 /**
  * Construction du graphe

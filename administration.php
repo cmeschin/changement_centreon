@@ -144,6 +144,10 @@ echo '<div id="principal">';
 				echo '<div id="accordion_stats">';
 					echo '<h3>Suivi d\'affectation des consignes</h3>';
 					echo '<div id="suivi_consigne">';
+						echo '<h3>Taux global de consignes à ce jour:' . round($tx_global,1) . '%</br>';
+						echo 'Taux de consigne directes à ce jour:' . round($tx_direct,1) . '%</br>';
+						echo 'Taux de consigne issues des modèles à ce jour:' . round($tx_indirect,1) . '%</h3>';
+						
 						echo '<img border="0" sstyle="width:30%" src="suivi_consigne.png">';														
 						echo '<img border="0" sstyle="width:30%" src="suivi_consigne2.png">';														
 						echo '</div>';
