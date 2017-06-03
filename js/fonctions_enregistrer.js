@@ -421,7 +421,6 @@ function PreEnregistrer_fieldset_plage(champ)
 	};
 };
 
-
 function Valider_Demande()
 {
 	/**
@@ -688,7 +687,6 @@ function Valider_Demande()
 		};
 	};
 };
-
 
 function Enregistrer_Brouillon(Bouton)
 {
@@ -963,7 +961,6 @@ function afficheMessage(delai,maDiv)
 	};
 	start();
 };
-
 
 function enregistre_Etat_Demande(champ,ID)
 { // 

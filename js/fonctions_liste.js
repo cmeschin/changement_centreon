@@ -674,7 +674,7 @@ function clone_fieldset_Plage(champ) {
 	/**
 	 *  boucler sur chaque fieldset pour identifier les trous
 	 */
-	queryAll = document.querySelectorAll('.hote');
+	queryAll = document.querySelectorAll('.plage');
 	for (var i = 0; i< NbFieldset; i++){
 		var h = i+1;
 		if (( "Plage"+ h != queryAll[i].id) && (!trou)) {
