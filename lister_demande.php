@@ -14,6 +14,8 @@ $_SESSION['Nouveau'] = false;	// Il ne s'agit pas d'une nouvelle demande
 $_SESSION['Reprise'] = false;	// Il ne s'agit pas d'une reprise
 $_SESSION['Extraction'] = false; // Il ne s'agit pas d'une extraction
 $_SESSION['PDF'] = false;	// Il ne s'agit pas d'un extraction PDF
+
+include('log.php'); // chargement de la fonction de log
 	
 echo '<html>';
 echo '<head>';
@@ -53,12 +55,30 @@ echo '<div id="principal">';
 					echo '<li><a href="#tabs_DEC-2">Liste des demandes traitées ou annulées</a></li>';
 				echo '</ul>';
 				echo '<div id="tabs_DEC-1">';
-					echo '<h2>Les brouillons et demandes à traiter</h2>';
-					include_once('liste_demande_encours.php');
+					echo '<div id="accordionDemEnCours">';
+						echo '<h3>Mes demandes en cours</h3>';
+						echo '<div id="mesDemandesEnCours">';
+							include_once('liste_mes_demandes_encours.php');
+						echo '</div>';
+						echo '<h3 onclick="collecte_DEC_liste_ttes_demandes_encours()">Toutes les autres demandes en cours</h3>';
+						echo '<div id="ttesDemandesEnCours">';
+							// Les demandes sont chargées lors du clic que le bandeau
+						echo '</div>';
+					echo '</div>';
 				echo '</div>';
 				echo '<div id="tabs_DEC-2">';
-					echo '<h2>Les demandes traitées ou annulées regroupées par mois</h2>';
-					include_once('liste_demande_traitees.php');
+					echo '<h2>Liste des demandes traitées ou annulées regroupées par mois</h2>';
+					echo '<div id="accordionDemTraitees">';
+						echo '<h3>Mes demandes traitées ou annulées</h3>';
+						echo '<div id="mesDemandesTraitees">';
+							include_once('liste_mes_demandes_traitees.php');
+						echo '</div>';
+						echo '<h3 onclick="collecte_DEC_liste_ttes_demandes_traitees()">Toutes les autres demandes traitées ou annulées</h3>';
+						echo '<div id="ttesDemandesTraitees">';
+							// Les demandes sont chargées lors du clic sur le bandeau
+						echo '</div>';
+					echo '</div>';
+						
 				echo '</div>';
 			echo '</div>';
 		};

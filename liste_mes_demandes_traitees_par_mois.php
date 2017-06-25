@@ -7,19 +7,19 @@ include_once('connexion_sql_supervision.php');
 $sID_Date = (isset($_POST["ID_Date"])) ? $_POST["ID_Date"] : NULL;
 
 /**
- *  récupérer la liste de toutes les demandes à traiter et annulées
+ *  récupérer la liste de mes demandes traitées et annulées
  */
 try {
-	include_once('requete_liste_demande_traite_par_mois.php');
+	include_once('requete_liste_mes_demandes_traite_par_mois.php');
 } catch (Exception $e) {
 	die('Erreur requete liste demande traite: ' . $e->getMessage());
 };
 try {
-	include_once('requete_liste_demande_traite_par_mois_temps_global.php');
+	include_once('requete_liste_mes_demandes_traite_par_mois_temps_global.php');
 } catch (Exception $e) {
 	http_response_code(500);
-	echo '<p>Erreur requete liste demande traite par mois temps global: ' . $e->getMessage() . '<p/>';
-	die('Erreur requete liste demande traite par mois temps global: ' . $e->getMessage());
+	echo '<p>Erreur requete liste mes demandes traite par mois temps global: ' . $e->getMessage() . '<p/>';
+	die('Erreur requete liste mes demandes traite par mois temps global: ' . $e->getMessage());
 };
 $res_dem_tg = $req_dem_tg->fetchall();
 foreach($res_dem_tg as $element)

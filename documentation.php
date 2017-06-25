@@ -47,7 +47,7 @@ if (session_id()=='')
 					<p>Plusieurs sources de ce document étaient mises à jour simultanément sans qu'il y ai systématiquement de consultation préalable entre les différents acteurs.
 					 Une évolution de cette matrice était donc nécessaire; le paramétrage de CENTREON étant stocké dans une base de données, une extraction en était donc possible et une version Web de la matrice s'est alors imposée d'elle même.</p>
 					<p>Une interface centralisée avec la garantie d'avoir les dernières informations du paramétrage au moment de la demande, le développement du <em>gestionnaire des changements CENTREON</em> pouvait commencer...</p> 
-                                </div>
+				</div>
 				<h3>Objet du gestionnaire</h3>
 				<div id="objet">
 						<p>Le gestionnaire des changements CENTREON (ci-après nommée "l'interface") a pour objet la formalisation des demandes de supervision de l'infrastructure du SI Tessi Technologies ainsi que des prestations client.</p>

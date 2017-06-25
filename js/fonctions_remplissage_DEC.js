@@ -1,33 +1,42 @@
 function Afficher_Masquer_DEC_groupee(ID_Date) 
 {
+	var user='cmeschin'
+	//alert(user);
 	/**
 	 * récupère la liste des demandes traitées pour le mois sélectionné
 	 * puis appelle en boucle la fonction classique de remplissage du tableau 
 	 */
 	
-	if (!$( "#DEC_Detail_groupee" + ID_Date + "").attr("Selected")){
-		collecte_DEC_liste_groupee(ID_Date); // collecte des infos générales complémentaires
-		$( "#DEC_Detail_groupee" + ID_Date + "").show( "fold", 1000 );
-		$( "#DEC_Detail_groupee" + ID_Date + "").attr("Selected","Selected");
+	if (!$( "#DEC_Detail_groupee_" + user + "_" + ID_Date + "").attr("Selected")){
+		collecte_DEC_liste_groupee(ID_Date,user); // collecte des infos générales complémentaires
+		$( "#DEC_Detail_groupee_" + user + "_" + ID_Date + "").show( "fold", 1000 );
+		$( "#DEC_Detail_groupee_" + user + "_" + ID_Date + "").attr("Selected","Selected");
 	} else {
-		$( "#DEC_Detail_groupee" + ID_Date + "").hide( "fold", 1000 );
-		$( "#DEC_Detail_groupee" + ID_Date + "").removeAttr("Selected");
+		$( "#DEC_Detail_groupee_" + user + "_" + ID_Date + "").hide( "fold", 1000 );
+		$( "#DEC_Detail_groupee_" + user + "_" + ID_Date + "").removeAttr("Selected");
 	};
 };
 
-function collecte_DEC_liste_groupee(ID_Date)
+function collecte_DEC_liste_groupee(ID_Date,user)
 {
+	var loading=false;
 	var xhr_i = getXMLHttpRequest(); //création de l'instance XHR
 	xhr_i.onreadystatechange = function() {
 		if (xhr_i.readyState == 4 && (xhr_i.status == 200 || xhr_i.status == 0)) {
-			$("#DEC_liste_groupee" + ID_Date + "").empty();
-			$("#DEC_liste_groupee" + ID_Date + "").append(xhr_i.responseText);
+			$("#DEC_liste_groupee_" + user + "_" + ID_Date + "").empty();
+			$("#DEC_liste_groupee_" + user + "_" + ID_Date + "").append(xhr_i.responseText);
 		} else if(xhr_i.readyState == 4 && xhr_i.status != 200) { // En cas d'erreur !
+			$("#img_loading").remove();
+			$("#p_loading").remove();
 			alert('Une erreur est survenue !\n\nCode :' + xhr_i.status + '\nTexte : ' + xhr_i.responseText);
+		} else if (loading == false){
+			loading=true;
+			$("#DEC_liste_groupee_" + user + "_" + ID_Date + "").append('<img id="img_loading" src="images/chargement.gif" alt="chargement des données..."/> ');
+			$("#DEC_liste_groupee_" + user + "_" + ID_Date + "").append('<p id="p_loading">Veuillez patienter pendant le chargement des données...</p>');
 		};
 	};
 
-	xhr_i.open("POST", "liste_demande_traitees_par_mois.php", true);
+	xhr_i.open("POST", "liste_mes_demandes_traitees_par_mois.php", true);
 	xhr_i.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr_i.send("ID_Date="+ID_Date+""); 
 };
@@ -117,4 +126,98 @@ function collecte_DEC_plage(ID_Demande)
 	xhr_p.open("POST", "remplissage_DEC_plage.php", true);
 	xhr_p.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr_p.send("ID_Demande="+ID_Demande+""); 
+};
+
+function collecte_DEC_liste_ttes_demandes_encours()
+{
+	var loading=false;
+	var xhr_i = getXMLHttpRequest(); //création de l'instance XHR
+	xhr_i.onreadystatechange = function() {
+		if (xhr_i.readyState == 4 && (xhr_i.status == 200 || xhr_i.status == 0)) {
+			//$("#img_loading").remove();
+			//$("#p_loading").remove();
+			$("#ttesDemandesEnCours").empty();
+			$("#ttesDemandesEnCours").append(xhr_i.responseText);
+		} else if(xhr_i.readyState == 4 && xhr_i.status != 200) { // En cas d'erreur !
+			$("#img_loading").remove();
+			$("#p_loading").remove();
+			alert('Une erreur est survenue !\n\nCode :' + xhr_i.status + '\nTexte : ' + xhr_i.responseText);
+		} else if (loading == false){
+			loading=true;
+			$("#ttesDemandesEnCours").append('<img id="img_loading" src="images/chargement.gif" alt="chargement des données..."/> ');
+			$("#ttesDemandesEnCours").append('<p id="p_loading">Veuillez patienter pendant le chargement des données...</p>');
+		};
+	};
+
+	xhr_i.open("POST", "liste_ttes_demandes_encours.php", true);
+	xhr_i.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+	xhr_i.send(); 
+};
+
+function collecte_DEC_liste_ttes_demandes_traitees()
+{
+	var loading=false;
+	var xhr_i = getXMLHttpRequest(); //création de l'instance XHR
+	xhr_i.onreadystatechange = function() {
+		if (xhr_i.readyState == 4 && (xhr_i.status == 200 || xhr_i.status == 0)) {
+			//$("#img_loading").remove();
+			//$("#p_loading").remove();
+			$("#ttesDemandesTraitees").empty();
+			$("#ttesDemandesTraitees").append(xhr_i.responseText);
+		} else if(xhr_i.readyState == 4 && xhr_i.status != 200) { // En cas d'erreur !
+			$("#img_loading").remove();
+			$("#p_loading").remove();
+			alert('Une erreur est survenue !\n\nCode :' + xhr_i.status + '\nTexte : ' + xhr_i.responseText);
+		} else if (loading == false){
+			loading=true;
+			$("#ttesDemandesTraitees").append('<img id="img_loading" src="images/chargement.gif" alt="chargement des données..."/> ');
+			$("#ttesDemandesTraitees").append('<p id="p_loading">Veuillez patienter pendant le chargement des données...</p>');
+		};
+	};
+
+	xhr_i.open("POST", "liste_ttes_demandes_traitees.php", true);
+	xhr_i.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+	xhr_i.send(); 
+};
+
+function Afficher_Masquer_DEC_ttes_demandes_groupee(ID_Date) 
+{
+	//alert("youpi");
+	/**
+	 * récupère la liste des demandes traitées pour le mois sélectionné
+	 * puis appelle en boucle la fonction classique de remplissage du tableau 
+	 */
+	
+	if (!$( "#DEC_Detail_groupee" + ID_Date + "").attr("Selected")){
+		collecte_DEC_liste_ttes_demandes_groupee(ID_Date); // collecte des infos générales complémentaires
+		$( "#DEC_Detail_groupee" + ID_Date + "").show( "fold", 1000 );
+		$( "#DEC_Detail_groupee" + ID_Date + "").attr("Selected","Selected");
+	} else {
+		$( "#DEC_Detail_groupee" + ID_Date + "").hide( "fold", 1000 );
+		$( "#DEC_Detail_groupee" + ID_Date + "").removeAttr("Selected");
+	};
+};
+
+function collecte_DEC_liste_ttes_demandes_groupee(ID_Date)
+{
+	var loading=false;
+	var xhr_i = getXMLHttpRequest(); //création de l'instance XHR
+	xhr_i.onreadystatechange = function() {
+		if (xhr_i.readyState == 4 && (xhr_i.status == 200 || xhr_i.status == 0)) {
+			$("#DEC_liste_groupee" + ID_Date + "").empty();
+			$("#DEC_liste_groupee" + ID_Date + "").append(xhr_i.responseText);
+		} else if(xhr_i.readyState == 4 && xhr_i.status != 200) { // En cas d'erreur !
+			$("#img_loading").remove();
+			$("#p_loading").remove();
+			alert('Une erreur est survenue !\n\nCode :' + xhr_i.status + '\nTexte : ' + xhr_i.responseText);
+		} else if (loading == false){
+			loading=true;
+			$("#DEC_liste_groupee" + ID_Date + "").append('<img id="img_loading" src="images/chargement.gif" alt="chargement des données..."/> ');
+			$("#DEC_liste_groupee" + ID_Date + "").append('<p id="p_loading">Veuillez patienter pendant le chargement des données...</p>');
+		};
+	};
+
+	xhr_i.open("POST", "liste_ttes_demandes_traitees_par_mois.php", true);
+	xhr_i.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+	xhr_i.send("ID_Date="+ID_Date+""); 
 };

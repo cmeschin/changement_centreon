@@ -1,4 +1,7 @@
-﻿2017-06-x 9.11.1
+﻿2017-06-25 9.12.0
+    - découpage de la liste des demandes en deux groupes: Mes demandes, Les autres.
+    
+2017-06-24 9.11.1
     - Correction parcours plage horaires (parcours class hote au lieu de class plage)
     
 2017-04-24 9.11

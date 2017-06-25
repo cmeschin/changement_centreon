@@ -19,6 +19,8 @@ function goToMenu()
 $(function() {
 	$( document ).tooltip();
 	$("#accordionListe").accordion({ heightStyle: "content", collapsible: true, active: 2 }); // affiche l'onglet Liste Service par défaut
+	$("#accordionDemEnCours").accordion({ heightStyle: "content", collapsible: true, active: 0 }); // affiche l'onglet mes demandes en cours par défaut
+	$("#accordionDemTraitees").accordion({ heightStyle: "content", collapsible: true, active: 0 }); // affiche l'onglet mes demandes traitées par défaut
 	$("#accordionParam").accordion({ heightStyle: "content", collapsible: true});
 	$("#accordionDoc_gen").accordion({ heightStyle: "content", collapsible: true, active: false});
 	$("#accordionDoc_nouveau").accordion({ heightStyle: "content", collapsible: true, active: false});
