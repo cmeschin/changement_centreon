@@ -1,4 +1,7 @@
-﻿2017-06-25 9.12.0
+﻿2017-07-02 9.12.1
+    - #41 [Demande] - pb gestion caractère $ dans les arguments
+
+2017-06-25 9.12.0
     - découpage de la liste des demandes en deux groupes: Mes demandes, Les autres.
     
 2017-06-24 9.11.1

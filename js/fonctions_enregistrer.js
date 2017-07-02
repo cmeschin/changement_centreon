@@ -812,6 +812,7 @@ function Enregistrer_Brouillon(Bouton)
 					 *  gestion des caractères spéciaux !, $, | et \ dans les champs.
 					 */
 					var Valeur_Champ =  $(this).val();
+					alert("ding-dong!");
 					Gestion_caractere_speciaux(Valeur_Champ);
 					if ($(this).val() != "Autre" && $(this).val() != "Vide")
 					{
@@ -1284,7 +1285,8 @@ function Gestion_caractere_speciaux(str)
 	var reg1=new RegExp("[$]","g");
 	if (str.match(reg1))
 	{
-		str = str.replace(/$/g,"_DOLLAR_");
+		alert("ici");
+		str = str.replace(/\$/g,"_DOLLAR_");
 	};
 	var reg1=new RegExp("[!]","g");
 	if (str.match(reg1))
