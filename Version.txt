@@ -1,4 +1,7 @@
-﻿2017-07-02 9.12.1
+﻿2017-07-03 9.12.2
+	- correction affichage des options admin sur la liste ttes demandes en cours
+	
+2017-07-02 9.12.1
     - #41 [Demande] - pb gestion caractère $ dans les arguments
 
 2017-06-25 9.12.0
