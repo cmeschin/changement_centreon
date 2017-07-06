@@ -74,10 +74,15 @@ function verifNom_Service(champ)
 
 function verifChampIP(champ)
 {
-var reg=/^\d{1,3}[.]\d{1,3}[.]\d{1,3}[.]\d{1,3}$/;
+	var numero = $(champ).attr("id").substr(-1,1);
+	var reg=/^\d{1,3}[.]\d{1,3}[.]\d{1,3}[.]\d{1,3}$/;
 	if (reg.exec(champ.value)==null){
 		surligne (document.getElementById("img_"+champ.id), true);
-		alert("Veuillez saisir une adresse IP valide.");
+		alert("Veuillez saisir une adresse IP valide et non vide.");
+		// contournement bug chrome >52 lorsque le focus et la fenêtre active n'est plus celle-ci, cela crée une boucle infinie
+		// https://bugs.chromium.org/p/chromium/issues/detail?id=666205
+		// pour sortir de la boucle on positionne le focus sur un autre champ!
+		$("#Nom_Hote" + numero).focus();
 		return false;
 	}else{
 		var tab=champ.value.split('.');
@@ -94,6 +99,10 @@ var reg=/^\d{1,3}[.]\d{1,3}[.]\d{1,3}[.]\d{1,3}$/;
 		}else{
 			surligne (document.getElementById("img_"+champ.id), true);
 			alert("Veuillez saisir une adresse IP valide.");
+			// contournement bug chrome >52 lorsque le focus et la fenêtre active n'est plus celle-ci, cela crée une boucle infinie
+			// https://bugs.chromium.org/p/chromium/issues/detail?id=666205
+			// pour sortir de la boucle on positionne le focus sur un autre champ!
+			$("#Nom_Hote" + numero).focus();
 			return false;
 		}
 	}

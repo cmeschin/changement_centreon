@@ -1,4 +1,7 @@
-﻿2017-07-02 9.12.1
+﻿2017-07-06 9.12.2
+    - #42 [Creation Hote] boucle infinie sur verfication IP
+
+2017-07-02 9.12.1
     - #41 [Demande] - pb gestion caractère $ dans les arguments
 
 2017-06-25 9.12.0
