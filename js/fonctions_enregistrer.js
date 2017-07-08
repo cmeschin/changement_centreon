@@ -315,7 +315,7 @@ function PreEnregistrer_fieldset_hote(champ)
 					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 						$("#img_loading").remove();
 						$("#p_loading").remove();
-//						$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
+						//$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
 						listeBouton="Enregistrer_Brouillon;Valider_Demande;" + hote_bouton_id;
 						activeBouton(listeBouton);
 						gestion_erreur(xhr);
@@ -339,7 +339,6 @@ function PreEnregistrer_fieldset_hote(champ)
 				var id_input_hote=hote_bouton_id.substring(14);
 				$("#Nom"+id_input_hote+"").attr("ReadOnly","ReadOnly"); // passe le champ Nom_Hote en lecture seule
 				$("#img_Nom"+id_input_hote+"").attr("src","images/img_ver.png"); // passe le champ im_Nom_Hote en Verrouillé
-//				$("#"+hote_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
 				listeBouton=hote_bouton_id;
 				desactiveBouton(listeBouton);
 			}; 
@@ -375,7 +374,7 @@ function PreEnregistrer_fieldset_plage(champ)
 		});
 		liste_plage += "$";
 		liste_plage = liste_plage.substring(1,liste_plage.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
-
+		
 		/**
 		 *  transmettre les données au serveur pour MAJ des infos.
 		 */
@@ -391,7 +390,7 @@ function PreEnregistrer_fieldset_plage(champ)
 					callback(xhr.responseText); // C'est bon \o/
 				} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
 					$("#img_loading").remove();
-//					$("#"+plage_bouton_id+"").removeAttr("Disabled"); // ré-active le bouton
+					//$("#"+plage_bouton_id+"").removeAttr("Disabled"); // ré-active le bouton
 					listeBouton=plage_bouton_id;
 					activeBouton(listeBouton);
 					gestion_erreur(xhr);
@@ -413,7 +412,6 @@ function PreEnregistrer_fieldset_plage(champ)
 			{
 				$(this).append('<option value="'+ Nom_Plage +'">'+ Nom_Plage +'</option>');
 			});
-//			$("#"+plage_bouton_id+"").attr("Disabled","Disabled"); // désactive le bouton
 			listeBouton=plage_bouton_id;
 			desactiveBouton(listeBouton);
 		}; 
@@ -1034,7 +1032,9 @@ function enregistre_Etat_Demande(champ,ID)
 			var Etat_dem=$("#Liste_DEC_Enregistrer_Etat"+ID_Demande).val();
 			if (Etat_Param == "En cours" && Etat_dem == "A Traiter")
 			{
-				window.location.reload(); // rechargement de la page pour afficher le statut "en cours"
+				//window.location.reload(); // rechargement de la page pour afficher le statut "en cours"
+				$(".statut_demande" + ID_Demande).html(Etat_Param);
+				$(".statut_demande" + ID_Demande).attr("class", "ok");
 			};
 			
 			var bip_id=fieldset_parent + "bip_enregistre";
@@ -1083,7 +1083,7 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 			var motif_annulation="";
 			while ( motif_annulation == null || motif_annulation =="") // tant que le motif n'est pas saisi on boucle
 		    {
-		    	motif_annulation=prompt("Motif de l'annulation:","doublon");
+		    	motif_annulation=prompt("Motif de l'annulation (obligatoire):","doublon");
 		    };
 		};
 

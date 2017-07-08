@@ -90,7 +90,7 @@ echo '<table id="T_Liste_Demande">';
 			echo '<td>' . htmlspecialchars($res_dem['NbPlage']) . '</td>';
 			if ((htmlspecialchars($res_dem['Etat_Demande']) == "Brouillon") && ($_SESSION['user_changement_centreon'] == htmlspecialchars($res_dem['Demandeur']))) // si brouillon et user=demandeur => lien édition
 			{ // on charge la page reprise_demande sur le modèle d'une nouvelle demande
-				echo "<td>";
+				echo "<td class='statut_demande" . htmlspecialchars($res_dem['ID_Demande']) . "'>";
 				echo "<ul class='Etat_Demande'>";
 						echo "<li>";
 						echo "<a href='reprise_demande.php?demandeur=" . htmlspecialchars($res_dem['Demandeur']) . "&amp;id_demande=" . htmlspecialchars($res_dem['ID_Demande']) . "'>" . htmlspecialchars($res_dem['Etat_Demande']) ."</a>";
@@ -101,7 +101,7 @@ echo '<table id="T_Liste_Demande">';
 				echo "</td>";
 			} else // pas de lien cliquable pour tous les autres
 			{
-				echo '<td>' . htmlspecialchars($res_dem['Etat_Demande']) .'</td>';
+				echo "<td class='statut_demande" . htmlspecialchars($res_dem['ID_Demande']) . "'>" . htmlspecialchars($res_dem['Etat_Demande']) ."</td>";
 			};
 			
 			/**
@@ -111,7 +111,7 @@ echo '<table id="T_Liste_Demande">';
 			if ( $_SESSION['Admin'] == True)
 			{
 				$bouton_ID="DEC_Enregistrer_Etat" . htmlspecialchars ( $res_dem ['ID_Demande'] );
-                echo '<td>';
+				echo '<td>';
 				echo 'ID_Dem=' .  htmlspecialchars($res_dem['ID_Demande']);
 				echo '<select onChange="set_focus_bouton(\'' . $bouton_ID . '\');" name="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '" id="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '">';
 				try {
@@ -121,31 +121,31 @@ echo '<table id="T_Liste_Demande">';
 					echo '</select>';
 					die('Erreur requete liste etat demande: ' . $e->getMessage());
 				};
-                                while ($res_etat = $req_etat->fetch())
-                                {
-									if (htmlspecialchars($res_etat['Etat_Dem']) != "En cours") // on ne peut pas supprimer un élément unitaire de la demande, donc il n'est pas ajouté à la liste.
-									{
-										if (htmlspecialchars($res_dem['Etat_Demande']) == htmlspecialchars($res_etat['Etat_Dem']))
-										{
-											echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-										} else
-										{
-											echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-										};
-									} elseif (htmlspecialchars($res_dem['Etat_Demande']) != "A Traiter")
-									{
-										if (htmlspecialchars($res_dem['Etat_Demande']) == htmlspecialchars($res_etat['Etat_Dem']))
-										{
-											echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-										} else
-										{
-											echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-										};
-									};
-                                };
-                                echo '</select>';
-                                echo '';
-                                echo '<button id="DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '" onclick="DEC_enregistre_Etat_Demande(this,' . htmlspecialchars($res_dem['ID_Demande']) . ')">Forcer</button>';
+				while ($res_etat = $req_etat->fetch())
+				{
+					if (htmlspecialchars($res_etat['Etat_Dem']) != "En cours") // on ne peut pas supprimer un élément unitaire de la demande, donc il n'est pas ajouté à la liste.
+					{
+						if (htmlspecialchars($res_dem['Etat_Demande']) == htmlspecialchars($res_etat['Etat_Dem']))
+						{
+							echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
+						} else
+						{
+							echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
+						};
+					} elseif (htmlspecialchars($res_dem['Etat_Demande']) != "A Traiter")
+					{
+						if (htmlspecialchars($res_dem['Etat_Demande']) == htmlspecialchars($res_etat['Etat_Dem']))
+						{
+							echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
+						} else
+						{
+							echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
+						};
+					};
+				};
+				echo '</select>';
+				echo '';
+				echo '<button id="DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '" onclick="DEC_enregistre_Etat_Demande(this,' . htmlspecialchars($res_dem['ID_Demande']) . ')">Forcer</button>';
 			echo '</td>';
 			};
 			echo '</tr>';
