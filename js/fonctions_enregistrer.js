@@ -1026,15 +1026,16 @@ function enregistre_Etat_Demande(champ,ID)
 	{
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
 		{
-			/**
-			 *  version 8.11
-			 */
 			var Etat_dem=$("#Liste_DEC_Enregistrer_Etat"+ID_Demande).val();
 			if (Etat_Param == "En cours" && Etat_dem == "A Traiter")
 			{
 				//window.location.reload(); // rechargement de la page pour afficher le statut "en cours"
 				$(".statut_demande" + ID_Demande).html(Etat_Param);
 				$(".statut_demande" + ID_Demande).attr("class", "ok");
+				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).empty(); // vide la liste déroulante
+				requete_maj_list_etat(ID_Demande,Etat_Param);
+//				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).val(Etat_Param);
+//				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).find("option[value="+Etat_Param+"]").attr("Selected","Selected");
 			};
 			
 			var bip_id=fieldset_parent + "bip_enregistre";
@@ -1060,6 +1061,24 @@ function enregistre_Etat_Demande(champ,ID)
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr.send("ID_Demande="+eID_Demande+"&ID_Hote="+eID_Hote+"&ID_Service="+eID_Service+"&ID_Plage="+eID_Plage+"&Etat_Param="+eEtat_Param+"&Annulation="+eAnnulation+""); 
 
+};
+
+function requete_maj_list_etat(ID_Demande,Etat_Param)
+{
+	var xhr_r = getXMLHttpRequest(); //création de l'instance XHR
+	xhr_r.onreadystatechange = function()
+	{
+		if (xhr_r.readyState == 4 && (xhr_r.status == 200 || xhr_r.status == 0))
+		{
+			$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).append(xhr_r.responseText); //met à jour la liste déroulante avec les nouvelles valeurs
+		} else if(xhr_r.readyState == 4 && xhr_r.status != 200) 
+		{ 
+			gestion_erreur(xhr_r);
+		};
+	};
+	xhr_r.open("POST", "requete_maj_etat_dem.php", true);
+	xhr_r.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+	xhr_r.send("Etat_Param="+Etat_Param+""); 
 };
 
 function DEC_enregistre_Etat_Demande(champ,ID_Demande)

@@ -1,3 +1,6 @@
+2017-08-xx 9.13.0
+    - amelioration gestion des demandes (plus de rechargement de page au changement de statut)
+
 2017-07-06 9.12.3
     - #42 [Creation Hote] boucle infinie sur verfication IP
 

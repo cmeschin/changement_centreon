@@ -84,22 +84,24 @@ echo '<table id="T_Liste_Demande">';
 				echo 'ID_Dem=' .  htmlspecialchars($res_dem['ID_Demande']);
 				echo '<select onChange="set_focus_bouton('.htmlspecialchars($res_dem['ID_Demande']).');" name="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '" id="Liste_DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '">';
 				try {
-					$etat_dem = $res_dem['Etat_Demande'];
-					include('requete_liste_Etat_Demande.php');
+					$etat_dem = htmlspecialchars($res_dem['Etat_Demande']);
+					//include('requete_liste_Etat_Demande.php');
+					include('insertion_liste_etat_dem.php');
 				} catch (Exception $e) {
 					echo '</select>';
 					die('Erreur requete liste etat demande: ' . $e->getMessage());
 				};
-				while ($res_etat = $req_etat->fetch())
-				{
-					if (htmlspecialchars($res_dem['Etat_Demande']) == htmlspecialchars($res_etat['Etat_Dem']))
-					{
-						echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-					} else
-					{
-						echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-					};
-				};
+// 				while ($res_etat = $req_etat->fetch())
+// 				{
+// 					if (htmlspecialchars($res_dem['Etat_Demande']) == htmlspecialchars($res_etat['Etat_Dem']))
+// 					{
+// 						echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
+// 					} else
+// 					{
+// 						echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
+// 					};
+// 				};
+				//include('insertion_liste_etat_dem.php');
 				echo '</select>';
 				echo '';
 				echo '<button id="DEC_Enregistrer_Etat' . htmlspecialchars($res_dem['ID_Demande']) . '" onclick="DEC_enregistre_Etat_Demande(this,' . htmlspecialchars($res_dem['ID_Demande']) . ')">Forcer</button>';

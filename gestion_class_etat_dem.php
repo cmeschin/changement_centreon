@@ -1,5 +1,5 @@
 <?php
-switch ($etat) {
+switch ($etat_dem) {
 	case "Brouillon":
 		$etat_class="brou";
 		break;
