@@ -72,7 +72,7 @@ session_start();
 		 
 	
 		//=====Déclaration des messages au format texte et au format HTML.
-		$lien_html = "http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_mail['id_demande'] . ""; 
+		$lien_html = "https://changement-centreon.interne.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_mail['id_demande'] . ""; 
 		$message_txt = "
 				Type DEM = Autre\n
 				Référence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n

@@ -82,7 +82,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 					<td class='Tableau1_A1'>" . $elements['Prestation'] . "</td>
 	 				<td class='Tableau1_A1'>" . $elements['Date_Supervision_Demandee'] . "</td>
 	 				<td class='Tableau1_A1'>" . $elements['Date_Demande'] . "</td>
-	 				<td class='Tableau1_A1'><a href='http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $elements['id_demande'] . "'>" . $elements['Ref_Demande'] . "</a></td>
+	 				<td class='Tableau1_A1'><a href='https://changement-centreon.interne.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $elements['id_demande'] . "'>" . $elements['Ref_Demande'] . "</a></td>
 	 				</tr>";
 		};
 		$contenu_html .= "</table><br />";
