@@ -1,3 +1,7 @@
+2017-08-29 9.13.1
+	- correction pb affichage mes demandes traitées
+	- correction d'affichage de l'etat de paramétrage des éléments unitaire. libellé non affiché (uniquement la couleur)  
+	
 2017-08-29 9.13.0
     - amelioration gestion des demandes (plus de rechargement de page au changement de statut)
     - mise à jour de l'URL GCC dans les notifications mail

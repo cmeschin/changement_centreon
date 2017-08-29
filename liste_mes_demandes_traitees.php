@@ -22,8 +22,8 @@ echo '<table id="T_Liste_Demande">';
 	{ 
 		echo '<div id="Demande">';
 			echo '<tr>';
-//			echo '<td><button id="DEC_Afficher_groupee_' . htmlspecialchars($_SESSION['user_changement_centreon']) . '_' . htmlspecialchars($res_dem_groupee['ID_Date']) . '" onclick="Afficher_Masquer_DEC_groupee(' . htmlspecialchars($res_dem_groupee['ID_Date']) . ',"' . htmlspecialchars($_SESSION['user_changement_centreon']) . '")">Afficher / Masquer</button></td>';
-			echo '<td><button id="DEC_Afficher_groupee_' . htmlspecialchars($_SESSION['user_changement_centreon']) . '_' . htmlspecialchars($res_dem_groupee['ID_Date']) . '" onclick="Afficher_Masquer_DEC_groupee(' . htmlspecialchars($res_dem_groupee['ID_Date']) . ')">Afficheer / Masquer</button></td>';
+			echo '<td><button id="DEC_Afficher_groupee_' . htmlspecialchars($_SESSION['user_changement_centreon']) . '_' . htmlspecialchars($res_dem_groupee['ID_Date']) . '" onclick="Afficher_Masquer_DEC_groupee(' . htmlspecialchars($res_dem_groupee['ID_Date']) . ',\'' . htmlspecialchars($_SESSION['user_changement_centreon']) . '\')">Afficher / Masquer</button></td>';
+			//echo '<td><button id="DEC_Afficher_groupee_' . htmlspecialchars($_SESSION['user_changement_centreon']) . '_' . htmlspecialchars($res_dem_groupee['ID_Date']) . '" onclick="Afficher_Masquer_DEC_groupee(' . htmlspecialchars($res_dem_groupee['ID_Date']) . ')">Afficher / Masquer</button></td>';
 			echo '<td>' . htmlspecialchars($res_dem_groupee['Date']) . '</td>';
 			echo '<td>' . htmlspecialchars($res_dem_groupee['Nombre']) . '</td>';
 			echo '</tr>';

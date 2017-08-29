@@ -40,7 +40,7 @@ if (isset($ID_Plage))
 		echo '<button id="Enregistrer_Etat_Plage' . $NbFieldset_plage . '" onclick="enregistre_Etat_Demande(this,' . $ID_Plage . ')">Enregistrer</button>';
 	} else 
 	{
-		echo '<input class="etat_dem_' . $etat_class . '" readonly type="text" id="Etat_Plage' . $NbFieldset_plage . '" name="Etat_Plage' . $NbFieldset_plage . '" value="' . $etat . '"/>';
+		echo '<input class="etat_dem_' . $etat_class . '" readonly type="text" id="Etat_Plage' . $NbFieldset_plage . '" name="Etat_Plage' . $NbFieldset_plage . '" value="' . $etat_dem . '"/>';
 	};
 	if ($etat_dem == "Annulé" && $res_liste_plage['motif_annulation'] != "")
 	{
