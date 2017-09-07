@@ -1,6 +1,6 @@
-function Afficher_Masquer_DEC_groupee(ID_Date) 
+function Afficher_Masquer_DEC_groupee(ID_Date,user) 
 {
-	var user='cmeschin'
+	//var user='cmeschin'
 	//alert(user);
 	/**
 	 * récupère la liste des demandes traitées pour le mois sélectionné

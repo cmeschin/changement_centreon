@@ -633,7 +633,7 @@ try {
 	 			<td class='Tableau1_A1'>" . $res_lst_J['Prestation'] . "</td>
 	 			<td class='Tableau1_A1'>" . $res_lst_J['Etat_Demande'] . "</td>
 	 			<td class='Tableau1_A1'>" . $res_lst_J['Date_Supervision_Demandee'] . "</td>
-	 			<td class='Tableau1_A1'><a href='http://intra01.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_lst_J['ID_Demande'] . "'>" . $res_lst_J['Ref_Demande'] . "</a></td>
+	 			<td class='Tableau1_A1'><a href='https://changement-centreon.interne.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_lst_J['ID_Demande'] . "'>" . $res_lst_J['Ref_Demande'] . "</a></td>
 	 		</tr>";
 	};
 	$contenu_html .= "</table><br />";

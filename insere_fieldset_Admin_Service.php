@@ -40,7 +40,7 @@ if (isset($ID_Service))
 		echo '<button id="Enregistrer_Etat_Service' . $NbFieldset_Service . '" onclick="enregistre_Etat_Demande(this,' . $ID_Service . ')">Enregistrer</button>';
 	} else 
 	{
-		echo '<input class="etat_dem_' . $etat_class . '" Readonly name="Etat_Service' . $NbFieldset_Service . '" id="Etat_Service' . $NbFieldset_Service . '" value="' . $etat . '"/>';
+		echo '<input class="etat_dem_' . $etat_class . '" Readonly name="Etat_Service' . $NbFieldset_Service . '" id="Etat_Service' . $NbFieldset_Service . '" value="' . $etat_dem . '"/>';
 	};
 	if ($etat_dem == "Annulé" && $res_liste_service['motif_annulation'] != "")
 	{

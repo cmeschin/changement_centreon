@@ -40,7 +40,7 @@ if (isset($ID_Hote))
 		echo '<button id="Enregistrer_Etat_Hote' . $NbFieldset . '" onclick="enregistre_Etat_Demande(this,' . $ID_Hote . ')">Enregistrer</button>';
 	} else 
 	{
-		echo '<input class="etat_dem_' . $etat_class . '" readonly name="Etat_Hote' . $NbFieldset . '" id="Etat_Hote' . $NbFieldset . '" value="' . $etat . '"/>';
+		echo '<input class="etat_dem_' . $etat_class . '" readonly name="Etat_Hote' . $NbFieldset . '" id="Etat_Hote' . $NbFieldset . '" value="' . $etat_dem . '"/>';
 	};
 	
 	if ($etat_dem == "Annulé" && $res_liste_hote['motif_annulation'] != "")
