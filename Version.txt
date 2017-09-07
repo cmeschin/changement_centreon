@@ -1,3 +1,6 @@
+2017-09-07 9.14.0
+    - [ADMIN] ajout automate liste demande: charge backload
+
 2017-08-29 9.13.1
 	- correction pb affichage mes demandes traitées
 	- correction d'affichage de l'etat de paramétrage des éléments unitaire. libellé non affiché (uniquement la couleur)  
