@@ -10,7 +10,7 @@
  * Jour de la semaine => pour la vérification sur la calendrier => De 1 (pour Lundi) à 7 (pour Dimanche)
  * Heure actuelle => pour la vérification sur l'heure de notification
  */
-$debug=false; // activation du mode debug
+$debug=true; // activation du mode debug
 //initialisation mail
 $adresse_mail = "jean-marc.raud@tessi.fr;stephane.boulanger@tessi.fr;sophie.pourtau@tessi.fr;veronique.genay@tessi.fr;cedric.meschin@tessi.fr";
 //$adresse_mail = "cedric.meschin@tessi.fr";
@@ -32,20 +32,23 @@ try {
 	$jour7=$jour_semaine+7;
 	$jour14=$jour_semaine+14;
 	$jour21=$jour_semaine+21;
-	
 
 	// Dates SQL
-	$dateM28J=date("Y-m-d", strtotime("-28 day"));
-	$dateM21J=date("Y-m-d", strtotime("-21 day"));
-	$dateM14J=date("Y-m-d", strtotime("-14 day"));
-	$dateM7J=date("Y-m-d", strtotime("-7 day"));
+	$dateM28J = date("Y-m-d", strtotime("-28 day"));
+	$dateM21J = date("Y-m-d", strtotime("-21 day"));
+	$dateM14J = date("Y-m-d", strtotime("-14 day"));
+	$dateM7J = date("Y-m-d", strtotime("-7 day"));
 	$dateJ = date("Y-m-d");
 	$dim_S0 = date("Y-m-d", strtotime("-$jour_semaine day"));
 	$dim_S1 = date("Y-m-d", strtotime("-$jour7 day"));
 	$dim_S2 = date("Y-m-d", strtotime("-$jour14 day"));
 	$dim_S3 = date("Y-m-d", strtotime("-$jour21 day"));
-	$dateP7J=date("Y-m-d", strtotime("+7 day"));
-
+	$dateP7J = date("Y-m-d", strtotime("+7 day"));
+	$moisNum0 = date("Y-m-d", mktime(0, 0, 0, date('n'), 1));
+	$moisNum1 = date("Y-m-d", mktime(0, 0, 0, date('n')-1, 1));
+	$moisNum2 = date("Y-m-d", mktime(0, 0, 0, date('n')-2, 1));
+	$moisNum3 = date("Y-m-d", mktime(0, 0, 0, date('n')-3, 1));
+	
 	// Date Mail
 	$date_mailM28J=date("d/m", strtotime("-28 day"));
 	$date_mailM21J=date("d/m", strtotime("-21 day"));
@@ -75,6 +78,10 @@ try {
 		echo "dim_mailS1=".$dim_mailS1."\n";
 		echo "dim_mailS2=".$dim_mailS2."\n";
 		echo "dim_mailS3=".$dim_mailS3."\n";
+		echo "Mois=".$moisNum0."\n";
+		echo "Mois-1=".$moisNum1."\n";
+		echo "Mois-2=".$moisNum2."\n";
+		echo "Mois-3=".$moisNum3."\n";
 	};
 	
 		
@@ -245,6 +252,45 @@ try {
 		WHERE Date_Supervision_Demandee>= "' . $dateP7J . '" AND Etat_Demande IN ("A Traiter","En cours","Validation","Traité") 
 		GROUP BY Etat_Demande;');
 	$req_P7J->execute(array()) or die(print_r($req_P7J->errorInfo()));
+
+	/*
+	 * Traitement backload
+	 */
+	// demandes datant de plus de 2 mois
+	$req_M3 = $bdd_supervision->prepare('
+		SELECT
+			 CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global,
+			 count(Etat_demande) AS Nbre
+		FROM demande 
+		WHERE Date_Supervision_Demandee<"' . $moisNum2 . '" AND Etat_Demande IN ("A Traiter","En cours","Validation");');
+	$req_M3->execute(array()) or die(print_r($req_M3->errorInfo()));
+
+	// demandes datant de 2 mois
+	$req_M2 = $bdd_supervision->prepare('
+		SELECT
+			 CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global,
+			 count(Etat_demande) AS Nbre
+		FROM demande
+		WHERE Date_Supervision_Demandee>="' . $moisNum2 . '" AND  Date_Supervision_Demandee< "' . $moisNum1 . '" AND Etat_Demande IN ("A Traiter","En cours","Validation");');
+	$req_M2->execute(array()) or die(print_r($req_M2->errorInfo()));
+
+	// demandes datant de 1 mois
+	$req_M1 = $bdd_supervision->prepare('
+		SELECT
+			 CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global,
+			 count(Etat_demande) AS Nbre
+		FROM demande
+		WHERE Date_Supervision_Demandee>="' . $moisNum1 . '" AND  Date_Supervision_Demandee< "' . $moisNum0 . '" AND Etat_Demande IN ("A Traiter","En cours","Validation");');
+	$req_M1->execute(array()) or die(print_r($req_M1->errorInfo()));
+
+	// demandes datant du mois courant
+	$req_M0 = $bdd_supervision->prepare('
+		SELECT
+			 CONCAT(FLOOR(sum(temps_hote + temps_service)/60),"h",LPAD(sum(temps_hote + temps_service)%60,2,"00")) AS Temps_Global,
+			 count(Etat_demande) AS Nbre
+		FROM demande
+		WHERE Date_Supervision_Demandee>="' . $moisNum0 . '" AND Etat_Demande IN ("A Traiter","En cours","Validation");');
+	$req_M0->execute(array()) or die(print_r($req_M0->errorInfo()));
 	
 	$contenu_html="";
 	
@@ -276,6 +322,15 @@ try {
 	$encoursP7J_prct=0;
 	$validationP7J_prct=0;
 	$traiteP7J_prct=0;
+	
+	$Nb_M3=0;
+	$Nb_M2=0;
+	$Nb_M1=0;
+	$Nb_M0=0;
+	$Tps_M3=0;
+	$Tps_M2=0;
+	$Tps_M1=0;
+	$Tps_M0=0;
 	
 	while ($res_J = $req_J->fetch())
 	{
@@ -335,6 +390,30 @@ try {
 		$Tps_S0=htmlspecialchars($res_S0['Temps_Global']);
 	};
 
+	/*
+	 * Boucle traitmeent mensuel
+	 */
+	while ($res_M3 = $req_M3->fetch())
+	{
+		$Nb_M3=htmlspecialchars($res_M3['Nbre']);
+		$Tps_M3=htmlspecialchars($res_M3['Temps_Global']);
+	};
+	while ($res_M2 = $req_M2->fetch())
+	{
+		$Nb_M2=htmlspecialchars($res_M2['Nbre']);
+		$Tps_M2=htmlspecialchars($res_M2['Temps_Global']);
+	};
+	while ($res_M1 = $req_M1->fetch())
+	{
+		$Nb_M1=htmlspecialchars($res_M1['Nbre']);
+		$Tps_M1=htmlspecialchars($res_M1['Temps_Global']);
+	};
+	while ($res_M0 = $req_M0->fetch())
+	{
+		$Nb_M0=htmlspecialchars($res_M0['Nbre']);
+		$Tps_M0=htmlspecialchars($res_M0['Temps_Global']);
+	};
+	
 	while ($res_anticipJ_S3 = $req_anticipJ_S3->fetch())
 	{
 		$NbJ_S3=htmlspecialchars($res_anticipJ_S3['Nbre']);
@@ -466,9 +545,23 @@ try {
 	 				<td class='Tableau1_A1'>" . $total_P7J . " (" . $total_P7J_prct . "%)</td>
 	 				<td class='Tableau1_A1'>" . $total . " (" . $total_prct . "%)</td>
 	 			</tr>";
-	
-	
 	$contenu_html .= "</table><br />";
+
+	$contenu_html .="<p class='P2'>Nombre de demandes restant à traiter sur les quatres dernières mois</p> <br />";
+	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
+                                   <tr><th class='Tableau1_A1'>mois M-3 et plus</th>
+                                   <th class='Tableau1_A1'>mois M-2</th>
+                                   <th class='Tableau1_A1'>mois M-1</th>
+                                   <th class='Tableau1_A1'>mois courant</th>
+                                   </tr>";
+	$contenu_html .= "<tr>
+	 				<td class='Tableau1_A1'>" . $Nb_M3 . "(" . $Tps_M3 . ")</td>
+	 				<td class='Tableau1_A1'>" . $Nb_M2 . "(" . $Tps_M2 . ")</td>
+	 				<td class='Tableau1_A1'>" . $Nb_M1 . "(" . $Tps_M1 . ")</td>
+	 				<td class='Tableau1_A1'>" . $Nb_M0 . "(" . $Tps_M0 . ")</td>
+	 			</tr>";
+	$contenu_html .= "</table><br />";
+	
 	$contenu_html .="<p class='P2'>Evolution du nombre de demandes traitées sur les quatres dernières semaines</p> <br />";
 	$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
                                    <tr><th class='Tableau1_A1'>semaine S-3</th>
@@ -626,8 +719,8 @@ try {
 				$message.= $passage_ligne."--".$boundary."--".$passage_ligne; // Fermeture Boundary HTML
 				//==========
 				//=====Envoi de l'e-mail.
-				mail($adresse_mail,$sujet,$message,$header);
-				//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
+				//mail($adresse_mail,$sujet,$message,$header);
+				mail("c.zic@free.fr",$sujet,$message,$header);
 				//==========
  
 	$bdd_supervision->commit();
