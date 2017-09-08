@@ -719,8 +719,8 @@ try {
 				$message.= $passage_ligne."--".$boundary."--".$passage_ligne; // Fermeture Boundary HTML
 				//==========
 				//=====Envoi de l'e-mail.
-				//mail($adresse_mail,$sujet,$message,$header);
-				mail("c.zic@free.fr",$sujet,$message,$header);
+				mail($adresse_mail,$sujet,$message,$header);
+				//mail("c.zic@free.fr",$sujet,$message,$header);
 				//==========
  
 	$bdd_supervision->commit();
