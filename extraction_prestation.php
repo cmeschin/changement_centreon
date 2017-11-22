@@ -9,7 +9,7 @@ echo '<body>';
 	echo '<div id="principal">';
 		echo '<header id="en-tete">';
 	include ('menu.php');
-	$_SESSION['ref_tmp_extract'] = $_SESSION['user_changement_centreon'] . "_" . date( "ymdHis" );
+	$_SESSION['ref_tmp_extract'] = str_replace('-','_',$_SESSION['user_changement_centreon']) . "_" . date( "ymdHis" ); //remplacement des caractères "-" qui sont considérés comme opérateur et non un caractère
 	$_SESSION['Nouveau'] = false; // Il n' s'agit pas d'une nouvelle demande
 	$_SESSION['Reprise'] = false; // Il ne s'agit pas d'une reprise
 	$_SESSION['Extraction'] = true; // Il s'agit d'une extraction

@@ -1,3 +1,6 @@
+2017-11-22 9.14.1
+    - [Extraction prestation] Meilleure gestion du caractère - (tiret) issue du nom utilisateur dans le nom des tables tmp car considéré comme opérateur.
+
 2017-09-07 9.14.0
     - [ADMIN] ajout automate liste demande: charge backload
 

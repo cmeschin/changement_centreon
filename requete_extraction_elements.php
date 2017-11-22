@@ -100,16 +100,18 @@ try
 		$tbl_service = "tmp_service_" . $_SESSION ['ref_tmp_extract'];
 		$tbl_periode = "tmp_periode_" . $_SESSION ['ref_tmp_extract'];
 		
+		
 		/**
 		 *  suppression des tables temporaires si elles existent
 		 */
-		$DROP_tmp_hote = $bdd_supervision->query ( 'DROP TABLE IF EXISTS ' . $tbl_hote . '' );
-		$DROP_tmp_service = $bdd_supervision->query ( 'DROP TABLE IF EXISTS ' . $tbl_service . '' );
-		$DROP_tmp_periode = $bdd_supervision->query ( 'DROP TABLE IF EXISTS ' . $tbl_periode . '' );
-		
+		addlog("purge tables tmp existantes...");
+		$DROP_tmp_hote = $bdd_supervision->query ('DROP TABLE IF EXISTS ' . $tbl_hote . '');
+		$DROP_tmp_service = $bdd_supervision->query ( 'DROP TABLE IF EXISTS ' . $tbl_service . '');
+		$DROP_tmp_periode = $bdd_supervision->query ( 'DROP TABLE IF EXISTS ' . $tbl_periode . '');
 		/**
 		 *  création des tables temporaires pour formalisation
 		 */
+		addlog("création table " . $tbl_hote);
 		$CRE_tmp_hote = $bdd_supervision->query ( 'CREATE TEMPORARY TABLE ' . $tbl_hote . ' (
 		 `ID_Hote` int(11) NOT NULL AUTO_INCREMENT,
 		 `ID_Demande` int(11) NOT NULL,
@@ -134,6 +136,7 @@ try
 		 UNIQUE KEY `Nom_Hote` (`Nom_Hote`,`ID_Demande`,`IP_Hote`))
 		 ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci' );
 		
+		addlog("création table " . $tbl_service);
 		$CRE_tmp_service = $bdd_supervision->query ( 'CREATE TEMPORARY TABLE ' . $tbl_service . ' (
 		`ID_Service` int(11) NOT NULL AUTO_INCREMENT,
 		`ID_Demande` int(11) NOT NULL,
@@ -158,6 +161,7 @@ try
 		UNIQUE KEY `Nom_Service` (`Nom_Service`,`Nom_Hote`,`ID_Demande`,`ID_Hote`,`ID_Hote_Centreon`)
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci' );
 		
+		addlog("création table " . $tbl_periode);
 		$CRE_tmp_periode = $bdd_supervision->query ( 'CREATE TEMPORARY TABLE ' . $tbl_periode . ' (
 		  `Id_Periode_Temporelle` int(11) NOT NULL AUTO_INCREMENT,
 		  `ID_Demande` int(11) NOT NULL,
