@@ -996,10 +996,13 @@ function enregistre_Etat_Demande(champ,ID)
 	} else if (Etat_Param == "Annulé")
 	{
 		var motif_annulation="";
-	    while ( motif_annulation == null || motif_annulation =="")
+	    while ( motif_annulation =="") // tant que l'utilisateur valide une chaine vide on redemande la saisie du motif
 	    {
-	    	motif_annulation=prompt("Motif de l'annulation:","doublon");
+	   	motif_annulation=prompt("Motif de l'annulation:","doublon");
 	    };
+	   	if (motif_annulation === null){// si l'utilisateur clique sur Annuler, on sort simplement de la fonction
+	   		return; 
+	   	}
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_annu");
 	} else if (Etat_Param == "Supprimer")

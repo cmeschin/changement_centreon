@@ -21,19 +21,6 @@ if (isset($ID_Hote))
 	if ($_SESSION['Admin'] == True) // si admin affichage liste déroulante etat + bouton enregistrer
 	{
 		echo '<select class="etat_dem_' . $etat_class . '" name="Etat_Hote' . $NbFieldset . '" id="Etat_Hote' . $NbFieldset . '" >';
-// 		while ($res_etat = $req_etat->fetch())
-// 		{ 
-// 			if ( htmlspecialchars($res_etat['Etat_Dem']) != "Supprimer") // on ne peut pas supprimer un élément unitaire de la demande, donc il n'est pas ajouté à la liste.
-// 			{
-// 				if ($etat_dem == htmlspecialchars($res_etat['Etat_Dem']))
-// 				{
-// 					echo '<option Selected="Selected" value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-// 				} else
-// 				{
-// 					echo '<option value="' . htmlspecialchars($res_etat['Etat_Dem']) . '">' . htmlspecialchars($res_etat['Etat_Dem']) . '</option> ';
-// 				};
-// 			};
-// 		};
 		include('insertion_liste_etat_dem.php');
 		echo '</select>';
 		echo '';
