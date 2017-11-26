@@ -996,9 +996,9 @@ function enregistre_Etat_Demande(champ,ID)
 	} else if (Etat_Param == "Annulé")
 	{
 		var motif_annulation="";
-	    while ( motif_annulation =="") // tant que l'utilisateur valide une chaine vide on redemande la saisie du motif
+	    while ( motif_annulation == "") // tant que l'utilisateur valide une chaine vide on redemande la saisie du motif
 	    {
-	   	motif_annulation=prompt("Motif de l'annulation:","doublon");
+	   	motif_annulation=prompt("Motif de l'annulation (obligatoire):","doublon");
 	    };
 	   	if (motif_annulation === null){// si l'utilisateur clique sur Annuler, on sort simplement de la fonction
 	   		return; 
@@ -1103,10 +1103,13 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 		if (Etat_Param == "Annulé")
 		{
 			var motif_annulation="";
-			while ( motif_annulation == null || motif_annulation =="") // tant que le motif n'est pas saisi on boucle
+		    while ( motif_annulation == "") // tant que l'utilisateur valide une chaine vide on redemande la saisie du motif
 		    {
-		    	motif_annulation=prompt("Motif de l'annulation (obligatoire):","doublon");
+		   	motif_annulation=prompt("Motif de l'annulation (obligatoire):","doublon");
 		    };
+		   	if (motif_annulation === null){// si l'utilisateur clique sur Annuler, on sort simplement de la fonction
+		   		return; 
+		   	}
 		};
 
 		var xhr = getXMLHttpRequest(); //création de l'instance XHR
