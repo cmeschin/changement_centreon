@@ -1,3 +1,6 @@
+2017-11-26 9.14.2
+    - #44 [Traitement des demandes] - Impossible d'annuler une annulation
+
 2017-11-22 9.14.1
     - [Extraction prestation] Meilleure gestion du caractère - (tiret) issue du nom utilisateur dans le nom des tables tmp car considéré comme opérateur.
 
