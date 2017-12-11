@@ -1,7 +1,7 @@
 function charger_modele()
 {
-// charge les input correspondant au modèle sélectionné
-var ma_selection= document.getElementById('Modele_Service').options[document.getElementById('Modele_Service').selectedIndex];
+	// charge les input correspondant au modèle sélectionné
+	var ma_selection= document.getElementById('Modele_Service').options[document.getElementById('Modele_Service').selectedIndex];
  	if(ma_selection.value =="Nouveau") {
 		document.getElementById('Modele_Service_new').style.visibility = 'visible';
 		var Nb_Lib = $("[name^='Libelle']").length;
