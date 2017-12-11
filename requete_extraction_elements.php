@@ -200,7 +200,7 @@ try
 			$Type = stristr ( substr ( stristr ( $res_elements ['Nom_Hote'], '-' ), 1 ), '-', TRUE ); // enlève localisation et le tiret et récupère la fonction => les caractères entre les deux premiers tirets
 			$Nom_Hote = substr ( stristr ( substr ( stristr ( $res_elements ['Nom_Hote'], '-' ), 1 ), '-' ), 1 ); // enlève localisation et type
 		
-			$value_hote .= ",('" . $Nom_Hote . "'," . $res_elements['ID_Hote_Centreon'] . ",'" . $res_elements['Description'] . "','" . $res_elements['IP_Hote'] . "','" . $res_elements['Controle_Hote_Actif'] . "','" . $Type . "','" . $Localisation . "')";
+			$value_hote .= ",('" . $Nom_Hote . "'," . $res_elements['ID_Hote_Centreon'] . ",\"" . $res_elements['Description'] . "\",'" . $res_elements['IP_Hote'] . "','" . $res_elements['Controle_Hote_Actif'] . "','" . $Type . "','" . $Localisation . "')";
 		
 			if ($i % 100 == 0)
 			{
