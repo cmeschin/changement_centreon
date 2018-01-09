@@ -1,3 +1,6 @@
+2018-01-09
+	- Correction Substitution $ _DOLLER_ en _D_ pour être compatible avec les scripts de supervision
+
 2017-12-11 9.14.3
 	- #46 [Extraction prestation] - Bug si la description d'hôte contient un apostrophe
 
