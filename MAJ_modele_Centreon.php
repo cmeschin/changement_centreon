@@ -61,7 +61,7 @@ try {
 	$value_site = "";
 	$Del_site = $bdd_supervision->query('TRUNCATE table localisation') or die(print_r($Del_site->errorInfo()));
 	
-	$req_site = $bdd_centreon->query('SELECT substring(hg_alias,1,4) as site_abrege, substring(hg_alias,8) as site FROM hostgroup WHERE hg_name LIKE "Site%"')
+	$req_site = $bdd_centreon->query('SELECT substring(hg_alias,1,4) as site_abrege, substring(hg_name,6) as site FROM hostgroup WHERE hg_name LIKE "Site%"')
 		or die(print_r($req_site->errorInfo()));
 	
 	$res_site = $req_site->fetchAll ();

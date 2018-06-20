@@ -102,7 +102,7 @@ session_start();
 	//==========
 	addlog("message constitué"); 
 	//=====Envoi de l'e-mail.
-	mail($mail,$sujet,$message,$header);
+//	mail($mail,$sujet,$message,$header);
 	//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
 	addlog("mail finalisé envoyé");
 	//==========
