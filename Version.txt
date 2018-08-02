@@ -1,3 +1,7 @@
+2018-08-02 9.16
+	- désactivation rechargement automatique sur modification etat_demande_globale
+	- correction gestion des class sur le statut (utilisation de "id" en lieu et place de "class")
+
 2018-06-20 9.15
 	- désactivation envoi mail en attendant le reformattage pour SUSI
 	- Modification liste site pour compatibilité SUSI (libellé prestation)

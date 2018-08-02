@@ -86,8 +86,10 @@ echo '<table id="T_Liste_Demande">';
 			echo '<td>' . htmlspecialchars($res_dem['NbPlage']) . '</td>';
 			if ((htmlspecialchars($res_dem['Etat_Demande']) == "Brouillon") && ($_SESSION['user_changement_centreon'] == htmlspecialchars($res_dem['Demandeur']))) // si brouillon et user=demandeur => lien édition
 			{ // on charge la page reprise_demande sur le modèle d'une nouvelle demande
-				echo "<td class='statut_demande" . htmlspecialchars($res_dem['ID_Demande']) . "'>";
-				echo "<ul class='Etat_Demande'>";
+//				echo "<td class='statut_demande" . htmlspecialchars($res_dem['ID_Demande']) . "'>";
+			    echo "<td id='statut_demande" . htmlspecialchars($res_dem['ID_Demande']) . "'>";
+//				echo "<ul class='Etat_Demande'>";
+			    echo "<ul id='Etat_Demande'>";
 						echo "<li>";
 						echo "<a href='reprise_demande.php?demandeur=" . htmlspecialchars($res_dem['Demandeur']) . "&amp;id_demande=" . htmlspecialchars($res_dem['ID_Demande']) . "'>" . htmlspecialchars($res_dem['Etat_Demande']) ."</a>";
 						echo "</li>";
@@ -97,7 +99,8 @@ echo '<table id="T_Liste_Demande">';
 				echo "</td>";
 			} else // pas de lien cliquable pour tous les autres
 			{
-				echo "<td class='statut_demande" . htmlspecialchars($res_dem['ID_Demande']) . "'>" . htmlspecialchars($res_dem['Etat_Demande']) ."</td>";
+//				echo "<td class='statut_demande" . htmlspecialchars($res_dem['ID_Demande']) . "'>" . htmlspecialchars($res_dem['Etat_Demande']) ."</td>";
+			    echo "<td id='statut_demande" . htmlspecialchars($res_dem['ID_Demande']) . "'>" . htmlspecialchars($res_dem['Etat_Demande']) ."</td>";
 			};
 			
 			/**

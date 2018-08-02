@@ -1033,8 +1033,8 @@ function enregistre_Etat_Demande(champ,ID)
 			if (Etat_Param == "En cours" && Etat_dem == "A Traiter")
 			{
 				//window.location.reload(); // rechargement de la page pour afficher le statut "en cours"
-				$(".statut_demande" + ID_Demande).html(Etat_Param);
-				$(".statut_demande" + ID_Demande).attr("class", "ok");
+				$("#statut_demande" + ID_Demande).html(Etat_Param);
+				$("#statut_demande" + ID_Demande).attr("class", "ok");
 				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).empty(); // vide la liste déroulante
 				requete_maj_list_etat(ID_Demande,Etat_Param);
 //				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).val(Etat_Param);
@@ -1121,7 +1121,12 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 				 * Désactivation demande rechargement => rechargement obligatoire avec l'activation des mails auto.
 				 */
 				// version 8.11	
-				window.location.reload();
+				//window.location.reload(); //désactivation du rechargement pour gain de temps
+				$("#statut_demande" + ID_Demande).html(Etat_Param);
+				$("#statut_demande" + ID_Demande).attr("class", "ok");
+				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).empty(); // vide la liste déroulante
+				requete_maj_list_etat(ID_Demande,Etat_Param);
+
 			} else if(xhr.readyState == 4 && xhr.status != 200) 
 			{ 
 				gestion_erreur(xhr);
