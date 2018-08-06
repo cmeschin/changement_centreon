@@ -1122,7 +1122,7 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 				 */
 				// version 8.11	
 				//window.location.reload(); //désactivation du rechargement pour gain de temps
-				$("#statut_demande" + ID_Demande).html(Etat_Param);
+				$("#statut_demande" + ID_Demande).html(decodeURIComponent(Etat_Param));
 				$("#statut_demande" + ID_Demande).attr("class", "ok");
 				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).empty(); // vide la liste déroulante
 				requete_maj_list_etat(ID_Demande,Etat_Param);

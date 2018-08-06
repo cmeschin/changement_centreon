@@ -1,3 +1,7 @@
+2018-08-06 9.16.1
+	- correction affichage lien brouillon
+	- correction affichage caractères accentués du statut mis à jour dynamiquement (fonction decodeURIComponent()
+	
 2018-08-02 9.16
 	- désactivation rechargement automatique sur modification etat_demande_globale
 	- correction gestion des class sur le statut (utilisation de "id" en lieu et place de "class")
