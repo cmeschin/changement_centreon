@@ -68,7 +68,7 @@ try
 				 service_id as ID_Service_Centreon,
 				 service_modele_id as ID_Modele_Service_Centreon
 				FROM vInventaireServices
-				WHERE (Code_Client= :prestation OR Code_Client LIKE "%INFRA%") AND host_id IN (' . $liste_id . ')
+				WHERE Code_Client= :prestation OR (service_categorie="Systeme" AND host_id IN (' . $liste_id . '))
 				ORDER BY Nom_Hote,Sonde' );
 		$req_elements_service->execute(array(
 				'prestation' => htmlspecialchars($prestation)

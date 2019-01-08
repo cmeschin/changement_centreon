@@ -1314,7 +1314,7 @@ function Gestion_caractere_speciaux(str)
 	var reg1=new RegExp("[$]","g");
 	if (str.match(reg1))
 	{
-		str = str.replace(/\$/g,"_D_");
+		str = str.replace(/\$/g,"_DOLLAR_");
 	};
 	var reg1=new RegExp("[!]","g");
 	if (str.match(reg1))

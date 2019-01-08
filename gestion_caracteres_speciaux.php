@@ -25,9 +25,9 @@ if ($_SESSION['Admin']==False)
 	{
 		$Valeur_Champ = str_replace("_ESP_"," ",$Valeur_Champ);
 	};
-	if (preg_match("#_D_#",$Valeur_Champ))
+	if (preg_match("#_DOLLAR_#",$Valeur_Champ))
 	{
-		$Valeur_Champ = str_replace("_D_","$",$Valeur_Champ);
+		$Valeur_Champ = str_replace("_DOLLAR_","$",$Valeur_Champ);
 	};
 	if (preg_match("#_PEX_#",$Valeur_Champ))
 	{

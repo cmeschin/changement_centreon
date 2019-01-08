@@ -66,13 +66,28 @@ session_start();
 			$issue = "ISSUE=" . $num_ticket;
 		};
 		//=====Définition du sujet.
-		$sujet = "CENTREON: Demande de changement ref: " . htmlspecialchars($res_mail['ref_demande']) . " - " . htmlspecialchars($res_mail['prestation']) . " PROJ=1 " . $issue . "";
+        $sujet = "[GCC CENTREON] - Demande de changement ref: " . htmlspecialchars($res_mail['ref_demande']) . " - " . htmlspecialchars($res_mail['prestation']) . "";
 		addlog("Sujet=" . $sujet);
 		//=========
 		 
 	
 		//=====Déclaration des messages au format texte et au format HTML.
 		$lien_html = "https://changement-centreon.interne.tessi-techno.fr/changement_centreon/lister_demande.php?id_dem=" . $res_mail['id_demande'] . ""; 
+                $message_txt = "
+                                Liste de diffusion = " . htmlspecialchars($adresse_mail) . "\n
+                                \n
+                                Référence Demande: " . htmlspecialchars($res_mail['ref_demande']) . "\n
+                                Lien vers le gestionnaire des changements Centreon: " . htmlspecialchars($lien_html) . "\n
+                                Date de la demande: " . htmlspecialchars($res_mail['date_demande']) . "\n
+                                Demandeur: " . htmlspecialchars($res_mail['demandeur']) . "\n
+                                Date activation souhaitée: " . htmlspecialchars($res_mail['date_supervision_demandee']) . "\n
+                                Prestation concernée: " . htmlspecialchars($res_mail['prestation']) . "\n
+                                Paramétrage à effectuer:\n
+                                            - " . htmlspecialchars($res_mail['nb_hote']) . " hôte(s)\n
+                                            - " . htmlspecialchars($res_mail['nb_service']) . " service(s)\n
+                                            - " . htmlspecialchars($res_mail['nb_plage']) . " plage(s) horaire(s)\n
+                                            Commentaire: " . htmlspecialchars($res_mail['commentaire']) . "";
+/*
 		$message_txt = "
 				Type DEM = Autre\n
 				Référence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n
@@ -98,7 +113,7 @@ session_start();
 					    - " . htmlspecialchars($res_mail['nb_service']) . " service(s)\n
 					    - " . htmlspecialchars($res_mail['nb_plage']) . " plage(s) horaire(s)\n
 					    Commentaire: " . htmlspecialchars($res_mail['commentaire']) . "";
-		
+*/		
 		//==========
 	}; 
 	//=====Création de la boundary
@@ -107,7 +122,7 @@ session_start();
 	 
 	//=====Création du header de l'e-mail.
 	$header = "From: \"changement_centreon\"<centreon_tt@tessi.fr>".$passage_ligne;
-	$header.= "Reply-to: \"PasDeReponse\" <PasDeReponse@tessi.fr>".$passage_ligne;
+	$header.= "Reply-to: \"Centreon_tt\" <centreon_tt@tessi.fr>".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header .= "X-Priority: 3".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne; // envoie du format text et HTML
@@ -126,8 +141,8 @@ session_start();
 	//==========
 	addlog("message constitué"); 
 	//=====Envoi de l'e-mail.
-//	mail($mail,$sujet,$message,$header);
-	//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
+	mail($adresse_mail,$sujet,$message,$header);
+	//mail("cedric.meschin@tessi.fr",$sujet,$message,$header);
 	addlog("mail envoyé");
 	//==========
 	/**

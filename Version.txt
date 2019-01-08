@@ -1,3 +1,11 @@
+2019-01-08 9.17
+	- Modification des notifications GCC
+		- Notification en direct aux demandeurs (hors SUSI) le temps de réintégrer les données dans les changements
+		- Notification en Copie Cachée de centreon_tt sur le statut validation afin que l'on puisse répondre directement à ce mail pour les sondes en erreurs
+		- Modification objet "CENTREON:" en "[GCC CENTREON] - "
+		- Modification du reply-to afin que le destinataire puisse répondre directement à centreon_tt
+	- Modification de la requête d'extraction (reprise amélioration GCC2 sur les sondes système)
+
 2018-08-06 9.16.1
 	- correction affichage lien brouillon
 	- correction affichage caractères accentués du statut mis à jour dynamiquement (fonction decodeURIComponent()

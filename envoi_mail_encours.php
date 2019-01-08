@@ -66,13 +66,14 @@ session_start();
 			$issue = "ISSUE=" . $num_ticket;
 		};
 		//=====Définition du sujet.
-		$sujet = "CENTREON: Demande de changement ref: " . htmlspecialchars($res_mail['ref_demande']) . " - " . htmlspecialchars($res_mail['prestation']) . " PROJ=1 " . $issue . "";
+		$sujet = "[GCC CENTREON] - Demande de changement ref: " . htmlspecialchars($res_mail['ref_demande']) . " - " . htmlspecialchars($res_mail['prestation']) . "";
                 addlog("Sujet=" . $sujet);
 		//=========
 		 
 	
 		//=====Déclaration des messages au format texte et au format HTML.
-		$message_txt = "Statut = En__bCours__bde__bTraitement__bDEM\nRéférence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n\nTraitement de la demande en cours...";
+//		$message_txt = "Statut = En__bCours__bde__bTraitement__bDEM\nRéférence Ticket Client = " . htmlspecialchars($res_mail['ref_demande']) . "\n\nTraitement de la demande en cours...";
+		$message_txt = "Le traitement de la demande est en cours. Vous serez averti lorsqu'elle sera en cours d'activation dans la supervision.";
 		//==========
 	}; 
 	//=====Création de la boundary
@@ -81,7 +82,7 @@ session_start();
 	 
 	//=====Création du header de l'e-mail.
 	$header = "From: \"changement_centreon\"<centreon_tt@tessi.fr>".$passage_ligne;
-	$header.= "Reply-to: \"PasDeReponse\" <PasDeReponse@tessi.fr>".$passage_ligne;
+	$header.= "Reply-to: \"Centreon_tt\" <centreon_tt@tessi.fr>".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header .= "X-Priority: 3".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne; // envoie du format text et HTML
@@ -101,7 +102,7 @@ session_start();
 	//==========
 	addlog("message constitué"); 
 	//=====Envoi de l'e-mail.
-//	mail($mail,$sujet,$message,$header);
+	mail($adresse_mail,$sujet,$message,$header);
 	//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
 	addlog("mail en cours envoyé");
 	//==========
