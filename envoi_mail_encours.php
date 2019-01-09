@@ -81,7 +81,7 @@ session_start();
 	//==========
 	 
 	//=====Création du header de l'e-mail.
-	$header = "From: \"changement_centreon\"<centreon_tt@tessi.fr>".$passage_ligne;
+	$header = "From: \"GCC Centreon\"<centreon_tt@tessi.fr>".$passage_ligne;
 	$header.= "Reply-to: \"Centreon_tt\" <centreon_tt@tessi.fr>".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header .= "X-Priority: 3".$passage_ligne;
