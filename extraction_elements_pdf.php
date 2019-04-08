@@ -14,6 +14,7 @@ ob_start();
 
 include( "requete_extraction_elements.php" ); // préparation des données
 include("construction_page_pdf.php");// construction de la page spécifique HTML2PDF
+
 $content = ob_get_clean();
 //require_once(dirname(__FILE__).'/_html2pdf/html2pdf.class.php');
 // html2pdf 4.5.0

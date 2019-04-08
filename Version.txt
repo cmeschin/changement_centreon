@@ -1,7 +1,11 @@
+2019-04-08 9.18
+	- Ajout automate quotidien sur les demandes à traiter.
+	
 2019-01-09 9.17.1
 	- Notification GCC
 		- Ajout copie sur statut traité
 		- Modification nom émetteur "changement centreon" => "GCC Centreon"
+	- Création fichier construction_page_html.php
 
 2019-01-08 9.17
 	- Modification des notifications GCC
