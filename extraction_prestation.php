@@ -42,6 +42,7 @@ echo '<body>';
 					echo '</select>';
 					echo '<button id="valider_extraction" onclick="valider_extraction()">Extraire cette prestation</button>';
 					echo '<button id="valider_extraction_pdf" onclick="valider_extraction_pdf()">Extraire cette prestation en PDF</button>';
+					echo '<button id="valider_extraction_csv" onclick="valider_extraction_csv()">Extraire cette prestation en CSV</button>';
 					echo '</fieldset>';
 					echo '<!--  <fieldset style="visibility: hidden" id="extraction_elements" class="extraire_prestation"> -->';
 					echo '<fieldset id="extraction_elements" class="extraire_prestation">';

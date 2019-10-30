@@ -497,6 +497,7 @@ try
 		$SEL_tmp_periode->execute ( Array () ) or die ( print_r ( $SEL_tmp_periode->errorInfo () ) );
 		
 		$r_plage = $SEL_tmp_periode->fetchAll ();
+		addlog("OK - éléments trouvé pour la prestation[" . $prestation . "].");
 		
 		$nb_plage = count ( $r_plage );
 		$bdd_supervision->commit();

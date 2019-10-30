@@ -1214,3 +1214,56 @@ function valider_extraction_pdf()
 		requete_elements(readData_elements);
 	};
 };
+
+function valider_extraction_csv()
+{
+	var ma_selection= document.getElementById('prestation').options[document.getElementById('prestation').selectedIndex];
+	if(ma_selection.value =="")
+	{
+		/**
+		 *  purge la liste à chaque nouvelle sélection de prestation
+		 */
+		$("#extraction_elements").empty();
+	} else
+	{
+		/**
+		 *  purge la liste à chaque nouvelle sélection de prestation
+		 */
+		$("#extraction_elements").empty();
+		var sPrestation = encodeURIComponent(ma_selection.value);
+		function requete_elements(callback)
+ 		{
+			var xhr_e = getXMLHttpRequest(); //création de l'instance XHR
+			var loading=false;
+			xhr_e.onreadystatechange = function()
+			{
+				if (xhr_e.readyState == 4 && (xhr_e.status == 200 || xhr_e.status == 0))
+				{
+					$("#e_img_loading").remove();
+					$("#e_p_loading").remove();
+					callback(xhr_e.responseText); // C'est bon \o/
+				} else if(xhr_e.readyState == 4 && xhr_e.status != 200)
+				{ // En cas d'erreur !
+					$("#e_img_loading").remove();
+					$("#e_p_loading").remove();
+					gestion_erreur(xhr_e);
+				} else if (loading == false){
+					loading=true;
+					$("#extraction_elements").append('<p id="e_p_loading">Veuillez patienter pendant le chargement des éléments et la construction du CSV...</p>');
+					$("#extraction_elements").append('<img id="e_img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant le chargement des éléments..."/> ');
+
+				};
+			};
+			xhr_e.open("POST", "extraction_elements_csv.php", true);
+			xhr_e.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
+			xhr_e.send("prestation="+sPrestation+""); 
+		};
+
+		function readData_elements(extraction_elements)
+		{
+			$("#extraction_elements").empty(); // purge la liste à chaque nouvelle sélection de prestation
+			$("#extraction_elements").append(extraction_elements); // rempli la liste avec la sélection courante
+		};
+		requete_elements(readData_elements);
+	};
+};
