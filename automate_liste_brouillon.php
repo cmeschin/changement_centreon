@@ -40,7 +40,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 		Date_Demande,
 		Type_Demande
 	 FROM demande
-	 WHERE Etat_Demande="Brouillon" AND Demandeur="'. $res_demandeur['Demandeur'] .'" AND Date_Demande >= DATE_ADD(curdate(), INTERVAL -90 DAY) AND Date_Demande < DATE_ADD(curdate(), INTERVAL -15 DAY) 
+	 WHERE Etat_Demande="Brouillon" AND Demandeur="'. $res_demandeur['Demandeur'] .'" AND Date_Demande >= DATE_ADD(curdate(), INTERVAL -60 DAY) AND Date_Demande < DATE_ADD(curdate(), INTERVAL -15 DAY) 
 	 ORDER BY demandeur;');
 	$req_lst->execute(array()) or die(print_r($req_lst->errorInfo()));
 
@@ -55,7 +55,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 		Date_Demande,
 		Type_Demande
 	 FROM demande
-	 WHERE Etat_Demande="Brouillon" AND Demandeur="'. $res_demandeur['Demandeur'] .'" AND Date_Demande < DATE_ADD(curdate(), INTERVAL -90 DAY)
+	 WHERE Etat_Demande="Brouillon" AND Demandeur="'. $res_demandeur['Demandeur'] .'" AND Date_Demande < DATE_ADD(curdate(), INTERVAL -60 DAY)
 	 ORDER BY demandeur;');
 	$req_suppr->execute(array()) or die(print_r($req_suppr->errorInfo()));
 	
@@ -92,7 +92,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 	 */
 	if (count($res_suppr) >= 1)
 	{
-		$contenu_html .= "<p class='P5'>Liste des brouillons supérieurs à trois mois et automatiquement supprimées (à compter du 3 Octobre 2016)</p><br />";
+		$contenu_html .= "<p class='P5'>Liste des brouillons supérieurs à deux mois et automatiquement supprimés</p><br />";
 		$contenu_html .= "<table border='0' cellspacing='0' cellpadding='3'>
 						<tr><th class='Tableau1_A1'>Type de demande</th>
 							<th class='Tableau1_A1'>Prestation</th>
@@ -193,7 +193,7 @@ while ($res_demandeur=$req_demandeur->fetch())
 							<div>
 							<p>Bonjour, voici la liste des demandes que vous avez initialisées il y a plus de 15 jours et qui sont toujours à l'état de brouillon aujourd'hui.<br />
 							Vous avez désormais la possibilité de supprimer vous-même ces demandes directement depuis l'interface.<br />
-							<i><b>Attention, <u>à compter du 3 Octobre 2016</u> les brouillons supérieurs à 3 mois seront automatiquement supprimés.<b></i></p><br />
+							<i><b>Attention, les brouillons supérieurs à deux (2) mois seront automatiquement supprimés.<b></i></p><br />
 							" . $contenu_html . "
 							<br />
 							</div>
