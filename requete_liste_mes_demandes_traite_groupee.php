@@ -7,7 +7,7 @@ $req_dem_groupee = $bdd_supervision->prepare(
 		 FROM demande
 		 WHERE Etat_Demande IN ("Traité", "Annulé")
 			AND Demandeur = :user
-		 GROUP BY substring(Date_Demande,1,7)
+			GROUP BY ID_Date,Date_Demande
 		 ORDER BY substring(Date_Demande,1,7) DESC');
 $req_dem_groupee->execute(array(
 		'user' => htmlspecialchars($_SESSION['user_changement_centreon'])

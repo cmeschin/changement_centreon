@@ -24,6 +24,8 @@ try {
 $res_dem_tg = $req_dem_tg->fetchall();
 foreach($res_dem_tg as $element)
 {
+    $Temps_J = $element['Temps_J'];
+    $Temps_J7 = $element['Temps_J7'];
 	$Temps_Global = $element['Temps_Global'];
 };
 echo '<table id="T_Liste_Demande">';
@@ -39,7 +41,7 @@ echo '<table id="T_Liste_Demande">';
 	echo '<th>Nombre de Services</th>';
 	echo '<th>Nombre de Plages</th>';
 	echo '<th>Etat de la Demande</th>';
-	echo '<th onclick="alert(\'Cette estimation purement indicative est basée sur les valeurs suivantes:\nPour les hôtes:\n - Création => 30 minutes\n - Modification => 5 minutes\n - Désactivation ou Suppression => 2 minutes\nPour les services:\n - Création => 5 minutes\n - Modification => 3 minutes\n - Désactivation ou Suppression => 2 minutes\');">Temps estimé ' . htmlspecialchars($Temps_Global) . '<img alt="point_interrogation" src="images/point-interrogation-16.png"></th>';
+	echo '<th onclick="alert(\'Cette estimation purement indicative est basée sur les valeurs suivantes:\nPour les hôtes:\n - Création => 30 minutes\n - Modification => 5 minutes\n - Désactivation ou Suppression => 2 minutes\nPour les services:\n - Création => 5 minutes\n - Modification => 3 minutes\n - Désactivation ou Suppression => 2 minutes\');"><p>Temps estimé: J:' . htmlspecialchars($Temps_J) . ' /J7:' . htmlspecialchars($Temps_J7) . ' /Total:' . htmlspecialchars($Temps_Global) . '</p><img alt="point_interrogation" src="images/point-interrogation-16.png"></th>';
 
 	if ( $_SESSION['Admin'] == True)
 	{

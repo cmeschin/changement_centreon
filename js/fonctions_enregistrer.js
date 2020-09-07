@@ -9,12 +9,12 @@ function onglet_suivant()
 {
 	var Verif_Info = true;
 	$("#info .verif").each(function(){
-		if ($(this).attr("alt") != "correct"){
+		if ($(this).attr("alt") !== "correct"){
 			Verif_Info = false;
-		};
+		}
 	});
 
-	if (Verif_Info != true) // l'onglet info générale doit contenir 7 valeurs impérativement
+	if (Verif_Info !== true) // l'onglet info générale doit contenir 7 valeurs impérativement
 	{
 		var message="STOP! Tous les champs de l'onglet Info Générales ne sont pas valides!";
 		alert(message);
@@ -32,8 +32,8 @@ function onglet_suivant()
 		$("#lien_tabs2").removeAttr("style");
 		$("#lien_tabs2").effect("pulsate");
 		$('html,body').animate({scrollTop:0}, 'slow'); // retourne en haut de la page
-	};
-};
+	}
+}
 
 function enregistre_selection()
 {
@@ -53,12 +53,12 @@ function enregistre_selection()
 	 */
 	var Verif_Info = true;
 	$("#info .verif").each(function(){
-		if ($(this).attr("alt") != "correct"){
+		if ($(this).attr("alt") !== "correct"){
 			Verif_Info = false;
-		};
+		}
 	});
 
-	if (Verif_Info != true) // l'onglet info générale doit contenir 7 valeurs impérativement
+	if (Verif_Info !== true) // l'onglet info générale doit contenir 7 valeurs impérativement
 	{
 		var message="STOP! Tous les champs de l'onglet Info Générales ne sont pas valides!";
 		alert(message);
@@ -68,7 +68,7 @@ function enregistre_selection()
 //		$("#Ajouter_Selection_Hote").removeAttr("Disabled");
 //		$("#Valider_Selection").removeAttr("Disabled");
 		return false;
-	};
+	}
 
 	/**
 	 * appel de la fonction de récupération des infos générales
@@ -81,7 +81,7 @@ function enregistre_selection()
 	 *  boucler sur les hôtes sélectionnés afin de générer une liste
 	 */
 
-	var hote_liste = new Array();
+	var hote_liste = [];
 	var tableau_hote_lig = document.getElementById("T_Liste_Hote").rows; //charge les lignes du tableau
 	var NbLigne_Hote = tableau_hote_lig.length; // récupération du nombre d'enregistrement
 	
@@ -96,14 +96,14 @@ function enregistre_selection()
 		hote_liste[kh] += tableau_hote_liste_col[6].innerHTML + ';';				// Controle Atif ou inactif => ajout le 04-11-14
 		hote_liste[kh] += tableau_hote_liste_col[7].innerHTML.substring(1) + ';';	// ID_Hote Centreon dépréfixé du h
 		hote_liste[kh] += document.getElementById(i).checked;						// Checked true ou false
-		if (document.getElementById(i).checked ==true)
+		if (document.getElementById(i).checked ===true)
 		{
 			$('input:checked[id=' + i +']').attr("disabled","disabled"); // verrouille l'hôte inséré pour éviter un ajout en double.
 			$('input:checked[id=' + i +']').removeAttr("checked"); // décoche l'hôte inséré pour éviter un ajout en double.
-		};
+		}
 
 		kh++;
-	};
+	}
 		hote_liste = hote_liste.join('$');
 		
 	/**
@@ -112,7 +112,7 @@ function enregistre_selection()
 	var nbcheck_service = $('input:checked[name=selection_service]').size(); // récupère le nombre d'hôte désactivés
 	if (nbcheck_service > 0)
 	{
-		var service_selec= new Array();
+		var service_selec= [];
 		var tableau_service_lig = document.getElementById("T_Liste_Service").rows; //charge les lignes du tableau
 		var NbLigne_Service = tableau_service_lig.length; // récupération du nombre d'enregistrement
 		var js=0;
@@ -132,7 +132,7 @@ function enregistre_selection()
 				$(this).attr("disabled","disabled"); // verrouille le service inséré pour éviter un ajout en double
 				js++;
 			}); 
-		};
+		}
 		service_selec = service_selec.join('$');
 	} else
 	{
@@ -140,14 +140,14 @@ function enregistre_selection()
 		 * si aucune sélection, initialise la variable à vide pour ne pas planter l'intégration en base
 		 */
 		service_selec = "";
-	};
+	}
 
 	/**
 	 *  boucler sur les plages sélectionnés afin de générer une liste
 	 */
 
-	var plage_selec= new Array();
-	var plage_liste = new Array();
+	var plage_selec= [];
+	var plage_liste = [];
 	var tableau_plage_lig = document.getElementById("T_Liste_Plage").rows; //charge les lignes du tableau
 	var NbLigne_Plage = tableau_plage_lig.length; // récupération du nombre d'enregistrement
 	
@@ -165,13 +165,13 @@ function enregistre_selection()
 		plage_liste[kp] += tableau_plage_liste_col[7].innerHTML + ';';	// Samedi
 		plage_liste[kp] += tableau_plage_liste_col[8].innerHTML + ';';		// Dimanche
 		plage_liste[kp] += document.getElementById('p'+i).checked;			// Checked true ou false
-		if (document.getElementById('p' + i).checked ==true)
+		if (document.getElementById('p' + i).checked ===true)
 		{
 			$('input:checked[id=p' + i +']').attr("disabled","disabled"); // verrouille la plage insérée pour éviter un ajout en double.
 			$('input:checked[id=p' + i +']').removeAttr("checked"); // décoche la plage insérée pour éviter un ajout en double.
-		};
+		}
 		kp++;
-	};
+	}
 	plage_liste = plage_liste.join('$');
 
 	$("#clientsup").attr("disabled","disabled"); // verrouille le client pour que la demande soit sur une seule prestation
@@ -190,7 +190,7 @@ function enregistre_selection()
 		var Statut_Plage;
 		var Statut_Service;
 		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0)) {
 				collecte_liste_hote(); // fonction de remplissage de liste Param Hote => fonction_remplissage.js
 				collecte_liste_plage(); // fonction de remplissage de liste Param Plage => fonction_remplissage.js
 				collecte_liste_service(); // fonction de remplissage de liste Param Service => fonction_remplissage.js
@@ -199,7 +199,7 @@ function enregistre_selection()
 //				listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
 				activeBouton(listeBouton);
 				callback(xhr.responseText); // C'est bon \o/
-			} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+			} else if(xhr.readyState === 4 && xhr.status !== 200) { // En cas d'erreur !
 				$("#img_loading").remove();
 				$("#p_loading").remove();
 //				listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
@@ -216,7 +216,7 @@ function enregistre_selection()
 					{
 						$("#s"+ i ).removeAttr("Disabled");
 					});
-				};
+				}
 				var tableau_hote_lig = document.getElementById("T_Liste_Hote").rows; //charge les lignes du tableau
 				var NbLigne_Hote = tableau_hote_lig.length; // récupération du nombre d'enregistrement
 				for (var i=1;i<NbLigne_Hote;i++)
@@ -225,7 +225,7 @@ function enregistre_selection()
 					{
 						$("#"+ i ).removeAttr("Disabled");
 					});
-				};
+				}
 				var tableau_plage_lig = document.getElementById("T_Liste_Plage").rows; //charge les lignes du tableau
 				var NbLigne_Plage = tableau_plage_lig.length; // récupération du nombre d'enregistrement
 				for (var i=1;i<NbLigne_Plage;i++)
@@ -234,13 +234,13 @@ function enregistre_selection()
 					{
 						$("#p"+ i ).removeAttr("Disabled");
 					});
-				};
+				}
 				gestion_erreur(xhr);
-			} else if (loading == false){
+			} else if (loading === false){
 				loading=true;
-				$("#tabs-2").append('<img id="img_loading" src="images/chargement.gif" alt="chargement des données..."/> ');
+				$("#tabs-2").append('<img id="img_loading" src="./images/chargement.gif" alt="chargement des données..."/> ');
 				$("#tabs-2").append('<p id="p_loading">Veuillez patienter pendant le chargement des données...</p>');
-			};
+			}
 		};
 		
 		var sinfo_gen = encodeURIComponent(info_gen);
@@ -251,7 +251,7 @@ function enregistre_selection()
 		xhr.open("POST", "insertion_selection.php", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 		xhr.send("info_gen="+sinfo_gen+"&hote_liste="+shote_liste+"&service_selec="+sservice_selec+"&plage_liste="+splage_liste+""); 
-	};
+	}
 	function affiche_resultat(resultat){
 		$("#lien_tabs3").removeAttr("style");
 //		listeBouton="Rechercher;Ajouter_Selection_Hote;Valider_Selection";
@@ -262,14 +262,14 @@ function enregistre_selection()
 		$('html,body').animate({scrollTop:0},'slow'); // retourne en haut de la page après l'enregistrement
 		$("#messageValidation").append('<p id="messageValidationOK" style="background-color:green">Chargement terminé!<br>Vous pouvez passer au paramétrage des hôtes et services sur l\'onglet paramétrage.</p>');
 		$("#lien_tabs3").effect("pulsate");
-	}; 
-}; 
+	}
+}
 
 function PreEnregistrer_fieldset_hote(champ)
 {
 	timer_enregistrement();
 	controle_doublon();
-	if (Doublon != "Oui")
+	if (Doublon !== "Oui")
 	{
 		
 		var parent=$(champ).parent().parent().attr("id"); // récupèrele fieldset parent hote
@@ -290,10 +290,10 @@ function PreEnregistrer_fieldset_hote(champ)
 				 */
 				var Valeur_Champ =  $(this).val();
 				Gestion_caractere_speciaux(Valeur_Champ);
-				if ($(this).val() != "Autre" && $(this).val() != "Vide")
+				if ($(this).val() !== "Autre" && $(this).val() !== "Vide")
 				{
 					liste_hote += "|" + Valeur_Champ;
-				};
+				}
 			});
 			liste_hote += "$";
 			liste_hote = liste_hote.substring(1,liste_hote.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
@@ -306,30 +306,30 @@ function PreEnregistrer_fieldset_hote(champ)
 				var xhr = getXMLHttpRequest(); //création de l'instance XHR
 				var loading=false;
 				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+					if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0)) {
 						$("#img_loading").remove();
 						$("#p_loading").remove();
 						listeBouton="Enregistrer_Brouillon;Valider_Demande";
 						activeBouton(listeBouton);
 						callback(xhr.responseText); // C'est bon \o/
-					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+					} else if(xhr.readyState === 4 && xhr.status !== 200) { // En cas d'erreur !
 						$("#img_loading").remove();
 						$("#p_loading").remove();
 						//$("#"+hote_bouton_id+"").removeAttr("Disabled"); // réactive le bouton
 						listeBouton="Enregistrer_Brouillon;Valider_Demande;" + hote_bouton_id;
 						activeBouton(listeBouton);
 						gestion_erreur(xhr);
-					} else if (loading == false){
+					} else if (loading === false){
 						loading=true;
-						$("fieldset#"+parent+ "").append('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant l\'enregistrement des informations..." sssssstyle="vertical-align:middle;isplay:inline;"/> ');
+						$("fieldset#"+parent+ "").append('<img id="img_loading" src="./images/chargement.gif" alt="Veuillez patienter pendant l\'enregistrement des informations..." sssssstyle="vertical-align:middle;isplay:inline;"/> ');
 						$("fieldset#"+parent+ "").append('<p id="p_loading">Veuillez patienter pendant l\'enregistrement des informations...</p>');
-					};
+					}
 				};
 				var sliste_hote = encodeURIComponent(liste_hote);
 				xhr.open("POST", "PreEnregistrement_Hote.php", true);
 				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 				xhr.send("liste_hote="+sliste_hote+""); 
-			};
+			}
 			function PreEnregistrement_termine(ID_Hote) //récupère la valeur retournée par le script php PreEnregistrement_Hote.php
 			{
 				$("select[id*='Hote_Service']").each(function()
@@ -341,11 +341,11 @@ function PreEnregistrer_fieldset_hote(champ)
 				$("#img_Nom"+id_input_hote+"").attr("src","images/img_ver.png"); // passe le champ im_Nom_Hote en Verrouillé
 				listeBouton=hote_bouton_id;
 				desactiveBouton(listeBouton);
-			}; 
+			}
 			PreEnregistre_Hote(PreEnregistrement_termine);
-		};
-	};
-};
+		}
+	}
+}
 
 function PreEnregistrer_fieldset_plage(champ)
 {
@@ -367,10 +367,10 @@ function PreEnregistrer_fieldset_plage(champ)
 			 */
 			var Valeur_Champ =  $(this).val();
 			Gestion_caractere_speciaux(Valeur_Champ);
-			if ($(this).val() != "Autre" && $(this).val() != "Vide")
+			if ($(this).val() !== "Autre" && $(this).val() !== "Vide")
 			{
 				liste_plage += "|" + Valeur_Champ;
-			};
+			}
 		});
 		liste_plage += "$";
 		liste_plage = liste_plage.substring(1,liste_plage.length-1).replace(/\$\|/g,"$"); // enlève le premier "|" et remplace les "$|" par un simple "$"
@@ -384,28 +384,28 @@ function PreEnregistrer_fieldset_plage(champ)
 			var xhr = getXMLHttpRequest(); //création de l'instance XHR
 			var loading=false;
 			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+				if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0)) {
 					$("#img_loading").remove();
 					$("#p_loading").remove();
 					callback(xhr.responseText); // C'est bon \o/
-				} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+				} else if(xhr.readyState === 4 && xhr.status !== 200) { // En cas d'erreur !
 					$("#img_loading").remove();
 					//$("#"+plage_bouton_id+"").removeAttr("Disabled"); // ré-active le bouton
 					listeBouton=plage_bouton_id;
 					activeBouton(listeBouton);
 					gestion_erreur(xhr);
-				} else if (loading == false){
+				} else if (loading === false){
 					loading=true;
-					$("fieldset#"+parent+ "").append('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant l\'enregistrement des informations..." sssstyle="vertical-align:middle;isplay:inline;"/>');
+					$("fieldset#"+parent+ "").append('<img id="img_loading" src="./images/chargement.gif" alt="Veuillez patienter pendant l\'enregistrement des informations..." sssstyle="vertical-align:middle;isplay:inline;"/>');
 					$("fieldset#"+parent+ "").append('<p id="p_loading">Veuillez patienter pendant l\'enregistrement des informations...</p>');
-				};
+				}
 			};
 			var sliste_plage = encodeURIComponent(liste_plage);
 			
 			xhr.open("POST", "PreEnregistrement_Plage.php", true);
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 			xhr.send("liste_plage="+sliste_plage+""); 
-		};
+		}
 		function PreEnregistrement_plage_termine(resultat)
 		{
 			$("select[id*='Service_Plage']").each(function()
@@ -414,10 +414,10 @@ function PreEnregistrer_fieldset_plage(champ)
 			});
 			listeBouton=plage_bouton_id;
 			desactiveBouton(listeBouton);
-		}; 
+		}
 		PreEnregistre_Plage(PreEnregistrement_plage_termine);
-	};
-};
+	}
+}
 
 function Valider_Demande()
 {
@@ -438,14 +438,14 @@ function Valider_Demande()
 	var NbFieldset_hote = $("fieldset.hote").length;
 	var NbFieldset_service = $("fieldset.service").length;
 	var NbFieldset_plage = $("fieldset.plage").length;
-	if (NbFieldset_hote == 0 && NbFieldset_service == 0 && NbFieldset_plage == 0){
+	if (NbFieldset_hote === 0 && NbFieldset_service === 0 && NbFieldset_plage === 0){
 		alert("Votre demande ne comporte aucun hôte ni service ni période temporelle à traiter. L'enregistrement est arrêté.\nVous devez renseigner au moins un hôte, un service ou une plage horaire pour que la demande soit valide.");
 //		listeBouton="Enregistrer_Brouillon;Valider_Demande";
 		activeBouton(listeBouton);
 //		$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
 //		$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 		return false;
-	};
+	}
 	controle_doublon();
 	/**
 	 * Controle des hôtes non pré-enregistrés
@@ -453,7 +453,7 @@ function Valider_Demande()
 	 * S'il ne l'est pas, on stop la procédure et on demande à l'utilisateur de préenregistrer les hôtes.
 	 */
 	controle_preenregistrement_hote();
-	if ((Doublon != "Oui") && (PreEnregistre != false)) 
+	if ((Doublon !== "Oui") && (PreEnregistre !== false))
 	{
 	
 		var MessageConfirmation = "Voulez-vous valider votre demande?\nUne fois la demande validée, vous ne pourrez plus la modifier.";
@@ -466,13 +466,13 @@ function Valider_Demande()
 			 *  vérification de la validité des champs obligatoires
 			 */
 			$("#tabs-3 .verif").each(function(){
-				if ($(this).attr("alt") != "correct"){
+				if ($(this).attr("alt") !== "correct"){
 					Verif_Param = false;
 					var ID = $(this).attr("id").substring(4);
 					Liste += " - " + $("#"+ ID).attr("name") + '\n';
-				};
+				}
 			});
-			if (Verif_Param != true) // Tous les champ ne sont pas vérifiés
+			if (Verif_Param !== true) // Tous les champ ne sont pas vérifiés
 			{
 				var message="STOP! Tous les champs de l'onglet Paramétrage ne sont pas validés!\nVeuillez vérifier les champs suivants:\n";
 				alert(message+Liste);
@@ -481,7 +481,7 @@ function Valider_Demande()
 //				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
 //				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 				return false;
-			};
+			}
 
 			/**
 			 * appel de la fonction de récupération des infos générales
@@ -502,10 +502,10 @@ function Valider_Demande()
 					 */
 					var Valeur_Champ =  $(this).val();
 					Gestion_caractere_speciaux(Valeur_Champ);
-					if ($(this).val() != "Autre" && $(this).val() != "Vide")
+					if ($(this).val() !== "Autre" && $(this).val() !== "Vide")
 					{
 						liste_hote += "|" + Valeur_Champ;
-					};
+					}
 				});
 				liste_hote += "$";
 			});
@@ -525,10 +525,10 @@ function Valider_Demande()
 					 */
 					var Valeur_Champ =  $(this).val();
 					Gestion_caractere_speciaux(Valeur_Champ);
-					if ($(this).val() != "Autre" && $(this).val() != "Vide")
+					if ($(this).val() !== "Autre" && $(this).val() !== "Vide")
 					{
 						liste_plage += "|" + Valeur_Champ;
-					};
+					}
 				});
 				liste_plage += "$";
 			});
@@ -546,44 +546,44 @@ function Valider_Demande()
 				var class_service = $(this).attr("id").toLowerCase();
 				$("."+class_service+"").each(function()
 				{
-					if (($(this).attr("id") == "Nom_Service" + class_service.substring(7)) && ($(this).val() == ""))
+					if (($(this).attr("id") === "Nom_Service" + class_service.substring(7)) && ($(this).val() === ""))
 					{
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez donner un nom pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Service_Vide=true;
 						return Service_Vide;
-					};
-					if (($(this).attr("id") == "Hote_Service" + class_service.substring(7)) && ($(this).val() == ""))
+					}
+					if (($(this).attr("id") === "Hote_Service" + class_service.substring(7)) && ($(this).val() === ""))
 					{
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner un hôte pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Hote_Vide=true;
 						return Hote_Vide;
-					};
-					if (($(this).attr("id") == "Service_Plage" + class_service.substring(7)) && ($(this).val() == ""))
+					}
+					if (($(this).attr("id") === "Service_Plage" + class_service.substring(7)) && ($(this).val() === ""))
 					{
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner une plage de contrôle pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Plage_Vide=true;
 						return Plage_Vide;
-					};
-					if (($(this).attr("id") == "Service_Modele" + class_service.substring(7)) && ($(this).val() == ""))
+					}
+					if (($(this).attr("id") === "Service_Modele" + class_service.substring(7)) && ($(this).val() === ""))
 					{
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner un modèle pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Modele_Vide=true;
 						return Modele_Vide;
-					};
+					}
 
 					/**
 					 *  gestion des caractères spéciaux !, $, | et \ dans les champs.
 					 */
 					var Valeur_Champ =  $(this).val();
 					Gestion_caractere_speciaux(Valeur_Champ);
-					if ($(this).val() != "Autre" && $(this).val() != "Vide")
+					if ($(this).val() !== "Autre" && $(this).val() !== "Vide")
 					{
 						liste_service += "|" + Valeur_Champ;
-					};
+					}
 				});
 	
 				var liste_service_Arg = ""; // cette liste est réinitialise pour chaque fieldset service
@@ -606,7 +606,7 @@ function Valider_Demande()
 				{
 					//alert("c'est un disque");
 					correction_seuils_disque(liste_service_Arg);
-				};
+				}
 				
 				liste_service += "|" + liste_service_Arg.substring(1) + "$"; // on enlève le premier | des arguments et on ajoute un $ à la fin
 			});
@@ -624,7 +624,7 @@ function Valider_Demande()
 				var xhr = getXMLHttpRequest(); //création de l'instance XHR
 				var loading=false;
 				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+					if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0)) {
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
 //						listeBouton="Enregistrer_Brouillon;Valider_Demande";
@@ -632,7 +632,7 @@ function Valider_Demande()
 //						$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //						$("#Valider_Demande").removeAttr("Disabled");
 						callback(xhr.responseText); // C'est bon \o/
-					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+					} else if(xhr.readyState === 4 && xhr.status !== 200) { // En cas d'erreur !
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
 //						listeBouton="Enregistrer_Brouillon;Valider_Demande";
@@ -640,11 +640,11 @@ function Valider_Demande()
 //						$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //						$("#Valider_Demande").removeAttr("Disabled");
 						gestion_erreur(xhr);
-					} else if (loading == false){
+					} else if (loading === false){
 						loading=true;
 						$("#tabs-3").append('<p id="msg_loading">Veuillez patienter pendant l\'enregistrement des informations...</p>');
 						$("#tabs-3").append('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter..."/> ');
-					};
+					}
 				};
 				var sinfo_gen = encodeURIComponent(info_gen);
 				var sliste_plage = encodeURIComponent(liste_plage);
@@ -654,7 +654,7 @@ function Valider_Demande()
 				xhr.open("POST", "enregistrement_Demande.php", true);
 				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 				xhr.send("info_gen="+sinfo_gen+"&liste_plage="+sliste_plage+"&liste_hote="+sliste_hote+"&liste_service="+sliste_service+""); 
-			};
+			}
 			function enregistrement_termine(resultat)
 			{
 				var ref_demande = $("#ref_demande").val();
@@ -664,8 +664,8 @@ function Valider_Demande()
 //				$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //				$("#Valider_Demande").removeAttr("Disabled");
 				window.location.replace('index.php'); // recharge la page d'accueil
-			}; 
-			if ((Hote_Vide == false) && (Plage_Vide == false) && (Modele_Vide == false)) //si hote, plage et modele sont rempli on met à jour
+			}
+			if ((Hote_Vide === false) && (Plage_Vide === false) && (Modele_Vide === false)) //si hote, plage et modele sont rempli on met à jour
 			{
 				MAJ_infos_Sondes(enregistrement_termine);
 			} else
@@ -675,23 +675,23 @@ function Valider_Demande()
 //				$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //				$("#Valider_Demande").removeAttr("Disabled");
 				return false;
-			};
+			}
 		} else
 		{
 //			listeBouton="Enregistrer_Brouillon;Valider_Demande";
 			activeBouton(listeBouton);
 //			$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //			$("#Valider_Demande").removeAttr("Disabled");
-		};
-	};
-};
+		}
+	}
+}
 
 function Enregistrer_Brouillon(Bouton)
 {
 	/**
 	 *  Fonction Enregistre Brouillon
 	 */
-	if ($("#lien_tabs3").css("Visibility") == "visible")
+	if ($("#lien_tabs3").css("Visibility") === "visible")
 	{
 
 	Service_Vide=false;
@@ -710,7 +710,7 @@ function Enregistrer_Brouillon(Bouton)
 	 * S'il ne l'est pas, on stop la procédure et on demande à l'utilisateur de préenregistrer les hôtes.
 	 */
 	controle_preenregistrement_hote();
-	if ((Doublon != "Oui") && (PreEnregistre != false)) 
+	if ((Doublon !== "Oui") && (PreEnregistre !== false))
 	{
 		function Traitement_Enregistre()
 		{
@@ -734,10 +734,10 @@ function Enregistrer_Brouillon(Bouton)
 					 */
 					var Valeur_Champ =  $(this).val();
 					Gestion_caractere_speciaux(Valeur_Champ);
-					if ($(this).val() != "Autre" && $(this).val() != "Vide")
+					if ($(this).val() !== "Autre" && $(this).val() !== "Vide")
 					{
 						liste_hote += "|" + Valeur_Champ;
-					};
+					}
 				});
 				liste_hote += "$";
 			});
@@ -757,10 +757,10 @@ function Enregistrer_Brouillon(Bouton)
 					 */
 					var Valeur_Champ =  $(this).val();
 					Gestion_caractere_speciaux(Valeur_Champ);
-					if ($(this).val() != "Autre" && $(this).val() != "Vide")
+					if ($(this).val() !== "Autre" && $(this).val() !== "Vide")
 					{
 						liste_plage += "|" + Valeur_Champ;
-					};
+					}
 				});
 				liste_plage += "$";
 			});
@@ -778,43 +778,43 @@ function Enregistrer_Brouillon(Bouton)
 				var class_service = $(this).attr("id").toLowerCase();
 				$("."+class_service+"").each(function()
 				{
-					if (($(this).attr("id") == "Nom_Service" + class_service.substring(7)) && ($(this).val() == ""))
+					if (($(this).attr("id") === "Nom_Service" + class_service.substring(7)) && ($(this).val() === ""))
 					{
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez donner un nom pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Service_Vide=true;
 						return Service_Vide;
-					};
-					if (($(this).attr("id") == "Hote_Service" + class_service.substring(7)) && ($(this).val() == ""))
+					}
+					if (($(this).attr("id") === "Hote_Service" + class_service.substring(7)) && ($(this).val() === ""))
 					{
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner un hôte pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Hote_Vide=true;
 						return Hote_Vide;
-					};
-					if (($(this).attr("id") == "Service_Plage" + class_service.substring(7)) && ($(this).val() == ""))
+					}
+					if (($(this).attr("id") === "Service_Plage" + class_service.substring(7)) && ($(this).val() === ""))
 					{
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner une plage de contrôle pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Plage_Vide=true;
 						return Plage_Vide;
-					};
-					if (($(this).attr("id") == "Service_Modele" + class_service.substring(7)) && ($(this).val() == ""))
+					}
+					if (($(this).attr("id") === "Service_Modele" + class_service.substring(7)) && ($(this).val() === ""))
 					{
 						$("#bip").append('<p class="attention" id="bip_retour">Veuillez sélectionner un modèle pour le service ' + class_service.substring(7) + ' avant de continuer.</p>');
 						afficheMessage(15,"bip_retour");
 						Modele_Vide=true;
 						return Modele_Vide;
-					};
+					}
 					/**
 					 *  gestion des caractères spéciaux !, $, | et \ dans les champs.
 					 */
 					var Valeur_Champ =  $(this).val();
 					Gestion_caractere_speciaux(Valeur_Champ);
-					if ($(this).val() != "Autre" && $(this).val() != "Vide")
+					if ($(this).val() !== "Autre" && $(this).val() !== "Vide")
 					{
 						liste_service += "|" + Valeur_Champ;
-					};
+					}
 				});
 				var liste_service_Arg = ""; // cette liste est réinitialise pour chaque fieldset service
 				$(".Service_Argument" + class_service.substring(7) + "").each(function()
@@ -836,7 +836,7 @@ function Enregistrer_Brouillon(Bouton)
 				{
 					//alert("c'est un disque");
 					correction_seuils_disque(liste_service_Arg);
-				};
+				}
 					
 				liste_service += "|" + liste_service_Arg.substring(1) + "$"; // on enlève le premier | des arguments et on ajoute un $ à la fin
 			});
@@ -854,7 +854,7 @@ function Enregistrer_Brouillon(Bouton)
 				var loading=false;
 				xhr.onreadystatechange = function()
 				{
-					if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+					if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0))
 					{
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
@@ -863,7 +863,7 @@ function Enregistrer_Brouillon(Bouton)
 //						$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //						$("#Valider_Demande").removeAttr("Disabled");
 						callback(xhr.responseText); // C'est bon \o/
-					} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+					} else if(xhr.readyState === 4 && xhr.status !== 200) { // En cas d'erreur !
 						$("#msg_loading").remove();
 						$("#img_loading").remove();
 //						listeBouton="Enregistrer_Brouillon;Valider_Demande";
@@ -871,12 +871,12 @@ function Enregistrer_Brouillon(Bouton)
 //						$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //						$("#Valider_Demande").removeAttr("Disabled");
 						gestion_erreur(xhr);
-					} else if (loading == false)
+					} else if (loading === false)
 					{
 						loading=true;
 						$("#tabs-3").append('<p id="msg_loading">Veuillez patienter pendant l\'enregistrement des informations...</p>');
 						$("#tabs-3").append('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter..."/> ');
-					};
+					}
 				};
 				var sinfo_gen = encodeURIComponent(info_gen);
 				var sliste_plage = encodeURIComponent(liste_plage);
@@ -886,7 +886,7 @@ function Enregistrer_Brouillon(Bouton)
 				xhr.open("POST", "enregistrement_Brouillon.php", true);
 				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 				xhr.send("info_gen="+sinfo_gen+"&liste_plage="+sliste_plage+"&liste_hote="+sliste_hote+"&liste_service="+sliste_service+""); 
-			};
+			}
 			function enregistrement_brouillon(resultat)
 			{
 				$("#bip").append('<p id="bip_retour">Brouillon enregistré!<br> <button onclick="goToMenu()">Cliquez sur ce bouton</button> pour laisser votre demande en l\'état et revenir immédiatement à l\'accueil sinon continuer de tavailler normalement.<br>Ce message disparaitra automatiquement dans 10 secondes.</p>');
@@ -895,8 +895,8 @@ function Enregistrer_Brouillon(Bouton)
 				activeBouton(listeBouton);
 //				$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //				$("#Valider_Demande").removeAttr("Disabled");
-			}; 
-			if ((Hote_Vide == false) && (Plage_Vide == false) && (Modele_Vide == false)) //si hote, plage et modele sont rempli on met à jour
+			}
+			if ((Hote_Vide === false) && (Plage_Vide === false) && (Modele_Vide === false)) //si hote, plage et modele sont rempli on met à jour
 			{
 				MAJ_Brouillon(enregistrement_brouillon);
 			} else
@@ -906,9 +906,9 @@ function Enregistrer_Brouillon(Bouton)
 //				$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //				$("#Valider_Demande").removeAttr("Disabled");
 				return false;
-			};
-			};
-			if (Bouton == true)
+			}
+			}
+			if (Bouton === true)
 			{
 //				listeBouton="Enregistrer_Brouillon;Valider_Demande";
 				desactiveBouton(listeBouton);
@@ -918,8 +918,8 @@ function Enregistrer_Brouillon(Bouton)
 			}else
 			{
 				Traitement_Enregistre(); // on enregistre les données	
-			};
-		};
+			}
+		}
 	} else
 	{
 //		listeBouton="Enregistrer_Brouillon;Valider_Demande";
@@ -927,8 +927,8 @@ function Enregistrer_Brouillon(Bouton)
 //		$("#Enregistrer_Brouillon").removeAttr("Disabled");
 //		$("#Valider_Demande").removeAttr("Disabled");
 		return false;
-	};
-};
+	}
+}
 
 function afficheMessage(delai,maDiv)
 {
@@ -941,24 +941,24 @@ function afficheMessage(delai,maDiv)
 
 	var counter = delai;
 	var intervalId = null;
-	var maDiv = maDiv;
+	//var maDiv = maDiv;
 	function action()
 	{
 		clearInterval(intervalId);
 		$("#" + maDiv + "").remove();
-	};
+	}
 	function decompte()
 	{
 		counter--;
-	};
+	}
 	function start()
 	{
 		var counter=delai
 		intervalId = setInterval(decompte, 1000);
 		setTimeout(action, counter * 1000);
-	};
+	}
 	start();
-};
+}
 
 function enregistre_Etat_Demande(champ,ID)
 { // 
@@ -969,6 +969,7 @@ function enregistre_Etat_Demande(champ,ID)
 	 */
 	var parent=$(champ).parent().parent().parent().attr("id"); // récupèrele fieldset parent DEC_hote contenant l'ID_Demande
 	var fieldset_parent=$(champ).parent().attr("id");
+	var ID_Demande = "";
 	var ID_Hote = "";
 	var ID_Service = "";
 	var ID_Plage = "";
@@ -977,60 +978,60 @@ function enregistre_Etat_Demande(champ,ID)
 	{
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_brou");
-	} else if (Etat_Param == "A Traiter")
+	} else if (Etat_Param === "A Traiter")
 	{
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_atra");
-	} else if (Etat_Param == "En cours")
+	} else if (Etat_Param === "En cours")
 	{
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_enco");
-	} else if (Etat_Param == "Validation")
+	} else if (Etat_Param === "Validation")
 	{
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_vali");
-	} else if (Etat_Param == "Traité")
+	} else if (Etat_Param === "Traité")
 	{
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_trai");
-	} else if (Etat_Param == "Annulé")
+	} else if (Etat_Param === "Annulé")
 	{
 		var motif_annulation="";
-	    while ( motif_annulation == "") // tant que l'utilisateur valide une chaine vide on redemande la saisie du motif
+	    while ( motif_annulation === "") // tant que l'utilisateur valide une chaine vide on redemande la saisie du motif
 	    {
 	   	motif_annulation=prompt("Motif de l'annulation (obligatoire):","doublon");
-	    };
+	    }
 	   	if (motif_annulation === null){// si l'utilisateur clique sur Annuler, on sort simplement de la fonction
 	   		return; 
 	   	}
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_annu");
-	} else if (Etat_Param == "Supprimer")
+	} else if (Etat_Param === "Supprimer")
 	{
 		$("Select#"+champ.id.substring(12)).removeAttr("class");
 		$("Select#"+champ.id.substring(12)).attr("class","etat_dem_supp");
-	};
+	}
 	if (parent.indexOf('hote')>0) // si c'est un hote
 	{
-		var ID_Demande = parent.substring(8);
+		ID_Demande = parent.substring(8);
 		ID_Hote = ID;
 	} else if (parent.indexOf('service')>0) // si c'est un service
 	{
-		var ID_Demande = parent.substring(11);
+		ID_Demande = parent.substring(11);
 		ID_Service = ID;
 	} else if (parent.indexOf('plage')>0) // si c'est une plage
 	{
-		var ID_Demande = parent.substring(9);
+		ID_Demande = parent.substring(9);
 		ID_Plage = ID;
-	};
+	}
 
 	var xhr = getXMLHttpRequest(); //création de l'instance XHR
 	xhr.onreadystatechange = function() 
 	{
-		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+		if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0))
 		{
 			var Etat_dem=$("#Liste_DEC_Enregistrer_Etat"+ID_Demande).val();
-			if (Etat_Param == "En cours" && Etat_dem == "A Traiter")
+			if (Etat_Param === "En cours" && Etat_dem === "A Traiter")
 			{
 				//window.location.reload(); // rechargement de la page pour afficher le statut "en cours"
 				$("#statut_demande" + ID_Demande).html(Etat_Param);
@@ -1039,16 +1040,16 @@ function enregistre_Etat_Demande(champ,ID)
 				requete_maj_list_etat(ID_Demande,Etat_Param);
 //				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).val(Etat_Param);
 //				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).find("option[value="+Etat_Param+"]").attr("Selected","Selected");
-			};
+			}
 			
 			var bip_id=fieldset_parent + "bip_enregistre";
 			$("#" + fieldset_parent + "").append('<span id="' + bip_id + '">etat enregistré!</span>');
 			afficheMessage(3,bip_id);
 
-		} else if(xhr.readyState == 4 && xhr.status != 200) 
+		} else if(xhr.readyState === 4 && xhr.status !== 200)
 		{ 
 			gestion_erreur(xhr);
-		};
+		}
 	};
 	/**
 	 * déclaration nouvelles variables encodee (prefixée e)
@@ -1064,25 +1065,25 @@ function enregistre_Etat_Demande(champ,ID)
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr.send("ID_Demande="+eID_Demande+"&ID_Hote="+eID_Hote+"&ID_Service="+eID_Service+"&ID_Plage="+eID_Plage+"&Etat_Param="+eEtat_Param+"&Annulation="+eAnnulation+""); 
 
-};
+}
 
 function requete_maj_list_etat(ID_Demande,Etat_Param)
 {
 	var xhr_r = getXMLHttpRequest(); //création de l'instance XHR
 	xhr_r.onreadystatechange = function()
 	{
-		if (xhr_r.readyState == 4 && (xhr_r.status == 200 || xhr_r.status == 0))
+		if (xhr_r.readyState === 4 && (xhr_r.status === 200 || xhr_r.status === 0))
 		{
 			$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).append(xhr_r.responseText); //met à jour la liste déroulante avec les nouvelles valeurs
-		} else if(xhr_r.readyState == 4 && xhr_r.status != 200) 
+		} else if(xhr_r.readyState === 4 && xhr_r.status !== 200)
 		{ 
 			gestion_erreur(xhr_r);
-		};
+		}
 	};
 	xhr_r.open("POST", "requete_maj_etat_dem.php", true);
 	xhr_r.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr_r.send("Etat_Param="+Etat_Param+""); 
-};
+}
 
 function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 { 
@@ -1091,31 +1092,32 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 	 *   => Tous les hôtes, services et plages seront forcés dans l'état choisi ainsi que la demande.
 	 */
 	var Etat_Param = $("Select#Liste_"+champ.id).val();
-	if (Etat_Param != "Supprimer")
+	var MessageConfirmation = ""
+	if (Etat_Param !== "Supprimer")
 	{
-		var MessageConfirmation = "Vous allez forcer l'ensemble des sondes de la demande n°" + ID_Demande + " dans l'état [" + Etat_Param + "]. Etes-vous sûr?";
+		MessageConfirmation = "Vous allez forcer l'ensemble des sondes de la demande n°" + ID_Demande + " dans l'état [" + Etat_Param + "]. Etes-vous sûr?";
 	} else
 	{
-		var MessageConfirmation = "Vous allez définitivement supprimer la demande n°" + ID_Demande + " ainsi que tous les hôtes, plages et services associés. Etes-vous sûr?";
-	};
+		MessageConfirmation = "Vous allez définitivement supprimer la demande n°" + ID_Demande + " ainsi que tous les hôtes, plages et services associés. Etes-vous sûr?";
+	}
 	if (confirm(MessageConfirmation)) 
 	{
-		if (Etat_Param == "Annulé")
+		if (Etat_Param === "Annulé")
 		{
 			var motif_annulation="";
-		    while ( motif_annulation == "") // tant que l'utilisateur valide une chaine vide on redemande la saisie du motif
+		    while ( motif_annulation === "") // tant que l'utilisateur valide une chaine vide on redemande la saisie du motif
 		    {
 		   	motif_annulation=prompt("Motif de l'annulation (obligatoire):","doublon");
-		    };
+		    }
 		   	if (motif_annulation === null){// si l'utilisateur clique sur Annuler, on sort simplement de la fonction
 		   		return; 
 		   	}
-		};
+		}
 
 		var xhr = getXMLHttpRequest(); //création de l'instance XHR
 		xhr.onreadystatechange = function() 
 		{
-			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+			if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0))
 			{
 				/**
 				 * Désactivation demande rechargement => rechargement obligatoire avec l'activation des mails auto.
@@ -1127,10 +1129,10 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 				$("#Liste_DEC_Enregistrer_Etat" + ID_Demande).empty(); // vide la liste déroulante
 				requete_maj_list_etat(ID_Demande,Etat_Param);
 
-			} else if(xhr.readyState == 4 && xhr.status != 200) 
+			} else if(xhr.readyState === 4 && xhr.status !== 200)
 			{ 
 				gestion_erreur(xhr);
-			};
+			}
 		};
 
 		ID_Demande = encodeURIComponent(ID_Demande);
@@ -1140,8 +1142,8 @@ function DEC_enregistre_Etat_Demande(champ,ID_Demande)
 		xhr.open("POST", "MAJ_Etat_Parametrage_Demande.php", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 		xhr.send("ID_Demande="+ID_Demande+"&Etat_Param="+Etat_Param+"&Annulation="+Annulation+""); 
-	};
-};
+	}
+}
 
 function DEC_Supprimer_Demande(ID_Demande)
 { 
@@ -1156,16 +1158,16 @@ function DEC_Supprimer_Demande(ID_Demande)
 		var xhr = getXMLHttpRequest(); //création de l'instance XHR
 		xhr.onreadystatechange = function() 
 		{
-			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) 
+			if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0))
 			{
 				/**
 				 * Désactivation demande rechargement => rechargement obligatoire avec l'activation des mails auto.
 				 */
 				window.location.reload();
-			} else if(xhr.readyState == 4 && xhr.status != 200) 
+			} else if(xhr.readyState === 4 && xhr.status !== 200)
 			{ 
 				gestion_erreur(xhr);
-			};
+			}
 		};
 
 		ID_Demande = encodeURIComponent(ID_Demande);
@@ -1174,8 +1176,8 @@ function DEC_Supprimer_Demande(ID_Demande)
 		xhr.open("POST", "MAJ_Etat_Parametrage_Demande.php", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 		xhr.send("ID_Demande="+ID_Demande+"&Etat_Param="+Etat_Param+""); 
-	};
-};
+	}
+}
 
 function Enregistre_Notif_BAM()
 {
@@ -1187,12 +1189,12 @@ function Enregistre_Notif_BAM()
 //	$("#Enregistre_Notif_BAM").attr("Disabled","Disabled");
 	var Verif_Info = true;
 	$("#field_config_notification .verif").each(function(){
-		if ($(this).attr("alt") != "correct"){
+		if ($(this).attr("alt") !== "correct"){
 			Verif_Info = false;
-		};
+		}
 	});
 
-	if (Verif_Info != true) // l'onglet info générale doit contenir 7 valeurs impérativement
+	if (Verif_Info !== true) // l'onglet info générale doit contenir 7 valeurs impérativement
 	{
 		var message="STOP! Tous les champs ne sont pas valides!";
 //		listeBouton="Enregistre_Notif_BAM";
@@ -1200,7 +1202,7 @@ function Enregistre_Notif_BAM()
 //		$("#Enregistre_Notif_BAM").removeAttr("Disabled"); // réactive le bouton
 		alert(message);
 		return false;
-	};
+	}
 
 	var liste_conf = "";
 	/**
@@ -1215,7 +1217,7 @@ function Enregistre_Notif_BAM()
 		/**
 		 * Gestion_caractere_speciaux(Valeur_Champ);
 		 */
-			if ($(this).attr("type")=="checkbox")
+			if ($(this).attr("type")==="checkbox")
 			{
 				if ($(this).is(':checked'))
 				{
@@ -1223,11 +1225,11 @@ function Enregistre_Notif_BAM()
 				} else
 				{
 					liste_conf += "|" + '0';// jour non coché
-				};
+				}
 			} else
 			{
 				liste_conf += "|" + Valeur_Champ;
-			};
+			}
 	});
 	var select_am = "";
 	$("select[id='am_associe'] option").each(function() {
@@ -1245,7 +1247,7 @@ function Enregistre_Notif_BAM()
 	var xhr = getXMLHttpRequest(); //création de l'instance XHR
 	var loading=false;
 	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+		if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0)) {
 			$("#img_loading").remove();
 			$("#p_loading").remove();
 //			listeBouton="Enregistre_Notif_BAM";
@@ -1253,170 +1255,171 @@ function Enregistre_Notif_BAM()
 			
 			window.location.replace("./administration.php#tabs-3");
 			window.location.reload();
-		} else if(xhr.readyState == 4 && xhr.status != 200) { // En cas d'erreur !
+		} else if(xhr.readyState === 4 && xhr.status !== 200) { // En cas d'erreur !
 			$("#img_loading").remove();
 			$("#p_loading").remove();
 //			listeBouton="Enregistre_Notif_BAM";
 			activeBouton(listeBouton);
 			
 			gestion_erreur(xhr);
-		} else if (loading == false){
+		} else if (loading === false){
 			loading=true;
 			$("#field_config_notification").append('<img id="img_loading" src="images/chargement.gif" alt="Veuillez patienter pendant l\'enregistrement des informations..."/> ');
 			$("#field_config_notification").append('<p id="p_loading">Veuillez patienter pendant l\'enregistrement des informations...</p>');
-		};
+		}
 	};
 	var sliste_conf = encodeURIComponent(liste_conf);
 	xhr.open("POST", "BAM_enregistre_conf.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 	xhr.send("liste_conf="+sliste_conf+""); 
-};
+}
 
 function set_focus_bouton(ID_bouton)
 { 
 	/**
 	 *  fonction pour positionner le focus sur le bouton "Forcer"
 	 */ 
-	var Focus_ID_Bouton = ID_bouton;
-	$("#" + Focus_ID_Bouton + "").focus();
-};
+	//var Focus_ID_Bouton = ID_bouton;
+	$("#" + ID_Bouton + "").focus();
+}
 
 function clic_recherche_hote(evenement)
 {
 	var touche = window.event ? evenement.keyCode : evenement.which; // si IE => keyCode, si Gecko(firefox)=> which
-    if (touche == 13) // si touche Entrée (code 13)
+    if (touche === 13) // si touche Entrée (code 13)
     {
     	charger_liste_recherche_hote();
-    };
-};
+    }
+}
 
 function Gestion_caractere_speciaux(str)
 {
 	if (typeof str == 'undefined') // gestion des cas de fieldset hote ou service supprimés avant le dernier
 	{
-		var str ="";
-	};
+		str = "";
+	}
 	/**
 	 *  remplacement de tous les antislash par des slash
 	 */
+	var reg1 = "";
 	str = str.replace(/\\/g,"\/");
 	
-	var reg1=new RegExp("[|]","g");
+	reg1=new RegExp("[|]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/|/g,"_PIPE_");
-	};
-	var reg1=new RegExp("[ ]","g");
+	}
+	reg1=new RegExp("[ ]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\ /g,"_ESP_");
-	};
-	var reg1=new RegExp("[$]","g");
+	}
+	reg1=new RegExp("[$]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\$/g,"_D_");
-	};
-	var reg1=new RegExp("[!]","g");
+	}
+	reg1=new RegExp("[!]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/!/g,"_PEX_");
-	};
-	var reg1=new RegExp("[(]","g");
+	}
+	reg1=new RegExp("[(]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\(/g,"_PO_");
-	};
-	var reg1=new RegExp("[)]","g");
+	}
+	reg1=new RegExp("[)]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\)/g,"_PF_");
-	};
-	var reg1=new RegExp("[#]","g");
+	}
+	reg1=new RegExp("[#]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\#/g,"_DIESE_");
-	};
-	var reg1=new RegExp("[*]","g");
+	}
+	reg1=new RegExp("[*]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\*/g,"_ETOIL_");
-	};
-	var reg1=new RegExp("[']","g");
+	}
+	reg1=new RegExp("[']","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\'/g,"_SQUOTE_");
-	};
-	var reg1=new RegExp("[\"]","g");
+	}
+	reg1=new RegExp("[\"]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\"/g,"_DQUOTE_");
-	};
-	var reg1=new RegExp("[\[]","g");
+	}
+	reg1=new RegExp("[\[]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\[/g,"_CO_");
-	};
-	var reg1=new RegExp("[\\]]","g");
+	}
+	reg1=new RegExp("[\\]]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\]/g,"_CF_");
-	};
-	var reg1=new RegExp("[%5D]","g");
+	}
+	reg1=new RegExp("[%5D]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/%5D/g,"_CF_");
-	};
-	var reg1=new RegExp("[\{]","g");
+	}
+	reg1=new RegExp("[\{]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\{/g,"_AO_");
-	};
-	var reg1=new RegExp("[\}]","g");
+	}
+	reg1=new RegExp("[\}]","g");
 	if (str.match(reg1))
 	{
 		str = str.replace(/\}/g,"_AF_");
-	};
+	}
 	var str2 = "";
 	str2 = encodeURI(str);
 	Valeur_Champ = str2;
-};
+}
 
 function info_generale()
 {
 	var info = "";
-	var liste_valeur = new Array(); // peut également s'écrire: var liste_valeur = [];
+	var liste_valeur = []; // peut également s'écrire: var liste_valeur = [];
 	var i=0;
 	$(".info_generale").each(function()
 	{ 
-		if ($(this).val() && ($(this).val() != "Nouveau" || $(this).val() != ""))
+		if ($(this).val() && ($(this).val() !== "Nouveau" || $(this).val() !== ""))
 		{
 			/**
 			 *  gestion des caractères spéciaux ! $ et | dans les champs.
 			 */
 			var Valeur_Champ =  $(this).val();
 			Gestion_caractere_speciaux(Valeur_Champ);
-			if ($(this).attr("id") == "client_new")
+			if ($(this).attr("id") === "client_new")
 			{
 				liste_valeur[i] = "NEW_" + Valeur_Champ;
 			} else
 			{
 				liste_valeur[i] = Valeur_Champ;
-			};
+			}
 			i++;
-		};
+		}
 	});
 	if (!liste_valeur[6]) // si le champ email est vide on le rend non null.
 	{
 		liste_valeur[6]=" ";
-	};
+	}
 	if (!liste_valeur[7]) // si le champ commentaire a été vidé on le rend non null.
 	{
 		liste_valeur[7]=" ";
-	};
+	}
 	
 	info = liste_valeur.join('$'); // permet de convertir le tableau en une chaine séparée par un $ ce qui permet d'accepter la ponctuation courante dans le champ commentaire
 	return info;
-};
+}
 
 function controle_doublon()
 {
@@ -1428,37 +1431,40 @@ function controle_doublon()
 	 *  constitution de la chaine hote
 	 */
 	var NbFieldset_Hote = $("fieldset.hote").length;
+	var i = 1;
 	var j = 0;
 	var liste_nom_hote="";
-	for (var i=1;i<=NbFieldset_Hote;i++)
+	var Valeur;
+	var Valeur_Champ;
+	for (i=1;i<=NbFieldset_Hote;i++)
 	{
 		/**
 		 *  gestion des caractères spéciaux ! $ et | dans les champs.
 		 */
-		var Valeur_Champ =  $("#Nom_Hote" + i + "").val();
+		Valeur_Champ =  $("#Nom_Hote" + i + "").val();
 		/**
 		 *  Si trou dans la liste on passe au suivant
 		 */
 		if (typeof(Valeur_Champ) != 'undefined')
 		{
 			Gestion_caractere_speciaux(Valeur_Champ);
-			var Valeur = Valeur_Champ;
+			Valeur = Valeur_Champ;
 			var Valeur_Champ_IP =  $("#IP_Hote" + i + "").val();
 			Gestion_caractere_speciaux(Valeur_Champ_IP);
 			Valeur += " " + Valeur_Champ_IP;
 			liste_nom_hote += "|" + Valeur;
-		};
-	};
+		}
+	}
 	liste_nom_hote = liste_nom_hote.substring(1);
 	var T_liste_nom_hote = liste_nom_hote.split("|");
 	/**
 	 *  boucle sur chaque enregistrement de la liste pour trouver les doublons.
 	 */
-	for (var i=0;i<T_liste_nom_hote.length;i++)
+	for (i=0;i<T_liste_nom_hote.length;i++)
 	{
-		for (var j=0;j<i;j++)
+		for (j=0;j<i;j++)
 		{
-			if (T_liste_nom_hote[i] == T_liste_nom_hote[j])
+			if (T_liste_nom_hote[i] === T_liste_nom_hote[j])
 			{
 				alert("ATTENTION: L'hôte ["+T_liste_nom_hote[i]+"] existe au moins deux fois dans la liste! L'enregistrement est arrêté.\nNotez son nom et corrigez pour enlever les doublons.")
 				Doublon="Oui";
@@ -1467,41 +1473,41 @@ function controle_doublon()
 //				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
 //				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 				return Doublon; // on arrête l'enregistrement du brouillon.
-			};
-		};
-	};
+			}
+		}
+	}
 	/**
 	 *  constitution de la chaine plage
 	 */
 	var NbFieldset_Plage = $("fieldset.plage").length;
-	var j = 0;
+	//var j = 0;
 	var liste_nom_plage="";
-	for (var i=1;i<=NbFieldset_Plage;i++)
+	for (i=1;i<=NbFieldset_Plage;i++)
 	{
 		/**
 		 *  gestion des caractères spéciaux ! $ et | dans les champs.
 		 */
-		var Valeur_Champ =  $("#Nom_Plage" + i + "").val();
+		Valeur_Champ =  $("#Nom_Plage" + i + "").val();
 		/**
 		 *  Si trou dans la liste on passe au suivant
 		 */
 		if (typeof(Valeur_Champ) != 'undefined')
 		{
 			Gestion_caractere_speciaux(Valeur_Champ);
-			var Valeur = Valeur_Champ;
+			Valeur = Valeur_Champ;
 			liste_nom_plage += "|" + Valeur;
-		};
-	};
+		}
+	}
 	liste_nom_plage = liste_nom_plage.substring(1);
 	var T_liste_nom_plage = liste_nom_plage.split("|");
 	/**
 	 *  boucle sur chaque enregistrement de la liste pour trouver les doublons.
 	 */
-	for (var i=0;i<T_liste_nom_plage.length;i++)
+	for (i=0;i<T_liste_nom_plage.length;i++)
 	{
-		for (var j=0;j<i;j++)
+		for (j=0;j<i;j++)
 		{
-			if (T_liste_nom_plage[i] == T_liste_nom_plage[j])
+			if (T_liste_nom_plage[i] === T_liste_nom_plage[j])
 			{
 				alert("ATTENTION: La plage ["+T_liste_nom_plage[i]+"] existe au moins deux fois dans la liste! L'enregistrement est arrêté.\nNotez son nom et corrigez pour enlever les doublons.")
 				Doublon = "Oui";
@@ -1511,43 +1517,43 @@ function controle_doublon()
 //				$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
 //				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 				return Doublon; // on arrête l'enregistrement du brouillon.
-			};
-		};
-	};
+			}
+		}
+	}
 
 	/**
 	 *  constitution de la chaine service
 	 */
 	var NbFieldset_Service = $("fieldset.service").length;
-	var j = 0;
+	//var j = 0;
 	var liste_nom_service="";
-	for (var i=1;i<=NbFieldset_Service;i++)
+	for (i=1;i<=NbFieldset_Service;i++)
 	{
-		var Valeur_Champ =  $("#Nom_Service" + i + "").val();
+		Valeur_Champ =  $("#Nom_Service" + i + "").val();
 		var Valeur_Champ_Hote =  $("#Hote_Service" + i + " option:selected").text();
 		if (typeof(Valeur_Champ) != 'undefined') 
 		{
 			Gestion_caractere_speciaux(Valeur_Champ);
-			var Valeur = Valeur_Champ;
-			if ( Valeur == "")
+			Valeur = Valeur_Champ;
+			if ( Valeur === "")
 			{
 				Valeur= "champ vide"
-			};
+			}
 			Gestion_caractere_speciaux(Valeur_Champ_Hote);
 			Valeur += " sur  l'hôte " + Valeur_Champ_Hote;
 			liste_nom_service += "|" + Valeur;
-		};
-	};
+		}
+	}
 	liste_nom_service = liste_nom_service.substring(1);
 	var T_liste_nom_service = liste_nom_service.split("|");
 	/**
 	 *  boucle sur chaque enregistrement de la liste pour trouver les doublons.
 	 */
-	for (var i=0;i<T_liste_nom_service.length;i++)
+	for (i=0;i<T_liste_nom_service.length;i++)
 	{
-		for (var j=0;j<i;j++)
+		for (j=0;j<i;j++)
 		{
-			if (T_liste_nom_service[i] == T_liste_nom_service[j])
+			if (T_liste_nom_service[i] === T_liste_nom_service[j])
 			{
 				alert("ATTENTION: Le service ["+T_liste_nom_service[i]+"] existe au moins deux fois dans la liste! L'enregistrement est arrêté.\nNotez son nom et corrigez pour enlever les doublons.")
 				Doublon = "Oui";
@@ -1557,12 +1563,12 @@ function controle_doublon()
 //				$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 
 				return Doublon; // on arrête l'enregistrement du brouillon.
-			};
-		};
-	};
+			}
+		}
+	}
 	Doublon = "Non";
 	return Doublon;
-};
+}
 
 function controle_preenregistrement_hote()
 {
@@ -1574,7 +1580,7 @@ function controle_preenregistrement_hote()
 	 */
 	$("[id*='PreEnregistrer_Hote']").each(function()
 	{
-		if ($(this).attr("disabled")=="disabled")
+		if ($(this).attr("disabled") === "disabled")
 		{
 			PreEnregistre=true;
 		}else
@@ -1586,9 +1592,9 @@ function controle_preenregistrement_hote()
 //			$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
 //			$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 			return PreEnregistre;
-		};
+		}
 	});
-};
+}
 
 function correction_seuils_disque(liste_service_Arg)
 {
@@ -1605,11 +1611,11 @@ function correction_seuils_disque(liste_service_Arg)
 			if (T_T_liste_Arg[j].substring(T_T_liste_Arg[j].length-3) == "%25") // conversion uniquement si le seuil est en %
 			{
 				T_T_liste_Arg[j] = T_T_liste_Arg[j].replace(T_T_liste_Arg[j].substring(0,2),100-T_T_liste_Arg[j].substring(0,2));
-			};
-		};
+			}
+		}
 		liste_service_Arg = "!"+ T_T_liste_Arg[0] + "!" + T_T_liste_Arg[1] + "!"+ T_T_liste_Arg[2];
-	};
-};
+	}
+}
 
 function timer_enregistrement()
 {
@@ -1626,12 +1632,12 @@ function timer_enregistrement()
 				callback(xhr_timer.responseText); // C'est bon \o/
 			} else if(xhr_timer.readyState == 4 && xhr_timer.status != 200) { // En cas d'erreur !
 				gestion_erreur(xhr_timer);
-			};
+			}
 		};
 		xhr_timer.open("POST", "recuperation_Timer.php", true);
 		xhr_timer.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // nécessaire avec la méthode POST sinon le serveur ignore la requête
 		xhr_timer.send(); 
-	};
+	}
 	function avertissement_Timer(Delai_Timer) //récupère la valeur retournée par le script php PreEnregistrement_Hote.php
 	{
 		if (Delai_Timer > 900)
@@ -1639,10 +1645,10 @@ function timer_enregistrement()
 			alert("Cela fait plus de 15 minutes que rien n'a été enregistré en base.\nJe vous conseille vivement d'enregistrer votre brouillon maintenant.");
 			listeBouton="Enregistrer_Brouillon;Valider_Demande";
 			activeBouton(listeBouton);
-		};
-	}; 
+		}
+	}
 	recuperation_Timer(avertissement_Timer);
-};
+}
 
 /**
  * Fonction d'activation des boutons
@@ -1661,7 +1667,7 @@ function activeBouton(listeBouton)
 //	$("#Enregistrer_Brouillon").removeAttr("Disabled"); // Réactivation bouton.
 //	$("#Valider_Demande").removeAttr("Disabled"); // Réactivation bouton.
 
-};
+}
 
 /**
  * Fonction de désactivation des boutons
@@ -1680,9 +1686,9 @@ function desactiveBouton(listeBouton)
 //	$("#Enregistrer_Brouillon").attr("Disabled","Disabled"); // désactivation bouton.
 //	$("#Valider_Demande").attr("Disabled","Disabled"); // désactivation bouton.
 
-};
+}
 
 function gestion_erreur(xhr)
 {
 	alert('Une erreur est survenue !\nVeuillez re-essayer. Si le problème persiste, notez le message ci-dessous et contactez l\'administrateur.\nCode:' + xhr.status + '\nNature de l\'erreur: ' + xhr.responseText);	
-};
+}

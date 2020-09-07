@@ -50,10 +50,7 @@ session_start();
 		$adresse_mail = "";
 		$adresse_mail .= " " . htmlspecialchars($res_mail['email']);
 		$adresse_mail = str_replace(";", ", ", $adresse_mail); // converti les ; en , et ajoute un espace
-		$adresse_mail = str_replace(",", ", ", $adresse_mail); // ajoute un espace après les virgules
-	    $adresse_mail = str_replace(",", " ", $adresse_mail); // converti la virgule en espace
-		$adresse_mail = str_replace("  ", " ", $adresse_mail); // supprime les espaces en double.
-	
+
 		/**
 		 *  récupération num ticket pour création ou mise à jour
 		 */

@@ -45,7 +45,7 @@ if ($post_auth != "" && $post_pass != "" && $post_user != "" ) {
 			$_SESSION['groupe_changement_centreon'] = $groupe_user;
             $_SESSION['name_changement_centreon'] = $name;
             $_SESSION['email_changement_centreon'] = $email;
-            header('Location: /changement_centreon/index.php');
+            header('Location: index.php');
         };
 };
 if ($post_auth != "" && $post_pass == "" ) {

@@ -17,7 +17,18 @@ $req_dem = $bdd_supervision->prepare(
 	WHERE D.Etat_Demande IN ("Traité", "Annulé") 
 		AND CONCAT(SUBSTRING(Date_Demande,1,4),SUBSTRING(Date_Demande,6,2))= :date_demande_groupee
 		AND D.Demandeur <> :user 
-	GROUP BY D.ID_Demande
+	GROUP BY D.ID_Demande,
+		D.Ref_Demande,
+		D.Date_Demande,
+		D.Demandeur,
+		D.Date_Supervision_Demandee,
+		Code_Client,
+		NbHote,
+		NbService,
+		NbPlage,
+		D.Etat_Demande,
+		D.Type_Demande,
+		D.motif_annulation
 	ORDER BY D.Date_Supervision_Demandee, D.Date_Demande');
 $req_dem->execute(array(
 		'date_demande_groupee' => htmlspecialchars($sID_Date),

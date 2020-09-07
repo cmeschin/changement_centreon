@@ -16,14 +16,17 @@ if ($monclient )
 	include_once('connexion_sql_centreon.php');
 	try {
 		$req_hote = $bdd_centreon->prepare('SELECT Distinct(Nom_Hote),
-			 host_id,
-			 Hote_Description,
-			 IP_Hote,
-			 Controle_Hote,
-			 Hote
-			FROM vInventaireServices
-			WHERE Code_Client= :Code_Client
-			ORDER BY Nom_Hote');
+                         host_id,
+                         Hote_Description,
+                         IP_Hote,
+                         Controle_Hote,
+                         Hote
+                        FROM vInventaireServices
+                        WHERE
+                                host_id > (SELECT max(host_id)-1000 FROM vInventaireServices WHERE Code_Client= :Code_Client) AND
+                                Code_Client= :Code_Client
+                        ORDER BY Nom_Hote
+                        LIMIT 250');
 		$req_hote->execute(array(
 				'Code_Client' => htmlspecialchars($monclient)
 		)) or die(print_r($req_hote->errorInfo()));
@@ -43,7 +46,8 @@ if ($monclient )
 	};
 	$_SESSION['lst_id_hote'] = substr($_SESSION['lst_id_hote'],1); // chaine construite sans le premier caractère.
 	addlog("Liste id_hote=" . $_SESSION['lst_id_hote']);
-	
+
+    echo '<p>Liste limitée aux 250 derniers hôtes ajoutés dans centreon</p>';
 	echo '<p>Si un hôte n\'apparait pas dans la liste ci-dessous, c\'est qu\'il n\'est pas identifié pour la prestation actuelle.</p>';
 	echo '<p>Utilisez la fonction de recherche ci-dessus pour vérifier son existence dans Centreon.</p>';
 	echo '<p class="critique">Sélectionnez uniquement les hôtes dont vous souhaitez modifier les caractéristiques (Adresse IP, fonction, etc...) ou l\'état de la supervision (activation, désactivation, suppression).<br/>

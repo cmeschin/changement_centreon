@@ -15,7 +15,16 @@ $req_dem = $bdd_supervision->prepare(
 	FROM demande AS D
 	WHERE D.Etat_Demande NOT IN ("Traité", "Annulé")
 		AND D.Demandeur = :user
-	GROUP BY D.ID_Demande
+	GROUP BY D.ID_Demande,D.Ref_Demande,
+		D.Date_Demande,
+		D.Demandeur,
+		D.Date_Supervision_Demandee,
+		Code_Client,
+		NbHote,
+		NbService,
+		NbPlage,
+		D.Etat_Demande,
+		Type_Demande
 	ORDER BY D.Date_Supervision_Demandee, D.Date_Demande');
 $req_dem->execute(array(
 		'user' => htmlspecialchars($_SESSION['user_changement_centreon'])
