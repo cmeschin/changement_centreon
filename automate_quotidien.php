@@ -12,7 +12,7 @@
  */
 $debug=true; // activation du mode debug
 //initialisation mail
-$adresse_mail = "centreon_tt@tessi.fr";
+$adresse_mail = "admin_centreon@tessi.fr";
 //$adresse_mail = "cedric.meschin@tessi.fr";
 $adresse_mail = str_replace(";", ",", $adresse_mail); // converti les ; en , et ajoute un espace
 if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $adresse_mail)) // On filtre les serveurs qui rencontrent des bogues.
@@ -260,8 +260,8 @@ try {
 				//==========
 				
 				//=====Création du header de l'e-mail.
-				$header = "From: \"Centreon-GCC\"<centreon_tt@tessi.fr>".$passage_ligne;
-				$header.= "Reply-to: \"Centreon-GCC\" <centreon_tt@tessi.fr>".$passage_ligne;
+				$header = "From: \"Centreon-GCC\"<admin_centreon@tessi.fr>".$passage_ligne;
+				$header.= "Reply-to: \"Centreon-GCC\" <admin_centreon@tessi.fr>".$passage_ligne;
 				$header.= "MIME-Version: 1.0".$passage_ligne;
 				$header .= "X-Priority: 3".$passage_ligne;
 				$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne; // envoie du format text et HTML

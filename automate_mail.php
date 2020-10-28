@@ -298,7 +298,7 @@ try {
 				//==========
 				
 				//=====Création du header de l'e-mail.
-				$header = "From: \"changement_centreon\"<centreon_tt@tessi.fr>".$passage_ligne;
+				$header = "From: \"changement_centreon\"<admin_centreon@tessi.fr>".$passage_ligne;
 				$header.= "Reply-to: \"PasDeReponse\" <PasDeReponse@tessi.fr>".$passage_ligne;
 				$header.= "MIME-Version: 1.0".$passage_ligne;
 				$header .= "X-Priority: 3".$passage_ligne;

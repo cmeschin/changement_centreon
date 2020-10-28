@@ -86,7 +86,7 @@ if (session_id()=='')
 				<h3>Informations importantes</h3>
 				<div id="important">
 					<p>Avant de commencer la rédaction d'une demande de supervision, vous devez savoir ce que vous voulez superviser et comment. L'interface n'est qu'un moyen de transcrire cette demande, elle ne peut en aucun cas choisir à votre place ce que vous voulez faire.<br>
-					 Pour toute question sur les méthodes de supervision et sur ce qu'il est possible de faire, veuillez contacter Cedric Meschin au 05.57.22.77.13 ou par mail à centreon_tt@tessi.fr.</p> <br>
+					 Pour toute question sur les méthodes de supervision et sur ce qu'il est possible de faire, veuillez contacter Cedric Meschin au 05.57.22.77.13 ou par mail à admin_centreon@tessi.fr.</p> <br>
 					 
 					<p>Cette interface est developpée en HTML / PHP et utilise Javascript. Les messages de confirmation utilisent exclusivement des boîtes de dialogue que les navigateurs ont tendance à vouloir masquer.<br>
 					 Rassurez vous il n'y en a pas énorménent. Ne cochez pas la case suivante sinon vous serez bloqués dans la rédaction de votre demande.</p>
@@ -112,7 +112,7 @@ if (session_id()=='')
 					- choisir un nom dans la liste<br> <img alt="sélection prestation" src="images/info_gen_prestation_selec.png" width=400 border="1"> <br> <br>
 					- saisir tout ou partie du nom d'une prestation pour en réduire le choix puis cliquer sur le nom souhaité <br> <img alt="sélection prestation" src="images/info_gen_prestation_saisie.png" width=400 border="1"> <br> <br>
 <!-- 					- sélectionner "nouveau" et saisir le nom de la nouvelle prestation.<br> <img alt="sélection prestation" src="images/info_gen_prestation_nouveau.png" width=600 border="1"> <br> <br> -->
-					- Si votre prestation n'existe pas, contactez l'administrateur (Tél: 05.57.22.77.13 ou par mail centreon_tt@tessi.fr) afin que la prestation soit créée.
+					- Si votre prestation n'existe pas, contactez l'administrateur (Tél: 05.57.22.77.13 ou par mail admin_centreon@tessi.fr) afin que la prestation soit créée.
 					<p>La date de supervision souhaitée vous propose tout simplement un calendrier.</p>
 					<img alt="sélection date" src="images/info_gen_calendrier.png" border="1"> <br>
 					<p>Nous tacherons de traiter la demande pour que la supervision soit opérationnelle à la date demandée. Plus la demande sera anticipée, plus il sera possible d'en respecter les délais.</p>
@@ -370,7 +370,7 @@ if (session_id()=='')
 					 Vous trouverez néanmoins sur les différents formulaire cet icône <img alt="point-interrogation-16" src="images/point-interrogation-16.png"> qui vous permettra d'afficher quelques informations complémentaires concernant le champ auquel il est rattaché.<br>
 					 Si toutefois il vous manque des informations quelles qu'elles soient, n'hésitez pas à me contacter:<br>
 					 par tél: 05.57.22.77.13<br>
-					 par mail: centreon_tt@tessi.fr</p>
+					 par mail: admin_centreon@tessi.fr</p>
 				</div>
 				<h3>Choisir un modèle de service</h3>
 				<div id="choisir_modele">

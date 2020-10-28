@@ -1,3 +1,7 @@
+2020-10-28 9.20
+    - changement email centreon_tt en admin_centreon
+    - suppression des sources inutiles (_NE_SERS_PLUS_)
+
 2020-09-07 9.19
     - Correction sur l'envoi de mail multiples
     - Limitation aux 250 derniers serveurs ajoutés récupérés par prestation

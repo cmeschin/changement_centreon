@@ -215,8 +215,8 @@ while ($res_demandeur=$req_demandeur->fetch())
 	//==========
 	
 	//=====Création du header de l'e-mail.
-	$header = "From: \"changement_centreon\"<centreon_tt@tessi.fr>".$passage_ligne;
-	$header.= "Reply-to: \"Centreon_TT\" <centreon_tt@tessi.fr>".$passage_ligne;
+	$header = "From: \"changement_centreon\"<admin_centreon@tessi.fr>".$passage_ligne;
+	$header.= "Reply-to: \"Centreon_TT\" <admin_centreon@tessi.fr>".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header .= "X-Priority: 3".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne; // envoie du format text et HTML

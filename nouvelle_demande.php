@@ -74,7 +74,7 @@ $_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 						<input readonly="readonly" type="text" name="date_livraison_demandee" class="info_generale" id="date_livraison_demandee" onblur="verifChamp(this)" value="<?php echo $date_defaut;?>" size="10"/>
 						<img src="images/img_edit.png" class="verif" alt="incorrect" id="img_date_livraison_demandee" />
 					</span> <br />						
-					<label for="client" onclick="alert('Sélectionnez la prestation dans la liste; si elle n\'existe pas encore contactez l\'administrateur (05.57.22.77.13 ou centreon_tt@tessi.fr).')" title="Cliquez pour plus d'informations.">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
+					<label for="client" onclick="alert('Sélectionnez la prestation dans la liste; si elle n\'existe pas encore contactez l\'administrateur (05.57.22.77.13 ou admin_centreon@tessi.fr).')" title="Cliquez pour plus d'informations.">Prestation <img alt="point_interrogation" src="images/point-interrogation-16.png">:</label>
  						<select name="client" id="clientsup" class="info_generale">
  							<option value="" selected="selected" >...</option> <!-- Valeur par défaut -->
 							<?php
