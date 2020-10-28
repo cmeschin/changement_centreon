@@ -7,7 +7,7 @@
 /**
  * Initialisation des constantes
  * information à 15 jours
- * Suppression à 90 jours
+ * Suppression à 60 jours
  * Date du jour => pour le stockage de l'heure d'envoi du mail
  * Jour de la semaine => pour la vérification sur la calendrier => De 1 (pour Lundi) à 7 (pour Dimanche)
  * Heure actuelle => pour la vérification sur l'heure de notification
