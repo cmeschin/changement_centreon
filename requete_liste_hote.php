@@ -23,7 +23,6 @@ if ($monclient )
                          Hote
                         FROM vInventaireServices
                         WHERE
-                                host_id > (SELECT max(host_id)-1000 FROM vInventaireServices WHERE Code_Client= :Code_Client) AND
                                 Code_Client= :Code_Client
                         ORDER BY Nom_Hote
                         LIMIT 250');

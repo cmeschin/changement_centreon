@@ -1,3 +1,8 @@
+2020-11-02 9.20.1
+    - correction recherche liste hote
+        suppression des 1000 derniers id (requête principale)
+        suppression du filtre par prestation (requete cherche hôte)
+
 2020-10-28 9.20
     - changement email centreon_tt en admin_centreon
     - suppression des sources inutiles (_NE_SERS_PLUS_)

@@ -19,8 +19,7 @@ if (($Hote ) && ($Prestation))
 				 Controle_Hote,
 				 Hote 
 			FROM vInventaireServices
-			WHERE Code_Client <> :prestation
-				 AND (Nom_Hote LIKE :Nom_Hote OR IP_Hote LIKE :IP_Hote)
+			WHERE Nom_Hote LIKE :Nom_Hote OR IP_Hote LIKE :IP_Hote
 			ORDER BY Nom_Hote LIMIT 15');
 
 		$req_recherche_hote->execute(array(
