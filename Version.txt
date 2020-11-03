@@ -1,3 +1,7 @@
+2020-11-03 9.20.2
+    - correction recherche liste hote
+        Suppression variable prestation dans les arguments envoyés à la requete
+
 2020-11-02 9.20.1
     - correction recherche liste hote
         suppression des 1000 derniers id (requête principale)

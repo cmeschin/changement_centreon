@@ -23,7 +23,6 @@ if (($Hote ) && ($Prestation))
 			ORDER BY Nom_Hote LIMIT 15');
 
 		$req_recherche_hote->execute(array(
-				'prestation' => htmlspecialchars($Prestation),
 				'Nom_Hote' => '%'.htmlspecialchars($Hote).'%',
 				'IP_Hote' => '%'.htmlspecialchars($Hote).'%'
 		)) or die(print_r($req_recherche_hote->errorInfo()));
