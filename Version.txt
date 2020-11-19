@@ -1,3 +1,6 @@
+2020-11-19 9.20.3
+    - Ajout trace sur l'envoi des mails en cas d'erreur (problème d'envoi sur les adresse en presta.tessi.fr)
+
 2020-11-03 9.20.2
     - correction recherche liste hote
         Suppression variable prestation dans les arguments envoyés à la requete

@@ -138,10 +138,15 @@ session_start();
 	//==========
 	addlog("message constitué"); 
 	//=====Envoi de l'e-mail.
-	mail($adresse_mail,$sujet,$message,$header);
-	//mail("cedric.meschin@tessi.fr",$sujet,$message,$header);
-	addlog("mail envoyé");
-	//==========
+    $success = mail($adresse_mail,$sujet,$message,$header);
+    if (!$success) {
+        $errorMessage = error_get_last();
+        addlog("ERREUR:" . $errorMessage['message'] . "");
+    } else {
+        //mail("cedric.meschin@tessi.fr",$sujet,$message,$header);
+        addlog("mail envoyé");
+    }
+    //==========
 	/**
 	 *  flag envoi mail
 	 */

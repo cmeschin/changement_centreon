@@ -99,9 +99,14 @@ session_start();
 	//==========
 	addlog("message constitué"); 
 	//=====Envoi de l'e-mail.
-	mail($adresse_mail,$sujet,$message,$header);
-	//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
-	addlog("mail en cours envoyé");
+    $success = mail($adresse_mail,$sujet,$message,$header);
+    if (!$success) {
+        $errorMessage = error_get_last();
+        addlog("ERREUR:" . $errorMessage['message'] . "");
+    } else {
+        //mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
+        addlog("mail en cours envoyé");
+    }
 	//==========
 	/**
 	 *  flaguer mail_encours dans la table demande pour ne pas renvoyer le mail

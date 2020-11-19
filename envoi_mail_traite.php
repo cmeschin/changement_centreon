@@ -82,7 +82,7 @@ session_start();
 	//=====Création du header de l'e-mail.
 	$header = "From: \"GCC Centreon\" <admin_centreon@tessi.fr>".$passage_ligne;
 	$header.= "Reply-to: \"Centreon_tt\" <admin_centreon@tessi.fr>".$passage_ligne;
-	$header.= "Bcc: admin_centreon@tessi.fr".$passage_ligne;
+	$header.= "Bcc: \"Centreon_tt\" <admin_centreon@tessi.fr>".$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header .= "X-Priority: 3".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne; // envoie du format text et HTML
@@ -102,9 +102,14 @@ session_start();
 	//==========
 	addlog("message constitué"); 
 	//=====Envoi de l'e-mail.
-	mail($adresse_mail,$sujet,$message,$header);
-	//mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
-	addlog("mail clos envoyé");
+    $success = mail($adresse_mail,$sujet,$message,$header);
+    if (!$success) {
+        $errorMessage = error_get_last();
+        addlog("ERREUR:" . $errorMessage['message'] . "");
+    } else{
+        //mail("c.zic@free.fr c.meschin@free.fr",$sujet,$message,$header);
+        addlog("mail clos envoyé");
+    }
 	//==========
 	/**
 	 *  flaguer mail_traite dans la table demande pour ne pas renvoyer le mail
