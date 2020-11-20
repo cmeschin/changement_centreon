@@ -15,7 +15,14 @@ if ($monclient )
      */
 	include_once('connexion_sql_centreon.php');
 	try {
-		$req_hote = $bdd_centreon->prepare('SELECT Distinct(Nom_Hote),
+		$req_hote = $bdd_centreon->prepare('SELECT
+                        Nom_Hote,
+                        host_id,
+                        Hote_Description,
+                        IP_Hote,
+                        Controle_Hote,
+                        Hote
+                        FROM (SELECT Distinct(Nom_Hote),
                          host_id,
                          Hote_Description,
                          IP_Hote,
@@ -24,8 +31,8 @@ if ($monclient )
                         FROM vInventaireServices
                         WHERE
                                 Code_Client= :Code_Client
-                        ORDER BY Nom_Hote
-                        LIMIT 250');
+                        ORDER BY host_id DESC
+                        LIMIT 250) as hots ORDER BY Nom_Hote');
 		$req_hote->execute(array(
 				'Code_Client' => htmlspecialchars($monclient)
 		)) or die(print_r($req_hote->errorInfo()));
