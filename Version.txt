@@ -1,3 +1,8 @@
+2021-01-20 9.21
+    - Ajout gestion "+" dans les caractères speciaux notamment pour les mots de passe des boites mail
+    - Prise en compte du point "." dans le nom des hôtes
+    - déplacement du message concernant la limite à 250 hôtes
+
 2020-11-20 9.20.3
     - Ajout trace sur l'envoi des mails en cas d'erreur (problème d'envoi sur les adresse en presta.tessi.fr)
     - Correction filtre sur les 250 derniers hotes (ne remontait que les 250 hôtes par ordre alphabétique indépendamment de leur création suite version 9.20.1)

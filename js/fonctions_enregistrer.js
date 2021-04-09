@@ -1379,6 +1379,11 @@ function Gestion_caractere_speciaux(str)
 	{
 		str = str.replace(/\}/g,"_AF_");
 	}
+	reg1=new RegExp("[+]","g");
+	if (str.match(reg1))
+	{
+		str = str.replace(/+/g,"_PLUS_");
+	}
 	var str2 = "";
 	str2 = encodeURI(str);
 	Valeur_Champ = str2;

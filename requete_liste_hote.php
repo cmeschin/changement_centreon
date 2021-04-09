@@ -53,9 +53,6 @@ if ($monclient )
 	$_SESSION['lst_id_hote'] = substr($_SESSION['lst_id_hote'],1); // chaine construite sans le premier caractère.
 	addlog("Liste id_hote=" . $_SESSION['lst_id_hote']);
 
-    echo '<p>Liste limitée aux 250 derniers hôtes ajoutés dans centreon</p>';
-	echo '<p>Si un hôte n\'apparait pas dans la liste ci-dessous, c\'est qu\'il n\'est pas identifié pour la prestation actuelle.</p>';
-	echo '<p>Utilisez la fonction de recherche ci-dessus pour vérifier son existence dans Centreon.</p>';
 	echo '<p class="critique">Sélectionnez uniquement les hôtes dont vous souhaitez modifier les caractéristiques (Adresse IP, fonction, etc...) ou l\'état de la supervision (activation, désactivation, suppression).<br/>
 			La désactivation ou la suppression d\'un hôte dans centreon implique la désactivation ou la suppression automatique des services qui lui sont associés.<br/>
 			En revanche, l\'activation d\'un hôte réactivera automatiquement ses services <b>à l\'exception des services désactivés unitairement</b>. Il conviendra d\'être vigilant sur ce point.</p>';

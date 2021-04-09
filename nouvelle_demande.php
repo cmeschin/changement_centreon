@@ -108,7 +108,11 @@ $_SESSION['Recherche'] = false; // Il ne s'agit pas d'une recherche
 			<div id="tabs-2">
 				<h2>Liste des hôtes et services</h2>
 				<p>Cet onglet recense l'ensemble des hôtes et services rattachés à la prestation précédemment choisie.</p>
-				<div id="accordionListe">
+                <p>Liste limitée aux 250 derniers hôtes ajoutés dans centreon</p>
+                <p>Si un hôte n'apparait pas dans la liste ci-dessous, c'est qu'il n'est pas identifié pour la prestation actuelle.</p>
+                <p>Utilisez la fonction de recherche ci-dessous pour vérifier son existence dans Centreon et l'importer dans la demande s'il existe.</p>
+
+                <div id="accordionListe">
 					<h3>Rechercher des hôtes</h3>
 					<div id="recherche_hotes">
 						<?php 

@@ -73,6 +73,10 @@ if ($_SESSION['Admin']==False)
 	{
 		$Valeur_Champ = str_replace("_AF_","}",$Valeur_Champ);
 	};
+    if (preg_match("#_PLUS_#",$Valeur_Champ))
+    {
+        $Valeur_Champ = str_replace("_PLUS_","+",$Valeur_Champ);
+    };
 };
 /**
  * Ces substitutions sont systématiques car en dehors des scripts TESSI
